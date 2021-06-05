@@ -1,0 +1,1 @@
+Esta es la carpeta donde estarán los archivos relacionados a la primera red descentralizada con un enfoque UDP.
