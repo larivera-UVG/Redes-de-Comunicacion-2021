@@ -11,7 +11,7 @@ Este es el repositorio del trabajo de graduación dedicado a algoritmos de ruteo
 - _Flooding_
 
 ## Imágenes explicativas
-![Tarea de recolección](https://github.com/larivera-UVG/Redes-de-Comunicacion-2021/tree/main/Abraham%20Roquel/imagenes/red_recoleccion.jpg?raw=true)
+![rec](./imagenes/red_recoleccion.jpg)
 
 
 **Free Software, Hell Yeah!**
