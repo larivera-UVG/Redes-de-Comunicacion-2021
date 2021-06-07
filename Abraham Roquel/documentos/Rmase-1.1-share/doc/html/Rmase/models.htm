@@ -1,0 +1,827 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+
+<title>New Page 1</title>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman"
+	}
+-->
+</style>
+</head>
+
+<body>
+
+<p><img SRC="Logo.gif" height="151" width="276" align="LEFT"> </p>
+<h1><font color="#000099">Models</font></h1>
+<address>
+</address>
+
+<div align="right">
+  <pre><font color="#FF0000">A system that can be <i>modeled</i> is not the system itself.&nbsp;
+A model that can be <i>made</i> is not the absolute model.&nbsp;
+That which has no model is the <i>origin</i> of a system.&nbsp;
+That which has a model is the <i>understanding</i> of the system.</font>
+
+--- <b><font color="#000080">Zhang Ying</font></b></pre>
+</div>
+<hr>
+<table cellSpacing="8" cellPadding="0" width="745" border="0" height="28" style="border-collapse: collapse" bgcolor="#99CCFF">
+  <tr>
+    <td class="menuLinks" width="98" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="default.html">Home</a></b></font></td>
+    <td class="menuLinks" width="110" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="architecture.htm"><font color="#000080">
+    Architecture</font></a></b></font></td>
+    <td class="menuLinks" width="86" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="utilities.htm"><font color="#000080">
+    Utilities</font></a></b></font></td>
+    <td class="menuLinks" width="114" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="applications.htm"><font color="#000080">
+    Applications</font></a></b></font></td>
+    <td class="menuLinks" width="121" height="20" bgcolor="#99CCFF"><b>
+    <a class="bigmenuLinks" href="download.htm"><font color="#000080">Download</font></a></b></td>
+  </tr>
+</table>
+<p><b>
+<font color="#000099" size="5">Introduction:</font></b></p>
+<ul>
+  <p><font color="#000080">The current version of <b>
+  <a href="http://www.isis.vanderbilt.edu/projects/nest/prowler/">Prowler</a></b> 
+  provides three radio models and a MAC layer simulating that of the
+  <a href="http://webs.cs.berkeley.edu/">Berkeley motes</a>. We will describe 
+  the simplest probabilistic radio model among the three, the default radio model 
+  in <b>Prowler</b>. For other radio models, please check out references on the
+  <a href="http://www.isis.vanderbilt.edu/projects/nest/prowler/"><b>Prowler</b> 
+  web site</a>.</font></p>
+  <p><font color="#000080"><b><i>Rmase</i></b>, in addition, provides a topology model, an 
+  application model, and a performance model.</font></p>
+</ul>
+<p><b>
+<font color="#000099" size="5">Radio/MAC Model:</font></b><font size="5"></b></font></p>
+<p></p>
+<ul>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080">A radio propagation model determines the strength of a 
+  transmitted signal at a particular point of the space for all transmitters in 
+  the system. Based on this information, the signal reception conditions for the 
+  receivers can be evaluated and collisions can be detected. A simple 
+  transmission model is given by:</font></p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080"><br>
+  </font><i>P<sub>rec, ideal</sub>(d) <font face="Symbol">¬</font> P<sub>transmit</sub> 
+  / (1+d<sup><span style="font-family:''">&#947;</span></sup>),&nbsp; where&nbsp; 2
+  <span style="font-family: Symbol">£</span>&nbsp; <span style="font-family:''">
+  &#947;<sup> </span></sup>&nbsp;<span style="font-family: Symbol">£ </span>4 <br>
+  P<sub>rec</sub>(i, j) <font face="Symbol">¬</font> P<sub>rec, ideal</sub>(d<sub>i,j</sub>)(1+<span style="font-family:''">&#945;</span>(i,j))(1+<span style="font-family:''">&#946;</span>(t))</i><font color="#000080"><br>
+  <br>
+  where <i>P<sub>transmit</sub></i> is the signal strength at the sender and <i>
+  P<sub>rec, ideal</sub>(d)</i> is the <i>ideal</i> received signal strength at 
+  distance <i>d</i>, <i><span style="font-family:''">&#945;</span></i> and <i>
+  <span style="font-family:''">&#946;</span></i> are random variables with normal 
+  distributions <i>N(0, &#963;</i><sub><i><span style="font-family:''">&#945;</span></i></sub><i>)</i> 
+  and <i>N(0, &#963;<sub><span style="font-family:''">&#946;</span></sub>)</i>, 
+  respectively. A network is&nbsp; <i>asymmetric</i> if <i>&#963;</i><sub><i><span style="font-family:''">&#945;</span></i></sub>&gt;0 
+  or <i>&#963;<sub><span style="font-family:''">&#946;</span></sub></i> &gt;0. In this model,
+  <i><span style="font-family:''">&#945;</span></i> is static depending on locations
+  <i>i</i> and <i>j</i> only, and <i><span style="font-family:''">&#946;</span></i> 
+  is dynamic, changing over time. Furthermore, an additional parameter <i>p<sub>error</sub></i> 
+  models the probability of a transmission error by any un-modeled effects.<br>
+&nbsp;</font></p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080">A simple signal reception model is that the signal is 
+  received if the signal strength is greater than a reception threshold. A node
+  <i>j</i> can receive a packet from node <i>i </i>if <i>P<sub>rec</sub>(i, j)
+  </i>&gt; <span style="font-family: Symbol">D</span> where
+  <span style="font-family: Symbol">D</span> is the threshold. There is a 
+  collision if two transmissions overlap in time and both could be received.
+  </font></p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">&nbsp;</p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080">A more complicated transmission model, <b>Rayleigh</b> 
+  fading model, and a more complicated reception and collision model, 
+  considering the signal to interference and noise ratio (<b>SINR</b>) for each 
+  receiver and transmitter pair, are also available in <b>Prowler</b>, which are 
+  computationally more expensive.</font><br>
+&nbsp;</p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080">The MAC layer in <b>Prowler</b> simulates the Berkeley 
+  motes'&nbsp; CSMA MAC protocol,&nbsp; with a random waiting time, idle channel 
+  checking, and a random back-off interval, for sending a packet in the air.</font></p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">&nbsp;</p>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" width="699">
+    <tr>
+      <td valign="top" style="border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <p class="MsoNormal"><font color="#000080" size="3"><b>Name</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="367">
+      <p class="MsoNormal"><font color="#000080" size="3"><b>Explanation</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="151">
+      <p class="MsoNormal"><font color="#000080" size="3"><b>Typical Values</b></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">Radio 
+      model </font></p>
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">(<span style="font-family:''"><i>&#947;,
+      </i></span><i>&#963;</i><sub><i><span style="font-family:''">&#945; </span></i>
+      </sub><i>, &#963;<sub><span style="font-family:''">&#946;</span></sub></i>, </font>
+      <font color="#000080"><i><font size="3">p</font><sub><font size="3">error</font></sub></i><font size="3">,
+      </font><span style="font-family: Symbol"><font size="3">D)</font></span></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="367">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">
+      Parameters of the simplest radio model. The defaults are given on the 
+      right.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="151">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">
+      (2,0.45,0.02,0.05,0.1)</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">MAC 
+      waiting/backup times (<i>w</i><sub>t</sub>, <i>b</i><sub>t</sub>)</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="367">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">These 
+      parameters are used in motes for waiting for a channel and backup if the 
+      channel is busy. The defaults are given on the right (unit here is bit 
+      time).</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="151">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">(200+128<i>r</i>, 
+      100+30<i>r</i>) where <i>r</i> is random and has uniform distribution&nbsp;&nbsp; 
+      in (0,1)</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <font size="3" color="#000080">Packet length (<i>L</i>)</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="367">
+      <font size="3" color="#000080">All packets have a fixed length <i>L</i></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="151">
+      <font size="3" color="#000080">960 bits</font></td>
+    </tr>
+  </table>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">&nbsp;</p>
+</ul>
+
+<b>
+<font color="#000099" size="5">Topology Model:</font></b><font size="5"></b></font></p>
+<ul>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080">The topology model primarily specifies the topology of 
+  the network, i.e., the relative placement of nodes. The basic topology is a 
+  rectangular x-y grid. The <i>grid size</i>, <i>spacing</i>, <i>shift</i>, <i>
+  density</i>, and <i>offset</i> parameters allows one to specify a variety of 
+  topologies, including triangular grids, long parallel lines, and random 
+  networks of various kinds.</font></p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080">&nbsp;</font></p>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="width: 644; border-collapse: collapse; font-size: 10.0pt; font-family: Times New Roman; border: medium none">
+    <tr style="height: 20.35pt">
+      <td valign="top" style="width: 144; height: 20.35pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" style="page-break-after: avoid; text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080"><b>Name</b></font></td>
+      <td valign="top" style="width: 313; height: 20.35pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" style="page-break-after: avoid; text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080"><b>Explanation</b></font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 20.35pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" style="page-break-after: avoid; text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080"><b>Typical Values</b></font></td>
+    </tr>
+    <tr style="height: 33.2pt">
+      <td valign="top" style="width: 144; height: 33.2pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Grid Size (<i>n</i><sub>x</sub>,<i> n</i><sub>y</sub>)</font></td>
+      <td valign="top" style="width: 313; height: 33.2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Numbers of grid points in x and y directions.</font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 33.2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(10,10), (20,20), …, (100,100)</font></td>
+    </tr>
+    <tr style="height: 33.2pt">
+      <td valign="top" style="width: 144; height: 33.2pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Grid Distance (<i>l</i><sub>x</sub>,<i> l</i><sub>y</sub>)</font></td>
+      <td valign="top" style="width: 313; height: 33.2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Distance (spacing) of the grid points in x and y 
+      directions. The covered area is <i>n</i><sub>x</sub><i>l</i><sub>x</sub> 
+      by <i>n</i><sub>y</sub><i>l</i><sub>y</sub>.</font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 33.2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(1,1), (1,5)</font></td>
+    </tr>
+    <tr style="height: 116.95pt">
+      <td valign="top" style="width: 144; height: 116.95pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Grid Shift (<i>s</i><sub>x</sub>,<i> s</i><sub>y</sub>,<i> 
+      w</i>)</font></td>
+      <td valign="top" style="width: 313; height: 116.95pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Shift of the grid points from one row/column to the 
+      next as a percentage of grid spacing. Given a grid point (<i>i</i>,<i> j</i>), 
+      its position is shifted by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;((<i>j</i>-1)<i>s</i><sub>x</sub><i>l</i><sub>x</sub>, 
+      (<i>i</i>-1)<i>s</i><sub>y</sub><i>l</i><sub>y</sub>). </font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">To be even more general, one may specify <i>s</i><sub>x</sub>,
+      <i>s</i><sub>y</sub>, where <i>s</i><sub>x</sub> is a vector of shifts 
+      with size <i>n</i><sub>x</sub><i>d</i><sub>x</sub> and/or <i>s</i><sub>y</sub> 
+      is a vector of shifts with size <i>n</i><sub>y</sub><i>d</i><sub>y. </sub>
+      Given one grid point at (<i>i</i>,<i> j</i>), its position is shifted 
+      by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((<i>j</i>-1)<i>s</i><sub>x</sub>(<i>i</i>)<i>l</i><sub>x</sub>, 
+      (<i>i</i>-1)<i>s</i><sub>y</sub>(<i>j</i>)<i>l</i><sub>y</sub>). In case, 
+      one may specify <i>s</i><sub>x</sub><i> </i>(or<i> s</i><sub>y</sub>) as a 
+      vector with the size &lt;<i> s</i><sub>x</sub><i>d</i><sub>x</sub> (or <i>&lt; s</i><sub>y</sub><i>d</i><sub>y</sub>) 
+      then the algorithm will after going thru <i>s</i><sub>x</sub><i>(i) </i>
+      (or<i> s</i><sub>y</sub>(<i>i</i>)) continue with <i>s</i><sub>x</sub><i>(1)</i> 
+      (or <i>s</i><sub>y</sub><i>(1)</i>). Furthermore, one may choose either 
+      wrap around (<i>w</i>=1) or not (<i>w</i>=0). </font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 116.95pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(0,0,0), (0.5,0,1), …</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">&nbsp;</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">&nbsp;</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">([0.1:0.1:0.7],0,0)…</font></td>
+    </tr>
+    <tr style="height: 61.9pt">
+      <td valign="top" style="width: 144; height: 61.9pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Grid Density (<i>d</i><sub>x</sub>,<i> d</i><sub>y</sub>)</font></td>
+      <td valign="top" style="width: 313; height: 61.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Number of nodes per side from grid point to grid 
+      point (extending out from the last grid point in each row and column). The 
+      total number of nodes is <i>n</i><sub>x</sub><i>n</i><sub>y</sub>(<i>d</i><sub>­x</sub>+<i>d</i><sub>y­</sub>–1).</font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 61.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(1,1), (1,4), …</font></td>
+    </tr>
+    <tr style="height: 61.1pt">
+      <td valign="top" style="width: 144; height: 61.1pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Grid Offset (<i>o</i><sub>x</sub>,<i> o</i><sub>y</sub>)</font></td>
+      <td valign="top" style="width: 313; height: 61.1pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Maximum random offset (distance, positive number) 
+      for nodes to be placed away from specified node position. Given node 
+      position (<i>p</i><sub>x</sub>,<i> p</i><sub>y</sub>) as determined by 
+      spacing, shift, and density, the actual position is (<i>p</i><sub>x</sub>+<i>r</i><sub>x</sub><i>o</i><sub>x</sub>,<i> 
+      p</i><sub>y</sub>+<i>r</i><sub>y</sub><i>o</i><sub>y</sub>), where <i>r</i><sub>x</sub> 
+      and <i>r</i><sub>y</sub> are random variables in the interval [-1,1] with 
+      uniform distribution. Large offset values simulate a network with randomly 
+      positioned nodes.</font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 61.1pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(0,0), (0.5,0.5), …</font></td>
+    </tr>
+    <tr style="height: 214.3pt">
+      <td valign="top" style="width: 144; height: 214.3pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080"><span lang="FR">Holes </span></font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080"><span lang="FR">(<i>x</i>,<i> y</i>,<i> r</i><sub>x</sub>,<i> 
+      r</i><sub>y</sub>,</span><i><span style="font-family: Symbol"> q</span></i><span lang="FR">)</span></font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080"><span lang="FR">&nbsp;</span>and/or</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Rand Holes </font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(<i>n</i>,<i> r</i><sub>x</sub>,<i> dr</i><sub>x</sub><i>, 
+      r</i><sub>y</sub>,<i> dr</i><sub>y</sub>)</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Border (<i>b</i>) </font></td>
+      <td valign="top" style="width: 313; height: 214.3pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">A specific position and size for one hole could be 
+      specified (e.g., center of the network), where (<i>x, y</i>) is the center 
+      of the rectangular area, <i><span style="font-family: Symbol">q</span></i> 
+      is the orientation of the <i>x</i> axis of the rectangle, and <i>r</i><sub>x</sub> 
+      and <i>r</i><sub>y</sub> specify the size of the rectangle. Furthermore, a 
+      number of randomly-centered&nbsp; holes can be specified. In this case, <i>n</i> 
+      is the number of holes, <i>dr</i><sub>x</sub> and <i>dr</i><sub>y</sub> 
+      are maximum deviation from the nominal values of <i>r</i><sub>x</sub> and
+      <i>r</i><sub>y</sub>, with uniform random distribution. Variation: the 
+      impacted nodes are moved to the boundary (<i>b</i>=1) of the rectangle. 
+      This allows one to simulate the dense placement of nodes around 
+      high-interest areas such as buildings, or nodes that fell from roofs 
+      around a building. Variation: one could specify the percentage of failed 
+      nodes in the hole.</font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 214.3pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(<i>n</i><sub>x</sub><i>l</i><sub>x</sub>/2,<i> n</i><sub>y</sub><i>l</i><sub>y</sub>/2, 
+      5,5,34)</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">or</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(5, 10, 0.3, 6, 0.2)</font></p>
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">generates 5 random holes with <i>r</i><sub>x</sub> 
+      between 7 and 13, <i>r</i><sub>y</sub> between 4.8 and 7.2 and a randomly
+      <i>&#952;</i> </font></td>
+    </tr>
+    <tr style="height: 61.9pt">
+      <td valign="top" style="width: 144; height: 61.9pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Alive Rate (<i>a</i>)</font></td>
+      <td valign="top" style="width: 313; height: 61.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">Percentage of alive nodes. Allows one to specify a 
+      failure rate distributed over the network, e.g., due to placement impact 
+      (initial configuration).</font></td>
+      <td width="187" valign="top" style="width: 140.1pt; height: 61.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align: left; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+      <font color="#000080">(0.9) (= 10% Failure Rate) </font></td>
+    </tr>
+  </table>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  &nbsp;</p>
+  <p class="MsoNormal">&nbsp;</p>
+  <p class="MsoNormal"><font color="#000080"><b><font size="4">Examples</font></b>:</font></p>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: medium none">
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3">default values: (<i>n</i><sub>x</sub>,<i> n</i><sub>y</sub>) 
+      = (7,7), (<i>l</i><sub>x</sub>,<i> l</i><sub>y</sub>) = (1,1), (<i>s</i><sub>x</sub>,<i> 
+      s</i><sub>y</sub>,<i> w</i>) = (0,0,0), (<i>d</i><sub>x</sub>,<i> d</i><sub>y</sub>) 
+      = (1,1), (<i>o</i><sub>x</sub>,<i> o</i><sub>y</sub>) = (0,0), (<i>x</i>,<i> 
+      y</i>,<i> r</i><sub>x</sub>,<i> r</i><sub>y</sub>,<i><span style="font-family: Symbol"> 
+      q</span></i>) = (0,0,0,0,0), (<i>n</i>,<i> r</i><sub>x</sub>,<i> dr</i><sub>x</sub><i>, 
+      r</i><sub>y</sub>,<i> dr</i><sub>y</sub>) = (0,0,0,0,0), (<i>b</i>) = (0), 
+      (<i>a</i>) = (0):</font></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(<i>l</i><sub>x</sub>,<i> l</i><sub>y</sub>) 
+      = (5,5):</font></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example1.jpg" width="276" height="193"></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example2.jpg" width="276" height="196"></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3">(<i>s</i><sub>x</sub>, <i>s</i><sub>y</sub>,
+      <i>w</i>) = (0.3,0,1):</font></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3">(<i>s</i><sub>x</sub>,<i> s</i><sub>y</sub>,<i> 
+      w</i>) = ([0.1:0.1:0.4],0,0):</font></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example3.jpg" width="276" height="198"></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example4.jpg" width="276" height="198"></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3">(<i>d</i><sub>x</sub>,<i> d</i><sub>y</sub>) 
+      = (3,3):</font></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3">(<i>o</i><sub>x</sub>,<i> o</i><sub>y</sub>) 
+      = (0.1,0.1):</font></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example5.jpg" width="276" height="201"></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example6.jpg" width="276" height="200"></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3">(<i>o</i><sub>x</sub>,<i> o</i><sub>y</sub>) 
+      = (3.5,3.5):</font></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3"><span lang="FR">(<i>n</i><sub>x</sub>,<i> n</i><sub>y</sub>) 
+      = (10,10), (<i>x</i>,<i> y</i>,<i> r</i><sub>x</sub>,<i> r</i><sub>y</sub>,</span><i><span style="font-family: Symbol"> 
+      q</span></i><span lang="FR">) = (4,4,6.4,6.4,45), (<i>b</i>) = (1):</span></font></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example7.jpg" width="276" height="202"></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example8.jpg" width="276" height="196"></td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3"><span lang="FR">(<i>n</i><sub>x</sub>,<i> n</i><sub>y</sub>) 
+      = (25,25), (<i>x</i>,<i> y</i>,<i> r</i><sub>x</sub>,<i> r</i><sub>y</sub>,</span><i><span style="font-family: Symbol"> 
+      q</span></i><span lang="FR">) = (4,9,0.2,5,0.3), (<i>b</i>) = (1):</span></font><p class="MsoNormal" align="left" style="text-align:left">
+      <img border="0" src="models_files/example9.jpg" width="276" height="199"></td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: medium none; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      &nbsp;</td>
+      <td width="295" valign="top" style="width: 221.4pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font color="#000080" size="3">&nbsp;</font></td>
+    </tr>
+  </table>
+  <p class="MsoNormal" align="left" style="text-align:left">
+  <font color="#000080">To be even more general, in addition to the 
+  parameterized topology model, one can input an arbitrary topology (from real 
+  experiments) from a file which specifies each node's location.</font><br>
+  <img border="0" src="models_files/example10.gif" width="460" height="329"></p>
+</ul>
+
+<p><b>
+<font color="#000099" size="5">Application Model:</font></b><font size="5"></b></font></p>
+<p></p>
+<blockquote>
+  <p class="MsoNormal"><font color="#000080"><i><b>Rmase</b></i> provides a 
+  parameterized application model that specifies the characteristics of routing 
+  applications. For simplicity in modeling and simulation, we assume that all 
+  the nodes in a sensor network, except source and/or destination nodes, are 
+  static. Although simplified, this assumption does fit most routing 
+  applications in sensor networks.<br>
+  <br>
+  Using this model, one can specify the <i>type</i> of source/destination to be
+  <i>static</i>, <i>dynamic</i>, or <i>mobile</i>. A source (or destination) is
+  <i>static</i> if all the source nodes are static and remain the source nodes 
+  for the course of routing. A source (or destination) is <i>dynamic</i> if the 
+  source (or destination) nodes are static but changing during the course of 
+  routing. A source (or destination) is <i>mobile</i> if the source (or 
+  destination) nodes are fixed but moving during the course of routing. One can 
+  also specify the <i>center</i> of the source (or destination) <i>c</i>, the<br>
+  radius <i>r</i>, and the percentage <i>p</i> of the nodes within the region to 
+  be source (or destination) nodes, i.e., if a node is within the circle 
+  centered at <i>c</i> with radius <i>r</i>, the probability of being a source 
+  (or destination) node is <i>p</i>. If only one node can be the source or 
+  destination within the specified circle (e.g., after leader selection),&nbsp; 
+  the <i>uniqueness</i> flag can be checked in the model. In addition, if the 
+  source (or destination) is dynamic or mobile, one can specify the <i>speed</i> 
+  of motion. For a dynamic source (or destination), the speed represents the 
+  speed of a stimuli at the center; the source (or destination) nodes are 
+  selected at certain sampling time relative to the speed. For a mobile source 
+  (or destination), the source (or destination) nodes are selected in the 
+  beginning and are set to move according to the speed.<br>
+  <br>
+  The application model can generate <i>peer-to-peer</i> (one-to-one), <i>
+  multicast</i> (one-to-many), or <i>convergecast</i> (many-to-one) routing 
+  application scenarios. For example, one can set a static peer-to-peer 
+  communication scenario by specifying the source and the destination to be 
+  static and unique. To test a multicast scenario, one can have a unique source, 
+  but multiple destinations. Similarly, for a convergecast scenario, one can 
+  have a unique base station with multiple sources. <br>
+  <br>
+  In addition to the geographic locations/distributions of sources and 
+  destinations, one should specify the source or destination rates, where the 
+  source rate is corresponding to the frequencies of events and the destination 
+  rate is corresponding to the frequencies of queries in query-based 
+  applications. The source/destination rate is specified by the number of 
+  packets per second. One may also have irregular event or query rates by 
+  providing an input file which specifies the exact time that each node sends 
+  out an event or a query packet. Such an input file is normally generated by 
+  real experiments in a hardware platform. Other parameters such as network <i>
+  start time</i> for initialization, random source/destination pairs can be 
+  specified as well. <br>
+&nbsp;</font></p>
+</blockquote>
+<ul>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="width: 641; border-collapse: collapse; border: medium none">
+    <tr>
+      <td valign="top" style="border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" style="page-break-after:avoid"><b>
+      <font size="3" color="#000080">Name</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" style="page-break-after:avoid"><b>
+      <font size="3" color="#000080">Explanation</font></b></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" style="page-break-after:avoid"><b>
+      <font size="3" color="#000080">Typical Values (examples)</font></b></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left" style="text-align:left"><b>
+      <font size="3" color="#000080">Source spec:</font></b>
+      <font size="3" color="#000080">(<i>t, c</i>,<i> r, p</i>, <i>u,</i> <i>v</i>)</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">Type, center (or random location), radius, 
+      percentage, uniqueness, and velocity (fixed in x and y direction plus 
+      random increment for both) of the source(s) from which routing requests 
+      originate. The type is either <i>stationary</i>, meaning fixed in the 
+      beginning, or <i>dynamic</i>, meaning different from time to time, or <i>
+      mobile</i>, meaning the set of motes is fixed, but moving along the given 
+      speed. The center is typically either random or fixed. An area of source 
+      nodes is given by the radius <i>r</i> of a circle from which sources are 
+      taken. Percentage specifies the percentages of nodes in the area that are 
+      source nodes. The uniqueness parameter specifies if there is only one node 
+      in the specified area to be the source node. If source is dynamic or 
+      mobile, velocity is given. </font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(static, random, 0.2, 1, true, (0,0,0)),</font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(static, (x,y), 10, 0.5, false, (0,0,0)),</font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(static, random, 10, 1, false, (0,0, 0.1)),</font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(dynamic, (x,y), 10, 0.1, true, 
+      (0.2,0.2,0))</font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(mobile, random, 0.5, 1, true, 
+      (0.2,0.2,0.1))</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left"><b><font size="3" color="#000080">Desti. 
+      spec:</font></b> <font size="3" color="#000080">(<i>t, c</i>,<i> r, p</i>,
+      <i>u,</i> <i>v</i>)</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal"><font size="3" color="#000080">Same as source spec.</font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">&nbsp;</font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">See source spec.</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080"><b>Routing distance check</b> </font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(<i>l</i>,<i> d, c</i>)</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">Average distance <i>l</i> and maximum 
+      deviation <i>d</i> of that distance between source(s) and destination(s) 
+      (as a percentage of the maximum Euclidean distance between any two nodes 
+      in the network). </font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">If <i>c</i> is true, check if the pair 
+      distance is within range (for random source and destination). This allows 
+      one to specify a uniform separation for randomly generated sources and 
+      sink for repeated experiments.</font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">(0.5, 0.1, true)</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left" style="text-align:left"><b>
+      <font size="3" color="#000080">Source rate</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">Number of packets sent per second.</font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">4 p/s</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left" style="text-align:left"><b>
+      <font size="3" color="#000080">Desti. rate</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">Number of packets requested per second by 
+      the destination (used for query application).</font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">0.5 p/s</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left" style="text-align:left"><b>
+      <font size="3" color="#000080">Query window</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">Window for getting interested events in 
+      (used for query application)</font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">1s</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left" style="text-align:left"><b>
+      <font size="3" color="#000080">Number of source packets</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">Total number of packets sent from each 
+      source</font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">&nbsp;infinite</font></p>
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">10</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="92">
+      <p class="MsoNormal" align="left" style="text-align:left"><b>
+      <font size="3" color="#000080">Initialization time</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="238">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">Start time for sending data; used for 
+      initialization of the network.</font></td>
+      <td valign="top" style="width: 265; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left" style="text-align:left">
+      <font size="3" color="#000080">&nbsp;1s</font></td>
+    </tr>
+  </table>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">&nbsp;</p>
+</ul>
+
+<p><b>
+<font color="#000099" size="5">Performance Model:</font></b><font size="5"></b></font></p>
+<p></p>
+<ul>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080"><b><i>Rmase</i></b> provides a set of performance 
+  metrics for comparing different routing algorithms, including&nbsp; <i>latency</i>,
+  <i>throughput</i>, <i>success/loss rate</i>, <i>energy consumption/efficiency</i>, 
+  and network <i>life-time predication</i>.<br>
+&nbsp;</font></p>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top" style="border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b><font size="3" color="#000080">Name</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b><font size="3" color="#000080">Definition</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b><font size="3" color="#000080">Comment</font></b></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Latency</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Time to 
+      send a message from source to destination. For any destination, if <i>n</i> 
+      packets have arrived, latency for that destination is given by
+      <span style="font-family: Symbol">S</span><i><sub>i</sub></i> <i>d<sub>i</sub></i>/<i>n</i>, 
+      where <i>d<sub>i</sub></i> is the latency of the <i>i</i>th packet. The 
+      latency of the network is then averaged by the number of destinations.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">We use 
+      latency rather than the number of hops as the metric since latency 
+      consists of not just the number of hops, but also the length of 
+      transmission queues, the random delays at the MAC layer, and even 
+      deliberately added delays in routing algorithms to avoid collisions.</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Jitter</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Variance 
+      of time delays of packets over time. For any destination, if <i>n</i> 
+      packets have arrived, jitter is given by <span style="font-family: Symbol">
+      S</span><i><sub>i</sub></i> (<i>d<sub>i</sub></i>–<span style="font-family: Symbol">m</span>)<sup>2</sup>/(<i>n</i>–1), 
+      where <i>d<sub>i</sub></i> is the latency of the <i>i</i>th packet and
+      <span style="font-family: Symbol">m</span> is the average latency at the 
+      destination. The jitter of the network is then averaged by the number of 
+      destinations.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Measures 
+      performance consistency.</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">
+      Throughput</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Number of 
+      messages per second received at destination. The throughput of the network 
+      is the sum of the throughputs from all destinations.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Measures 
+      time performance for entire application.</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Success 
+      Rate</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">The total 
+      number of packets received at all the destinations vs. the total number of 
+      packets sent from all the sources.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Measures 
+      the overall success of the network.</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Loss Rate</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Number of 
+      lost packets vs. the total expected number of packets for that 
+      destination. To obtain the loss rate, each packet is attached with a 
+      message ID <i>m</i> and a sequence ID <i>s</i>. Assume that <i>s'</i> is 
+      the largest sequence ID of message <i>m</i> received at this node, when a 
+      new packet of <i>m</i> with <i>s </i>arrives, the <i>loss</i> for the 
+      packet is calculated by <i>s - (s'+1)</i> if <i>s&gt;s'</i>, and -1 
+      otherwise. The <i>total loss</i> at a destination is then calculated by <i>
+      L=<span style="font-family: Symbol">S</span><sub>i</sub> l<sub>i</sub>,
+      </i>where <i>l</i><sub>i</sub> is the loss for the <i>i</i>th packet. The 
+      loss rate at a destination is <i>L</i>/(<i>L</i>+<i>R</i>), where <i>L</i> 
+      is the number of packets lost and <i>R</i> is the number of packets 
+      received. The loss rate of a network is then averaged by the number of 
+      destinations.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Measures 
+      quality (e.g., more dropped messages result in lower sensing resolution).</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Energy 
+      Consumption</font></p>
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">(<i>Pt, 
+      Pr, Pi</i>)</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Sum of 
+      used energy of all the nodes in the network, where the <i>used energy of a 
+      node</i> is the sum of the energy used for communication, including <i>
+      transmitting (Pt)</i>, <i>receiving (Pr)</i> and <i>idling (Pi)</i>. 
+      Assume the transmission power level be <i>L</i>, and the time for 
+      transmitting, receiving and idling be <i>Tt</i>, <i>Tr</i> and <i>Ti</i>, 
+      respectively, the total energy consumption of a node is: </font><i>
+      <font size="3" color="#000080">PtTtL+PrTr+PiTi.</font></i></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">One can 
+      control a node to sleep or wakeup. There is no energy consumption in sleep 
+      state.</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Energy 
+      Efficiency</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Ratio 
+      between the total number of packets received at the destinations vs. the 
+      total energy consumption in the network.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">There is 
+      a trade-off between throughput and energy consumption.</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Life-time 
+      Prediction<sup>*</sup></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font color="#000080"><i><font size="3">
+      E</font></i><font size="3"> – (<i><u>u</u></i>+&#963;), where <i>E</i> is the 
+      total initial energy at each node (full battery charge), <i><u>u</u></i> =
+      <span style="font-family: Symbol">S</span> <i>u<sub>i</sub></i>/<i>N</i> 
+      is the average used energy, <i>N</i> is the total number of nodes in the 
+      network, and &#963;<sup>2</sup> = (<i>u<sub>i</sub></i>–<i><u>u</u></i>)<sup>2</sup>/<i>N</i>.</font></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">Measures 
+      the effect of energy efficiency and load balancing on the routing 
+      application. Can be obtained at any time to predict the life-time of the 
+      network. From this metric, one can see that if two algorithms <i>A</i> and
+      <i>B</i> use the same amount of energy, but if <i>B</i> uses energy more 
+      evenly across the network than <i>A</i>, <i>B</i> has a longer life-time.</font></td>
+    </tr>
+  </table>
+  <p class="MsoNormal"><font color="#000080"><sup>*</sup>Note that another 
+  definition for network lifetime has been the time until network separation. 
+  This definition has the disadvantage that it cannot distinguish between 
+  separation of half the network and separation of a single node, and between a 
+  single node that is peripheral and a single node that is the base station. 
+  Another definition can be the time until the network loss rate is above a 
+  given threshold. Loss rate measures the relevance to the application: a single 
+  connected peripheral node leads to a small loss rate, while a single 
+  disconnected base station leads to a large loss rate (if it is the source or 
+  the destination). Similarly, separation of half the network leads to a large 
+  loss rate. However, both of these definitions require to run the simulation 
+  until the property of life-time is satisfied. If the initial energy level is 
+  high, this may take a long time, which is not practical.</font></p>
+</ul>
+
+<hr>
+<address>
+&nbsp;</address>
+<address>
+  <a href="mailto:yzhang@parc.xerox.com">Zhang Ying (yzhang@parc.com)</a></address>
+
+</body>
+
+</html>

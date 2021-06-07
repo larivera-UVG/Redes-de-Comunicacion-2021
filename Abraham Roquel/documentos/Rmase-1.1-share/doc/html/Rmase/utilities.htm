@@ -1,0 +1,303 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Utilities</title>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman"
+	}
+-->
+</style>
+</head>
+
+<body>
+
+<p><img SRC="Logo.gif" height="151" width="276" align="LEFT"> </p>
+<h1><font color="#000099">Utilities</font></h1>
+<div align="right">
+  <pre><font color="#FF0000">The way of human <i>follows</i> the way of earth.&nbsp;
+The way of earth <i>follows</i> the way of heaven.&nbsp;
+The way of heaven <i>follows</i> the way of&nbsp; <b>Tao</b>.&nbsp;
+The way of&nbsp; <b>Tao</b>&nbsp; <i>follows</i> the way of Nature.</font>
+
+--- <b><font color="#000080"><i>Tao Teh Ching</i></font></b>, <font color="#000080"><b>Lao Tzu</b></font></pre>
+</div>
+<hr>
+<table cellSpacing="8" cellPadding="0" width="745" border="0" height="28" style="border-collapse: collapse" bgcolor="#99CCFF">
+  <tr>
+    <td class="menuLinks" width="98" height="20" bgcolor="#99CCFF"><b>
+    <a href="models.htm">Models</a></b></td>
+    <td class="menuLinks" width="110" height="20" bgcolor="#99CCFF"><b>
+    <a href="architecture.htm">Architecture</a></b></td>
+    <td class="menuLinks" width="86" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="default.html">Home</a></b></font></td>
+    <td class="menuLinks" width="114" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="applications.htm"><font color="#000080">
+    Applications</font></a></b></font></td>
+    <td class="menuLinks" width="121" height="20" bgcolor="#99CCFF"><b>
+    <a class="bigmenuLinks" href="download.htm"><font color="#000080">Download</font></a></b></td>
+  </tr>
+</table>
+<p><b><font color="#000099" size="5">Introduction:</font></b></p>
+<ul>
+  <p><font color="#000080"><i><b>Rmase</b></i> is implemented as an application 
+  in <b><a href="http://www.isis.vanderbilt.edu/projects/nest/prowler/">Prowler</a></b>, 
+  which provides a graphic user interface for setting parameters, displaying 
+  network topologies, and visualizing link activities. There are a set of global 
+  and local variables that <i><b>Rmase</b></i> uses and can be extended as well. Implemented in
+  <a href="http://www.mathworks.com/products/matlab/">Matlab</a>, there are 
+  utilities in graphics for on-line debugging and optimization toolboxes for 
+  off-line tuning. We will introduce these utilities and walk through the steps 
+  to write a new routing component or to compose a new routing algorithm in <i>
+  <b>Rmase</b></i>.</font></p>
+</ul>
+<p><font size="5" color="#000099"><b>Graphical User Interface </b></font>
+<font size="4" color="#000099">(click the GUI below to see a video)</font><b><font color="#000099" size="5">:</font></b></p>
+<ul>
+  <p><font color="#000080"><a href="utilities_files/mcbr_tree_demo.avi">
+  <img border="0" src="utilities_files/prowler.gif" width="692" height="570"></a></font></p>
+  <p><font color="#000080">The main <b>Prowler</b> GUI displays the node 
+  placement, provides choices for radio models and shows the event activities. 
+  Each application can have its own parameters. For <i><b>Rmase</b></i>, there 
+  are parameters for the topology model, the application model and routing 
+  components, as well as for the selection of routing layers.</font></p>
+  <p><font color="#000080"><b>Topology Specification Window</b>:</font></p>
+  <p><img border="0" src="utilities_files/params.gif" width="388" height="664"></p>
+  <p><b><font color="#000080">Application Scenario Windows:</font></b></p>
+  <p><i><font color="#000080"><b>Source (Destination) Specification</b></font></i></p>
+  <p><img border="0" src="utilities_files/appwindow.gif" width="314" height="322"></p>
+  <p><font color="#000080"><i><b>Simulation Parameters</b></i></font></p>
+  <p><img border="0" src="utilities_files/simwindow.gif" width="354" height="332"></p>
+  <p><b><font color="#000080">Routing Layers Selection Window:</font></b></p>
+  <p><img border="0" src="utilities_files/layer.gif" width="388" height="664"></p>
+  <p>For each routing component, one can set its own parameter window as well, 
+  for example:</p>
+  <p><img border="0" src="utilities_files/parawindow.gif" width="330" height="233"></p>
+</ul>
+<p><font size="5" color="#000099"><b>Global and Local Variables</b></font><b><font color="#000099" size="5">:</font></b></p>
+<ul>
+  <p><font color="#000080"><i><b>Rmase</b></i> uses a set of global and local 
+  variables, where global variables are shared by all routing components and 
+  local variables are for each component. </font></p>
+  <p><font color="#000080">Some examples of global variables are:</font></p>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" width="699">
+    <tr>
+      <td valign="top" style="border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <p class="MsoNormal"><font color="#000080" size="3"><b>Name</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="310">
+      <p class="MsoNormal"><font color="#000080" size="3"><b>Explanation</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="208">
+      <p class="MsoNormal"><font size="3" color="#000080"><b>Examples</b></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">
+      ATTRIBUTES</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="310">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">
+      ATTRIBUTES{ID} defines the structure of all the attributes in node ID. One 
+      can extend the structure with any user defined attribute.</font><p class="MsoNormal" align="left">
+      <font size="3" color="#000080">For example, ATTRIBUTES{ID}.QValue is the 
+      QValue at node ID.</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="208">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">
+      ATTRIBUTES{ID}.x<br>
+      ATTRIBUTES{ID}.y</font><p class="MsoNormal" align="left">
+      <font size="3" color="#000080">ATTRIBUTES{ID}.power<br>
+      ATTRIBUTES{ID}.usedPower</font><p class="MsoNormal" align="left">
+      <font size="3" color="#000080">ATTRIBUTES{ID}.strength</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">NEIGHBORS</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="310">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">
+      NEIGHBORS{ID} holds the list of nodes that node ID can hear</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="208">
+      <p class="MsoNormal" align="left"><font size="3" color="#000080">
+      NEIGHBORS{5} = [1,4,7]</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <font size="3" color="#000080">RNUMBERS</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="310">
+      <font size="3" color="#000080">RNUMBERS{ID} holds the total received 
+      packets from each of its neighbors</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="208">
+      <font size="3" color="#000080">RNUMBERS{5} = [10,20,5]</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <font size="3" color="#000080">LTOTALS</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="310">
+      <font size="3" color="#000080">LTOTALS{ID} holds the total number of lost 
+      packets to each of its neighbors</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="208">
+      <font size="3" color="#000080">LTOTALS{5}=[0,1,3]</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <font size="3" color="#000080">SOURCES</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="310">
+      <font size="3" color="#000080">SOURCES(ID) if 1 if and only if node ID is 
+      a source node</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="208">
+      <font size="3" color="#000080">SOURCES(2) = 1</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="133">
+      <font size="3" color="#000080">DESTINATIONS</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="310">
+      <font size="3" color="#000080">DESTINATION(ID) is 1 if and only if node ID 
+      is a destination</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="208">
+      <font size="3" color="#000080">DESTINATIONS(4) = 1</font></td>
+    </tr>
+  </table>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">&nbsp;</p>
+  <p class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph; font-size: 12.0pt; font-family: Times New Roman; margin-left: 0in; margin-right: 0in; margin-top: 6.0pt; margin-bottom: .0001pt">
+  <font color="#000080">The attributes defined in ATTRIBUTES can be displayed 
+  over the node display window, for example, attribute <font face="Arial">
+  usedPower</font> is displayed below in which the &quot;hot&quot; spots are places where 
+  the energy consumption is high.</font></p>
+  <p>
+  <img border="0" src="utilities_files/usedPower.jpg" width="550" height="416"></p>
+  <p>
+  <font color="#000080">Each component can have its local variables stored in
+  <font face="Arial">memory</font>, where <font face="Arial">memory</font> is a 
+  persistent variable holding the <i>states </i>of the component for each node. 
+  In addition, there are also parameters which are constants and can be 
+  initialized at the beginning in '<font face="Arial">Init_Application</font>'.</font></p>
+</ul>
+<p><b><font color="#000099" size="5">Batch Tests:</font></b></p>
+<ul>
+  <p><font color="#000080">Using <b>Prowler</b>'s off-line simulation, one can 
+  run a set of experiments in batch mode and display the performance metrics 
+  after the experiments. One can also perform off-line optimization to select 
+  the best routing algorithm or parameters. To do that one would write an 
+  evaluation function, </font></p>
+  <blockquote>
+  <p><font face="Arial" color="#000080"><b>function</b> cost = evaluate(choices)<br>
+  </font><font face="Arial" color="#008000">%set <i><b>Rmase</b></i> as <b>
+  Prowler</b> application</font><font face="Arial" color="#000080"><br>
+  sim_params('set_default');<br>
+  sim_params('set', 'APP_NAME', 'Rmase'); <br>
+  sim_params('set_app_default'); <br>
+  ...<br>
+  </font><font face="Arial" color="#008000">%set parameters about the 
+  application</font><font face="Arial" color="#000080"><br>
+  ...<br>
+  </font><font face="Arial" color="#008000">%set parameters about the routing 
+  algorithm</font><font face="Arial" color="#000080"><br>
+  ... <br>
+  </font><font face="Arial" color="#008000">%set parameters about the choices 
+  for evaluation</font><font face="Arial" color="#000080"><br>
+  ... <br>
+  </font><font face="Arial" color="#008000">%start <b>Prowler</b></font><font face="Arial" color="#000080"><br>
+  prowler('Init'); <br>
+  prowler('StartSimulation');<br>
+  </font><font face="Arial" color="#008000">%obtain performance statistics</font><font face="Arial" color="#000080"><br>
+  sys_stat = permstats;<br>
+  </font><font face="Arial" color="#008000">%get cost of interest</font><font face="Arial" color="#000080"><br>
+  cost = calculate(sys_stat);</font></p>
+  </blockquote>
+  <p><font color="#000080">where the input to the function is a list of choices 
+  and the output is the cost of interest, which can be a single<br>
+  performance metric or a combination with trade-offs. If choices are discrete 
+  and finite, one can simply run all the choices and find the minimum cost. 
+  Otherwise, one may want to use Matlab's optimization toolbox to find the 
+  minimum. One can write similar codes to run <i>N</i> random experiments on a 
+  specific setting as well. Examples of batch tests can be found in the 'tests' 
+  directory of <i><b>Rmase</b></i>.</font></p>
+</ul>
+<p><font size="5" color="#000099"><b>Component Extensions</b></font><b><font color="#000099" size="5">:</font></b></p>
+<ul>
+  <p><font color="#000080">To write a new routing component, a couple of files 
+  need to be modified. Assume that the new component is <font face="Arial">X</font>, one would write a 
+  function, named <font face="Arial">X_layer.m</font>. Then modify file
+  <font face="Arial">all_app_layers.m</font> to insert <font face="Arial">'X'</font> into the right layer. To add 
+  <font face="Arial">X</font> into the selection in 
+  the parameter window, one should modify <font face="Arial">Rmase_params.m</font> to add the following 
+  code:</font></p>
+  <blockquote>
+  <p><font color="#000080" face="Arial">i=i+1; <br>
+  param(i).name = 'X'; <br>
+  param(i).default = <i>default;</i> <br>
+  param(i).group = 7; <br>
+  param(i).type='checkbox';</font></p>
+  </blockquote>
+  <p><font color="#000080">If <font face="Arial">X</font> has parameters, one 
+  should write a function <font face="Arial">X_set_params.m</font>, and then add 
+  code</font></p>
+  <blockquote>
+  <p><font face="Arial" color="#000080">gId = gId + 1; <br>
+  [param, i] = X_set_params(param, i, gId);</font></p>
+  </blockquote>
+  <p><font color="#000080">into <font face="Arial">Rmase_params.m</font> so that 
+  the parameters can be set from parameter windows.</font></p>
+  <p><font color="#000080">To write a function <font face="Arial">X_layer.m</font>, 
+  one would get a template from the existing components and modify the event 
+  handler for '<font face="Arial">Init_Application</font>', '<font face="Arial">Send_Packet</font>', 
+  '<font face="Arial">Packet_Received</font>', '<font face="Arial">Clock_Tick</font>' 
+  etc. For example the main part of the maximum hop component looks like:</font></p>
+  <blockquote>
+  <p><font face="Arial" color="#000080"><b>case</b> Packet_Received<br>
+&nbsp;&nbsp; <b>&nbsp;if </b>(data.maxhops &gt; 0) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data.maxhops = data.maxhops-1; <br>
+&nbsp;&nbsp; <b>else</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pass = 0; <br>
+&nbsp;&nbsp; <b>end</b></font></p>
+  </blockquote>
+  <p><font color="#000080">Function <font face="Arial">X_set_params.m</font> has 
+  the following form:</font></p>
+  <blockquote>
+  <p><b><font face="Arial" color="#000080">function</font></b><font face="Arial" color="#000080"> 
+  [param, i] = X_set_params(params, i, gId)<br>
+&nbsp;</font></p>
+  <p><font face="Arial" color="#000080">i=i+1;<br>
+  param(i).name = <i>name</i>; <br>
+  param(i).default = <i>default;</i> <br>
+  param(i).group = gId; </font></p>
+  <p><font face="Arial" color="#000080">...</font></p>
+  </blockquote>
+  <p><font color="#000080">To get parameters, call function <font face="Arial">
+  value = sim_params('get_app', name)</font>. To compose a routing algorithm, 
+  one can select layers in the routing layers selection window, or simply run 
+  function <font face="Arial">set_layers</font>. For example,</font></p>
+  <blockquote>
+  <p><font color="#000080" face="Arial">set_layers({'mac', 'spantree', 'app', 
+  'stats'});</font></p>
+  </blockquote>
+</ul>
+  <p><font face="Arial" color="#000080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </font></p>
+<ul>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</ul>
+<ul>
+  <p>&nbsp;</p>
+</ul>
+<ul>
+  <p>&nbsp;</p>
+</ul>
+<ul>
+  <p>&nbsp;</p>
+</ul>
+<hr>
+<address>
+&nbsp;</address>
+<address>
+  <a href="mailto:yzhang@parc.xerox.com">Zhang Ying (yzhang@parc.com)</a></address>
+
+</body>
+
+</html>

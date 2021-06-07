@@ -1,0 +1,70 @@
+% logevent(e, data, tag)
+% e is event name
+% data is the packet
+% tag is the extra info associated with the event 
+
+function logstr = logaodv(e, data, tag)
+global ID t
+global DESTINATIONS
+global routeTable routeCache DSDV_UPDATE_MSGID ACK_MSGID
+
+global DESTINATIONS debug logfd ID t bittime data routeTable rreqCache AODV_RQCACHE_SIZE AODV_RTABLE_SIZE INVALID_MSG_ID INVALID_NODE_ID
+if ~debug return; end
+empty=1;
+logstr='';
+tag = '';
+dat = 0;
+e = varargin{1};
+if length(varargin)==2
+    dat = varargin{2};
+elseif length(varargin) == 3
+    dat = varargin{2};
+    tag = varargin{3};
+end
+    
+logstr=strcat(logstr,sprintf('Node <%d> Time <%.3f> Event <%s>[%s]:',ID,t*bittime,e,tag));
+switch e
+case {'Sent','Resent','Recved','Collided','Dropped'}
+    try numHops = dat.numHops; catch numHops = -1; end
+    try address = dat.address; catch address = 0; end
+    try msgType = dat.msgType; catch msgType = 'DAT'; end
+
+    logstr=strcat(logstr,sprintf('[type %s src %d msgID %d from %d to %d numHops %d]', msgType,dat.source, dat.msgID,dat.from,address,numHops));
+    fprintf(logfd,'%s\n',logstr);
+case 'dump_rcache'
+    for i=1:AODV_RQCACHE_SIZE
+        if rreqCache{ID}(i).msgID ~= INVALID_MSG_ID
+            empty=0;
+            logstr=strcat(logstr,sprintf(' [src %d msgID %d --> prevHops %s]',rreqCache{ID}(i).source,rreqCache{ID}(i).msgID,mat2str([rreqCache{ID}(i).nextHops.id])));
+        end
+    end
+    if(empty)
+        return;
+    end
+    fprintf(logfd,'%s\n',logstr);
+    
+case 'dump_rtable'
+    for i=1:AODV_RTABLE_SIZE
+        if routeTable{ID}(i).nextHop ~= INVALID_NODE_ID
+            empty=0;
+            logstr=strcat(logstr,sprintf(' [src %d msgID %d --> nextHop %d]',routeTable{ID}(i).source,routeTable{ID}(i).msgID,routeTable{ID}(i).nextHop));
+        end    
+    end
+    if(empty)
+        return;
+    end
+    fprintf(logfd,'%s\n',logstr);
+    
+case 'DESTINATIONS'
+    logstr=strcat(logstr,'[');
+    j=0;
+    for i= DESTINATIONS
+        j=j+1;
+        if i
+            logstr=strcat(logstr,sprintf('%d ',j));
+        end
+    end
+    logstr=strcat(logstr,']');
+    fprintf(logfd,'%s\n',logstr);
+end
+        

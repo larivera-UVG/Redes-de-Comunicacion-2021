@@ -1,0 +1,432 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Architecture</title>
+</head>
+
+<body>
+
+<p><img SRC="Logo.gif" height="151" width="276" align="LEFT"> </p>
+<h1><font color="#000099">Architecture</font></h1>
+<div align="right">
+  <pre><font color="#FF0000">The heaven attained <i>Oneness</i> and became clear.&nbsp;
+The earth attained <i>Oneness</i> and became settled.&nbsp;
+The spirit attained <i>Oneness</i> and became numinous.&nbsp;
+Valleys attained <i>Oneness</i> and became reproductive.&nbsp;
+All things attained <i>Oneness</i> and became alive.</font>
+
+--- <b><font color="#000080"><i>Tao Teh Ching</i></font></b>, <font color="#000080"><b>Lao Tzu</b></font></pre>
+</div>
+<hr>
+<table cellSpacing="8" cellPadding="0" width="745" border="0" height="28" style="border-collapse: collapse" bgcolor="#99CCFF">
+  <tr>
+    <td class="menuLinks" width="98" height="20" bgcolor="#99CCFF"><b>
+    <a href="models.htm">Models</a></b></td>
+    <td class="menuLinks" width="110" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="default.html">Home</a></b></font></td>
+    <td class="menuLinks" width="86" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="utilities.htm"><font color="#000080">
+    Utilities</font></a></b></font></td>
+    <td class="menuLinks" width="114" height="20" bgcolor="#99CCFF">
+    <font color="#000080"><b><a href="applications.htm"><font color="#000080">
+    Applications</font></a></b></font></td>
+    <td class="menuLinks" width="121" height="20" bgcolor="#99CCFF"><b>
+    <a class="bigmenuLinks" href="download.htm"><font color="#000080">Download</font></a></b></td>
+  </tr>
+</table>
+<p><b><font color="#000099" size="5">Introduction:</font></b></p>
+<ul>
+  <p><font color="#000080"> <b><a href="http://www.isis.vanderbilt.edu/projects/nest/prowler/">Prowler</a></b> 
+  is an event-based simulator, a framework similar to
+  <a href="http://www.tinyos.net">TinyOS/NesC</a>. In the simulator, the following events can be caught: 
+  <font face="Arial">Init_Application</font>, <font face="Arial">Packet_Sent</font>, 
+  <font face="Arial">Packet_Received</font>, <font face="Arial">Collided_Packet_Received</font>, and 
+  <font face="Arial">Clock_Tick</font>. <br>
+  <br>
+  <i><b>Rmase</b></i> supports a layered architecture, composed of one component at each 
+  layer. A set of basic routing components has been developed for component 
+  sharing and reuse among routing algorithms.</font></p>
+</ul>
+<p align="left"><b><font size="5" color="#000080">Layered Routing 
+  Architecture:</font></b></p>
+<blockquote>
+<p align="center"><font color="#000080">
+<img border="0" src="architecture_files/layer.gif" width="420" height="473"></font></p>
+<p align="left"><font color="#000080">A component handles events (e.g., 
+<font face="Arial">Packet_Received</font>, <font face="Arial">Packet_Sent</font>, 
+<font face="Arial">Clock_Tick</font>) and executes commands (e.g., 
+<font face="Arial">Send_Packet</font>).
+  By default events are passed up and commands are passed down the layers.
+  However, one can stop the flow by setting variable <font face="Arial">pass</font> to 0 (false) for a command or event.</font></p>
+<p align="left"><font color="#000080">The minimum configuration of layers for <i>
+<b>Rmase</b></i> includes the MAC layer, a routing layer, and the application 
+layer, with the MAC layer at the bottom and the application layer at the top. 
+The application layer is for generating the application scenarios and commands
+<font face="Arial">Send_Packet</font>, the routing layer will forward packets 
+received for other nodes or passes the received packet up if it is the 
+destination of that packet, and the MAC layer will actually send the packet out. 
+A packet shall arrive at the application layer if and only if the node is a 
+destination. The MAC layer simulates the TinyOS MAC layer functionality (i.e.,
+<font face="Arial">GenericComm</font>). A packet can be sent to the next hop 
+address (data.address = nodeID) or broadcast (data.address = 0). One can also 
+set the communication mode to <i>promiscuous</i>, so that all neighbors can hear 
+a packet, even if the packet is sent to the next hop node. The MAC layer also 
+simulates energy consumption with a parameterized energy consumption model for 
+transmitting, receiving, and idling states. A node can also switch between <i>
+sleep</i> and <i>idle</i> states and no energy is consumed in <i>sleep</i> 
+state. </font></p>
+<p align="left"><font color="#000080">The statistics layer is added on top of 
+the application layer for collecting routing statistics (e.g., the total number 
+of sent packets, the total number of received packets, the time delays of 
+received packets, etc.), for calculating the performance metrics described in 
+the <i><b>Rmase</b></i> <a href="models.htm">models</a>. <br>
+<br>
+Furthermore, one can have a set of <i>control layers</i> between the routing 
+layer and the application layer, and a set of <i>support layers</i> between the 
+MAC layer and the routing layer. The control layers are for network 
+initialization or maintenance, e.g., building and maintaining a routing table or 
+a spanning tree. The support layers are for adding features such as transmitting 
+and receiving queues, data aggregation/fragmentation, neighborhood management, 
+confirming/delaying transmissions, and checking duplications, etc. It is the 
+algorithm designer's choice to put individual functions at different layers so 
+that common functions can be shared by different algorithms. </font></p>
+</blockquote>
+<p><font size="5" color="#000099"><b>Routing Data Structure</b></font><b><font color="#000099" size="5">:</font></b><font color="#000080"><br>
+  &nbsp;</font></p>
+<blockquote>
+<p><font color="#000080"><i><b>Rmase</b></i> defines a set of data fields for 
+packets, however, not all the fields need to be presented for all packets. </font></p>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; font-size: 10.0pt; font-family: Times New Roman; border: medium none" width="659">
+    <tr>
+      <td valign="top" style="border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal"><b><font size="3" color="#000080">Name</font></b></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal"><font color="#000080"><b><font size="3">Definition</font></b></font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal"></font><font color="#000080"><b><font size="3">Examples</font></b></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left">
+      <font size="3" color="#000080" face="Arial">source</font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">source ID where 
+      the data is generated; it is used for reply, or to distinguish different 
+      messages when multiple sources exist</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"></font>
+      <font size="3" color="#000080" face="Arial">data.source = 10</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left">
+      <font size="3" color="#000080" face="Arial">address</font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">address of next 
+      hop; if <font face="Arial">address</font> is 0 it means broadcast, i.e., 
+      everyone in the neighborhood receives, otherwise only the neighbor with 
+      the address receives the message; it is used at MAC layer to decide it is 
+      passing the packet up or not</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"></font>
+      <font size="3" color="#000080" face="Arial">data.address = 8</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      <font size="3">maxhops</font></font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">the maximum hops 
+      left to travel, set by the source initially and decreased at each hop; it 
+      is used for bounded broadcast</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"></font>
+      <font size="3" color="#000080" face="Arial">data.maxhops = 5</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left">
+      <font size="3" color="#000080" face="Arial">from</font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">ID of previous 
+      hop, attached at the neighborhood layer before transmit, used for neighbor 
+      management</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"></font>
+      <font size="3" color="#000080" face="Arial">data.from=7</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      <font size="3">msgID</font></font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">
+      <font face="Arial">msgID</font> is given by application at the source 
+      node; typically different <font face="Arial">msgIDs</font> are for 
+      different destinations or different types of data</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"></font>
+      <font size="3" color="#000080" face="Arial">data.msgID = 0</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      <font size="3">seqID</font></font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">
+      <font face="Arial">seqID</font> is given at the application layer or 
+      generated at the support layers, to distinguish different packets of the 
+      same destination; for a given <font face="Arial">source</font> and
+      <font face="Arial">msgID</font>, <font face="Arial">seqID</font> is 
+      continuous. This is also used for detecting lost packets and duplicates</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"></font>
+      <font size="3" color="#000080" face="Arial">data.seqID = 2</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left">
+      <font size="3" color="#000080" face="Arial">forward</font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">indicating if the 
+      data is received from other nodes or generated at this node; routing may 
+      have different policies for forwarding and for sending</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      data.forward=1</font></p>
+      <p class="MsoNormal" align="left"></font><font size="3" color="#000080">It is received 
+      from other nodes</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left">
+      <font size="3" color="#000080" face="Arial">duplicated</font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">indicating if the 
+      packet was received more than once</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      data.duplicated = 1</font></p>
+      <p class="MsoNormal" align="left"></font><font size="3" color="#000080">It has been 
+      received before</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <font face="Arial" color="#000080"><font size="3">delayTime</font></font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <font color="#000080">specifying the time of transmission delay, normally 
+      set at the routing layer and used at the delay of transmission layer</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      </font><font size="3" color="#000080" face="Arial">data.delayTime = 10</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="72">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      <font size="3">startTime</font></font><font size="3"></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="371">
+      <p class="MsoNormal" align="left"><font color="#000080">the time that the 
+      packet is sent from the source node; it is used for obtaining time delay</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="170">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      data.startTime=10</font></font></font></td>
+    </tr>
+  </table>
+<p><font color="#000080">Some of the fields,&nbsp; e.g., <font face="Arial">
+forward</font> or <font face="Arial">duplicated</font>, are not sent out with 
+the packets; they are flags to mark the type of packets, which can be used by 
+upper layers. For example, at the routing layer, duplicated packets may not be 
+forwarded again or forwarded with lower priority. For another example, 
+transmission delay may be added to forwarding packets but not to original 
+packets.</font></p>
+</blockquote>
+<p><b><font color="#000099" size="5">Common Routing Components:</font></b></p>
+<ul>
+  <p><font color="#000080">This layered architecture allows for the sharing of 
+  common components for different algorithms. For example, many algorithms need 
+  neighborhood management and transmission queues, single path routing may need 
+  confirmation for reliable transmission, and flooding-based routing may add 
+  transmission delays to reduce collision. For real-time applications, one may 
+  bound the maximum number of hops given the time bound. Thus, for a given 
+  application scenario, one shall select not only the routing algorithm, but 
+  also the support and control components from the component repository. Here is 
+  a list of support and control components implemented in <i><b>Rmase</b></i>:</font></p>
+  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; font-size: 10.0pt; font-family: Times New Roman; border: medium none" width="748">
+    <tr>
+      <td valign="top" style="border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <p class="MsoNormal"><b><font size="3" color="#000080">Name</font></b><font size="3"></td>
+      <td valign="top" style="border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font color="#000080"><b>Type</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <p class="MsoNormal"><font color="#000080"><b>Definition</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">
+      <font color="#000080"><b>Parameters</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <p class="MsoNormal"><b><font color="#000080">Affected data fields</font></b></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font size="3" color="#000080"><b>Probabilistic Faulty Model</b></font></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font size="3" color="#000080"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <font size="3" color="#000080">model the probabilities from alive to dead 
+      and from dead to alive</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">
+      <font face="Arial"><font size="3" color="#000080">FailProb</font><p>
+      <font size="3" color="#000080">WakeupProb</font></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <b><font size="3" color="#000080">Transmission Queue</font></b></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font size="3" color="#000080"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <font color="#000080" size="3">maintain a transmission queue</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">&nbsp;</td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <b><font size="3" color="#000080">Aggregation Queue</font></b></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font size="3" color="#000080"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <font color="#000080" size="3">pack a maximum of <i>M</i> packets from the 
+      queue into one packet to transmit. On the receiving side, a packed packet 
+      will be unpacked into the original packets</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">
+      <font face="Arial"><font size="3" color="#000080">AggregatePackets</font><p>
+      <font size="3" color="#000080">AggregateTimeout</font></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font size="3" color="#000080"><b>Maximum Hops</b></font></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font size="3" color="#000080"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <font size="3" color="#000080">bound the maximum number of hops in 
+      transmission</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">&nbsp;</td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <font color="#000080" size="3" face="Arial">maxhops</font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <p class="MsoNormal" align="left"><font size="3"><font color="#000080"><b>
+      Neighborhood Management</b></font></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font color="#000080" size="3"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">maintain a 
+      neighbor list </font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">&nbsp;</td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <p class="MsoNormal" align="left">
+      <font size="3" color="#000080" face="Arial">from</font><font size="3"></font></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3"><b>
+      Transmission Confirmation</b></font></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font color="#000080" size="3"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">trigger a timeout 
+      event when no confirmation is heard within a certain time</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">
+      <font color="#000080" face="Arial" size="3">TransTimeout</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <p class="MsoNormal" align="left"><font size="3"></font></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3"><b>
+      Duplication Check</b></font></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font color="#000080" size="3"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">mark duplicated 
+      packets</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">&nbsp;</td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <p class="MsoNormal" align="left"><font face="Arial">
+      <font color="#000080"><font size="3">seqID</font></font><font size="3"></p>
+      <p class="MsoNormal" align="left"><font color="#000080">source</font></font></font><font size="3"></p>
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      duplicated</font></font></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <p class="MsoNormal" align="left"><b><font color="#000080" size="3">
+      Transmission Delay</font></b></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font color="#000080" size="3"><b>support</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">delay a packet 
+      transmission according to the <font face="Arial">timeDelay</font> field of 
+      data, set by upper layers, and transmit a forwarding packet 
+      probabilistically according to the number of times the packet has been 
+      heard</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">
+      <font face="Arial" size="3"><font color="#000080">randOff</font><p>
+      <font color="#000080">minDelay</font></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <font size="3">
+      <p class="MsoNormal" align="left"><font face="Arial">
+      <font color="#000080">seqID</font></p>
+      <p class="MsoNormal" align="left"><font color="#000080">source</font></font></p>
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      duplicated</font></font></p>
+      <p class="MsoNormal" align="left"><font size="3"></font></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <p class="MsoNormal" align="left"><b><font size="3" color="#000080">Hello 
+      Initialization</font></b></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font color="#000080" size="3"><b>control</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">broadcast a couple 
+      of ``hello'' packets<br>
+      at a certain interval from each node</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">&nbsp;</td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      <font size="3">msgID&lt;0</font></font><font size="3"></font></font></td>
+    </tr>
+    <tr>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <p class="MsoNormal" align="left"><b><font size="3" color="#000080">
+      Backward Initialization</font></b></td>
+      <td valign="top" style="border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="104">
+      <font color="#000080" size="3"><b>control</b></font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="566">
+      <p class="MsoNormal" align="left"><font color="#000080" size="3">flood from the 
+      destination to set up hop counts or to build an<br>
+      initial spanning tree, which are used by many routing algorithms</font></td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="148">&nbsp;</td>
+      <td valign="top" style="border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" width="254">
+      <p class="MsoNormal" align="left"><font color="#000080" face="Arial">
+      <font size="3">msgID&lt;0</font></font><font size="3"></font></font></td>
+    </tr>
+  </table>
+  <p><font color="#000080">More components can be added to this list, such as 
+  priority queues, duplicated transmission for extra robustness, and security 
+  encoding and decoding.</font></p>
+</ul>
+<hr>
+<address>
+&nbsp;</address>
+<address>
+  <a href="mailto:yzhang@parc.xerox.com">Zhang Ying (yzhang@parc.com)</a></address>
+
+</body>
+
+</html>
