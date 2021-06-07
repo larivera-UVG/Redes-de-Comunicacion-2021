@@ -13,10 +13,13 @@ Este es el repositorio del trabajo de graduación dedicado a algoritmos de ruteo
 ## Imágenes explicativas
 Recolección
 ![rec](./imagenes/red_recoleccion.jpg)
+
 Control
 ![rec](./imagenes/red_control.jpg)
+
 _Flooding_
 ![rec](./imagenes/red_flooding.jpg)
+
 
 **Free Software, Hell Yeah!**
 
