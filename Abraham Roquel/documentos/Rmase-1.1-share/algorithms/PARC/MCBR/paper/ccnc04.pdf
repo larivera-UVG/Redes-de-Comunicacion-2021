@@ -1,0 +1,9579 @@
+%PDF-1.1
+%«Ïè¢
+4 0 obj
+<< /Length 5 0 R >>
+stream
+q
+endstream
+endobj
+5 0 obj
+2
+endobj
+6 0 obj
+<< /Type /Font /Name /R6 /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+7 0 obj
+<< /Length 8 0 R >>
+stream
+BT
+/R6 23.9104 Tf
+1 0 0 1 72.96 713.76 Tm
+(Message-initiated) Tj
+1 0 0 1 251.28 713.76 Tm
+(Constraint-Based) Tj
+1 0 0 1 425.759 713.76 Tm
+(Routing) Tj
+1 0 0 1 511.199 713.76 Tm
+(for) Tj
+1 0 0 1 137.16 685.92 Tm
+(W) Tj
+1 0 0 1 158.76 685.92 Tm
+(ireless) Tj
+1 0 0 1 228.24 685.92 Tm
+(Ad-hoc) Tj
+1 0 0 1 308.4 685.92 Tm
+(Sensor) Tj
+1 0 0 1 381.84 685.92 Tm
+(Networks) Tj
+/R6 10.9589 Tf
+1 0 0 1 174.84 654.48 Tm
+(Y) Tj
+1 0 0 1 182.16 654.48 Tm
+(ing) Tj
+1 0 0 1 199.92 654.48 Tm
+(Zhang) Tj
+/R6 9.96264 Tf
+1 0 0 1 146.88 642.12 Tm
+(Palo) Tj
+1 0 0 1 168.12 642.12 Tm
+(Alto) Tj
+1 0 0 1 189.24 642.12 Tm
+(Research) Tj
+1 0 0 1 229.32 642.12 Tm
+(Center) Tj
+1 0 0 1 153.48 629.88 Tm
+(3333) Tj
+1 0 0 1 176.88 629.88 Tm
+(Coyote) Tj
+1 0 0 1 209.16 629.88 Tm
+(Hill) Tj
+1 0 0 1 228.24 629.88 Tm
+(Road) Tj
+1 0 0 1 144.48 617.52 Tm
+(Palo) Tj
+1 0 0 1 165.72 617.52 Tm
+(Alto,) Tj
+1 0 0 1 189.36 617.52 Tm
+(California) Tj
+1 0 0 1 233.28 617.52 Tm
+(94304) Tj
+1 0 0 1 148.92 605.28 Tm
+(Email:) Tj
+1 0 0 1 179.04 605.28 Tm
+(yzhang@parc.com) Tj
+/R6 10.9589 Tf
+1 0 0 1 370.68 654.48 Tm
+(Markus) Tj
+1 0 0 1 408 654.48 Tm
+(Fromherz) Tj
+/R6 9.96264 Tf
+1 0 0 1 356.16 642.12 Tm
+(Palo) Tj
+1 0 0 1 377.4 642.12 Tm
+(Alto) Tj
+1 0 0 1 398.52 642.12 Tm
+(Research) Tj
+1 0 0 1 438.6 642.12 Tm
+(Center) Tj
+1 0 0 1 362.76 629.88 Tm
+(3333) Tj
+1 0 0 1 386.16 629.88 Tm
+(Coyote) Tj
+1 0 0 1 418.44 629.88 Tm
+(Hill) Tj
+1 0 0 1 437.4 629.88 Tm
+(Road) Tj
+1 0 0 1 353.76 617.52 Tm
+(Palo) Tj
+1 0 0 1 375 617.52 Tm
+(Alto,) Tj
+1 0 0 1 398.64 617.52 Tm
+(California) Tj
+1 0 0 1 442.56 617.52 Tm
+(94304) Tj
+1 0 0 1 354.36 605.28 Tm
+(Email:) Tj
+1 0 0 1 384.36 605.28 Tm
+(fromherz@parc.com) Tj
+ET
+endstream
+endobj
+8 0 obj
+1640
+endobj
+9 0 obj
+<< /Type /Font /Name /R9 /Subtype /Type1 /BaseFont /Times-BoldItalic >>
+endobj
+10 0 obj
+<< /Length 11 0 R >>
+stream
+BT
+/R9 8.96638 Tf
+1 0 0 1 58.92 558.6 Tm
+(Abstract) Tj
+ET
+endstream
+endobj
+11 0 obj
+58
+endobj
+12 0 obj
+<< /Type /Font /Name /R12 /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+13 0 obj
+<< /Length 14 0 R >>
+stream
+BT
+/R12 8.96638 Tf
+1 0 0 1 89.9999 558.6 Tm
+(\320) Tj
+1 0 0 1 100.56 558.6 Tm
+(Most) Tj
+1 0 0 1 124.2 558.6 Tm
+(existing) Tj
+1 0 0 1 157.8 558.6 Tm
+(r) Tj
+1 0 0 1 161.64 558.6 Tm
+(outing) Tj
+1 0 0 1 190.2 558.6 Tm
+(mechanisms) Tj
+1 0 0 1 241.319 558.6 Tm
+(today) Tj
+1 0 0 1 266.879 558.6 Tm
+(differ) Tj
+1 0 0 1 292.559 558.6 Tm
+(in) Tj
+1 0 0 1 48.96 548.64 Tm
+(r) Tj
+1 0 0 1 52.8 548.64 Tm
+(outing) Tj
+1 0 0 1 79.7999 548.64 Tm
+(objectives) Tj
+1 0 0 1 120.12 548.64 Tm
+(and) Tj
+1 0 0 1 137.16 548.64 Tm
+(r) Tj
+1 0 0 1 141 548.64 Tm
+(outing) Tj
+1 0 0 1 168 548.64 Tm
+(strategies,) Tj
+1 0 0 1 209.159 548.64 Tm
+(however) Tj
+1 0 0 1 244.079 548.64 Tm
+(all) Tj
+1 0 0 1 256.079 548.64 Tm
+(the) Tj
+1 0 0 1 270.599 548.64 Tm
+(existing) Tj
+1 0 0 1 48.96 538.68 Tm
+(r) Tj
+1 0 0 1 52.8 538.68 Tm
+(outing) Tj
+1 0 0 1 79.9199 538.68 Tm
+(pr) Tj
+1 0 0 1 88.7999 538.68 Tm
+(otocols) Tj
+1 0 0 1 117.96 538.68 Tm
+(have) Tj
+1 0 0 1 138.6 538.68 Tm
+(in) Tj
+1 0 0 1 148.92 538.68 Tm
+(common) Tj
+1 0 0 1 184.56 538.68 Tm
+(that) Tj
+1 0 0 1 202.68 538.68 Tm
+(the) Tj
+1 0 0 1 217.439 538.68 Tm
+(r) Tj
+1 0 0 1 221.279 538.68 Tm
+(outing) Tj
+1 0 0 1 248.399 538.68 Tm
+(objective) Tj
+1 0 0 1 285.599 538.68 Tm
+(and) Tj
+1 0 0 1 48.96 528.72 Tm
+(destination) Tj
+1 0 0 1 94.3198 528.72 Tm
+(speci\256cation) Tj
+1 0 0 1 144.6 528.72 Tm
+(ar) Tj
+1 0 0 1 152.88 528.72 Tm
+(e) Tj
+1 0 0 1 159.96 528.72 Tm
+(\256xed,) Tj
+1 0 0 1 183.6 528.72 Tm
+(and) Tj
+1 0 0 1 201 528.72 Tm
+(that) Tj
+1 0 0 1 219.479 528.72 Tm
+(the) Tj
+1 0 0 1 234.479 528.72 Tm
+(r) Tj
+1 0 0 1 238.319 528.72 Tm
+(outing) Tj
+1 0 0 1 265.679 528.72 Tm
+(objective) Tj
+1 0 0 1 48.96 518.76 Tm
+(is) Tj
+1 0 0 1 60.36 518.76 Tm
+(incorporated) Tj
+1 0 0 1 115.68 518.76 Tm
+(only) Tj
+1 0 0 1 137.64 518.76 Tm
+(implicitly) Tj
+1 0 0 1 173.64 518.76 Tm
+(.) Tj
+1 0 0 1 181.2 518.76 Tm
+(In) Tj
+1 0 0 1 195.12 518.76 Tm
+(this) Tj
+1 0 0 1 214.559 518.76 Tm
+(paper) Tj
+1 0 0 1 236.159 518.76 Tm
+(,) Tj
+1 0 0 1 243.959 518.76 Tm
+(we) Tj
+1 0 0 1 259.799 518.76 Tm
+(pr) Tj
+1 0 0 1 268.679 518.76 Tm
+(opose) Tj
+1 0 0 1 295.559 518.76 Tm
+(a) Tj
+1 0 0 1 48.96 508.8 Tm
+(general) Tj
+1 0 0 1 80.1599 508.8 Tm
+(message) Tj
+1 0 0 1 114.48 508.8 Tm
+(speci\256cation) Tj
+1 0 0 1 164.64 508.8 Tm
+(mechanism) Tj
+1 0 0 1 210.719 508.8 Tm
+(to) Tj
+1 0 0 1 221.039 508.8 Tm
+(explicitly) Tj
+1 0 0 1 258.839 508.8 Tm
+(encode) Tj
+1 0 0 1 288.119 508.8 Tm
+(the) Tj
+1 0 0 1 48.96 498.84 Tm
+(r) Tj
+1 0 0 1 52.8 498.84 Tm
+(outing) Tj
+1 0 0 1 81.1199 498.84 Tm
+(destinations,) Tj
+1 0 0 1 133.2 498.84 Tm
+(constraints) Tj
+1 0 0 1 179.4 498.84 Tm
+(and) Tj
+1 0 0 1 197.76 498.84 Tm
+(objectives) Tj
+1 0 0 1 239.639 498.84 Tm
+(in) Tj
+1 0 0 1 251.039 498.84 Tm
+(messages,) Tj
+1 0 0 1 292.079 498.84 Tm
+(so) Tj
+1 0 0 1 48.96 488.88 Tm
+(that) Tj
+1 0 0 1 68.0399 488.88 Tm
+(general-purpose) Tj
+1 0 0 1 133.92 488.88 Tm
+(instead) Tj
+1 0 0 1 165 488.88 Tm
+(of) Tj
+1 0 0 1 176.039 488.88 Tm
+(objective) Tj
+1 0 0 1 214.079 488.88 Tm
+(or) Tj
+1 0 0 1 226.199 488.88 Tm
+(destination) Tj
+1 0 0 1 272.159 488.88 Tm
+(speci\256c) Tj
+1 0 0 1 48.96 478.92 Tm
+(r) Tj
+1 0 0 1 52.8 478.92 Tm
+(outing) Tj
+1 0 0 1 80.1599 478.92 Tm
+(strategies) Tj
+1 0 0 1 119.52 478.92 Tm
+(can) Tj
+1 0 0 1 135.96 478.92 Tm
+(be) Tj
+1 0 0 1 147.96 478.92 Tm
+(applied.) Tj
+1 0 0 1 181.56 478.92 Tm
+(Using) Tj
+1 0 0 1 206.519 478.92 Tm
+(general-purpose) Tj
+1 0 0 1 271.799 478.92 Tm
+(r) Tj
+1 0 0 1 275.639 478.92 Tm
+(outing) Tj
+1 0 0 1 48.96 468.96 Tm
+(strategies) Tj
+1 0 0 1 88.6798 468.96 Tm
+(while) Tj
+1 0 0 1 112.44 468.96 Tm
+(specifying) Tj
+1 0 0 1 154.2 468.96 Tm
+(quality-of-service) Tj
+1 0 0 1 224.279 468.96 Tm
+(\(QoS\)) Tj
+1 0 0 1 249.959 468.96 Tm
+(pr) Tj
+1 0 0 1 258.839 468.96 Tm
+(operties) Tj
+1 0 0 1 292.559 468.96 Tm
+(at) Tj
+1 0 0 1 48.96 459 Tm
+(the) Tj
+1 0 0 1 63.48 459 Tm
+(application) Tj
+1 0 0 1 108.96 459 Tm
+(layer) Tj
+1 0 0 1 131.04 459 Tm
+(explicitly) Tj
+1 0 0 1 168.6 459 Tm
+(in) Tj
+1 0 0 1 178.68 459 Tm
+(messages,) Tj
+1 0 0 1 218.399 459 Tm
+(QoS-awar) Tj
+1 0 0 1 257.039 459 Tm
+(e) Tj
+1 0 0 1 263.639 459 Tm
+(strategies) Tj
+1 0 0 1 48.96 449.04 Tm
+(for) Tj
+1 0 0 1 66.24 449.04 Tm
+(individual) Tj
+1 0 0 1 110.88 449.04 Tm
+(messages) Tj
+1 0 0 1 151.56 449.04 Tm
+(ar) Tj
+1 0 0 1 159.84 449.04 Tm
+(e) Tj
+1 0 0 1 169.68 449.04 Tm
+(obtained.) Tj
+1 0 0 1 211.079 449.04 Tm
+(W) Tj
+1 0 0 1 219.6 449.04 Tm
+(e) Tj
+1 0 0 1 229.319 449.04 Tm
+(also) Tj
+1 0 0 1 250.079 449.04 Tm
+(pr) Tj
+1 0 0 1 258.959 449.04 Tm
+(opose) Tj
+1 0 0 1 286.079 449.04 Tm
+(two) Tj
+1 0 0 1 48.96 439.08 Tm
+(frameworks) Tj
+1 0 0 1 99.3598 439.08 Tm
+(of) Tj
+1 0 0 1 110.88 439.08 Tm
+(general-purpose) Tj
+1 0 0 1 177.24 439.08 Tm
+(r) Tj
+1 0 0 1 181.079 439.08 Tm
+(outing) Tj
+1 0 0 1 209.519 439.08 Tm
+(strategies) Tj
+1 0 0 1 249.959 439.08 Tm
+(for) Tj
+1 0 0 1 265.559 439.08 Tm
+(this) Tj
+1 0 0 1 283.559 439.08 Tm
+(type) Tj
+1 0 0 1 48.96 429 Tm
+(of) Tj
+1 0 0 1 59.76 429 Tm
+(message) Tj
+1 0 0 1 94.5598 429 Tm
+(speci\256cation.) Tj
+/R6 9.96264 Tf
+1 0 0 1 135.48 408.24 Tm
+(I) Tj
+1 0 0 1 139.32 408.24 Tm
+(.) Tj
+1 0 0 1 147.24 408.24 Tm
+(I) Tj
+/R6 7.97011 Tf
+1 0 0 1 151.08 408.24 Tm
+(N) Tj
+1 0 0 1 157.32 408.24 Tm
+(T) Tj
+1 0 0 1 162.72 408.24 Tm
+(R) Tj
+1 0 0 1 168.48 408.24 Tm
+(O) Tj
+1 0 0 1 174.72 408.24 Tm
+(D) Tj
+1 0 0 1 180.96 408.24 Tm
+(U) Tj
+1 0 0 1 187.2 408.24 Tm
+(C) Tj
+1 0 0 1 192.96 408.24 Tm
+(T) Tj
+1 0 0 1 198.359 408.24 Tm
+(I) Tj
+1 0 0 1 201.479 408.24 Tm
+(O) Tj
+1 0 0 1 207.719 408.24 Tm
+(N) Tj
+/R6 9.96264 Tf
+1 0 0 1 58.92 391.68 Tm
+(One) Tj
+1 0 0 1 80.3999 391.68 Tm
+(may) Tj
+1 0 0 1 102.48 391.68 Tm
+(divide) Tj
+1 0 0 1 132.24 391.68 Tm
+(ad-hoc) Tj
+1 0 0 1 164.28 391.68 Tm
+(routing) Tj
+1 0 0 1 197.88 391.68 Tm
+(strategies) Tj
+1 0 0 1 240.479 391.68 Tm
+(into) Tj
+1 0 0 1 260.879 391.68 Tm
+(two) Tj
+1 0 0 1 280.679 391.68 Tm
+(cate-) Tj
+1 0 0 1 48.96 379.8 Tm
+(gories:) Tj
+ET
+endstream
+endobj
+14 0 obj
+5723
+endobj
+15 0 obj
+<< /Type /Font /Name /R15 /Subtype /Type1 /BaseFont /Times-Italic >>
+endobj
+16 0 obj
+<< /Length 17 0 R >>
+stream
+BT
+/R15 9.96264 Tf
+1 0 0 1 80.8799 379.8 Tm
+(structur) Tj
+1 0 0 1 112.08 379.8 Tm
+(e-based) Tj
+/R6 9.96264 Tf
+1 0 0 1 147.96 379.8 Tm
+(or) Tj
+/R15 9.96264 Tf
+1 0 0 1 161.16 379.8 Tm
+(connectionless) Tj
+/R6 9.96264 Tf
+1 0 0 1 220.08 379.8 Tm
+(.) Tj
+1 0 0 1 227.159 379.8 Tm
+(A) Tj
+1 0 0 1 239.159 379.8 Tm
+(structure-based) Tj
+1 0 0 1 48.96 367.8 Tm
+(routing) Tj
+1 0 0 1 83.8799 367.8 Tm
+(strategy) Tj
+1 0 0 1 121.44 367.8 Tm
+(builds) Tj
+1 0 0 1 151.92 367.8 Tm
+(and) Tj
+1 0 0 1 172.44 367.8 Tm
+(maintains) Tj
+1 0 0 1 217.319 367.8 Tm
+(a) Tj
+1 0 0 1 227.759 367.8 Tm
+(routing) Tj
+1 0 0 1 262.679 367.8 Tm
+(structure,) Tj
+1 0 0 1 48.96 355.8 Tm
+(such) Tj
+1 0 0 1 72 355.8 Tm
+(as) Tj
+1 0 0 1 85.0799 355.8 Tm
+(a) Tj
+1 0 0 1 94.1999 355.8 Tm
+(spanning) Tj
+1 0 0 1 135 355.8 Tm
+(tree) Tj
+1 0 0 1 154.68 355.8 Tm
+(or) Tj
+1 0 0 1 167.76 355.8 Tm
+(a) Tj
+1 0 0 1 176.88 355.8 Tm
+(set) Tj
+1 0 0 1 192.72 355.8 Tm
+(of) Tj
+1 0 0 1 205.8 355.8 Tm
+(forward) Tj
+1 0 0 1 242.039 355.8 Tm
+(links,) Tj
+1 0 0 1 268.679 355.8 Tm
+(while) Tj
+1 0 0 1 295.559 355.8 Tm
+(a) Tj
+1 0 0 1 48.96 343.92 Tm
+(connectionless) Tj
+1 0 0 1 111.12 343.92 Tm
+(routing) Tj
+1 0 0 1 143.28 343.92 Tm
+(strategy) Tj
+1 0 0 1 178.32 343.92 Tm
+(makes) Tj
+1 0 0 1 207.24 343.92 Tm
+(the) Tj
+1 0 0 1 222.84 343.92 Tm
+(decision) Tj
+1 0 0 1 259.439 343.92 Tm
+(of) Tj
+1 0 0 1 271.199 343.92 Tm
+(routing) Tj
+1 0 0 1 48.96 331.92 Tm
+(at) Tj
+1 0 0 1 59.64 331.92 Tm
+(every) Tj
+1 0 0 1 85.1999 331.92 Tm
+(hop.) Tj
+1 0 0 1 58.92 319.68 Tm
+(There) Tj
+1 0 0 1 85.44 319.68 Tm
+(are) Tj
+1 0 0 1 100.8 319.68 Tm
+(three) Tj
+1 0 0 1 123.96 319.68 Tm
+(elements) Tj
+1 0 0 1 162.6 319.68 Tm
+(for) Tj
+1 0 0 1 177.48 319.68 Tm
+(a) Tj
+1 0 0 1 185.04 319.68 Tm
+(routing) Tj
+1 0 0 1 217.08 319.68 Tm
+(protocol:) Tj
+1 0 0 1 256.319 319.68 Tm
+(destination) Tj
+1 0 0 1 48.96 307.8 Tm
+(speci\256cation,) Tj
+1 0 0 1 106.08 307.8 Tm
+(routing) Tj
+1 0 0 1 138.96 307.8 Tm
+(objectives) Tj
+1 0 0 1 183.6 307.8 Tm
+(and) Tj
+1 0 0 1 202.2 307.8 Tm
+(routing) Tj
+1 0 0 1 235.199 307.8 Tm
+(strategies.) Tj
+1 0 0 1 279.479 307.8 Tm
+(Most) Tj
+1 0 0 1 48.96 295.8 Tm
+(existing) Tj
+1 0 0 1 86.1599 295.8 Tm
+(protocols,) Tj
+1 0 0 1 131.4 295.8 Tm
+(however) Tj
+1 0 0 1 165.6 295.8 Tm
+(,) Tj
+1 0 0 1 173.4 295.8 Tm
+(use) Tj
+1 0 0 1 192.36 295.8 Tm
+(a) Tj
+/R15 9.96264 Tf
+1 0 0 1 202.44 295.8 Tm
+(\256xed) Tj
+/R6 9.96264 Tf
+1 0 0 1 226.799 295.8 Tm
+(destination) Tj
+1 0 0 1 276.239 295.8 Tm
+(speci-) Tj
+1 0 0 1 48.96 283.8 Tm
+(\256cation,) Tj
+1 0 0 1 86.5199 283.8 Tm
+(routing) Tj
+1 0 0 1 120.48 283.8 Tm
+(objective) Tj
+1 0 0 1 162.24 283.8 Tm
+(and) Tj
+1 0 0 1 181.8 283.8 Tm
+(routing) Tj
+1 0 0 1 215.88 283.8 Tm
+(strategy) Tj
+1 0 0 1 246.96 283.8 Tm
+(.) Tj
+1 0 0 1 254.399 283.8 Tm
+(Most) Tj
+1 0 0 1 280.079 283.8 Tm
+(early) Tj
+1 0 0 1 48.96 271.92 Tm
+(protocols) Tj
+1 0 0 1 89.9999 271.92 Tm
+(are) Tj
+1 0 0 1 106.08 271.92 Tm
+(address-based,) Tj
+1 0 0 1 168.48 271.92 Tm
+(while) Tj
+1 0 0 1 194.52 271.92 Tm
+(GPSR) Tj
+1 0 0 1 223.439 271.92 Tm
+([1) Tj
+1 0 0 1 231.719 271.92 Tm
+(]) Tj
+1 0 0 1 239.039 271.92 Tm
+(and) Tj
+1 0 0 1 257.279 271.92 Tm
+(GEAR) Tj
+1 0 0 1 288.359 271.92 Tm
+([2]) Tj
+1 0 0 1 48.96 259.92 Tm
+(are) Tj
+1 0 0 1 65.64 259.92 Tm
+(geographical) Tj
+1 0 0 1 121.68 259.92 Tm
+(location-based.) Tj
+1 0 0 1 186.84 259.92 Tm
+(Directed) Tj
+1 0 0 1 225.72 259.92 Tm
+(Dif) Tj
+1 0 0 1 238.799 259.92 Tm
+(fusion) Tj
+1 0 0 1 268.319 259.92 Tm
+([3) Tj
+1 0 0 1 276.599 259.92 Tm
+(]) Tj
+1 0 0 1 284.399 259.92 Tm
+(\256rst) Tj
+1 0 0 1 48.96 248.04 Tm
+(proposed) Tj
+1 0 0 1 89.8799 248.04 Tm
+(a) Tj
+1 0 0 1 98.6399 248.04 Tm
+(general) Tj
+1 0 0 1 132.36 248.04 Tm
+(attribute-based) Tj
+1 0 0 1 195.96 248.04 Tm
+(publish/subscribe) Tj
+1 0 0 1 270.119 248.04 Tm
+(scheme) Tj
+1 0 0 1 48.96 236.04 Tm
+(in) Tj
+1 0 0 1 60.6 236.04 Tm
+(ad-hoc) Tj
+1 0 0 1 91.6799 236.04 Tm
+(sensor) Tj
+1 0 0 1 121.08 236.04 Tm
+(networks.) Tj
+1 0 0 1 163.92 236.04 Tm
+(In) Tj
+1 0 0 1 176.16 236.04 Tm
+(most) Tj
+1 0 0 1 199.44 236.04 Tm
+(cases,) Tj
+1 0 0 1 226.919 236.04 Tm
+(routing) Tj
+1 0 0 1 259.679 236.04 Tm
+(objectives) Tj
+1 0 0 1 48.96 224.04 Tm
+(are) Tj
+1 0 0 1 65.76 224.04 Tm
+(implicitly) Tj
+1 0 0 1 109.2 224.04 Tm
+(embedded) Tj
+1 0 0 1 154.68 224.04 Tm
+(in) Tj
+1 0 0 1 167.16 224.04 Tm
+(strategies.) Tj
+1 0 0 1 211.92 224.04 Tm
+(For) Tj
+1 0 0 1 230.399 224.04 Tm
+(example,) Tj
+1 0 0 1 271.199 224.04 Tm
+(AODV) Tj
+1 0 0 1 48.96 212.16 Tm
+([4) Tj
+1 0 0 1 57.24 212.16 Tm
+(],) Tj
+1 0 0 1 66.6 212.16 Tm
+(DSR) Tj
+1 0 0 1 89.5199 212.16 Tm
+([5]) Tj
+1 0 0 1 104.76 212.16 Tm
+(and) Tj
+1 0 0 1 122.76 212.16 Tm
+(T) Tj
+1 0 0 1 128.76 212.16 Tm
+(ORA) Tj
+1 0 0 1 153.24 212.16 Tm
+([6) Tj
+1 0 0 1 161.52 212.16 Tm
+(]) Tj
+1 0 0 1 168.36 212.16 Tm
+(use) Tj
+1 0 0 1 185.279 212.16 Tm
+(shortest) Tj
+1 0 0 1 219.839 212.16 Tm
+(path,) Tj
+1 0 0 1 242.999 212.16 Tm
+(i.e.,) Tj
+1 0 0 1 261.239 212.16 Tm
+(minimum) Tj
+1 0 0 1 48.96 200.16 Tm
+(number) Tj
+1 0 0 1 82.5599 200.16 Tm
+(of) Tj
+1 0 0 1 93.9598 200.16 Tm
+(hops,) Tj
+1 0 0 1 118.44 200.16 Tm
+(as) Tj
+1 0 0 1 129.84 200.16 Tm
+(the) Tj
+1 0 0 1 145.2 200.16 Tm
+(routing) Tj
+1 0 0 1 177.12 200.16 Tm
+(objective,) Tj
+1 0 0 1 219.239 200.16 Tm
+(while) Tj
+1 0 0 1 244.439 200.16 Tm
+(ABR) Tj
+1 0 0 1 268.079 200.16 Tm
+([7) Tj
+1 0 0 1 276.359 200.16 Tm
+(]) Tj
+1 0 0 1 282.839 200.16 Tm
+(uses) Tj
+1 0 0 1 48.96 188.16 Tm
+(the) Tj
+1 0 0 1 65.76 188.16 Tm
+(degree) Tj
+1 0 0 1 96.8399 188.16 Tm
+(of) Tj
+1 0 0 1 109.68 188.16 Tm
+(association) Tj
+1 0 0 1 158.52 188.16 Tm
+(stability) Tj
+1 0 0 1 190.08 188.16 Tm
+(,) Tj
+1 0 0 1 197.04 188.16 Tm
+(and) Tj
+1 0 0 1 216 188.16 Tm
+(SSR) Tj
+1 0 0 1 238.319 188.16 Tm
+([8) Tj
+1 0 0 1 246.599 188.16 Tm
+(]) Tj
+1 0 0 1 254.519 188.16 Tm
+(uses) Tj
+1 0 0 1 276.239 188.16 Tm
+(signal) Tj
+1 0 0 1 48.96 176.28 Tm
+(stability) Tj
+1 0 0 1 83.6399 176.28 Tm
+(or) Tj
+1 0 0 1 94.5599 176.28 Tm
+(strength) Tj
+1 0 0 1 129.24 176.28 Tm
+(as) Tj
+1 0 0 1 140.04 176.28 Tm
+(one) Tj
+1 0 0 1 157.08 176.28 Tm
+(of) Tj
+1 0 0 1 167.88 176.28 Tm
+(the) Tj
+1 0 0 1 182.64 176.28 Tm
+(routing) Tj
+1 0 0 1 214.079 176.28 Tm
+(objectives) Tj
+1 0 0 1 257.039 176.28 Tm
+(in) Tj
+1 0 0 1 267.359 176.28 Tm
+(addition) Tj
+1 0 0 1 48.96 164.28 Tm
+(to) Tj
+1 0 0 1 61.56 164.28 Tm
+(the) Tj
+1 0 0 1 78.5999 164.28 Tm
+(shortest) Tj
+1 0 0 1 114.36 164.28 Tm
+(path.) Tj
+1 0 0 1 138.84 164.28 Tm
+(GEAR) Tj
+1 0 0 1 170.88 164.28 Tm
+(uses) Tj
+1 0 0 1 192.84 164.28 Tm
+(ener) Tj
+1 0 0 1 210 164.28 Tm
+(gy) Tj
+1 0 0 1 224.639 164.28 Tm
+(level) Tj
+1 0 0 1 248.879 164.28 Tm
+(as) Tj
+1 0 0 1 261.959 164.28 Tm
+(a) Tj
+1 0 0 1 271.199 164.28 Tm
+(routing) Tj
+1 0 0 1 48.96 152.4 Tm
+(objective,) Tj
+1 0 0 1 91.5599 152.4 Tm
+(in) Tj
+1 0 0 1 102.84 152.4 Tm
+(addition) Tj
+1 0 0 1 139.08 152.4 Tm
+(to) Tj
+1 0 0 1 150.36 152.4 Tm
+(the) Tj
+1 0 0 1 166.2 152.4 Tm
+(shortest) Tj
+1 0 0 1 200.759 152.4 Tm
+(path,) Tj
+1 0 0 1 223.919 152.4 Tm
+(while) Tj
+1 0 0 1 249.599 152.4 Tm
+(information-) Tj
+1 0 0 1 48.96 140.4 Tm
+(driven) Tj
+1 0 0 1 79.0799 140.4 Tm
+(routing) Tj
+1 0 0 1 112.44 140.4 Tm
+(such) Tj
+1 0 0 1 135.36 140.4 Tm
+(as) Tj
+1 0 0 1 148.32 140.4 Tm
+(CADR) Tj
+1 0 0 1 180.72 140.4 Tm
+([9) Tj
+1 0 0 1 189 140.4 Tm
+(]) Tj
+1 0 0 1 196.92 140.4 Tm
+(uses) Tj
+1 0 0 1 218.759 140.4 Tm
+(information) Tj
+1 0 0 1 270.479 140.4 Tm
+(gain) Tj
+1 0 0 1 292.319 140.4 Tm
+(to) Tj
+1 0 0 1 48.96 128.4 Tm
+(guide) Tj
+1 0 0 1 74.6399 128.4 Tm
+(the) Tj
+1 0 0 1 90.2399 128.4 Tm
+(routing) Tj
+1 0 0 1 122.52 128.4 Tm
+(process.) Tj
+1 0 0 1 58.92 116.28 Tm
+(All) Tj
+1 0 0 1 75.48 116.28 Tm
+(the) Tj
+1 0 0 1 91.5599 116.28 Tm
+(existing) Tj
+1 0 0 1 126.96 116.28 Tm
+(routing) Tj
+1 0 0 1 159.48 116.28 Tm
+(protocols) Tj
+1 0 0 1 200.52 116.28 Tm
+(are) Tj
+1 0 0 1 216.48 116.28 Tm
+(implicitly) Tj
+1 0 0 1 259.079 116.28 Tm
+(associated) Tj
+1 0 0 1 48.96 104.28 Tm
+(with) Tj
+1 0 0 1 70.56 104.28 Tm
+(their) Tj
+1 0 0 1 92.7599 104.28 Tm
+(routing) Tj
+1 0 0 1 125.4 104.28 Tm
+(strategies.) Tj
+1 0 0 1 169.44 104.28 Tm
+(Most) Tj
+1 0 0 1 193.8 104.28 Tm
+(early) Tj
+1 0 0 1 217.559 104.28 Tm
+(source-initiated) Tj
+1 0 0 1 283.439 104.28 Tm
+(pro-) Tj
+1 0 0 1 48.96 92.28 Tm
+(tocols) Tj
+1 0 0 1 76.1999 92.28 Tm
+(\(AODV) Tj
+1 0 0 1 107.04 92.28 Tm
+(,) Tj
+1 0 0 1 113.04 92.28 Tm
+(DSR,) Tj
+1 0 0 1 138.36 92.28 Tm
+(T) Tj
+1 0 0 1 144.36 92.28 Tm
+(ORA,) Tj
+1 0 0 1 171.24 92.28 Tm
+(ABS,) Tj
+1 0 0 1 196.559 92.28 Tm
+(SSR\)) Tj
+1 0 0 1 221.039 92.28 Tm
+(are) Tj
+1 0 0 1 236.639 92.28 Tm
+(structure-based,) Tj
+1 0 0 1 48.96 80.4 Tm
+(as) Tj
+1 0 0 1 61.32 80.4 Tm
+(is) Tj
+1 0 0 1 71.9999 80.4 Tm
+(Directed) Tj
+1 0 0 1 110.4 80.4 Tm
+(Dif) Tj
+1 0 0 1 123.48 80.4 Tm
+(fusion.) Tj
+1 0 0 1 154.92 80.4 Tm
+(Structure-based) Tj
+1 0 0 1 221.519 80.4 Tm
+(strategies) Tj
+1 0 0 1 263.279 80.4 Tm
+(are) Tj
+1 0 0 1 279.479 80.4 Tm
+(more) Tj
+1 0 0 1 48.96 68.4 Tm
+(suitable) Tj
+1 0 0 1 83.6399 68.4 Tm
+(for) Tj
+1 0 0 1 98.9998 68.4 Tm
+(relatively) Tj
+1 0 0 1 140.4 68.4 Tm
+(stable) Tj
+1 0 0 1 167.4 68.4 Tm
+(networks,) Tj
+1 0 0 1 210.119 68.4 Tm
+(since) Tj
+1 0 0 1 234.359 68.4 Tm
+(maintaining) Tj
+1 0 0 1 285.599 68.4 Tm
+(and) Tj
+1 0 0 1 312 558.6 Tm
+(repairing) Tj
+1 0 0 1 351 558.6 Tm
+(structures) Tj
+1 0 0 1 392.76 558.6 Tm
+(can) Tj
+1 0 0 1 409.68 558.6 Tm
+(be) Tj
+1 0 0 1 422.16 558.6 Tm
+(costly) Tj
+1 0 0 1 449.039 558.6 Tm
+(for) Tj
+1 0 0 1 463.679 558.6 Tm
+(dynamic) Tj
+1 0 0 1 500.999 558.6 Tm
+(networks.) Tj
+1 0 0 1 543.119 558.6 Tm
+(Con-) Tj
+1 0 0 1 312 546.6 Tm
+(nectionless) Tj
+1 0 0 1 359.16 546.6 Tm
+(routing) Tj
+1 0 0 1 390.96 546.6 Tm
+(strategies,) Tj
+1 0 0 1 434.04 546.6 Tm
+(e.g.) Tj
+1 0 0 1 451.44 546.6 Tm
+(search-based) Tj
+1 0 0 1 505.799 546.6 Tm
+(or) Tj
+1 0 0 1 517.079 546.6 Tm
+(constrained) Tj
+1 0 0 1 312 534.72 Tm
+(\257ooding,) Tj
+1 0 0 1 353.16 534.72 Tm
+(do) Tj
+1 0 0 1 368.64 534.72 Tm
+(not) Tj
+1 0 0 1 386.88 534.72 Tm
+(maintain) Tj
+1 0 0 1 427.32 534.72 Tm
+(the) Tj
+1 0 0 1 444.959 534.72 Tm
+(network) Tj
+1 0 0 1 483.119 534.72 Tm
+(structure) Tj
+1 0 0 1 523.559 534.72 Tm
+(explicitly) Tj
+1 0 0 1 560.759 534.72 Tm
+(.) Tj
+/R15 9.96264 Tf
+1 0 0 1 312 522.72 Tm
+(Sear) Tj
+1 0 0 1 330 522.72 Tm
+(ch-based) Tj
+1 0 0 1 369.96 522.72 Tm
+(methods) Tj
+/R6 9.96264 Tf
+1 0 0 1 407.16 522.72 Tm
+(normally) Tj
+1 0 0 1 447.24 522.72 Tm
+(discover) Tj
+1 0 0 1 485.159 522.72 Tm
+(routes) Tj
+1 0 0 1 513.599 522.72 Tm
+(by) Tj
+1 0 0 1 527.639 522.72 Tm
+(selecting) Tj
+1 0 0 1 312 510.72 Tm
+(the) Tj
+1 0 0 1 328.08 510.72 Tm
+(next) Tj
+1 0 0 1 349.2 510.72 Tm
+(\252best\272) Tj
+1 0 0 1 378 510.72 Tm
+(hop) Tj
+1 0 0 1 396.84 510.72 Tm
+(at) Tj
+1 0 0 1 408 510.72 Tm
+(every) Tj
+1 0 0 1 434.04 510.72 Tm
+(node) Tj
+1 0 0 1 457.32 510.72 Tm
+(on) Tj
+1 0 0 1 471.24 510.72 Tm
+(the) Tj
+1 0 0 1 487.319 510.72 Tm
+(route.) Tj
+1 0 0 1 514.319 510.72 Tm
+(Routes) Tj
+1 0 0 1 545.879 510.72 Tm
+(may) Tj
+1 0 0 1 312 498.84 Tm
+(dif) Tj
+1 0 0 1 322.92 498.84 Tm
+(fer) Tj
+1 0 0 1 337.08 498.84 Tm
+(from) Tj
+1 0 0 1 359.64 498.84 Tm
+(message) Tj
+1 0 0 1 396.6 498.84 Tm
+(to) Tj
+1 0 0 1 407.64 498.84 Tm
+(message,) Tj
+1 0 0 1 447.12 498.84 Tm
+(even) Tj
+1 0 0 1 469.199 498.84 Tm
+(to) Tj
+1 0 0 1 480.119 498.84 Tm
+(the) Tj
+1 0 0 1 495.479 498.84 Tm
+(same) Tj
+1 0 0 1 519.239 498.84 Tm
+(destination) Tj
+1 0 0 1 312 486.84 Tm
+(node,) Tj
+1 0 0 1 338.88 486.84 Tm
+(and) Tj
+1 0 0 1 358.32 486.84 Tm
+(there) Tj
+1 0 0 1 383.28 486.84 Tm
+(is) Tj
+1 0 0 1 395.04 486.84 Tm
+(no) Tj
+1 0 0 1 410.04 486.84 Tm
+(structure) Tj
+1 0 0 1 450 486.84 Tm
+(maintenance.) Tj
+1 0 0 1 507.839 486.84 Tm
+(For) Tj
+1 0 0 1 526.799 486.84 Tm
+(example,) Tj
+1 0 0 1 312 474.84 Tm
+(GPSR) Tj
+1 0 0 1 341.76 474.84 Tm
+(uses) Tj
+1 0 0 1 363.84 474.84 Tm
+(a) Tj
+1 0 0 1 373.2 474.84 Tm
+(simple) Tj
+1 0 0 1 404.76 474.84 Tm
+(location-based) Tj
+1 0 0 1 467.76 474.84 Tm
+(greedy) Tj
+1 0 0 1 499.799 474.84 Tm
+(type) Tj
+1 0 0 1 521.879 474.84 Tm
+(of) Tj
+1 0 0 1 535.079 474.84 Tm
+(search,) Tj
+1 0 0 1 312 462.96 Tm
+(CADR) Tj
+1 0 0 1 343.56 462.96 Tm
+(deploys) Tj
+1 0 0 1 378.48 462.96 Tm
+(a) Tj
+1 0 0 1 386.88 462.96 Tm
+(greedy) Tj
+1 0 0 1 417.84 462.96 Tm
+(strategy) Tj
+1 0 0 1 453.36 462.96 Tm
+(using) Tj
+1 0 0 1 478.799 462.96 Tm
+(the) Tj
+1 0 0 1 494.879 462.96 Tm
+(information) Tj
+1 0 0 1 545.879 462.96 Tm
+(gain) Tj
+1 0 0 1 312 450.96 Tm
+(metric,) Tj
+1 0 0 1 344.88 450.96 Tm
+(and) Tj
+1 0 0 1 364.32 450.96 Tm
+(GEAR) Tj
+1 0 0 1 396.36 450.96 Tm
+(applies) Tj
+1 0 0 1 429.6 450.96 Tm
+(a) Tj
+1 0 0 1 439.08 450.96 Tm
+(modi\256ed) Tj
+1 0 0 1 479.4 450.96 Tm
+(version) Tj
+1 0 0 1 513.719 450.96 Tm
+(of) Tj
+1 0 0 1 527.039 450.96 Tm
+(real-time) Tj
+1 0 0 1 312 439.08 Tm
+(search.) Tj
+1 0 0 1 345.72 439.08 Tm
+(Recent) Tj
+1 0 0 1 379.32 439.08 Tm
+(work) Tj
+1 0 0 1 405.6 439.08 Tm
+(on) Tj
+1 0 0 1 421.44 439.08 Tm
+(randomized) Tj
+1 0 0 1 474.36 439.08 Tm
+(routing) Tj
+1 0 0 1 509.039 439.08 Tm
+([10) Tj
+1 0 0 1 522.359 439.08 Tm
+(]) Tj
+1 0 0 1 531.479 439.08 Tm
+(chooses) Tj
+1 0 0 1 312 427.08 Tm
+(the) Tj
+1 0 0 1 328.56 427.08 Tm
+(next) Tj
+1 0 0 1 350.16 427.08 Tm
+(hop) Tj
+1 0 0 1 369.6 427.08 Tm
+(according) Tj
+1 0 0 1 413.28 427.08 Tm
+(to) Tj
+1 0 0 1 425.52 427.08 Tm
+(some) Tj
+1 0 0 1 450.96 427.08 Tm
+(distribution.) Tj
+1 0 0 1 503.879 427.08 Tm
+(Reinforcement) Tj
+1 0 0 1 312 415.08 Tm
+(learning) Tj
+1 0 0 1 348.48 415.08 Tm
+(routings) Tj
+1 0 0 1 384.96 415.08 Tm
+(have) Tj
+1 0 0 1 407.64 415.08 Tm
+(also) Tj
+1 0 0 1 427.56 415.08 Tm
+(been) Tj
+1 0 0 1 450.24 415.08 Tm
+(studied,) Tj
+1 0 0 1 485.399 415.08 Tm
+(e.g.) Tj
+1 0 0 1 503.639 415.08 Tm
+(Q-routing) Tj
+1 0 0 1 546.839 415.08 Tm
+([1) Tj
+1 0 0 1 554.879 415.08 Tm
+(1) Tj
+1 0 0 1 559.679 415.08 Tm
+(]) Tj
+1 0 0 1 312 403.2 Tm
+(and) Tj
+1 0 0 1 331.68 403.2 Tm
+(ant-based) Tj
+1 0 0 1 375.24 403.2 Tm
+(routing) Tj
+1 0 0 1 409.32 403.2 Tm
+([12) Tj
+1 0 0 1 422.64 403.2 Tm
+(].) Tj
+/R15 9.96264 Tf
+1 0 0 1 433.68 403.2 Tm
+(Constrained-\257ooding) Tj
+1 0 0 1 524.279 403.2 Tm
+(strategies) Tj
+/R6 9.96264 Tf
+1 0 0 1 312 391.2 Tm
+([13) Tj
+1 0 0 1 325.2 391.2 Tm
+(],) Tj
+1 0 0 1 335.88 391.2 Tm
+(on) Tj
+1 0 0 1 350.76 391.2 Tm
+(the) Tj
+1 0 0 1 367.68 391.2 Tm
+(other) Tj
+1 0 0 1 393 391.2 Tm
+(hand,) Tj
+1 0 0 1 419.76 391.2 Tm
+(allow) Tj
+1 0 0 1 446.639 391.2 Tm
+(each) Tj
+1 0 0 1 469.799 391.2 Tm
+(node) Tj
+1 0 0 1 494.039 391.2 Tm
+(to) Tj
+1 0 0 1 506.639 391.2 Tm
+(independently) Tj
+1 0 0 1 312 379.2 Tm
+(make) Tj
+1 0 0 1 338.76 379.2 Tm
+(the) Tj
+1 0 0 1 356.28 379.2 Tm
+(decision) Tj
+1 0 0 1 394.68 379.2 Tm
+(of) Tj
+1 0 0 1 408.24 379.2 Tm
+(rebroadcast,) Tj
+1 0 0 1 462 379.2 Tm
+(while) Tj
+1 0 0 1 489.359 379.2 Tm
+(making) Tj
+1 0 0 1 524.519 379.2 Tm
+(trade-of) Tj
+1 0 0 1 556.079 379.2 Tm
+(fs) Tj
+1 0 0 1 312 367.32 Tm
+(between) Tj
+1 0 0 1 348.6 367.32 Tm
+(robust) Tj
+1 0 0 1 377.04 367.32 Tm
+(message) Tj
+1 0 0 1 414.24 367.32 Tm
+(delivery) Tj
+1 0 0 1 450.48 367.32 Tm
+(and) Tj
+1 0 0 1 468.24 367.32 Tm
+(total) Tj
+1 0 0 1 489.479 367.32 Tm
+(ener) Tj
+1 0 0 1 506.639 367.32 Tm
+(gy) Tj
+1 0 0 1 519.959 367.32 Tm
+(cost.) Tj
+1 0 0 1 321.96 355.2 Tm
+(W) Tj
+1 0 0 1 330.48 355.2 Tm
+(e) Tj
+1 0 0 1 338.28 355.2 Tm
+(propose) Tj
+1 0 0 1 373.2 355.2 Tm
+(here) Tj
+1 0 0 1 393.6 355.2 Tm
+(Message-initiated) Tj
+1 0 0 1 467.88 355.2 Tm
+(Constraint-Based) Tj
+1 0 0 1 540.359 355.2 Tm
+(Rout-) Tj
+1 0 0 1 312 343.2 Tm
+(ing) Tj
+1 0 0 1 328.92 343.2 Tm
+(\(MCBR\),) Tj
+1 0 0 1 371.04 343.2 Tm
+(a) Tj
+1 0 0 1 379.68 343.2 Tm
+(general) Tj
+1 0 0 1 413.16 343.2 Tm
+(message) Tj
+1 0 0 1 451.079 343.2 Tm
+(speci\256cation) Tj
+1 0 0 1 505.679 343.2 Tm
+(mechanism) Tj
+1 0 0 1 555.239 343.2 Tm
+(to) Tj
+1 0 0 1 312 331.32 Tm
+(explicitly) Tj
+1 0 0 1 355.68 331.32 Tm
+(encode) Tj
+1 0 0 1 390 331.32 Tm
+(the) Tj
+1 0 0 1 408.36 331.32 Tm
+(routing) Tj
+1 0 0 1 443.16 331.32 Tm
+(destinations,) Tj
+1 0 0 1 499.319 331.32 Tm
+(constraints) Tj
+1 0 0 1 548.639 331.32 Tm
+(and) Tj
+1 0 0 1 312 319.32 Tm
+(objectives) Tj
+1 0 0 1 357.72 319.32 Tm
+(in) Tj
+1 0 0 1 370.8 319.32 Tm
+(messages,) Tj
+1 0 0 1 416.16 319.32 Tm
+(so) Tj
+1 0 0 1 430.32 319.32 Tm
+(that) Tj
+/R15 9.96264 Tf
+1 0 0 1 450.6 319.32 Tm
+(generic-purpose) Tj
+/R6 9.96264 Tf
+1 0 0 1 521.159 319.32 Tm
+(instead) Tj
+1 0 0 1 554.759 319.32 Tm
+(of) Tj
+/R15 9.96264 Tf
+1 0 0 1 312 307.32 Tm
+(objective-speci\256c) Tj
+/R6 9.96264 Tf
+1 0 0 1 384.36 307.32 Tm
+(or) Tj
+/R15 9.96264 Tf
+1 0 0 1 395.76 307.32 Tm
+(destination-speci\256c) Tj
+/R6 9.96264 Tf
+1 0 0 1 476.399 307.32 Tm
+(routing) Tj
+1 0 0 1 508.439 307.32 Tm
+(strategies) Tj
+1 0 0 1 549.239 307.32 Tm
+(can) Tj
+1 0 0 1 312 295.44 Tm
+(be) Tj
+1 0 0 1 324.96 295.44 Tm
+(applied.) Tj
+1 0 0 1 360.24 295.44 Tm
+(The) Tj
+1 0 0 1 379.32 295.44 Tm
+(separation) Tj
+1 0 0 1 423.84 295.44 Tm
+(of) Tj
+1 0 0 1 435.6 295.44 Tm
+(routing) Tj
+1 0 0 1 467.999 295.44 Tm
+(speci\256cations) Tj
+1 0 0 1 525.719 295.44 Tm
+(and) Tj
+1 0 0 1 543.719 295.44 Tm
+(rout-) Tj
+1 0 0 1 312 283.44 Tm
+(ing) Tj
+1 0 0 1 329.64 283.44 Tm
+(strategies) Tj
+1 0 0 1 372.12 283.44 Tm
+(makes) Tj
+1 0 0 1 402.48 283.44 Tm
+(it) Tj
+1 0 0 1 412.92 283.44 Tm
+(possible) Tj
+1 0 0 1 450.36 283.44 Tm
+(for) Tj
+1 0 0 1 466.919 283.44 Tm
+(exploring) Tj
+/R15 9.96264 Tf
+1 0 0 1 509.999 283.44 Tm
+(meta) Tj
+/R6 9.96264 Tf
+1 0 0 1 534.239 283.44 Tm
+(routing) Tj
+1 0 0 1 312 271.56 Tm
+(strategies,) Tj
+1 0 0 1 356.4 271.56 Tm
+(allowing) Tj
+1 0 0 1 395.64 271.56 Tm
+(quality-of-service) Tj
+1 0 0 1 470.759 271.56 Tm
+(\(QoS\)) Tj
+1 0 0 1 499.439 271.56 Tm
+(requirements) Tj
+1 0 0 1 555.839 271.56 Tm
+(at) Tj
+1 0 0 1 312 259.56 Tm
+(the) Tj
+1 0 0 1 326.88 259.56 Tm
+(application) Tj
+1 0 0 1 373.92 259.56 Tm
+(layer) Tj
+1 0 0 1 396.6 259.56 Tm
+(for) Tj
+1 0 0 1 410.88 259.56 Tm
+(individual) Tj
+1 0 0 1 454.079 259.56 Tm
+(messages.) Tj
+1 0 0 1 496.919 259.56 Tm
+(W) Tj
+1 0 0 1 505.439 259.56 Tm
+(e) Tj
+1 0 0 1 512.639 259.56 Tm
+(also) Tj
+1 0 0 1 531.479 259.56 Tm
+(propose) Tj
+1 0 0 1 312 247.56 Tm
+(two) Tj
+1 0 0 1 329.76 247.56 Tm
+(types) Tj
+1 0 0 1 353.52 247.56 Tm
+(of) Tj
+1 0 0 1 364.68 247.56 Tm
+(meta) Tj
+1 0 0 1 386.88 247.56 Tm
+(routing) Tj
+1 0 0 1 418.44 247.56 Tm
+(strategies) Tj
+1 0 0 1 458.879 247.56 Tm
+(for) Tj
+1 0 0 1 473.279 247.56 Tm
+(MCBR:) Tj
+1 0 0 1 507.599 247.56 Tm
+(one) Tj
+1 0 0 1 524.879 247.56 Tm
+(is) Tj
+1 0 0 1 534.239 247.56 Tm
+(search-) Tj
+1 0 0 1 312 235.68 Tm
+(based) Tj
+1 0 0 1 339.12 235.68 Tm
+(and) Tj
+1 0 0 1 358.08 235.68 Tm
+(another) Tj
+1 0 0 1 392.52 235.68 Tm
+(is) Tj
+1 0 0 1 403.68 235.68 Tm
+(constrained-\257ooding.) Tj
+1 0 0 1 493.079 235.68 Tm
+(Properties) Tj
+1 0 0 1 538.079 235.68 Tm
+(of) Tj
+1 0 0 1 550.799 235.68 Tm
+(the) Tj
+1 0 0 1 312 223.68 Tm
+(two) Tj
+1 0 0 1 330.96 223.68 Tm
+(meta) Tj
+1 0 0 1 354.36 223.68 Tm
+(strategies) Tj
+1 0 0 1 396 223.68 Tm
+(are) Tj
+1 0 0 1 412.2 223.68 Tm
+(discussed.) Tj
+1 0 0 1 456.84 223.68 Tm
+(Unlike) Tj
+1 0 0 1 488.039 223.68 Tm
+(other) Tj
+1 0 0 1 512.519 223.68 Tm
+(QoS) Tj
+1 0 0 1 534.239 223.68 Tm
+(routing) Tj
+1 0 0 1 312 211.68 Tm
+(approaches) Tj
+1 0 0 1 359.4 211.68 Tm
+([14) Tj
+1 0 0 1 372.6 211.68 Tm
+(]) Tj
+1 0 0 1 378.6 211.68 Tm
+(where) Tj
+1 0 0 1 405.48 211.68 Tm
+(an) Tj
+1 0 0 1 417.48 211.68 Tm
+(optimal) Tj
+1 0 0 1 450.479 211.68 Tm
+(route) Tj
+1 0 0 1 473.519 211.68 Tm
+(has) Tj
+1 0 0 1 489.479 211.68 Tm
+(to) Tj
+1 0 0 1 499.799 211.68 Tm
+(be) Tj
+1 0 0 1 511.799 211.68 Tm
+(found) Tj
+1 0 0 1 537.599 211.68 Tm
+(before) Tj
+1 0 0 1 312 199.8 Tm
+(sending) Tj
+1 0 0 1 347.4 199.8 Tm
+(actual) Tj
+1 0 0 1 375.6 199.8 Tm
+(messages,) Tj
+1 0 0 1 420.24 199.8 Tm
+(messages) Tj
+/R15 9.96264 Tf
+1 0 0 1 462.24 199.8 Tm
+(discover) Tj
+/R6 9.96264 Tf
+1 0 0 1 500.519 199.8 Tm
+(and) Tj
+/R15 9.96264 Tf
+1 0 0 1 519.239 199.8 Tm
+(learn) Tj
+/R6 9.96264 Tf
+1 0 0 1 544.799 199.8 Tm
+(their) Tj
+1 0 0 1 312 187.8 Tm
+(routes) Tj
+1 0 0 1 339 187.8 Tm
+(on) Tj
+1 0 0 1 351.6 187.8 Tm
+(their) Tj
+1 0 0 1 372.6 187.8 Tm
+(way) Tj
+1 0 0 1 391.8 187.8 Tm
+(to) Tj
+1 0 0 1 402.24 187.8 Tm
+(the) Tj
+1 0 0 1 417.12 187.8 Tm
+(destinations) Tj
+1 0 0 1 467.279 187.8 Tm
+(in) Tj
+1 0 0 1 477.719 187.8 Tm
+(our) Tj
+1 0 0 1 493.679 187.8 Tm
+(frameworks.) Tj
+1 0 0 1 546.479 187.8 Tm
+(Due) Tj
+1 0 0 1 312 175.92 Tm
+(to) Tj
+1 0 0 1 322.68 175.92 Tm
+(page) Tj
+1 0 0 1 344.52 175.92 Tm
+(limitations,) Tj
+1 0 0 1 392.64 175.92 Tm
+(this) Tj
+1 0 0 1 410.04 175.92 Tm
+(paper) Tj
+1 0 0 1 435.12 175.92 Tm
+(focuses) Tj
+1 0 0 1 467.999 175.92 Tm
+(on) Tj
+1 0 0 1 480.839 175.92 Tm
+(MCBR) Tj
+/R15 9.96264 Tf
+1 0 0 1 512.639 175.92 Tm
+(speci\256cation) Tj
+/R6 9.96264 Tf
+1 0 0 1 312 163.92 Tm
+(and) Tj
+1 0 0 1 330 163.92 Tm
+(frameworks) Tj
+1 0 0 1 381.12 163.92 Tm
+(of) Tj
+/R15 9.96264 Tf
+1 0 0 1 393.12 163.92 Tm
+(meta-strategies) Tj
+/R6 9.96264 Tf
+1 0 0 1 454.68 163.92 Tm
+(,) Tj
+1 0 0 1 460.679 163.92 Tm
+(rather) Tj
+1 0 0 1 487.439 163.92 Tm
+(than) Tj
+/R15 9.96264 Tf
+1 0 0 1 508.199 163.92 Tm
+(performances) Tj
+/R6 9.96264 Tf
+1 0 0 1 312 151.92 Tm
+(of) Tj
+1 0 0 1 323.76 151.92 Tm
+(particular) Tj
+1 0 0 1 365.4 151.92 Tm
+(strategies.) Tj
+1 0 0 1 380.52 132.12 Tm
+(I) Tj
+1 0 0 1 384.36 132.12 Tm
+(I) Tj
+1 0 0 1 388.2 132.12 Tm
+(.) Tj
+1 0 0 1 396.12 132.12 Tm
+(M) Tj
+1 0 0 1 405.48 132.12 Tm
+(C) Tj
+1 0 0 1 412.56 132.12 Tm
+(B) Tj
+1 0 0 1 419.64 132.12 Tm
+(R) Tj
+1 0 0 1 429.48 132.12 Tm
+(S) Tj
+/R6 7.97011 Tf
+1 0 0 1 435.48 132.12 Tm
+(P) Tj
+1 0 0 1 440.4 132.12 Tm
+(E) Tj
+1 0 0 1 445.799 132.12 Tm
+(C) Tj
+1 0 0 1 451.559 132.12 Tm
+(I) Tj
+1 0 0 1 454.679 132.12 Tm
+(FI) Tj
+1 0 0 1 462.239 132.12 Tm
+(C) Tj
+1 0 0 1 467.999 132.12 Tm
+(A) Tj
+1 0 0 1 473.399 132.12 Tm
+(T) Tj
+1 0 0 1 478.799 132.12 Tm
+(I) Tj
+1 0 0 1 481.919 132.12 Tm
+(O) Tj
+1 0 0 1 488.159 132.12 Tm
+(N) Tj
+/R6 9.96264 Tf
+1 0 0 1 321.96 116.28 Tm
+(W) Tj
+1 0 0 1 330.48 116.28 Tm
+(e) Tj
+1 0 0 1 338.4 116.28 Tm
+(use) Tj
+1 0 0 1 355.08 116.28 Tm
+(the) Tj
+1 0 0 1 370.68 116.28 Tm
+(term) Tj
+/R15 9.96264 Tf
+1 0 0 1 392.4 116.28 Tm
+(Message-initiated) Tj
+1 0 0 1 467.16 116.28 Tm
+(Constraint-Based) Tj
+1 0 0 1 540.839 116.28 Tm
+(Rout-) Tj
+1 0 0 1 312 104.28 Tm
+(ing) Tj
+/R6 9.96264 Tf
+1 0 0 1 328.32 104.28 Tm
+(\(MCBR\)) Tj
+1 0 0 1 367.32 104.28 Tm
+(to) Tj
+1 0 0 1 378.72 104.28 Tm
+(indicate) Tj
+1 0 0 1 413.88 104.28 Tm
+(routing) Tj
+1 0 0 1 446.279 104.28 Tm
+(mechanisms) Tj
+1 0 0 1 499.079 104.28 Tm
+(with) Tj
+1 0 0 1 520.439 104.28 Tm
+(constraint-) Tj
+1 0 0 1 312 92.28 Tm
+(based) Tj
+1 0 0 1 339.6 92.28 Tm
+(destinations) Tj
+1 0 0 1 392.04 92.28 Tm
+(and) Tj
+1 0 0 1 411.36 92.28 Tm
+(objectives) Tj
+1 0 0 1 456.72 92.28 Tm
+(speci\256ed) Tj
+1 0 0 1 497.039 92.28 Tm
+(in) Tj
+1 0 0 1 509.639 92.28 Tm
+(messages.) Tj
+1 0 0 1 554.759 92.28 Tm
+(In) Tj
+1 0 0 1 312 80.4 Tm
+(MCBR,) Tj
+1 0 0 1 345.6 80.4 Tm
+(each) Tj
+1 0 0 1 366.12 80.4 Tm
+(node) Tj
+1 0 0 1 387.72 80.4 Tm
+(in) Tj
+1 0 0 1 397.8 80.4 Tm
+(the) Tj
+1 0 0 1 412.32 80.4 Tm
+(network) Tj
+1 0 0 1 447.24 80.4 Tm
+(has) Tj
+1 0 0 1 462.839 80.4 Tm
+(a) Tj
+1 0 0 1 469.559 80.4 Tm
+(list) Tj
+1 0 0 1 483.959 80.4 Tm
+(of) Tj
+/R15 9.96264 Tf
+1 0 0 1 494.639 80.4 Tm
+(attributes) Tj
+/R6 9.96264 Tf
+1 0 0 1 532.919 80.4 Tm
+(,) Tj
+1 0 0 1 537.599 80.4 Tm
+(whose) Tj
+1 0 0 1 312 68.4 Tm
+(types) Tj
+1 0 0 1 337.8 68.4 Tm
+(are) Tj
+1 0 0 1 354.72 68.4 Tm
+(prede\256ned.) Tj
+1 0 0 1 404.04 68.4 Tm
+(Attributes) Tj
+1 0 0 1 448.68 68.4 Tm
+(can) Tj
+1 0 0 1 467.279 68.4 Tm
+(be) Tj
+1 0 0 1 481.559 68.4 Tm
+(anything) Tj
+1 0 0 1 521.159 68.4 Tm
+(from) Tj
+1 0 0 1 545.279 68.4 Tm
+(geo-) Tj
+ET
+Q
+endstream
+endobj
+17 0 obj
+22677
+endobj
+3 0 obj
+<<
+/Type /Page
+/MediaBox [0 0 612 792]
+/Parent 2 0 R
+/Resources << /ProcSet [/PDF /Text]
+/Font <<
+/R15 15 0 R
+/R12 12 0 R
+/R9 9 0 R
+/R6 6 0 R
+>>
+>>
+/Contents [
+4 0 R
+7 0 R
+10 0 R
+13 0 R
+16 0 R
+]
+>>
+endobj
+19 0 obj
+<< /Length 20 0 R >>
+stream
+q
+endstream
+endobj
+20 0 obj
+2
+endobj
+21 0 obj
+<< /Type /Font /Name /R21 /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+22 0 obj
+<< /Length 23 0 R >>
+stream
+BT
+/R21 9.96264 Tf
+1 0 0 1 48.96 726 Tm
+(graphical) Tj
+1 0 0 1 88.6799 726 Tm
+(locations) Tj
+1 0 0 1 127.44 726 Tm
+(to) Tj
+1 0 0 1 137.88 726 Tm
+(network) Tj
+1 0 0 1 173.16 726 Tm
+(bandwidths,) Tj
+1 0 0 1 224.279 726 Tm
+(from) Tj
+1 0 0 1 246.359 726 Tm
+(sensor) Tj
+1 0 0 1 274.559 726 Tm
+(values) Tj
+1 0 0 1 48.96 714.12 Tm
+(to) Tj
+1 0 0 1 61.08 714.12 Tm
+(internal) Tj
+1 0 0 1 95.9999 714.12 Tm
+(clocks.) Tj
+1 0 0 1 128.28 714.12 Tm
+(The) Tj
+1 0 0 1 148.2 714.12 Tm
+(values) Tj
+1 0 0 1 178.08 714.12 Tm
+(of) Tj
+1 0 0 1 190.8 714.12 Tm
+(attributes) Tj
+1 0 0 1 232.32 714.12 Tm
+(can) Tj
+1 0 0 1 250.559 714.12 Tm
+(be) Tj
+1 0 0 1 264.359 714.12 Tm
+(constant,) Tj
+1 0 0 1 48.96 702.12 Tm
+(such) Tj
+1 0 0 1 71.28 702.12 Tm
+(as) Tj
+1 0 0 1 83.5199 702.12 Tm
+(a) Tj
+1 0 0 1 92.0398 702.12 Tm
+(node) Tj
+1 0 0 1 115.44 702.12 Tm
+(identi\256er) Tj
+1 0 0 1 155.4 702.12 Tm
+(or) Tj
+1 0 0 1 167.76 702.12 Tm
+(a) Tj
+1 0 0 1 176.16 702.12 Tm
+(unit) Tj
+1 0 0 1 195.719 702.12 Tm
+(cost,) Tj
+1 0 0 1 218.279 702.12 Tm
+(or) Tj
+1 0 0 1 230.519 702.12 Tm
+(can) Tj
+1 0 0 1 248.399 702.12 Tm
+(change) Tj
+1 0 0 1 280.679 702.12 Tm
+(from) Tj
+1 0 0 1 48.96 690.12 Tm
+(time) Tj
+1 0 0 1 69.1199 690.12 Tm
+(to) Tj
+1 0 0 1 79.1999 690.12 Tm
+(time.) Tj
+1 0 0 1 101.76 690.12 Tm
+(For) Tj
+1 0 0 1 117.96 690.12 Tm
+(example,) Tj
+1 0 0 1 156.6 690.12 Tm
+(a) Tj
+1 0 0 1 163.44 690.12 Tm
+(mobile) Tj
+1 0 0 1 193.559 690.12 Tm
+(node) Tj
+1 0 0 1 215.279 690.12 Tm
+(changes) Tj
+1 0 0 1 249.719 690.12 Tm
+(its) Tj
+1 0 0 1 261.599 690.12 Tm
+(locations,) Tj
+1 0 0 1 48.96 678.24 Tm
+(a) Tj
+1 0 0 1 57.24 678.24 Tm
+(stationary) Tj
+1 0 0 1 100.44 678.24 Tm
+(node) Tj
+1 0 0 1 123.72 678.24 Tm
+(can) Tj
+1 0 0 1 141.36 678.24 Tm
+(still) Tj
+1 0 0 1 160.2 678.24 Tm
+(obtain) Tj
+1 0 0 1 189 678.24 Tm
+(dif) Tj
+1 0 0 1 199.92 678.24 Tm
+(ferent) Tj
+1 0 0 1 226.919 678.24 Tm
+(sensor) Tj
+1 0 0 1 256.199 678.24 Tm
+(readings) Tj
+1 0 0 1 293.879 678.24 Tm
+(if) Tj
+1 0 0 1 48.96 666.24 Tm
+(its) Tj
+1 0 0 1 63 666.24 Tm
+(environment) Tj
+1 0 0 1 117.84 666.24 Tm
+(changes.) Tj
+1 0 0 1 156.96 666.24 Tm
+(A) Tj
+ET
+endstream
+endobj
+23 0 obj
+2053
+endobj
+24 0 obj
+<< /Type /Font /Name /R24 /Subtype /Type1 /BaseFont /Times-Italic >>
+endobj
+25 0 obj
+<< /Length 26 0 R >>
+stream
+BT
+/R24 9.96264 Tf
+1 0 0 1 168.72 666.24 Tm
+(r) Tj
+1 0 0 1 172.2 666.24 Tm
+(outing) Tj
+1 0 0 1 202.32 666.24 Tm
+(destination) Tj
+/R21 9.96264 Tf
+1 0 0 1 251.159 666.24 Tm
+(is) Tj
+1 0 0 1 262.319 666.24 Tm
+(explicitly) Tj
+1 0 0 1 48.96 654.36 Tm
+(represented) Tj
+1 0 0 1 98.1598 654.36 Tm
+(by) Tj
+1 0 0 1 111.48 654.36 Tm
+(a) Tj
+1 0 0 1 119.16 654.36 Tm
+(set) Tj
+1 0 0 1 133.56 654.36 Tm
+(of) Tj
+1 0 0 1 145.08 654.36 Tm
+(constraints) Tj
+1 0 0 1 191.639 654.36 Tm
+(on) Tj
+1 0 0 1 204.839 654.36 Tm
+(attributes.) Tj
+1 0 0 1 247.679 654.36 Tm
+(Furthermore,) Tj
+1 0 0 1 48.96 642.36 Tm
+(in) Tj
+1 0 0 1 60.12 642.36 Tm
+(addition) Tj
+1 0 0 1 96.2398 642.36 Tm
+(to) Tj
+1 0 0 1 107.4 642.36 Tm
+(destinations,) Tj
+/R24 9.96264 Tf
+1 0 0 1 160.92 642.36 Tm
+(local) Tj
+1 0 0 1 184.32 642.36 Tm
+(r) Tj
+1 0 0 1 187.8 642.36 Tm
+(oute) Tj
+1 0 0 1 208.439 642.36 Tm
+(constraints) Tj
+/R21 9.96264 Tf
+1 0 0 1 252.839 642.36 Tm
+(,) Tj
+1 0 0 1 258.599 642.36 Tm
+(if) Tj
+1 0 0 1 268.199 642.36 Tm
+(any) Tj
+1 0 0 1 282.119 642.36 Tm
+(,) Tj
+1 0 0 1 287.879 642.36 Tm
+(are) Tj
+1 0 0 1 48.96 630.36 Tm
+(explicitly) Tj
+1 0 0 1 90.8398 630.36 Tm
+(speci\256ed.) Tj
+1 0 0 1 133.08 630.36 Tm
+(Examples) Tj
+1 0 0 1 176.64 630.36 Tm
+(of) Tj
+1 0 0 1 189.24 630.36 Tm
+(local) Tj
+1 0 0 1 212.879 630.36 Tm
+(route) Tj
+1 0 0 1 237.599 630.36 Tm
+(constraints) Tj
+1 0 0 1 285.119 630.36 Tm
+(are:) Tj
+1 0 0 1 48.96 618.48 Tm
+(avoiding) Tj
+1 0 0 1 86.7599 618.48 Tm
+(a) Tj
+1 0 0 1 93.9599 618.48 Tm
+(noisy) Tj
+1 0 0 1 118.44 618.48 Tm
+(area,) Tj
+1 0 0 1 140.4 618.48 Tm
+(avoiding) Tj
+1 0 0 1 178.2 618.48 Tm
+(congestion,) Tj
+1 0 0 1 226.679 618.48 Tm
+(and) Tj
+1 0 0 1 243.959 618.48 Tm
+(avoiding) Tj
+1 0 0 1 281.759 618.48 Tm
+(low-) Tj
+1 0 0 1 48.96 606.48 Tm
+(ener) Tj
+1 0 0 1 66.12 606.48 Tm
+(gy) Tj
+1 0 0 1 80.9999 606.48 Tm
+(nodes,) Tj
+1 0 0 1 111.72 606.48 Tm
+(etc.) Tj
+1 0 0 1 130.92 606.48 Tm
+(Finally) Tj
+1 0 0 1 158.64 606.48 Tm
+(,) Tj
+1 0 0 1 166.08 606.48 Tm
+(a) Tj
+/R24 9.96264 Tf
+1 0 0 1 175.56 606.48 Tm
+(r) Tj
+1 0 0 1 179.04 606.48 Tm
+(outing) Tj
+1 0 0 1 209.64 606.48 Tm
+(objective) Tj
+/R21 9.96264 Tf
+1 0 0 1 250.679 606.48 Tm
+(is) Tj
+1 0 0 1 262.319 606.48 Tm
+(explicitly) Tj
+1 0 0 1 48.96 594.48 Tm
+(stated,) Tj
+1 0 0 1 80.3999 594.48 Tm
+(such) Tj
+1 0 0 1 104.4 594.48 Tm
+(as) Tj
+1 0 0 1 118.44 594.48 Tm
+(a) Tj
+1 0 0 1 128.64 594.48 Tm
+(shortest) Tj
+1 0 0 1 165.36 594.48 Tm
+(path,) Tj
+1 0 0 1 190.8 594.48 Tm
+(maximizing) Tj
+1 0 0 1 244.079 594.48 Tm
+(ener) Tj
+1 0 0 1 261.239 594.48 Tm
+(gy) Tj
+1 0 0 1 276.719 594.48 Tm
+(levels) Tj
+1 0 0 1 48.96 582.6 Tm
+(over) Tj
+1 0 0 1 71.64 582.6 Tm
+(the) Tj
+1 0 0 1 88.9199 582.6 Tm
+(route,) Tj
+1 0 0 1 116.88 582.6 Tm
+(maximizing) Tj
+1 0 0 1 169.56 582.6 Tm
+(connectivity) Tj
+1 0 0 1 223.799 582.6 Tm
+(over) Tj
+1 0 0 1 246.479 582.6 Tm
+(the) Tj
+1 0 0 1 263.759 582.6 Tm
+(route,) Tj
+1 0 0 1 291.719 582.6 Tm
+(or) Tj
+1 0 0 1 48.96 570.6 Tm
+(minimizing) Tj
+1 0 0 1 98.3998 570.6 Tm
+(congestion,) Tj
+1 0 0 1 147.48 570.6 Tm
+(etc.) Tj
+1 0 0 1 58.92 558.48 Tm
+(An) Tj
+1 0 0 1 73.8 558.48 Tm
+(MCBR) Tj
+/R24 9.96264 Tf
+1 0 0 1 105.24 558.48 Tm
+(pr) Tj
+1 0 0 1 113.76 558.48 Tm
+(otocol) Tj
+1 0 0 1 141.36 558.48 Tm
+(speci\256cation) Tj
+/R21 9.96264 Tf
+1 0 0 1 194.4 558.48 Tm
+(for) Tj
+1 0 0 1 208.68 558.48 Tm
+(a) Tj
+1 0 0 1 215.76 558.48 Tm
+(message) Tj
+ET
+endstream
+endobj
+26 0 obj
+3269
+endobj
+27 0 obj
+<< /Type /XObject /Name /R27 /Subtype /Image /Length 28 0 R
+/ImageMask true /Width 81 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 81 /BlackIs1 true >>]
+>>
+stream
+< ÜR¸ ¡0É›ÑJﬂ÷ÔÏ>·˜ª˚˛ÔøÓ˜ˇﬂª›ﬂÔªˇ?˜á˜√ø˜Óˇ˜ÓMgˇáˇ∏~ﬂ˝ﬂ}ﬂÔˇ√√í˛E´kæ¯~ˆ√Ì”4ØAË=XÑPbÑ`/ 
+endstream
+endobj
+28 0 obj
+110
+endobj
+29 0 obj
+<< /Length 30 0 R >>
+stream
+q
+8.1 0 0 -4.7 252.4 563 cm
+/R27 Do
+Q
+BT
+1 0 0 1 263.639 558.48 Tm
+(is) Tj
+1 0 0 1 272.999 558.48 Tm
+(a) Tj
+1 0 0 1 280.079 558.48 Tm
+(tuple) Tj
+ET
+endstream
+endobj
+30 0 obj
+148
+endobj
+31 0 obj
+<< /Type /XObject /Name /R31 /Subtype /Image /Length 32 0 R
+/ImageMask true /Width 30 /Height 118 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 30 /BlackIs1 true >>]
+>>
+stream
+$ËM~´ÎÖ]}B˙Î“˛Ç˛óÖ◊’}uË/È	zÎÍæ∏U◊‘/ˇ√ÔÓ˛√˛ﬂˆ˛·˝˜ÔÌˇo¯oÓ˛¯w›¸>˛ÔÏ?Ì˚·® Ä
+endstream
+endobj
+32 0 obj
+76
+endobj
+33 0 obj
+<< /Length 34 0 R >>
+stream
+q
+3 0 0 -11.8 49.9 555 cm
+/R31 Do
+Q
+endstream
+endobj
+34 0 obj
+36
+endobj
+35 0 obj
+<< /Type /XObject /Name /R35 /Subtype /Image /Length 36 0 R
+/ImageMask true /Width 44 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 44 /BlackIs1 true >>]
+>>
+stream
+5	‡Å¬"‡u∫@ﬁzxV˚¸7˛˛˚˚ﬂﬁ˜ﬂÔ˚Ô˚ìZˇ˝˝ﬂwø˝CáÔW÷˛˝øz´`ö¸ @
+endstream
+endobj
+36 0 obj
+65
+endobj
+37 0 obj
+<< /Length 38 0 R >>
+stream
+q
+4.4 0 0 -4.7 53.8 551.1 cm
+/R35 Do
+Q
+endstream
+endobj
+38 0 obj
+39
+endobj
+39 0 obj
+<< /Type /XObject /Name /R39 /Subtype /Image /Length 40 0 R
+/ImageMask true /Width 33 /Height 48 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 33 /BlackIs1 true >>]
+>>
+stream
+$	‡à/0àÒ÷Ë nÇa˛ì¸-Èˇ˙ﬂˇˇˇˇˇˇˇ˚◊ˇˇ√÷◊ˇ∂ïÜÇΩX`î1^à@ Ä
+endstream
+endobj
+40 0 obj
+55
+endobj
+41 0 obj
+<< /Length 42 0 R >>
+stream
+q
+3.3 0 0 -4.8 59 554.8 cm
+/R39 Do
+Q
+endstream
+endobj
+42 0 obj
+37
+endobj
+43 0 obj
+<< /Type /XObject /Name /R43 /Subtype /Image /Length 44 0 R
+/ImageMask true /Width 63 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 63 /BlackIs1 true >>]
+>>
+stream
+8 vF˙0Å˝áª˚∫∑˝øÔˇ∂√møˇøﬂ¸mø·øˇ˜wwÚk·˛|;a∑ˇ˚˚vD{˜√]…¿5aˆ0≈1VöXAÇ @
+endstream
+endobj
+44 0 obj
+78
+endobj
+45 0 obj
+<< /Length 46 0 R >>
+stream
+q
+6.3 0 0 -3.3 58.7 547.2 cm
+/R43 Do
+Q
+endstream
+endobj
+46 0 obj
+39
+endobj
+47 0 obj
+<< /Type /XObject /Name /R47 /Subtype /Image /Length 48 0 R
+/ImageMask true /Width 13 /Height 31 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 13 /BlackIs1 true >>]
+>>
+stream
+#ﬂ›ªﬂw√ˇo˛m‡Üø◊ˆP 
+endstream
+endobj
+48 0 obj
+26
+endobj
+49 0 obj
+<< /Length 50 0 R >>
+stream
+q
+1.3 0 0 -3.1 66.9 547.7 cm
+/R47 Do
+Q
+endstream
+endobj
+50 0 obj
+39
+endobj
+51 0 obj
+<< /Type /XObject /Name /R51 /Subtype /Image /Length 52 0 R
+/ImageMask true /Width 51 /Height 74 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 51 /BlackIs1 true >>]
+>>
+stream
+$B‡Å–tba·oM÷Ø∑ÑıÙ˚Ô«_ˇˇ˛ˇÔ˚ˇ∏ÔÔæB;pˇvÔÿnˇÏ6øˆÓ{ˆ˚·‡⁄≤'CÏd6a© 
+endstream
+endobj
+52 0 obj
+85
+endobj
+53 0 obj
+<< /Length 54 0 R >>
+stream
+q
+5.1 0 0 -7.4 70.7 553.7 cm
+/R51 Do
+Q
+endstream
+endobj
+54 0 obj
+39
+endobj
+55 0 obj
+<< /Type /XObject /Name /R55 /Subtype /Image /Length 56 0 R
+/ImageMask true /Width 36 /Height 50 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 36 /BlackIs1 true >>]
+>>
+stream
+>DÂ¯ aD¯4IıæÙ≈0Í>Éˇ˚mˇˇ·ˇ˝ˇÔ}˛˜Ôˆ˚ø·¥˜ÿ0∞ƒ±ˆ∏5q˝ˇøﬂ˜Ú»¿ @
+endstream
+endobj
+56 0 obj
+67
+endobj
+57 0 obj
+<< /Length 58 0 R >>
+stream
+q
+3.6 0 0 -5 76.8 555 cm
+/R55 Do
+Q
+q
+6.3 0 0 -3.3 76.1 547.2 cm
+/R43 Do
+Q
+q
+1.3 0 0 -3.1 84.1 547.7 cm
+/R47 Do
+Q
+q
+5.1 0 0 -7.4 87.8 553.7 cm
+/R51 Do
+Q
+endstream
+endobj
+58 0 obj
+152
+endobj
+59 0 obj
+<< /Type /XObject /Name /R59 /Subtype /Image /Length 60 0 R
+/ImageMask true /Width 32 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 32 /BlackIs1 true >>]
+>>
+stream
+8˝˜˝øˇÜˇ˚øì[˘C√Üá{ˇΩªﬂrcÉv6*–=ÑP 
+endstream
+endobj
+60 0 obj
+41
+endobj
+61 0 obj
+<< /Length 62 0 R >>
+stream
+q
+3.2 0 0 -3.3 93.9 553.3 cm
+/R59 Do
+Q
+q
+6.3 0 0 -3.3 93.3 547.2 cm
+/R43 Do
+Q
+q
+1.3 0 0 -3.1 101.4 547.7 cm
+/R47 Do
+Q
+endstream
+endobj
+62 0 obj
+118
+endobj
+63 0 obj
+<< /Type /XObject /Name /R63 /Subtype /Image /Length 64 0 R
+/ImageMask true /Width 44 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 44 /BlackIs1 true >>]
+>>
+stream
+$	‡à.0»∫≠–AáIæ	áV˝¬∑¶ˇ√¯{æ˛ˇﬂ¯w·˝˛ˇ~˜wÔˆ‘0Í˝∫∂ªÌ•W©¡ë‡  
+endstream
+endobj
+64 0 obj
+67
+endobj
+65 0 obj
+<< /Length 66 0 R >>
+stream
+q
+4.4 0 0 -4.7 105.3 551.1 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 110.1 548.3 cm
+/R43 Do
+Q
+endstream
+endobj
+66 0 obj
+80
+endobj
+67 0 obj
+<< /Type /XObject /Name /R67 /Subtype /Image /Length 68 0 R
+/ImageMask true /Width 29 /Height 118 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 29 /BlackIs1 true >>]
+>>
+stream
+#‘ˇæ˛Ô∏}¸;˚€˛˚øæ›˝ø·øÌ¸;˚ÔÓ˚á˜ﬂ˝W¬Î“˛óÙÆæ°}uÈAK¬ÎÍæ∫Æ’|.Ω/ÈÖÌ@ @
+endstream
+endobj
+68 0 obj
+76
+endobj
+69 0 obj
+<< /Length 70 0 R >>
+stream
+q
+2.9 0 0 -11.8 118.1 555 cm
+/R67 Do
+Q
+BT
+1 0 0 1 125.04 546.6 Tm
+(where) Tj
+ET
+q
+4.4 0 0 -4.7 152.6 551.1 cm
+/R35 Do
+Q
+q
+3.3 0 0 -4.8 157.8 554.8 cm
+/R39 Do
+Q
+q
+6.3 0 0 -3.3 157.5 547.2 cm
+/R43 Do
+Q
+BT
+1 0 0 1 167.76 546.6 Tm
+(is) Tj
+1 0 0 1 177.36 546.6 Tm
+(the) Tj
+1 0 0 1 192.6 546.6 Tm
+(source) Tj
+1 0 0 1 221.52 546.6 Tm
+(of) Tj
+1 0 0 1 232.8 546.6 Tm
+(the) Tj
+1 0 0 1 247.92 546.6 Tm
+(message,) Tj
+ET
+q
+5.1 0 0 -7.4 287.3 553.7 cm
+/R51 Do
+Q
+q
+3.6 0 0 -5 293.4 555 cm
+/R55 Do
+Q
+q
+6.3 0 0 -3.3 292.7 547.2 cm
+/R43 Do
+Q
+BT
+1 0 0 1 48.96 534.6 Tm
+(is) Tj
+1 0 0 1 60.36 534.6 Tm
+(the) Tj
+1 0 0 1 77.2799 534.6 Tm
+(set) Tj
+1 0 0 1 92.9998 534.6 Tm
+(of) Tj
+1 0 0 1 106.08 534.6 Tm
+(destination) Tj
+1 0 0 1 154.56 534.6 Tm
+(constraints,) Tj
+ET
+q
+5.1 0 0 -7.4 205.1 541.7 cm
+/R51 Do
+Q
+q
+3.2 0 0 -3.3 211.1 541.3 cm
+/R59 Do
+Q
+q
+6.3 0 0 -3.3 210.5 535.3 cm
+/R43 Do
+Q
+BT
+1 0 0 1 222.48 534.6 Tm
+(is) Tj
+1 0 0 1 233.76 534.6 Tm
+(the) Tj
+1 0 0 1 250.68 534.6 Tm
+(set) Tj
+1 0 0 1 266.52 534.6 Tm
+(of) Tj
+1 0 0 1 279.6 534.6 Tm
+(route) Tj
+1 0 0 1 48.96 522.6 Tm
+(constraints) Tj
+1 0 0 1 95.6399 522.6 Tm
+(and) Tj
+ET
+q
+4.4 0 0 -4.7 113.8 527.1 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 118.6 524.3 cm
+/R43 Do
+Q
+BT
+1 0 0 1 129.48 522.6 Tm
+(is) Tj
+1 0 0 1 139.56 522.6 Tm
+(the) Tj
+1 0 0 1 155.28 522.6 Tm
+(objective.) Tj
+1 0 0 1 197.76 522.6 Tm
+(The) Tj
+/R24 9.96264 Tf
+1 0 0 1 216.84 522.6 Tm
+(goal) Tj
+/R21 9.96264 Tf
+1 0 0 1 237.96 522.6 Tm
+(of) Tj
+1 0 0 1 249.84 522.6 Tm
+(routing) Tj
+1 0 0 1 282.119 522.6 Tm
+(is) Tj
+1 0 0 1 292.319 522.6 Tm
+(to) Tj
+1 0 0 1 48.96 510.72 Tm
+(deliver) Tj
+1 0 0 1 81.1199 510.72 Tm
+(the) Tj
+1 0 0 1 97.9198 510.72 Tm
+(message) Tj
+1 0 0 1 136.2 510.72 Tm
+(from) Tj
+ET
+q
+4.4 0 0 -4.7 160.3 515.2 cm
+/R35 Do
+Q
+q
+3.3 0 0 -4.8 165.4 518.9 cm
+/R39 Do
+Q
+q
+6.3 0 0 -3.3 165.2 511.3 cm
+/R43 Do
+Q
+BT
+1 0 0 1 177 510.72 Tm
+(to) Tj
+1 0 0 1 189.36 510.72 Tm
+(one) Tj
+1 0 0 1 208.2 510.72 Tm
+(\(unicast\)) Tj
+1 0 0 1 247.68 510.72 Tm
+(or) Tj
+1 0 0 1 260.52 510.72 Tm
+(all) Tj
+1 0 0 1 275.04 510.72 Tm
+(of) Tj
+1 0 0 1 287.88 510.72 Tm
+(the) Tj
+1 0 0 1 48.96 498.72 Tm
+(destination) Tj
+1 0 0 1 97.1999 498.72 Tm
+(nodes) Tj
+1 0 0 1 125.04 498.72 Tm
+(\(multicast\)) Tj
+1 0 0 1 172.8 498.72 Tm
+(satisfying) Tj
+ET
+q
+5.1 0 0 -7.4 216.2 505.8 cm
+/R51 Do
+Q
+q
+3.6 0 0 -5 222.4 507.1 cm
+/R55 Do
+Q
+q
+6.3 0 0 -3.3 221.7 499.4 cm
+/R43 Do
+Q
+BT
+1 0 0 1 233.52 498.72 Tm
+(via) Tj
+1 0 0 1 250.2 498.72 Tm
+(intermediate) Tj
+1 0 0 1 48.96 486.84 Tm
+(nodes) Tj
+ET
+endstream
+endobj
+70 0 obj
+2439
+endobj
+71 0 obj
+<< /Type /XObject /Name /R71 /Subtype /Image /Length 72 0 R
+/ImageMask true /Width 54 /Height 65 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 54 /BlackIs1 true >>]
+>>
+stream
+&†ﬂˇÁÑ∑¸?√˛ˇûˇÉ◊hº≠‚ÅÉ¥ﬁˆÙÔÌøˆ·ˇxoÔ˜Ó˚á˚¸˝˚ø˝ˇÌ˜ˇ
+◊›nπv⁄AÉJÙıbÅà(`É 
+endstream
+endobj
+72 0 obj
+88
+endobj
+73 0 obj
+<< /Length 74 0 R >>
+stream
+q
+5.4 0 0 -6.5 75.9 491.3 cm
+/R71 Do
+Q
+endstream
+endobj
+74 0 obj
+39
+endobj
+75 0 obj
+<< /Type /XObject /Name /R75 /Subtype /Image /Length 76 0 R
+/ImageMask true /Width 12 /Height 43 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 12 /BlackIs1 true >>]
+>>
+stream
+6‡É†ˇ˝Öˇ˛m¡Aˇ˚
+( Ä
+endstream
+endobj
+76 0 obj
+25
+endobj
+77 0 obj
+<< /Length 78 0 R >>
+stream
+q
+1.2 0 0 -4.3 86.1 491.1 cm
+/R75 Do
+Q
+q
+4.4 0 0 -4.7 92.4 491.3 cm
+/R35 Do
+Q
+endstream
+endobj
+78 0 obj
+78
+endobj
+79 0 obj
+<< /Type /XObject /Name /R79 /Subtype /Image /Length 80 0 R
+/ImageMask true /Width 27 /Height 46 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 27 /BlackIs1 true >>]
+>>
+stream
+#ÜWö	kˇˇˇˇˇˇˇˇˇˇˇˇ»Ô«‡ÛA`˛ 
+endstream
+endobj
+80 0 obj
+31
+endobj
+81 0 obj
+<< /Length 82 0 R >>
+stream
+q
+2.7 0 0 -4.6 97.8 495 cm
+/R79 Do
+Q
+q
+6.3 0 0 -3.3 97.3 487.4 cm
+/R43 Do
+Q
+q
+1.3 0 0 -3.1 105.3 487.9 cm
+/R47 Do
+Q
+endstream
+endobj
+82 0 obj
+116
+endobj
+83 0 obj
+<< /Type /XObject /Name /R83 /Subtype /Image /Length 84 0 R
+/ImageMask true /Width 12 /Height 11 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 12 /BlackIs1 true >>]
+>>
+stream
+6‡É†ˇ˝Ö @
+endstream
+endobj
+84 0 obj
+13
+endobj
+85 0 obj
+<< /Length 86 0 R >>
+stream
+q
+1.2 0 0 -1.1 109.8 487.9 cm
+/R83 Do
+Q
+q
+1.2 0 0 -1.1 114.2 487.9 cm
+/R83 Do
+Q
+q
+1.2 0 0 -1.1 118.6 487.9 cm
+/R83 Do
+Q
+q
+1.3 0 0 -3.1 123.1 487.9 cm
+/R47 Do
+Q
+q
+4.4 0 0 -4.7 126.9 491.3 cm
+/R35 Do
+Q
+endstream
+endobj
+86 0 obj
+200
+endobj
+87 0 obj
+<< /Type /XObject /Name /R87 /Subtype /Image /Length 88 0 R
+/ImageMask true /Width 43 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 43 /BlackIs1 true >>]
+>>
+stream
+8»Å˛ÉAÙN˛Í√¯oÔ˛€mˇ√˜¸oÌˇ˚ªø‰÷ˇ√¯v√ˇ˜€∞æ˝…¿5±Ü*”V`†  
+endstream
+endobj
+88 0 obj
+58
+endobj
+89 0 obj
+<< /Length 90 0 R >>
+stream
+q
+4.3 0 0 -3.3 132.2 493.5 cm
+/R87 Do
+Q
+endstream
+endobj
+90 0 obj
+40
+endobj
+91 0 obj
+<< /Type /XObject /Name /R91 /Subtype /Image /Length 92 0 R
+/ImageMask true /Width 47 /Height 4 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 47 /BlackIs1 true >>]
+>>
+stream
+&†Ø¯ Ä
+endstream
+endobj
+92 0 obj
+8
+endobj
+93 0 obj
+<< /Length 94 0 R >>
+stream
+q
+4.7 0 0 -0.4 137.5 492.3 cm
+/R91 Do
+Q
+q
+2.7 0 0 -4.6 143.5 495 cm
+/R79 Do
+Q
+q
+6.3 0 0 -3.3 131.8 487.4 cm
+/R43 Do
+Q
+BT
+1 0 0 1 151.68 486.84 Tm
+(such) Tj
+1 0 0 1 174 486.84 Tm
+(that) Tj
+ET
+q
+5.1 0 0 -7.4 193.3 493.9 cm
+/R51 Do
+Q
+q
+3.2 0 0 -3.3 199.4 493.5 cm
+/R59 Do
+Q
+q
+6.3 0 0 -3.3 198.8 487.4 cm
+/R43 Do
+Q
+BT
+1 0 0 1 210.12 486.84 Tm
+(is) Tj
+1 0 0 1 220.92 486.84 Tm
+(satis\256ed) Tj
+1 0 0 1 257.76 486.84 Tm
+(at) Tj
+ET
+q
+4.4 0 0 -4.7 269.2 491.3 cm
+/R35 Do
+Q
+endstream
+endobj
+94 0 obj
+465
+endobj
+95 0 obj
+<< /Type /XObject /Name /R95 /Subtype /Image /Length 96 0 R
+/ImageMask true /Width 21 /Height 49 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 21 /BlackIs1 true >>]
+>>
+stream
+3/	—(˙∑€Ô˚m˝Ô‡¯oÓˇ…¨√˛}Ìˇﬂo±V5Û£Ñ˛ˇáµ 
+endstream
+endobj
+96 0 obj
+46
+endobj
+97 0 obj
+<< /Length 98 0 R >>
+stream
+q
+2.1 0 0 -4.9 274.5 495.1 cm
+/R95 Do
+Q
+q
+6.3 0 0 -3.3 274.1 487.4 cm
+/R43 Do
+Q
+BT
+1 0 0 1 285.6 486.84 Tm
+(and) Tj
+ET
+endstream
+endobj
+98 0 obj
+119
+endobj
+99 0 obj
+<< /Type /XObject /Name /R99 /Subtype /Image /Length 100 0 R
+/ImageMask true /Width 78 /Height 45 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 78 /BlackIs1 true >>]
+>>
+stream
+&†‹78
+?ˇÛ¡
+pÜ∞∂ö/ˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇ˝ﬂˇ˛ˇˇÌ0ñE»£á¬ﬂ|öÜP⁄ˆ òiwßÆBAOä aÄ Ä
+endstream
+endobj
+100 0 obj
+85
+endobj
+101 0 obj
+<< /Length 102 0 R >>
+stream
+q
+7.8 0 0 -4.5 49.2 479.3 cm
+/R99 Do
+Q
+endstream
+endobj
+102 0 obj
+39
+endobj
+103 0 obj
+<< /Type /XObject /Name /R103 /Subtype /Image /Length 104 0 R
+/ImageMask true /Width 22 /Height 67 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 22 /BlackIs1 true >>]
+>>
+stream
+&†ﬂÛ¡-ˇˇˇˇˇˇˇˇˇˇˇ÷MC˘Ò|˘ÛÑ?ˇ˛‘0†  
+endstream
+endobj
+104 0 obj
+40
+endobj
+105 0 obj
+<< /Length 106 0 R >>
+stream
+q
+2.2 0 0 -6.7 57.4 481.5 cm
+/R103 Do
+Q
+endstream
+endobj
+106 0 obj
+40
+endobj
+107 0 obj
+<< /Type /XObject /Name /R107 /Subtype /Image /Length 108 0 R
+/ImageMask true /Width 50 /Height 45 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 50 /BlackIs1 true >>]
+>>
+stream
+&†‹7ˇÛ¡
+pñöˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇﬂˇ·ˇ˛“»£æ˘56ΩÉ.ı¡àS‚Ü 
+endstream
+endobj
+108 0 obj
+57
+endobj
+109 0 obj
+<< /Length 110 0 R >>
+stream
+q
+5 0 0 -4.5 60.2 479.3 cm
+/R107 Do
+Q
+endstream
+endobj
+110 0 obj
+38
+endobj
+111 0 obj
+<< /Type /XObject /Name /R111 /Subtype /Image /Length 112 0 R
+/ImageMask true /Width 39 /Height 45 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 39 /BlackIs1 true >>]
+>>
+stream
+&†ødS7˝˛Ê ˇ`~ÙvõÔ√˜v˜ˇ∞·ˇÔ˜ªÊ/·¸?]ˇ}ªÖÌw&85±±VÅ´0†  
+endstream
+endobj
+112 0 obj
+64
+endobj
+113 0 obj
+<< /Length 114 0 R >>
+stream
+q
+3.9 0 0 -4.5 65.5 476.5 cm
+/R111 Do
+Q
+endstream
+endobj
+114 0 obj
+40
+endobj
+115 0 obj
+<< /Type /XObject /Name /R115 /Subtype /Image /Length 116 0 R
+/ImageMask true /Width 94 /Height 100 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 94 /BlackIs1 true >>]
+>>
+stream
+#Å·£·ﬁˇvET√ehπ2∞√{˝∞›∑á∑∞€˝∑∂√ø∞ﬂÌÜÌÉ}ﬂp›á}ﬂv·øaﬂvÌ¯o·¬u’ÎKZÖ•\*Íî%ÎK
+ó¨%K\ï}•¯Pí“^µJÇÆí\,(- ¥â(g¬˘R™ˇ¬Ä Ä
+endstream
+endobj
+116 0 obj
+120
+endobj
+117 0 obj
+<< /Length 118 0 R >>
+stream
+q
+9.4 0 0 -10 72.4 482.3 cm
+/R115 Do
+Q
+q
+2.1 0 0 -4.9 82.6 476.5 cm
+/R95 Do
+Q
+q
+4.4 0 0 -4.7 87.7 479.3 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 92.5 476.5 cm
+/R43 Do
+Q
+endstream
+endobj
+118 0 obj
+156
+endobj
+119 0 obj
+<< /Type /XObject /Name /R119 /Subtype /Image /Length 120 0 R
+/ImageMask true /Width 24 /Height 99 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 24 /BlackIs1 true >>]
+>>
+stream
+P©PZ•XZZÙ/]x]WÎ◊◊ˇKˇˇÖ◊ˇˇˇˇˇˇˇ√ˇ˝ø˝˛æ˝˜·˜o˚º7}€∞Ôæ  
+endstream
+endobj
+120 0 obj
+62
+endobj
+121 0 obj
+<< /Length 122 0 R >>
+stream
+q
+2.4 0 0 -9.9 100.6 482.3 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 103.8 479.3 cm
+/R35 Do
+Q
+q
+2.1 0 0 -4.9 109 483.1 cm
+/R95 Do
+Q
+q
+6.3 0 0 -3.3 108.7 475.4 cm
+/R43 Do
+Q
+endstream
+endobj
+122 0 obj
+159
+endobj
+123 0 obj
+<< /Type /XObject /Name /R123 /Subtype /Image /Length 124 0 R
+/ImageMask true /Width 24 /Height 99 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 24 /BlackIs1 true >>]
+>>
+stream
+#€›ªw∞˜∏n˛›á˜∏}˚˝ﬂ·ˇÌˇˇ˚ˇˇˇˇÙøˇ˙_¸/_™˝B˝W^ÇÆ´®KU†©jñº @
+endstream
+endobj
+124 0 obj
+59
+endobj
+125 0 obj
+<< /Length 126 0 R >>
+stream
+q
+2.4 0 0 -9.9 116.4 482.3 cm
+/R123 Do
+Q
+BT
+1 0 0 1 119.88 474.84 Tm
+(.) Tj
+1 0 0 1 58.92 462.72 Tm
+(MCBR) Tj
+1 0 0 1 90.9599 462.72 Tm
+(separates) Tj
+1 0 0 1 130.56 462.72 Tm
+(routing) Tj
+1 0 0 1 162.6 462.72 Tm
+(objectives) Tj
+1 0 0 1 206.16 462.72 Tm
+(and) Tj
+1 0 0 1 223.799 462.72 Tm
+(destination) Tj
+1 0 0 1 270.719 462.72 Tm
+(speci\256-) Tj
+1 0 0 1 48.96 450.72 Tm
+(cations) Tj
+1 0 0 1 80.2799 450.72 Tm
+(from) Tj
+1 0 0 1 102.72 450.72 Tm
+(routing) Tj
+1 0 0 1 134.64 450.72 Tm
+(strategies,) Tj
+1 0 0 1 177.84 450.72 Tm
+(which) Tj
+1 0 0 1 205.319 450.72 Tm
+(enables) Tj
+1 0 0 1 238.319 450.72 Tm
+(the) Tj
+1 0 0 1 253.559 450.72 Tm
+(coexistence) Tj
+1 0 0 1 48.96 438.84 Tm
+(of) Tj
+1 0 0 1 60.72 438.84 Tm
+(various) Tj
+1 0 0 1 93.5999 438.84 Tm
+(generic) Tj
+1 0 0 1 126.36 438.84 Tm
+(meta) Tj
+1 0 0 1 149.28 438.84 Tm
+(strategies.) Tj
+1 0 0 1 123.84 418.92 Tm
+(I) Tj
+1 0 0 1 127.68 418.92 Tm
+(I) Tj
+1 0 0 1 131.52 418.92 Tm
+(I) Tj
+1 0 0 1 135.36 418.92 Tm
+(.) Tj
+1 0 0 1 143.16 418.92 Tm
+(M) Tj
+/R21 7.97011 Tf
+1 0 0 1 152.52 418.92 Tm
+(E) Tj
+1 0 0 1 157.92 418.92 Tm
+(T) Tj
+1 0 0 1 162.72 418.92 Tm
+(A) Tj
+/R21 9.96264 Tf
+1 0 0 1 168.96 418.92 Tm
+(-) Tj
+1 0 0 1 172.8 418.92 Tm
+(S) Tj
+/R21 7.97011 Tf
+1 0 0 1 178.8 418.92 Tm
+(T) Tj
+1 0 0 1 184.2 418.92 Tm
+(R) Tj
+1 0 0 1 189.959 418.92 Tm
+(A) Tj
+1 0 0 1 195.359 418.92 Tm
+(T) Tj
+1 0 0 1 200.759 418.92 Tm
+(E) Tj
+1 0 0 1 206.159 418.92 Tm
+(G) Tj
+1 0 0 1 212.399 418.92 Tm
+(I) Tj
+1 0 0 1 215.519 418.92 Tm
+(E) Tj
+1 0 0 1 220.919 418.92 Tm
+(S) Tj
+/R21 9.96264 Tf
+1 0 0 1 58.92 402.96 Tm
+(Both) Tj
+1 0 0 1 82.7999 402.96 Tm
+(structure-based) Tj
+1 0 0 1 148.2 402.96 Tm
+(and) Tj
+1 0 0 1 167.04 402.96 Tm
+(connectionless) Tj
+1 0 0 1 230.16 402.96 Tm
+(strategies) Tj
+1 0 0 1 272.279 402.96 Tm
+(can) Tj
+1 0 0 1 290.639 402.96 Tm
+(be) Tj
+1 0 0 1 48.96 390.96 Tm
+(applied) Tj
+1 0 0 1 81.9599 390.96 Tm
+(to) Tj
+1 0 0 1 93.4799 390.96 Tm
+(MCBR.) Tj
+1 0 0 1 128.52 390.96 Tm
+(Connectionless) Tj
+1 0 0 1 193.08 390.96 Tm
+(strategies) Tj
+1 0 0 1 234.479 390.96 Tm
+(are) Tj
+1 0 0 1 250.319 390.96 Tm
+(studied) Tj
+1 0 0 1 282.839 390.96 Tm
+(here) Tj
+1 0 0 1 48.96 379.08 Tm
+(due) Tj
+1 0 0 1 66.84 379.08 Tm
+(to) Tj
+1 0 0 1 78.1199 379.08 Tm
+(the) Tj
+1 0 0 1 93.7198 379.08 Tm
+(suitability) Tj
+1 0 0 1 137.04 379.08 Tm
+(to) Tj
+1 0 0 1 148.32 379.08 Tm
+(dynamic) Tj
+1 0 0 1 186.12 379.08 Tm
+(and) Tj
+1 0 0 1 203.999 379.08 Tm
+(ad-hoc) Tj
+1 0 0 1 234.599 379.08 Tm
+(networks.) Tj
+/R24 9.96264 Tf
+1 0 0 1 48.96 359.16 Tm
+(A.) Tj
+1 0 0 1 62.52 359.16 Tm
+(Sear) Tj
+1 0 0 1 80.52 359.16 Tm
+(ch-based) Tj
+1 0 0 1 119.88 359.16 Tm
+(strategies) Tj
+/R21 9.96264 Tf
+1 0 0 1 58.92 343.56 Tm
+(W) Tj
+1 0 0 1 67.44 343.56 Tm
+(e) Tj
+1 0 0 1 75.6 343.56 Tm
+(developed) Tj
+1 0 0 1 120.24 343.56 Tm
+(a) Tj
+1 0 0 1 128.28 343.56 Tm
+(framework) Tj
+1 0 0 1 175.68 343.56 Tm
+(of) Tj
+1 0 0 1 187.56 343.56 Tm
+(search-based) Tj
+1 0 0 1 242.639 343.56 Tm
+(routing) Tj
+1 0 0 1 275.159 343.56 Tm
+(strate-) Tj
+1 0 0 1 48.96 331.56 Tm
+(gies) Tj
+1 0 0 1 69.36 331.56 Tm
+(for) Tj
+1 0 0 1 85.3199 331.56 Tm
+(MCBR,) Tj
+1 0 0 1 120.96 331.56 Tm
+(with) Tj
+1 0 0 1 143.04 331.56 Tm
+(objective) Tj
+1 0 0 1 183.96 331.56 Tm
+(estimation) Tj
+1 0 0 1 229.799 331.56 Tm
+(based) Tj
+1 0 0 1 256.919 331.56 Tm
+(on) Tj
+1 0 0 1 271.199 331.56 Tm
+(routing) Tj
+1 0 0 1 48.96 319.56 Tm
+(speci\256cation) Tj
+1 0 0 1 101.76 319.56 Tm
+(via) Tj
+1 0 0 1 116.4 319.56 Tm
+(MCBR.) Tj
+1 0 0 1 150.12 319.56 Tm
+(W) Tj
+1 0 0 1 158.64 319.56 Tm
+(e) Tj
+1 0 0 1 165.72 319.56 Tm
+(explored) Tj
+1 0 0 1 203.039 319.56 Tm
+(the) Tj
+1 0 0 1 217.679 319.56 Tm
+(broadcast) Tj
+1 0 0 1 258.239 319.56 Tm
+(channel) Tj
+1 0 0 1 291.719 319.56 Tm
+(of) Tj
+1 0 0 1 48.96 307.68 Tm
+(wireless) Tj
+1 0 0 1 85.0799 307.68 Tm
+(networking,) Tj
+1 0 0 1 136.44 307.68 Tm
+(so) Tj
+1 0 0 1 148.8 307.68 Tm
+(that) Tj
+1 0 0 1 167.28 307.68 Tm
+(value) Tj
+1 0 0 1 192.36 307.68 Tm
+(iterations) Tj
+1 0 0 1 232.919 307.68 Tm
+(in) Tj
+1 0 0 1 244.079 307.68 Tm
+(reinforcement) Tj
+1 0 0 1 48.96 295.68 Tm
+(learning) Tj
+1 0 0 1 85.1999 295.68 Tm
+(is) Tj
+1 0 0 1 95.5199 295.68 Tm
+(realized) Tj
+1 0 0 1 130.68 295.68 Tm
+(in) Tj
+1 0 0 1 142.08 295.68 Tm
+(a) Tj
+1 0 0 1 150.12 295.68 Tm
+(cost) Tj
+1 0 0 1 169.8 295.68 Tm
+(ef) Tj
+1 0 0 1 177.36 295.68 Tm
+(fective) Tj
+1 0 0 1 208.079 295.68 Tm
+(way) Tj
+1 0 0 1 224.159 295.68 Tm
+(.) Tj
+1 0 0 1 230.159 295.68 Tm
+(Furthermore,) Tj
+1 0 0 1 286.079 295.68 Tm
+(im-) Tj
+1 0 0 1 48.96 283.8 Tm
+(plicit) Tj
+1 0 0 1 72.1199 283.8 Tm
+(acknowledgement) Tj
+1 0 0 1 147.36 283.8 Tm
+(for) Tj
+1 0 0 1 161.64 283.8 Tm
+(forward) Tj
+1 0 0 1 195.84 283.8 Tm
+(messages) Tj
+1 0 0 1 236.159 283.8 Tm
+(is) Tj
+1 0 0 1 245.519 283.8 Tm
+(implemented,) Tj
+1 0 0 1 48.96 271.8 Tm
+(such) Tj
+1 0 0 1 71.64 271.8 Tm
+(that) Tj
+1 0 0 1 90.9599 271.8 Tm
+(the) Tj
+1 0 0 1 107.52 271.8 Tm
+(neighborhood) Tj
+1 0 0 1 167.28 271.8 Tm
+(management) Tj
+1 0 0 1 222.6 271.8 Tm
+(and) Tj
+1 0 0 1 241.44 271.8 Tm
+(the) Tj
+1 0 0 1 257.999 271.8 Tm
+(symmetric) Tj
+1 0 0 1 48.96 259.8 Tm
+(network) Tj
+1 0 0 1 85.9199 259.8 Tm
+(assumption,) Tj
+1 0 0 1 138.24 259.8 Tm
+(which) Tj
+1 0 0 1 166.92 259.8 Tm
+(are) Tj
+1 0 0 1 183.48 259.8 Tm
+(problematic) Tj
+1 0 0 1 235.439 259.8 Tm
+(to) Tj
+1 0 0 1 247.559 259.8 Tm
+(most) Tj
+1 0 0 1 271.199 259.8 Tm
+(search-) Tj
+1 0 0 1 48.96 247.92 Tm
+(based) Tj
+1 0 0 1 75.1199 247.92 Tm
+(methods,) Tj
+1 0 0 1 114.84 247.92 Tm
+(can) Tj
+1 0 0 1 132.24 247.92 Tm
+(be) Tj
+1 0 0 1 145.08 247.92 Tm
+(lifted) Tj
+1 0 0 1 169.56 247.92 Tm
+(in) Tj
+1 0 0 1 180.84 247.92 Tm
+(a) Tj
+1 0 0 1 188.76 247.92 Tm
+(certain) Tj
+1 0 0 1 219.359 247.92 Tm
+(degree.) Tj
+1 0 0 1 58.92 235.8 Tm
+(The) Tj
+1 0 0 1 80.04 235.8 Tm
+(learning-based) Tj
+1 0 0 1 144.24 235.8 Tm
+(routing) Tj
+1 0 0 1 178.68 235.8 Tm
+(consists) Tj
+1 0 0 1 215.88 235.8 Tm
+(of) Tj
+1 0 0 1 229.8 235.8 Tm
+(two) Tj
+1 0 0 1 250.319 235.8 Tm
+(phases:) Tj
+/R24 9.96264 Tf
+1 0 0 1 285.239 235.8 Tm
+(for) Tj
+1 0 0 1 296.639 235.8 Tm
+(-) Tj
+1 0 0 1 48.96 223.8 Tm
+(war) Tj
+1 0 0 1 64.08 223.8 Tm
+(d) Tj
+1 0 0 1 72.48 223.8 Tm
+(message) Tj
+/R21 9.96264 Tf
+1 0 0 1 109.68 223.8 Tm
+(phase) Tj
+1 0 0 1 135.84 223.8 Tm
+(and) Tj
+/R24 9.96264 Tf
+1 0 0 1 153.72 223.8 Tm
+(update) Tj
+1 0 0 1 184.32 223.8 Tm
+(estimate) Tj
+/R21 9.96264 Tf
+1 0 0 1 220.92 223.8 Tm
+(phase.) Tj
+1 0 0 1 249.599 223.8 Tm
+(The) Tj
+1 0 0 1 268.439 223.8 Tm
+(forward) Tj
+1 0 0 1 48.96 211.92 Tm
+(message) Tj
+1 0 0 1 86.6399 211.92 Tm
+(phase) Tj
+1 0 0 1 113.28 211.92 Tm
+(is) Tj
+1 0 0 1 123.84 211.92 Tm
+(a) Tj
+1 0 0 1 132.12 211.92 Tm
+(policy) Tj
+1 0 0 1 160.92 211.92 Tm
+(improvement) Tj
+1 0 0 1 218.039 211.92 Tm
+(phase,) Tj
+1 0 0 1 247.079 211.92 Tm
+(i.e.,) Tj
+1 0 0 1 265.679 211.92 Tm
+(deciding) Tj
+1 0 0 1 48.96 199.92 Tm
+(which) Tj
+1 0 0 1 76.0799 199.92 Tm
+(neighbor) Tj
+1 0 0 1 114.36 199.92 Tm
+(to) Tj
+1 0 0 1 124.92 199.92 Tm
+(pass) Tj
+1 0 0 1 144.84 199.92 Tm
+(the) Tj
+1 0 0 1 159.84 199.92 Tm
+(message) Tj
+1 0 0 1 196.44 199.92 Tm
+(to) Tj
+1 0 0 1 206.999 199.92 Tm
+(according) Tj
+1 0 0 1 248.999 199.92 Tm
+(to) Tj
+1 0 0 1 259.559 199.92 Tm
+(its) Tj
+1 0 0 1 271.799 199.92 Tm
+(current) Tj
+1 0 0 1 48.96 187.92 Tm
+(estimation.) Tj
+1 0 0 1 97.4398 187.92 Tm
+(The) Tj
+1 0 0 1 117.48 187.92 Tm
+(update) Tj
+1 0 0 1 148.56 187.92 Tm
+(estimate) Tj
+1 0 0 1 186.24 187.92 Tm
+(phase) Tj
+1 0 0 1 213.48 187.92 Tm
+(is) Tj
+1 0 0 1 224.639 187.92 Tm
+(a) Tj
+1 0 0 1 233.519 187.92 Tm
+(penalty) Tj
+1 0 0 1 267.359 187.92 Tm
+(learning) Tj
+1 0 0 1 48.96 176.04 Tm
+(phase,) Tj
+1 0 0 1 77.7599 176.04 Tm
+(the) Tj
+1 0 0 1 93.5999 176.04 Tm
+(estimates) Tj
+1 0 0 1 134.28 176.04 Tm
+(shall) Tj
+1 0 0 1 156.72 176.04 Tm
+(be) Tj
+1 0 0 1 169.8 176.04 Tm
+(improved) Tj
+1 0 0 1 211.679 176.04 Tm
+(when) Tj
+1 0 0 1 236.879 176.04 Tm
+(more) Tj
+1 0 0 1 260.999 176.04 Tm
+(nodes) Tj
+1 0 0 1 287.879 176.04 Tm
+(are) Tj
+1 0 0 1 48.96 164.04 Tm
+(visited) Tj
+1 0 0 1 80.0399 164.04 Tm
+(by) Tj
+1 0 0 1 94.4399 164.04 Tm
+(this) Tj
+1 0 0 1 113.4 164.04 Tm
+(type) Tj
+1 0 0 1 135 164.04 Tm
+(of) Tj
+1 0 0 1 147.84 164.04 Tm
+(message.) Tj
+1 0 0 1 188.52 164.04 Tm
+(The) Tj
+1 0 0 1 208.56 164.04 Tm
+(update) Tj
+1 0 0 1 239.64 164.04 Tm
+(estimate) Tj
+1 0 0 1 277.319 164.04 Tm
+(phase) Tj
+1 0 0 1 48.96 152.04 Tm
+(is) Tj
+1 0 0 1 59.4 152.04 Tm
+(also) Tj
+1 0 0 1 79.3199 152.04 Tm
+(used) Tj
+1 0 0 1 101.4 152.04 Tm
+(for) Tj
+1 0 0 1 116.88 152.04 Tm
+(implicit) Tj
+1 0 0 1 151.68 152.04 Tm
+(message) Tj
+/R24 9.96264 Tf
+1 0 0 1 189.24 152.04 Tm
+(con\256rmation) Tj
+/R21 9.96264 Tf
+1 0 0 1 240.479 152.04 Tm
+(,) Tj
+1 0 0 1 246.479 152.04 Tm
+(so) Tj
+1 0 0 1 259.199 152.04 Tm
+(that) Tj
+1 0 0 1 277.919 152.04 Tm
+(if) Tj
+1 0 0 1 287.879 152.04 Tm
+(the) Tj
+1 0 0 1 48.96 140.16 Tm
+(con\256rmation) Tj
+1 0 0 1 104.28 140.16 Tm
+(is) Tj
+1 0 0 1 115.32 140.16 Tm
+(not) Tj
+1 0 0 1 132.48 140.16 Tm
+(arrived) Tj
+1 0 0 1 165.12 140.16 Tm
+(from) Tj
+1 0 0 1 188.88 140.16 Tm
+(the) Tj
+1 0 0 1 205.44 140.16 Tm
+(forwarded) Tj
+1 0 0 1 250.799 140.16 Tm
+(node) Tj
+1 0 0 1 274.559 140.16 Tm
+(within) Tj
+1 0 0 1 48.96 128.16 Tm
+(certain) Tj
+1 0 0 1 79.3199 128.16 Tm
+(time) Tj
+1 0 0 1 100.32 128.16 Tm
+(period,) Tj
+1 0 0 1 131.52 128.16 Tm
+(the) Tj
+1 0 0 1 147 128.16 Tm
+(forward) Tj
+1 0 0 1 181.8 128.16 Tm
+(phase) Tj
+1 0 0 1 207.719 128.16 Tm
+(will) Tj
+1 0 0 1 226.559 128.16 Tm
+(be) Tj
+1 0 0 1 239.159 128.16 Tm
+(activated) Tj
+1 0 0 1 278.399 128.16 Tm
+(again) Tj
+1 0 0 1 48.96 116.28 Tm
+(for) Tj
+1 0 0 1 64.56 116.28 Tm
+(sending) Tj
+1 0 0 1 99.5999 116.28 Tm
+(the) Tj
+1 0 0 1 115.68 116.28 Tm
+(message) Tj
+1 0 0 1 153.48 116.28 Tm
+(to) Tj
+1 0 0 1 165.24 116.28 Tm
+(one) Tj
+1 0 0 1 183.6 116.28 Tm
+(of) Tj
+1 0 0 1 195.84 116.28 Tm
+(the) Tj
+1 0 0 1 212.04 116.28 Tm
+(other) Tj
+1 0 0 1 236.519 116.28 Tm
+(neighbors.) Tj
+1 0 0 1 282.359 116.28 Tm
+(This) Tj
+1 0 0 1 48.96 104.28 Tm
+(guarantees) Tj
+1 0 0 1 94.7999 104.28 Tm
+(that) Tj
+1 0 0 1 113.04 104.28 Tm
+(the) Tj
+1 0 0 1 128.52 104.28 Tm
+(message) Tj
+1 0 0 1 165.6 104.28 Tm
+(arrives) Tj
+1 0 0 1 195.96 104.28 Tm
+(to) Tj
+1 0 0 1 206.999 104.28 Tm
+(its) Tj
+1 0 0 1 219.719 104.28 Tm
+(next) Tj
+1 0 0 1 240.119 104.28 Tm
+(hop,) Tj
+1 0 0 1 260.759 104.28 Tm
+(if) Tj
+1 0 0 1 270.119 104.28 Tm
+(there) Tj
+1 0 0 1 293.399 104.28 Tm
+(is) Tj
+1 0 0 1 48.96 92.28 Tm
+(one.) Tj
+1 0 0 1 69 92.28 Tm
+(The) Tj
+1 0 0 1 87.7199 92.28 Tm
+(pseudo) Tj
+1 0 0 1 119.16 92.28 Tm
+(code) Tj
+1 0 0 1 141.12 92.28 Tm
+(is) Tj
+1 0 0 1 151.08 92.28 Tm
+(illustrated) Tj
+1 0 0 1 194.04 92.28 Tm
+(in) Tj
+1 0 0 1 205.079 92.28 Tm
+(Figure) Tj
+1 0 0 1 234.239 92.28 Tm
+(1,) Tj
+1 0 0 1 244.919 92.28 Tm
+(where) Tj
+ET
+q
+4.4 0 0 -4.7 272.8 96.8 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 277.6 93.9 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 285.8 99.8 cm
+/R119 Do
+Q
+endstream
+endobj
+126 0 obj
+10466
+endobj
+127 0 obj
+<< /Type /XObject /Name /R127 /Subtype /Image /Length 128 0 R
+/ImageMask true /Width 66 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 66 /BlackIs1 true >>]
+>>
+stream
+5äuÚ9†bÑEÁ[XtÅàM·4’<+∑˜˝˜˛√ˇˇø˚∑˝√ø˜ˇáÓˇ√æ˛ˇ‹ö◊ˇøÓÔªˇX{ˇ®pˇ}´Óˇø€˝È·X†–x0B◊‡  
+endstream
+endobj
+128 0 obj
+92
+endobj
+129 0 obj
+<< /Length 130 0 R >>
+stream
+q
+6.6 0 0 -4.7 288.9 96.8 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 296.4 99.8 cm
+/R123 Do
+Q
+BT
+1 0 0 1 48.96 80.4 Tm
+(is) Tj
+1 0 0 1 60.48 80.4 Tm
+(the) Tj
+1 0 0 1 77.5199 80.4 Tm
+(value) Tj
+1 0 0 1 104.04 80.4 Tm
+(of) Tj
+1 0 0 1 117.24 80.4 Tm
+(the) Tj
+1 0 0 1 134.28 80.4 Tm
+(local) Tj
+1 0 0 1 158.52 80.4 Tm
+(objective) Tj
+1 0 0 1 199.919 80.4 Tm
+(function) Tj
+1 0 0 1 238.079 80.4 Tm
+(of) Tj
+ET
+q
+4.4 0 0 -4.7 251.6 84.9 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 256.4 82.1 cm
+/R43 Do
+Q
+BT
+1 0 0 1 268.56 80.4 Tm
+(at) Tj
+1 0 0 1 280.68 80.4 Tm
+(node) Tj
+ET
+q
+6.6 0 0 -4.7 49.2 72.9 cm
+/R127 Do
+Q
+BT
+1 0 0 1 56.28 68.4 Tm
+(,) Tj
+1 0 0 1 63.72 68.4 Tm
+(and) Tj
+ET
+endstream
+endobj
+130 0 obj
+640
+endobj
+131 0 obj
+<< /Type /XObject /Name /R131 /Subtype /Image /Length 132 0 R
+/ImageMask true /Width 68 /Height 91 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 68 /BlackIs1 true >>]
+>>
+stream
+%ÉÑΩˇøëqËæò}ˇ"·π®¯OB¯|$1ÖáDGL:Zñˇ{pì–n∑¡Í’∫∂≠˜ß”ı7¯|o∑ﬁøoﬂ˚¸?ø˚Ôˇ€oˇˇÌ∑ˇ{˛¸7ﬂÔﬁ˝Ó∑W·áﬁ∑€[u~J√ˆ∞√+iAÍ¡Ñ0`Ç«"A≤E¬¿ @
+endstream
+endobj
+132 0 obj
+135
+endobj
+133 0 obj
+<< /Length 134 0 R >>
+stream
+q
+6.8 0 0 -9.1 83.3 75.5 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 91.1 70.1 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 99.3 75.9 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 102.4 72.9 cm
+/R35 Do
+Q
+q
+1.3 0 0 -3.1 108.2 69.5 cm
+/R47 Do
+Q
+q
+6.6 0 0 -4.7 112 72.9 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 119.6 75.9 cm
+/R123 Do
+Q
+BT
+1 0 0 1 127.92 68.4 Tm
+(is) Tj
+1 0 0 1 139.44 68.4 Tm
+(an) Tj
+1 0 0 1 153.72 68.4 Tm
+(estimate) Tj
+1 0 0 1 191.76 68.4 Tm
+(of) Tj
+ET
+q
+7.8 0 0 -4.5 205.2 72.9 cm
+/R99 Do
+Q
+q
+2.2 0 0 -6.7 213.4 75.1 cm
+/R103 Do
+Q
+q
+5 0 0 -4.5 216.2 72.9 cm
+/R107 Do
+Q
+q
+3.9 0 0 -4.5 221.5 70.1 cm
+/R111 Do
+Q
+q
+9.4 0 0 -10 228.3 75.8 cm
+/R115 Do
+Q
+q
+2.1 0 0 -4.9 238.6 70.1 cm
+/R95 Do
+Q
+q
+4.4 0 0 -4.7 243.5 72.9 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 248.3 70.1 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 256.6 75.9 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 259.8 72.9 cm
+/R35 Do
+Q
+q
+2.1 0 0 -4.9 265 76.7 cm
+/R95 Do
+Q
+q
+6.3 0 0 -3.3 264.7 69.1 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 272.3 75.9 cm
+/R123 Do
+Q
+BT
+1 0 0 1 280.68 68.4 Tm
+(from) Tj
+ET
+endstream
+endobj
+134 0 obj
+955
+endobj
+135 0 obj
+<< /Type /Font /Name /R135 /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+136 0 obj
+<< /Length 137 0 R >>
+stream
+BT
+/R135 9.96264 Tf
+1 0 0 1 312 731.28 Tm
+(Forward) Tj
+1 0 0 1 353.28 731.28 Tm
+(message) Tj
+1 0 0 1 391.92 731.28 Tm
+(phase:) Tj
+1 0 0 1 322.44 713.28 Tm
+(r) Tj
+1 0 0 1 326.76 713.28 Tm
+(eceived) Tj
+ET
+q
+3 0 0 -0.48 358.428 713.748 cm
+BI
+/IM true /W 1 /H 1 /BPC 1
+ID  
+EI
+Q
+BT
+1 0 0 1 361.2 713.28 Tm
+(message) Tj
+/R21 9.96264 Tf
+1 0 0 1 399.6 713.28 Tm
+(\() Tj
+ET
+q
+8.1 0 0 -4.7 403.2 717.8 cm
+/R27 Do
+Q
+BT
+1 0 0 1 411.72 713.28 Tm
+(\)) Tj
+1 0 0 1 418.44 713.28 Tm
+(at) Tj
+1 0 0 1 429.12 713.28 Tm
+(node) Tj
+ET
+q
+4.4 0 0 -4.7 452.2 717.8 cm
+/R35 Do
+Q
+BT
+1 0 0 1 460.679 713.28 Tm
+(from) Tj
+1 0 0 1 483.479 713.28 Tm
+(node) Tj
+ET
+endstream
+endobj
+137 0 obj
+631
+endobj
+138 0 obj
+<< /Type /XObject /Name /R138 /Subtype /Image /Length 139 0 R
+/ImageMask true /Width 51 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 51 /BlackIs1 true >>]
+>>
+stream
+5H‰Ä¿Nà˘¢pÎ∞Ë&6Ùª¬ˇ{ˇ›˝ﬂ˛¯˚á¯0ˇ·ﬂÔ˜ﬂ{¸ö◊˝˚˚ªªˇ˜˝√á˜˜√Ô˜ˆ˛Ùˆ)®0C‡  
+endstream
+endobj
+139 0 obj
+76
+endobj
+140 0 obj
+<< /Length 141 0 R >>
+stream
+q
+5.1 0 0 -4.7 506.6 717.8 cm
+/R138 Do
+Q
+BT
+/R135 9.96264 Tf
+1 0 0 1 515.519 713.28 Tm
+(do) Tj
+1 0 0 1 332.88 701.4 Tm
+(if) Tj
+/R21 9.96264 Tf
+1 0 0 1 342.48 701.4 Tm
+(new\() Tj
+ET
+q
+8.1 0 0 -4.7 362.7 705.9 cm
+/R27 Do
+Q
+BT
+1 0 0 1 371.28 701.4 Tm
+(\)) Tj
+/R135 9.96264 Tf
+1 0 0 1 377.88 701.4 Tm
+(then) Tj
+1 0 0 1 343.32 689.4 Tm
+(for) Tj
+1 0 0 1 359.76 689.4 Tm
+(all) Tj
+ET
+q
+6.6 0 0 -4.7 374 693.9 cm
+/R127 Do
+Q
+BT
+/R21 9.96264 Tf
+1 0 0 1 384.72 689.4 Tm
+(with) Tj
+ET
+q
+2.4 0 0 -9.9 406.9 696.9 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 410 693.9 cm
+/R35 Do
+Q
+q
+1.3 0 0 -3.1 415.8 690.5 cm
+/R47 Do
+Q
+q
+6.6 0 0 -4.7 419.6 693.9 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 427.1 696.9 cm
+/R123 Do
+Q
+endstream
+endobj
+141 0 obj
+672
+endobj
+142 0 obj
+<< /Type /XObject /Name /R142 /Subtype /Image /Length 143 0 R
+/ImageMask true /Width 49 /Height 60 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 49 /BlackIs1 true >>]
+>>
+stream
+! ƒåÄ°j†"¬–PÅjï/K“∫˙Ø˙»2ÔÎ$YÔ˚√w√æÌÓ‹0w∞·êÍ$4«áBà Ä
+endstream
+endobj
+143 0 obj
+65
+endobj
+144 0 obj
+<< /Length 145 0 R >>
+stream
+q
+4.9 0 0 -6 434.2 694.9 cm
+/R142 Do
+Q
+endstream
+endobj
+145 0 obj
+39
+endobj
+146 0 obj
+<< /Type /XObject /Name /R146 /Subtype /Image /Length 147 0 R
+/ImageMask true /Width 73 /Height 69 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 73 /BlackIs1 true >>]
+>>
+stream
+&†Wø‰·	0≈»–MáÌ˛‡¯wﬂº;˚¯o˜{˘?Óˇ˜›ˇ˛7Ì?ı±Ô¯dMÿa˜Ôá›¸Èªˇˆ?ˇ{˛ˇ˛˛˛zvTÅcﬂ 
+endstream
+endobj
+147 0 obj
+84
+endobj
+148 0 obj
+<< /Length 149 0 R >>
+stream
+q
+7.3 0 0 -6.9 443.1 696.3 cm
+/R146 Do
+Q
+q
+6.3 0 0 -3.3 450.4 691.1 cm
+/R43 Do
+Q
+BT
+/R135 9.96264 Tf
+1 0 0 1 461.28 689.4 Tm
+(do) Tj
+ET
+q
+6.8 0 0 -9.1 354.2 684.5 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 362 679.1 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 370.1 684.9 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 373.3 681.9 cm
+/R35 Do
+Q
+q
+1.3 0 0 -3.1 379 678.5 cm
+/R47 Do
+Q
+q
+6.6 0 0 -4.7 382.9 681.9 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 390.4 684.9 cm
+/R123 Do
+Q
+endstream
+endobj
+149 0 obj
+416
+endobj
+150 0 obj
+<< /Type /XObject /Name /R150 /Subtype /Image /Length 151 0 R
+/ImageMask true /Width 88 /Height 54 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 88 /BlackIs1 true >>]
+>>
+stream
+%ÀˇÎΩ}(]zU•\(Jïa("ÜÅ¯O√Pd&Ê›Ω√˜∑oÓ˚ø√˜ˇ¯ Ä
+endstream
+endobj
+151 0 obj
+49
+endobj
+152 0 obj
+<< /Length 153 0 R >>
+stream
+q
+8.8 0 0 -5.4 397.3 682.6 cm
+/R150 Do
+Q
+q
+6.8 0 0 -9.1 410 684.5 cm
+/R131 Do
+Q
+q
+3.3 0 0 -4.8 417.7 685.7 cm
+/R39 Do
+Q
+q
+6.3 0 0 -3.3 417.8 678.1 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 425.8 684.9 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 429 681.9 cm
+/R35 Do
+Q
+q
+1.3 0 0 -3.1 434.7 678.5 cm
+/R47 Do
+Q
+q
+6.6 0 0 -4.7 438.6 681.9 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 446.1 684.9 cm
+/R123 Do
+Q
+BT
+/R21 9.96264 Tf
+1 0 0 1 449.52 677.4 Tm
+(;) Tj
+/R135 9.96264 Tf
+1 0 0 1 456 677.4 Tm
+(end) Tj
+1 0 0 1 332.88 665.52 Tm
+(end) Tj
+ET
+q
+6.8 0 0 -9.1 333.3 660.6 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 341.1 655.2 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 349.3 661 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 352.4 658 cm
+/R35 Do
+Q
+q
+2.4 0 0 -9.9 357.8 661 cm
+/R123 Do
+Q
+q
+8.8 0 0 -5.4 364.6 658.7 cm
+/R150 Do
+Q
+q
+4.4 0 0 -4.7 377.1 658 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 381.9 655.2 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 390.1 661 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 393.2 658 cm
+/R35 Do
+Q
+q
+2.4 0 0 -9.9 398.6 661 cm
+/R123 Do
+Q
+endstream
+endobj
+153 0 obj
+927
+endobj
+154 0 obj
+<< /Type /XObject /Name /R154 /Subtype /Image /Length 155 0 R
+/ImageMask true /Width 66 /Height 66 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 66 /BlackIs1 true >>]
+>>
+stream
+#wßˇˇˇˇˇˇˇˇˇˇóO⁄ë£ˇˇˇˇˇˇˇˇˇˇ˚P 
+endstream
+endobj
+155 0 obj
+36
+endobj
+156 0 obj
+<< /Length 157 0 R >>
+stream
+q
+6.6 0 0 -6.6 404.8 659.3 cm
+/R154 Do
+Q
+BT
+/R21 9.96264 Tf
+1 0 0 1 414.24 653.52 Tm
+(min) Tj
+ET
+endstream
+endobj
+157 0 obj
+97
+endobj
+158 0 obj
+<< /Type /XObject /Name /R158 /Subtype /Image /Length 159 0 R
+/ImageMask true /Width 51 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 51 /BlackIs1 true >>]
+>>
+stream
+:–O…¡¬âsD∏:«z<%M˜á¸?ˇøø¯l6ﬂˇ˚˚›˜Úk0ˇˇá√∞ˆÎø∑ˇÎ}´{ÏW∞öjÄ Ä
+endstream
+endobj
+159 0 obj
+66
+endobj
+160 0 obj
+<< /Length 161 0 R >>
+stream
+q
+5.1 0 0 -3.3 430.1 655.2 cm
+/R158 Do
+Q
+q
+6.8 0 0 -9.1 436.6 660.6 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 444.4 655.2 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 452.6 661 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 455.7 658 cm
+/R35 Do
+Q
+q
+1.3 0 0 -3.1 461.5 654.6 cm
+/R47 Do
+Q
+q
+6.6 0 0 -4.7 465.3 658 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 472.8 661 cm
+/R123 Do
+Q
+BT
+1 0 0 1 476.28 653.52 Tm
+(;) Tj
+/R135 9.96264 Tf
+1 0 0 1 332.88 641.64 Tm
+(br) Tj
+1 0 0 1 342.72 641.64 Tm
+(oadcast) Tj
+ET
+q
+3 0 0 -0.48 375.588 642.108 cm
+BI
+/IM true /W 1 /H 1 /BPC 1
+ID  
+EI
+Q
+BT
+1 0 0 1 378.36 641.64 Tm
+(Q) Tj
+/R21 9.96264 Tf
+1 0 0 1 386.16 641.64 Tm
+(\() Tj
+ET
+q
+6.8 0 0 -9.1 389.9 648.7 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 397.7 643.3 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 405.8 649.1 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 408.9 646.1 cm
+/R35 Do
+Q
+q
+2.4 0 0 -9.9 414.3 649.1 cm
+/R123 Do
+Q
+BT
+1 0 0 1 417.72 641.64 Tm
+(\)) Tj
+1 0 0 1 424.56 641.64 Tm
+(to) Tj
+1 0 0 1 435.84 641.64 Tm
+(all) Tj
+1 0 0 1 449.28 641.64 Tm
+(neighbors) Tj
+/R135 9.96264 Tf
+1 0 0 1 332.88 629.52 Tm
+(if) Tj
+/R21 9.96264 Tf
+1 0 0 1 342.48 629.52 Tm
+(satis\256ed\() Tj
+ET
+q
+5.1 0 0 -7.4 378.6 636.6 cm
+/R51 Do
+Q
+q
+3.6 0 0 -5 384.8 637.9 cm
+/R55 Do
+Q
+q
+6.3 0 0 -3.3 384.1 630.2 cm
+/R43 Do
+Q
+BT
+1 0 0 1 391.2 629.52 Tm
+(\)) Tj
+/R135 9.96264 Tf
+1 0 0 1 398.04 629.52 Tm
+(then) Tj
+1 0 0 1 420.36 629.52 Tm
+(r) Tj
+1 0 0 1 424.68 629.52 Tm
+(eturn) Tj
+/R21 9.96264 Tf
+1 0 0 1 447.96 629.52 Tm
+(;) Tj
+/R135 9.96264 Tf
+1 0 0 1 454.08 629.52 Tm
+(end) Tj
+ET
+q
+6.6 0 0 -4.7 333.1 622.1 cm
+/R127 Do
+Q
+q
+8.8 0 0 -5.4 343.6 622.8 cm
+/R150 Do
+Q
+BT
+/R21 9.96264 Tf
+1 0 0 1 355.8 617.64 Tm
+(ar) Tj
+1 0 0 1 363.48 617.64 Tm
+(g) Tj
+1 0 0 1 368.28 617.64 Tm
+(min) Tj
+ET
+q
+5.1 0 0 -3.3 384.2 619.3 cm
+/R158 Do
+Q
+q
+6.8 0 0 -9.1 390.6 624.7 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 398.5 619.3 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 406.6 625.1 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 409.8 622.1 cm
+/R35 Do
+Q
+q
+1.3 0 0 -3.1 415.5 618.7 cm
+/R47 Do
+Q
+q
+6.6 0 0 -4.7 419.4 622.1 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 426.9 625.1 cm
+/R123 Do
+Q
+BT
+1 0 0 1 430.32 617.64 Tm
+(;) Tj
+1 0 0 1 436.8 617.64 Tm
+(\(random) Tj
+1 0 0 1 474 617.64 Tm
+(tie) Tj
+1 0 0 1 487.44 617.64 Tm
+(break\)) Tj
+/R135 9.96264 Tf
+1 0 0 1 332.88 605.64 Tm
+(send) Tj
+ET
+q
+3 0 0 -0.48 352.788 606.108 cm
+BI
+/IM true /W 1 /H 1 /BPC 1
+ID  
+EI
+Q
+BT
+1 0 0 1 355.8 605.64 Tm
+(message) Tj
+/R21 9.96264 Tf
+1 0 0 1 390.72 605.64 Tm
+(\() Tj
+ET
+q
+8.1 0 0 -4.7 394.3 610.1 cm
+/R27 Do
+Q
+BT
+1 0 0 1 402.84 605.64 Tm
+(\)) Tj
+1 0 0 1 409.56 605.64 Tm
+(to) Tj
+ET
+q
+6.6 0 0 -4.7 421 610.1 cm
+/R127 Do
+Q
+BT
+1 0 0 1 428.16 605.64 Tm
+(;) Tj
+/R135 9.96264 Tf
+1 0 0 1 322.44 593.64 Tm
+(end) Tj
+1 0 0 1 312 575.76 Tm
+(Estimate) Tj
+1 0 0 1 353.28 575.76 Tm
+(update) Tj
+1 0 0 1 386.4 575.76 Tm
+(phase:) Tj
+1 0 0 1 322.44 557.76 Tm
+(r) Tj
+1 0 0 1 326.76 557.76 Tm
+(eceived) Tj
+ET
+q
+3 0 0 -0.48 358.428 558.228 cm
+BI
+/IM true /W 1 /H 1 /BPC 1
+ID  
+EI
+Q
+BT
+1 0 0 1 361.2 557.76 Tm
+(Q) Tj
+/R21 9.96264 Tf
+1 0 0 1 372.48 557.76 Tm
+(\() Tj
+ET
+q
+6.8 0 0 -9.1 376.2 564.9 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 384.1 559.4 cm
+/R43 Do
+Q
+BT
+1 0 0 1 391.2 557.76 Tm
+(\)) Tj
+1 0 0 1 398.04 557.76 Tm
+(at) Tj
+1 0 0 1 408.72 557.76 Tm
+(node) Tj
+ET
+q
+5.1 0 0 -4.7 431.8 562.3 cm
+/R138 Do
+Q
+BT
+1 0 0 1 440.76 557.76 Tm
+(from) Tj
+1 0 0 1 463.68 557.76 Tm
+(node) Tj
+ET
+q
+4.4 0 0 -4.7 486.7 562.3 cm
+/R35 Do
+Q
+BT
+/R135 9.96264 Tf
+1 0 0 1 495.12 557.76 Tm
+(do) Tj
+ET
+q
+6.8 0 0 -9.1 333.3 553 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 341.1 547.5 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 349.3 553.4 cm
+/R119 Do
+Q
+q
+5.1 0 0 -4.7 352.4 550.4 cm
+/R138 Do
+Q
+q
+1.3 0 0 -3.1 358.8 547 cm
+/R47 Do
+Q
+q
+4.4 0 0 -4.7 362.6 550.4 cm
+/R35 Do
+Q
+q
+2.4 0 0 -9.9 368 553.4 cm
+/R123 Do
+Q
+q
+8.8 0 0 -5.4 374.7 551.1 cm
+/R150 Do
+Q
+q
+6.8 0 0 -9.1 387.3 553 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 395.1 547.5 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 403.3 553.4 cm
+/R119 Do
+Q
+q
+5.1 0 0 -4.7 406.4 550.4 cm
+/R138 Do
+Q
+q
+1.3 0 0 -3.1 412.8 547 cm
+/R47 Do
+Q
+q
+4.4 0 0 -4.7 416.6 550.4 cm
+/R35 Do
+Q
+q
+2.4 0 0 -9.9 422 553.4 cm
+/R123 Do
+Q
+q
+6.6 0 0 -6.6 428.2 551.7 cm
+/R154 Do
+Q
+endstream
+endobj
+161 0 obj
+3939
+endobj
+162 0 obj
+<< /Type /XObject /Name /R162 /Subtype /Image /Length 163 0 R
+/ImageMask true /Width 56 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 56 /BlackIs1 true >>]
+>>
+stream
+$%À@¡8",»ß#aØAÇÈ˝˜¬˛¨P˛Ùˇˇ˝ÓˇÔ»£º?˚pˇ˜˝Ô√øÔﬂÔæˇ˜m.{ﬂÌ’∂ì⁄Ì¯0`Ç§@/ÑQ¿ @
+endstream
+endobj
+163 0 obj
+90
+endobj
+164 0 obj
+<< /Length 165 0 R >>
+stream
+q
+5.6 0 0 -4.7 437.9 550.4 cm
+/R162 Do
+Q
+q
+2.4 0 0 -9.9 444.9 553.4 cm
+/R119 Do
+Q
+q
+6.8 0 0 -9.1 448.2 553 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 456.1 547.5 cm
+/R43 Do
+Q
+endstream
+endobj
+165 0 obj
+161
+endobj
+166 0 obj
+<< /Type /XObject /Name /R166 /Subtype /Image /Length 167 0 R
+/ImageMask true /Width 61 /Height 6 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 61 /BlackIs1 true >>]
+>>
+stream
+#Å_ßÌ@ @
+endstream
+endobj
+167 0 obj
+10
+endobj
+168 0 obj
+<< /Length 169 0 R >>
+stream
+q
+6.1 0 0 -0.6 466.3 548.7 cm
+/R166 Do
+Q
+q
+6.8 0 0 -9.1 475.8 553 cm
+/R131 Do
+Q
+q
+6.3 0 0 -3.3 483.7 547.5 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 491.8 553.4 cm
+/R119 Do
+Q
+q
+5.1 0 0 -4.7 495 550.4 cm
+/R138 Do
+Q
+q
+1.3 0 0 -3.1 501.3 547 cm
+/R47 Do
+Q
+q
+4.4 0 0 -4.7 505.2 550.4 cm
+/R35 Do
+Q
+q
+2.4 0 0 -9.9 510.5 553.4 cm
+/R123 Do
+Q
+q
+2.4 0 0 -9.9 514.4 553.4 cm
+/R123 Do
+Q
+BT
+/R21 9.96264 Tf
+1 0 0 1 517.8 545.88 Tm
+(;) Tj
+/R135 9.96264 Tf
+1 0 0 1 322.44 533.88 Tm
+(end) Tj
+/R21 7.97011 Tf
+1 0 0 1 368.4 510 Tm
+(Fig.) Tj
+1 0 0 1 383.88 510 Tm
+(1.) Tj
+1 0 0 1 398.16 510 Tm
+(Search-based) Tj
+1 0 0 1 443.4 510 Tm
+(strategy) Tj
+1 0 0 1 471.479 510 Tm
+(for) Tj
+1 0 0 1 483.599 510 Tm
+(MCBR) Tj
+/R21 9.96264 Tf
+1 0 0 1 312 475.44 Tm
+(node) Tj
+ET
+q
+6.6 0 0 -4.7 335.4 479.9 cm
+/R127 Do
+Q
+BT
+1 0 0 1 342.48 475.44 Tm
+(,) Tj
+1 0 0 1 348.96 475.44 Tm
+(at) Tj
+1 0 0 1 360 475.44 Tm
+(node) Tj
+ET
+q
+4.4 0 0 -4.7 383.5 479.9 cm
+/R35 Do
+Q
+BT
+1 0 0 1 388.44 475.44 Tm
+(,) Tj
+1 0 0 1 394.8 475.44 Tm
+(and) Tj
+ET
+q
+6.8 0 0 -9.1 413.4 482.5 cm
+/R131 Do
+Q
+q
+3.3 0 0 -4.8 421.2 483.6 cm
+/R39 Do
+Q
+q
+6.3 0 0 -3.3 421.3 476 cm
+/R43 Do
+Q
+q
+2.4 0 0 -9.9 429.4 482.9 cm
+/R119 Do
+Q
+q
+4.4 0 0 -4.7 432.6 479.9 cm
+/R35 Do
+Q
+q
+1.3 0 0 -3.1 438.3 476.5 cm
+/R47 Do
+Q
+q
+6.6 0 0 -4.7 442.2 479.9 cm
+/R127 Do
+Q
+q
+2.4 0 0 -9.9 449.7 482.9 cm
+/R123 Do
+Q
+BT
+1 0 0 1 457.08 475.44 Tm
+(is) Tj
+1 0 0 1 467.64 475.44 Tm
+(its) Tj
+1 0 0 1 480.84 475.44 Tm
+(initial) Tj
+1 0 0 1 507.96 475.44 Tm
+(estimate.) Tj
+1 0 0 1 547.559 475.44 Tm
+(The) Tj
+1 0 0 1 312 463.44 Tm
+(algorithm) Tj
+1 0 0 1 353.52 463.44 Tm
+(does) Tj
+1 0 0 1 374.52 463.44 Tm
+(not) Tj
+1 0 0 1 390 463.44 Tm
+(assume) Tj
+1 0 0 1 422.16 463.44 Tm
+(a) Tj
+1 0 0 1 429.36 463.44 Tm
+(static) Tj
+1 0 0 1 453.119 463.44 Tm
+(network.) Tj
+1 0 0 1 491.039 463.44 Tm
+(Even) Tj
+1 0 0 1 514.319 463.44 Tm
+(with) Tj
+1 0 0 1 534.839 463.44 Tm
+(a) Tj
+1 0 0 1 542.039 463.44 Tm
+(static) Tj
+1 0 0 1 312 451.56 Tm
+(network,) Tj
+1 0 0 1 350.4 451.56 Tm
+(the) Tj
+1 0 0 1 365.76 451.56 Tm
+(routes) Tj
+1 0 0 1 393.36 451.56 Tm
+(may) Tj
+1 0 0 1 413.76 451.56 Tm
+(vary) Tj
+1 0 0 1 434.64 451.56 Tm
+(from) Tj
+1 0 0 1 457.319 451.56 Tm
+(time) Tj
+1 0 0 1 478.199 451.56 Tm
+(to) Tj
+1 0 0 1 489.239 451.56 Tm
+(time) Tj
+1 0 0 1 510.119 451.56 Tm
+(as) Tj
+1 0 0 1 521.759 451.56 Tm
+(a) Tj
+1 0 0 1 529.319 451.56 Tm
+(result) Tj
+1 0 0 1 554.759 451.56 Tm
+(of) Tj
+1 0 0 1 312 439.56 Tm
+(learning.) Tj
+1 0 0 1 350.52 439.56 Tm
+(One) Tj
+1 0 0 1 370.44 439.56 Tm
+(can) Tj
+1 0 0 1 387.72 439.56 Tm
+(combine) Tj
+1 0 0 1 425.4 439.56 Tm
+(the) Tj
+1 0 0 1 441 439.56 Tm
+(broadcast) Tj
+1 0 0 1 482.519 439.56 Tm
+(of) Tj
+1 0 0 1 494.279 439.56 Tm
+(the) Tj
+1 0 0 1 509.879 439.56 Tm
+(new) Tj
+1 0 0 1 529.799 439.56 Tm
+(estimate) Tj
+1 0 0 1 312 427.56 Tm
+(and) Tj
+1 0 0 1 329.16 427.56 Tm
+(the) Tj
+1 0 0 1 344.28 427.56 Tm
+(forwarding) Tj
+1 0 0 1 391.32 427.56 Tm
+(of) Tj
+1 0 0 1 402.48 427.56 Tm
+(the) Tj
+1 0 0 1 417.6 427.56 Tm
+(message) Tj
+1 0 0 1 454.199 427.56 Tm
+(in) Tj
+1 0 0 1 464.759 427.56 Tm
+(one) Tj
+1 0 0 1 482.039 427.56 Tm
+(packet) Tj
+1 0 0 1 510.839 427.56 Tm
+(to) Tj
+1 0 0 1 521.399 427.56 Tm
+(reduce) Tj
+1 0 0 1 550.799 427.56 Tm
+(the) Tj
+1 0 0 1 312 415.68 Tm
+(total) Tj
+1 0 0 1 332.16 415.68 Tm
+(number) Tj
+1 0 0 1 365.16 415.68 Tm
+(of) Tj
+1 0 0 1 375.96 415.68 Tm
+(messages) Tj
+1 0 0 1 416.16 415.68 Tm
+(by) Tj
+1 0 0 1 428.64 415.68 Tm
+(half;) Tj
+1 0 0 1 449.399 415.68 Tm
+(in) Tj
+1 0 0 1 459.719 415.68 Tm
+(which) Tj
+1 0 0 1 486.599 415.68 Tm
+(case,) Tj
+1 0 0 1 508.679 415.68 Tm
+(only) Tj
+1 0 0 1 528.959 415.68 Tm
+(the) Tj
+1 0 0 1 543.719 415.68 Tm
+(node) Tj
+1 0 0 1 312 403.68 Tm
+(with) Tj
+1 0 0 1 332.16 403.68 Tm
+(the) Tj
+1 0 0 1 346.8 403.68 Tm
+(forwarding) Tj
+1 0 0 1 393.48 403.68 Tm
+(address) Tj
+1 0 0 1 425.88 403.68 Tm
+(will) Tj
+1 0 0 1 443.879 403.68 Tm
+(continue) Tj
+1 0 0 1 480.599 403.68 Tm
+(the) Tj
+1 0 0 1 495.239 403.68 Tm
+(forward) Tj
+1 0 0 1 529.319 403.68 Tm
+(message) Tj
+1 0 0 1 312 391.8 Tm
+(phase,) Tj
+1 0 0 1 340.08 391.8 Tm
+(all) Tj
+1 0 0 1 352.92 391.8 Tm
+(the) Tj
+1 0 0 1 367.92 391.8 Tm
+(other) Tj
+1 0 0 1 391.32 391.8 Tm
+(neighbors) Tj
+1 0 0 1 433.44 391.8 Tm
+(will) Tj
+1 0 0 1 451.919 391.8 Tm
+(only) Tj
+1 0 0 1 472.439 391.8 Tm
+(do) Tj
+1 0 0 1 485.279 391.8 Tm
+(the) Tj
+1 0 0 1 500.399 391.8 Tm
+(update) Tj
+1 0 0 1 529.799 391.8 Tm
+(estimate) Tj
+1 0 0 1 312 379.8 Tm
+(phase.) Tj
+1 0 0 1 321.96 367.68 Tm
+(The) Tj
+1 0 0 1 342.96 367.68 Tm
+(theoretical) Tj
+1 0 0 1 390.6 367.68 Tm
+(bounds) Tj
+1 0 0 1 425.04 367.68 Tm
+(on) Tj
+1 0 0 1 440.52 367.68 Tm
+(this) Tj
+1 0 0 1 460.44 367.68 Tm
+(type) Tj
+1 0 0 1 483.239 367.68 Tm
+(of) Tj
+1 0 0 1 497.159 367.68 Tm
+(strategy) Tj
+1 0 0 1 534.239 367.68 Tm
+(can) Tj
+1 0 0 1 553.679 367.68 Tm
+(be) Tj
+1 0 0 1 312 355.68 Tm
+(established) Tj
+1 0 0 1 359.76 355.68 Tm
+(for) Tj
+1 0 0 1 375 355.68 Tm
+(static) Tj
+1 0 0 1 399.6 355.68 Tm
+(networks.) Tj
+1 0 0 1 442.2 355.68 Tm
+(Both) Tj
+1 0 0 1 465.119 355.68 Tm
+(the) Tj
+1 0 0 1 480.839 355.68 Tm
+(message) Tj
+1 0 0 1 518.159 355.68 Tm
+(complexity) Tj
+1 0 0 1 312 343.68 Tm
+(and) Tj
+1 0 0 1 329.76 343.68 Tm
+(time) Tj
+1 0 0 1 350.88 343.68 Tm
+(complexity) Tj
+1 0 0 1 399.12 343.68 Tm
+(of) Tj
+1 0 0 1 410.76 343.68 Tm
+(the) Tj
+1 0 0 1 426.36 343.68 Tm
+(reinforcement) Tj
+1 0 0 1 485.639 343.68 Tm
+(routing) Tj
+1 0 0 1 517.799 343.68 Tm
+(are) Tj
+ET
+endstream
+endobj
+169 0 obj
+5242
+endobj
+170 0 obj
+<< /Type /XObject /Name /R170 /Subtype /Image /Length 171 0 R
+/ImageMask true /Width 72 /Height 74 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 72 /BlackIs1 true >>]
+>>
+stream
+)¡'@Ÿ·ÀD4Pb†ÅA∏H0ÎAΩ7ﬁÇaÈø~Í”˜˝ˆı˜˜√˚ˇaˇ˜ø˜ﬂˇwˇvˇáÏ°˝Ï8~˚√Ì˛ˆıvˇ√o∂_ÿvï∂w·∑	[mwkaÜ¬V
+€5æÿaAŒÅ`  
+endstream
+endobj
+171 0 obj
+121
+endobj
+172 0 obj
+<< /Length 173 0 R >>
+stream
+q
+7.2 0 0 -7.4 533.9 350.8 cm
+/R170 Do
+Q
+q
+2.4 0 0 -9.9 542.5 351.2 cm
+/R119 Do
+Q
+endstream
+endobj
+173 0 obj
+82
+endobj
+174 0 obj
+<< /Type /XObject /Name /R174 /Subtype /Image /Length 175 0 R
+/ImageMask true /Width 54 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 54 /BlackIs1 true >>]
+>>
+stream
+< A˛a¥N√Îw√æ˚æ˛Ô˛˜ˇxp˜ﬂ∏0ˇæ¯ª˝ˇø‹öœ¸?ˇ~ﬂ˜ﬂ|;ˇ√√¸ä;]˜ÔaˆÈÉ	^É’à@≈XAë5¯ Ä
+endstream
+endobj
+175 0 obj
+80
+endobj
+176 0 obj
+<< /Length 177 0 R >>
+stream
+q
+5.4 0 0 -4.7 545.6 348.2 cm
+/R174 Do
+Q
+endstream
+endobj
+177 0 obj
+41
+endobj
+178 0 obj
+<< /Type /XObject /Name /R178 /Subtype /Image /Length 179 0 R
+/ImageMask true /Width 49 /Height 72 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 49 /BlackIs1 true >>]
+>>
+stream
+'Í_Ñ ‡à#w[[§4õ¬c~Í˛É‹/˝˚pˇ¸?˛Ô¯ˇøÔˇÓˇaÔ¯vˇ€p˝Ü∂˝Ö∂ú4L}ÎÜ)‰∏ø∏˛ˇ√¸?ÔøÔˆDÅÚT( Ä
+endstream
+endobj
+179 0 obj
+94
+endobj
+180 0 obj
+<< /Length 181 0 R >>
+stream
+q
+4.9 0 0 -7.2 551.7 350.7 cm
+/R178 Do
+Q
+q
+2.4 0 0 -9.9 557 351.2 cm
+/R123 Do
+Q
+BT
+1 0 0 1 560.399 343.68 Tm
+(,) Tj
+1 0 0 1 312 331.8 Tm
+(where) Tj
+ET
+q
+5.4 0 0 -4.7 340 336.3 cm
+/R174 Do
+Q
+BT
+1 0 0 1 349.44 331.8 Tm
+(is) Tj
+1 0 0 1 359.64 331.8 Tm
+(the) Tj
+1 0 0 1 375.36 331.8 Tm
+(number) Tj
+1 0 0 1 409.32 331.8 Tm
+(of) Tj
+1 0 0 1 421.2 331.8 Tm
+(nodes) Tj
+1 0 0 1 447.959 331.8 Tm
+(and) Tj
+ET
+q
+4.9 0 0 -7.2 466.3 338.8 cm
+/R178 Do
+Q
+BT
+1 0 0 1 474.599 331.8 Tm
+(is) Tj
+1 0 0 1 484.799 331.8 Tm
+(the) Tj
+1 0 0 1 500.639 331.8 Tm
+(diameter) Tj
+1 0 0 1 539.039 331.8 Tm
+(of) Tj
+1 0 0 1 550.799 331.8 Tm
+(the) Tj
+1 0 0 1 312 319.8 Tm
+(network.) Tj
+1 0 0 1 351.72 319.8 Tm
+(Furthermore,) Tj
+1 0 0 1 408.48 319.8 Tm
+(it) Tj
+1 0 0 1 418.68 319.8 Tm
+(approaches) Tj
+1 0 0 1 467.999 319.8 Tm
+(the) Tj
+1 0 0 1 484.679 319.8 Tm
+(optimal) Tj
+1 0 0 1 519.719 319.8 Tm
+(route) Tj
+1 0 0 1 544.799 319.8 Tm
+(after) Tj
+1 0 0 1 312 307.92 Tm
+(delivering) Tj
+1 0 0 1 356.52 307.92 Tm
+(at) Tj
+1 0 0 1 367.8 307.92 Tm
+(most) Tj
+ET
+q
+5.4 0 0 -4.7 391.4 312.4 cm
+/R174 Do
+Q
+BT
+1 0 0 1 401.4 307.92 Tm
+(messages,) Tj
+1 0 0 1 445.56 307.92 Tm
+(and) Tj
+1 0 0 1 464.039 307.92 Tm
+(the) Tj
+1 0 0 1 480.359 307.92 Tm
+(message) Tj
+1 0 0 1 518.159 307.92 Tm
+(complexity) Tj
+1 0 0 1 312 295.92 Tm
+(of) Tj
+1 0 0 1 323.76 295.92 Tm
+(conver) Tj
+1 0 0 1 351 295.92 Tm
+(ging) Tj
+1 0 0 1 371.88 295.92 Tm
+(to) Tj
+1 0 0 1 383.16 295.92 Tm
+(an) Tj
+1 0 0 1 396 295.92 Tm
+(optimal) Tj
+1 0 0 1 429.96 295.92 Tm
+(route) Tj
+1 0 0 1 453.959 295.92 Tm
+(is) Tj
+1 0 0 1 464.039 295.92 Tm
+(bounded) Tj
+1 0 0 1 501.839 295.92 Tm
+(by) Tj
+ET
+q
+7.2 0 0 -7.4 515.8 303 cm
+/R170 Do
+Q
+q
+2.4 0 0 -9.9 524.3 303.4 cm
+/R119 Do
+Q
+q
+5.4 0 0 -4.7 527.5 300.4 cm
+/R174 Do
+Q
+q
+4.9 0 0 -7.2 533.6 302.9 cm
+/R178 Do
+Q
+q
+2.4 0 0 -9.9 538.8 303.4 cm
+/R123 Do
+Q
+BT
+1 0 0 1 542.279 295.92 Tm
+(.) Tj
+/R24 9.96264 Tf
+1 0 0 1 312 275.52 Tm
+(B.) Tj
+1 0 0 1 325.56 275.52 Tm
+(Initial) Tj
+1 0 0 1 353.4 275.52 Tm
+(objective) Tj
+1 0 0 1 392.88 275.52 Tm
+(estimation) Tj
+1 0 0 1 437.879 275.52 Tm
+(for) Tj
+1 0 0 1 452.999 275.52 Tm
+(MCBR) Tj
+/R21 9.96264 Tf
+1 0 0 1 321.96 259.68 Tm
+(For) Tj
+1 0 0 1 339.84 259.68 Tm
+(reinforcement) Tj
+1 0 0 1 399.84 259.68 Tm
+(learning) Tj
+1 0 0 1 436.56 259.68 Tm
+(type) Tj
+1 0 0 1 457.92 259.68 Tm
+(of) Tj
+1 0 0 1 470.279 259.68 Tm
+(routing) Tj
+1 0 0 1 503.159 259.68 Tm
+(strategy) Tj
+1 0 0 1 534.239 259.68 Tm
+(,) Tj
+1 0 0 1 540.719 259.68 Tm
+(if) Tj
+1 0 0 1 550.799 259.68 Tm
+(the) Tj
+1 0 0 1 312 247.68 Tm
+(initial) Tj
+1 0 0 1 341.4 247.68 Tm
+(estimates) Tj
+1 0 0 1 384.6 247.68 Tm
+(are) Tj
+1 0 0 1 402.96 247.68 Tm
+(close) Tj
+1 0 0 1 429.6 247.68 Tm
+(to) Tj
+1 0 0 1 443.52 247.68 Tm
+(optimal,) Tj
+1 0 0 1 482.519 247.68 Tm
+(the) Tj
+1 0 0 1 500.879 247.68 Tm
+(actual) Tj
+1 0 0 1 530.879 247.68 Tm
+(time) Tj
+1 0 0 1 554.759 247.68 Tm
+(of) Tj
+1 0 0 1 312 235.8 Tm
+(delivery) Tj
+1 0 0 1 348 235.8 Tm
+(a) Tj
+1 0 0 1 355.68 235.8 Tm
+(single) Tj
+1 0 0 1 382.8 235.8 Tm
+(message) Tj
+1 0 0 1 419.88 235.8 Tm
+(and) Tj
+1 0 0 1 437.64 235.8 Tm
+(the) Tj
+1 0 0 1 453.12 235.8 Tm
+(actual) Tj
+1 0 0 1 480.239 235.8 Tm
+(time) Tj
+1 0 0 1 501.239 235.8 Tm
+(of) Tj
+1 0 0 1 512.879 235.8 Tm
+(conver) Tj
+1 0 0 1 540.119 235.8 Tm
+(gence) Tj
+1 0 0 1 312 223.8 Tm
+(to) Tj
+1 0 0 1 325.92 223.8 Tm
+(optimal) Tj
+1 0 0 1 362.64 223.8 Tm
+(routes) Tj
+1 0 0 1 393.24 223.8 Tm
+(are) Tj
+1 0 0 1 411.6 223.8 Tm
+(close) Tj
+1 0 0 1 438.36 223.8 Tm
+(to) Tj
+1 0 0 1 452.279 223.8 Tm
+(minimum.) Tj
+1 0 0 1 499.799 223.8 Tm
+(One) Tj
+1 0 0 1 522.599 223.8 Tm
+(advantage) Tj
+1 0 0 1 312 211.92 Tm
+(of) Tj
+1 0 0 1 325.32 211.92 Tm
+(a) Tj
+1 0 0 1 334.68 211.92 Tm
+(declarative) Tj
+1 0 0 1 383.52 211.92 Tm
+(routing) Tj
+1 0 0 1 417.24 211.92 Tm
+(requirement) Tj
+1 0 0 1 470.399 211.92 Tm
+(via) Tj
+1 0 0 1 487.679 211.92 Tm
+(MCBR) Tj
+1 0 0 1 521.399 211.92 Tm
+(is) Tj
+1 0 0 1 533.159 211.92 Tm
+(to) Tj
+1 0 0 1 545.879 211.92 Tm
+(give) Tj
+1 0 0 1 312 199.92 Tm
+(accurate) Tj
+1 0 0 1 349.44 199.92 Tm
+(initial) Tj
+1 0 0 1 376.92 199.92 Tm
+(objective) Tj
+1 0 0 1 417.84 199.92 Tm
+(estimate) Tj
+1 0 0 1 455.279 199.92 Tm
+(based) Tj
+1 0 0 1 482.279 199.92 Tm
+(on) Tj
+1 0 0 1 496.439 199.92 Tm
+(its) Tj
+1 0 0 1 510.239 199.92 Tm
+(speci\256cation.) Tj
+1 0 0 1 312 187.92 Tm
+(The) Tj
+1 0 0 1 330.48 187.92 Tm
+(objective) Tj
+1 0 0 1 369.96 187.92 Tm
+(estimation) Tj
+1 0 0 1 414.48 187.92 Tm
+(shall) Tj
+1 0 0 1 436.32 187.92 Tm
+(be) Tj
+1 0 0 1 448.68 187.92 Tm
+(based) Tj
+1 0 0 1 474.359 187.92 Tm
+(on) Tj
+1 0 0 1 487.319 187.92 Tm
+(both) Tj
+1 0 0 1 508.079 187.92 Tm
+(the) Tj
+1 0 0 1 523.199 187.92 Tm
+(properties) Tj
+1 0 0 1 312 176.04 Tm
+(of) Tj
+1 0 0 1 323.52 176.04 Tm
+(destination) Tj
+1 0 0 1 370.44 176.04 Tm
+(constraints) Tj
+1 0 0 1 416.88 176.04 Tm
+(and) Tj
+1 0 0 1 434.52 176.04 Tm
+(objective) Tj
+1 0 0 1 474.239 176.04 Tm
+(functions.) Tj
+1 0 0 1 517.079 176.04 Tm
+(Destination) Tj
+1 0 0 1 312 164.04 Tm
+(constraints) Tj
+1 0 0 1 360.96 164.04 Tm
+(are) Tj
+1 0 0 1 378.96 164.04 Tm
+(used) Tj
+1 0 0 1 403.08 164.04 Tm
+(to) Tj
+1 0 0 1 416.76 164.04 Tm
+(estimate) Tj
+1 0 0 1 455.759 164.04 Tm
+(the) Tj
+1 0 0 1 473.879 164.04 Tm
+(minimum) Tj
+1 0 0 1 518.399 164.04 Tm
+(number) Tj
+1 0 0 1 554.759 164.04 Tm
+(of) Tj
+1 0 0 1 312 152.04 Tm
+(hops) Tj
+1 0 0 1 335.76 152.04 Tm
+(to) Tj
+1 0 0 1 348.48 152.04 Tm
+(the) Tj
+1 0 0 1 365.64 152.04 Tm
+(destination,) Tj
+1 0 0 1 416.88 152.04 Tm
+(while) Tj
+1 0 0 1 444 152.04 Tm
+(objective) Tj
+1 0 0 1 485.519 152.04 Tm
+(functions) Tj
+1 0 0 1 527.639 152.04 Tm
+(are) Tj
+1 0 0 1 544.799 152.04 Tm
+(used) Tj
+1 0 0 1 312 140.16 Tm
+(to) Tj
+1 0 0 1 324.6 140.16 Tm
+(estimate) Tj
+1 0 0 1 362.76 140.16 Tm
+(the) Tj
+1 0 0 1 379.92 140.16 Tm
+(minimum) Tj
+1 0 0 1 423.6 140.16 Tm
+(cost) Tj
+1 0 0 1 444.599 140.16 Tm
+(along) Tj
+1 0 0 1 471.599 140.16 Tm
+(the) Tj
+1 0 0 1 488.759 140.16 Tm
+(path.) Tj
+1 0 0 1 513.359 140.16 Tm
+(Let) Tj
+ET
+endstream
+endobj
+181 0 obj
+5776
+endobj
+182 0 obj
+<< /Type /XObject /Name /R182 /Subtype /Image /Length 183 0 R
+/ImageMask true /Width 71 /Height 74 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 71 /BlackIs1 true >>]
+>>
+stream
+%¬Õa£¬Ö8pXtBßÇÈÈpÇa˛¨=7†ıo∑_WﬂøáPˇ˜˛ˇ„ˇ˚ø˚˜ˇw¯døÔ|?}ª˝øøv¬Ô∑€N¸0˚v∞¡¢cáaÖx=<2	Db	˝É9(Ä Ä
+endstream
+endobj
+183 0 obj
+103
+endobj
+184 0 obj
+<< /Length 185 0 R >>
+stream
+q
+7.1 0 0 -7.4 531.9 147.3 cm
+/R182 Do
+Q
+BT
+1 0 0 1 544.319 140.16 Tm
+(be) Tj
+1 0 0 1 558.599 140.16 Tm
+(a) Tj
+1 0 0 1 312 128.16 Tm
+(constraint) Tj
+1 0 0 1 354.84 128.16 Tm
+(and) Tj
+ET
+endstream
+endobj
+185 0 obj
+186
+endobj
+186 0 obj
+<< /Type /XObject /Name /R186 /Subtype /Image /Length 187 0 R
+/ImageMask true /Width 37 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 37 /BlackIs1 true >>]
+>>
+stream
+4·`0Dé`Ënê7ß√oÓ˛˜ˇ√KÚk ∞ZT∞Ω\92¥C+	ˇ˜v¡˛0J°à(0º @
+endstream
+endobj
+187 0 obj
+70
+endobj
+188 0 obj
+<< /Length 189 0 R >>
+stream
+q
+3.7 0 0 -4.7 373.2 132.7 cm
+/R186 Do
+Q
+q
+2.4 0 0 -9.9 378.4 135.7 cm
+/R119 Do
+Q
+q
+7.1 0 0 -7.4 381.8 135.3 cm
+/R182 Do
+Q
+q
+2.4 0 0 -9.9 389.6 135.7 cm
+/R123 Do
+Q
+BT
+1 0 0 1 396.72 128.16 Tm
+(be) Tj
+1 0 0 1 409.8 128.16 Tm
+(the) Tj
+1 0 0 1 425.52 128.16 Tm
+(degree) Tj
+1 0 0 1 455.76 128.16 Tm
+(of) Tj
+1 0 0 1 467.639 128.16 Tm
+(satisfaction) Tj
+1 0 0 1 516.599 128.16 Tm
+(of) Tj
+ET
+q
+7.1 0 0 -7.4 529 135.3 cm
+/R182 Do
+Q
+BT
+1 0 0 1 536.399 128.16 Tm
+(;) Tj
+ET
+q
+3.7 0 0 -4.7 543.2 132.7 cm
+/R186 Do
+Q
+q
+2.4 0 0 -9.9 548.3 135.7 cm
+/R119 Do
+Q
+q
+7.1 0 0 -7.4 551.7 135.3 cm
+/R182 Do
+Q
+q
+2.4 0 0 -9.9 559.5 135.7 cm
+/R123 Do
+Q
+BT
+1 0 0 1 312 116.28 Tm
+(is) Tj
+1 0 0 1 323.16 116.28 Tm
+(zero) Tj
+1 0 0 1 344.88 116.28 Tm
+(if) Tj
+1 0 0 1 350.76 116.28 Tm
+(f) Tj
+1 0 0 1 358.56 116.28 Tm
+(C) Tj
+1 0 0 1 369.72 116.28 Tm
+(is) Tj
+1 0 0 1 380.88 116.28 Tm
+(satis\256ed.) Tj
+1 0 0 1 420.6 116.28 Tm
+(Let) Tj
+ET
+endstream
+endobj
+189 0 obj
+903
+endobj
+190 0 obj
+<< /Type /XObject /Name /R190 /Subtype /Image /Length 191 0 R
+/ImageMask true /Width 73 /Height 72 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 73 /BlackIs1 true >>]
+>>
+stream
+#Å‚˚^◊µÚ‘˜A~u◊}“ﬂz·m◊]˝oáK[u˚Ñ∑ı∑]oáK[u˚Ñ∑ı∑]oáK[◊ÌÑøµΩmo≈k⁄˛◊∞†  
+endstream
+endobj
+191 0 obj
+81
+endobj
+192 0 obj
+<< /Length 193 0 R >>
+stream
+q
+7.3 0 0 -7.2 438.9 123.5 cm
+/R190 Do
+Q
+q
+7.1 0 0 -7.4 447.2 123.4 cm
+/R182 Do
+Q
+BT
+1 0 0 1 459.119 116.28 Tm
+(be) Tj
+1 0 0 1 473.039 116.28 Tm
+(the) Tj
+1 0 0 1 489.839 116.28 Tm
+(maximum) Tj
+1 0 0 1 534.719 116.28 Tm
+(change) Tj
+1 0 0 1 312 104.28 Tm
+(possible) Tj
+1 0 0 1 348.12 104.28 Tm
+(for) Tj
+ET
+q
+3.7 0 0 -4.7 363.6 108.8 cm
+/R186 Do
+Q
+q
+2.4 0 0 -9.9 368.8 111.8 cm
+/R119 Do
+Q
+q
+7.1 0 0 -7.4 372.2 111.4 cm
+/R182 Do
+Q
+q
+2.4 0 0 -9.9 380 111.8 cm
+/R123 Do
+Q
+BT
+1 0 0 1 387 104.28 Tm
+(in) Tj
+1 0 0 1 398.28 104.28 Tm
+(one) Tj
+1 0 0 1 416.16 104.28 Tm
+(hop.) Tj
+1 0 0 1 437.16 104.28 Tm
+(The) Tj
+1 0 0 1 456.12 104.28 Tm
+(minimum) Tj
+1 0 0 1 498.479 104.28 Tm
+(number) Tj
+1 0 0 1 532.439 104.28 Tm
+(of) Tj
+1 0 0 1 544.199 104.28 Tm
+(hops) Tj
+1 0 0 1 312 92.28 Tm
+(based) Tj
+1 0 0 1 340.56 92.28 Tm
+(on) Tj
+1 0 0 1 356.28 92.28 Tm
+(constraint) Tj
+ET
+q
+7.1 0 0 -7.4 401.8 99.4 cm
+/R182 Do
+Q
+BT
+1 0 0 1 415.08 92.28 Tm
+(is) Tj
+ET
+endstream
+endobj
+193 0 obj
+933
+endobj
+194 0 obj
+<< /Type /XObject /Name /R194 /Subtype /Image /Length 195 0 R
+/ImageMask true /Width 50 /Height 72 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 50 /BlackIs1 true >>]
+>>
+stream
+0 A˛<4Nﬂ˚˜ﬂwﬂ›ˇﬁˇÔwá~∏7˝˜ﬂÓÔ¸?›˛ˇﬂøˆ¸0ª¸à84Æ∏1\2&óÒáˇﬂ˝ﬂ˝˚ˇπ†/ˇÛX∞ 
+endstream
+endobj
+195 0 obj
+85
+endobj
+196 0 obj
+<< /Length 197 0 R >>
+stream
+q
+5 0 0 -7.2 428 99.3 cm
+/R194 Do
+Q
+q
+2.4 0 0 -9.9 434.2 99.8 cm
+/R119 Do
+Q
+q
+7.1 0 0 -7.4 437.6 99.4 cm
+/R182 Do
+Q
+q
+2.4 0 0 -9.9 445.4 99.8 cm
+/R123 Do
+Q
+endstream
+endobj
+197 0 obj
+156
+endobj
+198 0 obj
+<< /Type /XObject /Name /R198 /Subtype /Image /Length 199 0 R
+/ImageMask true /Width 66 /Height 27 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 66 /BlackIs1 true >>]
+>>
+stream
+.Ù˝®ˇˇóz~◊Ä Ä
+endstream
+endobj
+199 0 obj
+17
+endobj
+200 0 obj
+<< /Length 201 0 R >>
+stream
+q
+6.6 0 0 -2.7 456.6 96.2 cm
+/R198 Do
+Q
+q
+3.7 0 0 -4.7 471.4 96.8 cm
+/R186 Do
+Q
+q
+2.4 0 0 -9.9 476.6 99.8 cm
+/R119 Do
+Q
+q
+7.1 0 0 -7.4 479.9 99.4 cm
+/R182 Do
+Q
+q
+2.4 0 0 -9.9 487.7 99.8 cm
+/R123 Do
+Q
+endstream
+endobj
+201 0 obj
+200
+endobj
+202 0 obj
+<< /Type /XObject /Name /R202 /Subtype /Image /Length 203 0 R
+/ImageMask true /Width 39 /Height 101 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 39 /BlackIs1 true >>]
+>>
+stream
+/z{˛√˛˚˛˚˛˛˚˛√˛˚˛˚˛˛˚˛√˛˚˛˚˚á˜ﬂˆ˜ﬂˆˇáﬂ˜ﬂˆ˜ﬂˆˇáﬂ˜ﬂˆª¿ @
+endstream
+endobj
+203 0 obj
+62
+endobj
+204 0 obj
+<< /Length 205 0 R >>
+stream
+q
+3.9 0 0 -10.1 491.7 99.8 cm
+/R202 Do
+Q
+q
+7.3 0 0 -7.2 496.6 99.5 cm
+/R190 Do
+Q
+q
+7.1 0 0 -7.4 504.9 99.4 cm
+/R182 Do
+Q
+BT
+1 0 0 1 512.279 92.28 Tm
+(.) Tj
+1 0 0 1 520.679 92.28 Tm
+(Given) Tj
+1 0 0 1 550.799 92.28 Tm
+(the) Tj
+1 0 0 1 312 80.4 Tm
+(estimate) Tj
+1 0 0 1 347.64 80.4 Tm
+(of) Tj
+1 0 0 1 358.32 80.4 Tm
+(the) Tj
+1 0 0 1 372.84 80.4 Tm
+(number) Tj
+1 0 0 1 405.72 80.4 Tm
+(of) Tj
+1 0 0 1 416.4 80.4 Tm
+(hops) Tj
+ET
+q
+5 0 0 -7.2 438 87.4 cm
+/R194 Do
+Q
+BT
+1 0 0 1 445.799 80.4 Tm
+(to) Tj
+1 0 0 1 455.879 80.4 Tm
+(the) Tj
+1 0 0 1 470.519 80.4 Tm
+(destination,) Tj
+1 0 0 1 519.119 80.4 Tm
+(an) Tj
+1 0 0 1 530.879 80.4 Tm
+(additive) Tj
+1 0 0 1 312 68.4 Tm
+(objective) Tj
+ET
+endstream
+endobj
+205 0 obj
+678
+endobj
+206 0 obj
+<< /Type /XObject /Name /R206 /Subtype /Image /Length 207 0 R
+/ImageMask true /Width 68 /Height 74 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 68 /BlackIs1 true >>]
+>>
+stream
+"ÕA£¡(D0 a¬√§:	á√·7	Î€§ﬂ~ÙØ√·æﬂÍ˝øÏ?ˇÜˇÔø˜›øˇˇ∂ﬂ˝Ô˚º?√˜øÌ˛ﬂu~l:ﬂmm’¯m+⁄√ ≠•´P¡Çâ… 
+endstream
+endobj
+207 0 obj
+103
+endobj
+208 0 obj
+<< /Length 209 0 R >>
+stream
+q
+6.8 0 0 -7.4 353.4 75.5 cm
+/R206 Do
+Q
+BT
+1 0 0 1 365.4 68.4 Tm
+(can) Tj
+1 0 0 1 383.76 68.4 Tm
+(be) Tj
+1 0 0 1 397.68 68.4 Tm
+(estimated) Tj
+1 0 0 1 440.4 68.4 Tm
+(as) Tj
+ET
+q
+4.4 0 0 -4.7 453.5 72.9 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 458.3 70.1 cm
+/R43 Do
+Q
+q
+2.1 0 0 -4.9 465.4 71.7 cm
+/R95 Do
+Q
+q
+4.3 0 0 -3.3 468.2 70.1 cm
+/R87 Do
+Q
+q
+5 0 0 -7.2 473.8 75.4 cm
+/R194 Do
+Q
+BT
+1 0 0 1 479.16 68.4 Tm
+(,) Tj
+1 0 0 1 486.12 68.4 Tm
+(where) Tj
+ET
+q
+4.4 0 0 -4.7 515.3 72.9 cm
+/R63 Do
+Q
+q
+6.3 0 0 -3.3 520.1 70.1 cm
+/R43 Do
+Q
+q
+2.1 0 0 -4.9 527.2 71.7 cm
+/R95 Do
+Q
+q
+4.3 0 0 -3.3 530 70.1 cm
+/R87 Do
+Q
+BT
+1 0 0 1 539.64 68.4 Tm
+(is) Tj
+1 0 0 1 550.8 68.4 Tm
+(the) Tj
+ET
+Q
+endstream
+endobj
+209 0 obj
+664
+endobj
+18 0 obj
+<<
+/Type /Page
+/MediaBox [0 0 612 792]
+/Parent 2 0 R
+/Resources << /ProcSet [/PDF /ImageB /Text]
+/Font <<
+/R135 135 0 R
+/R24 24 0 R
+/R21 21 0 R
+>>
+/XObject <<
+/R87 87 0 R
+/R95 95 0 R
+/R43 43 0 R
+/R63 63 0 R
+/R194 194 0 R
+/R206 206 0 R
+/R182 182 0 R
+/R190 190 0 R
+/R202 202 0 R
+/R123 123 0 R
+/R119 119 0 R
+/R186 186 0 R
+/R198 198 0 R
+/R178 178 0 R
+/R174 174 0 R
+/R170 170 0 R
+/R127 127 0 R
+/R47 47 0 R
+/R35 35 0 R
+/R39 39 0 R
+/R131 131 0 R
+/R138 138 0 R
+/R166 166 0 R
+/R162 162 0 R
+/R154 154 0 R
+/R150 150 0 R
+/R27 27 0 R
+/R158 158 0 R
+/R55 55 0 R
+/R51 51 0 R
+/R146 146 0 R
+/R142 142 0 R
+/R115 115 0 R
+/R111 111 0 R
+/R107 107 0 R
+/R103 103 0 R
+/R99 99 0 R
+/R59 59 0 R
+/R79 79 0 R
+/R91 91 0 R
+/R83 83 0 R
+/R75 75 0 R
+/R71 71 0 R
+/R67 67 0 R
+/R31 31 0 R
+>>
+>>
+/Contents [
+19 0 R
+22 0 R
+25 0 R
+29 0 R
+33 0 R
+37 0 R
+41 0 R
+45 0 R
+49 0 R
+53 0 R
+57 0 R
+61 0 R
+65 0 R
+69 0 R
+73 0 R
+77 0 R
+81 0 R
+85 0 R
+89 0 R
+93 0 R
+97 0 R
+101 0 R
+105 0 R
+109 0 R
+113 0 R
+117 0 R
+121 0 R
+125 0 R
+129 0 R
+133 0 R
+136 0 R
+140 0 R
+144 0 R
+148 0 R
+152 0 R
+156 0 R
+160 0 R
+164 0 R
+168 0 R
+172 0 R
+176 0 R
+180 0 R
+184 0 R
+188 0 R
+192 0 R
+196 0 R
+200 0 R
+204 0 R
+208 0 R
+]
+>>
+endobj
+211 0 obj
+<< /Length 212 0 R >>
+stream
+q
+endstream
+endobj
+212 0 obj
+2
+endobj
+213 0 obj
+<< /Type /Font /Name /R213 /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+214 0 obj
+<< /Length 215 0 R >>
+stream
+BT
+/R213 9.96264 Tf
+1 0 0 1 59.4 729.6 Tm
+(r) Tj
+1 0 0 1 63.72 729.6 Tm
+(eceived) Tj
+ET
+q
+3 0 0 -0.48 95.388 730.068 cm
+BI
+/IM true /W 1 /H 1 /BPC 1
+ID  
+EI
+Q
+BT
+1 0 0 1 98.2799 729.6 Tm
+(message) Tj
+ET
+endstream
+endobj
+215 0 obj
+203
+endobj
+216 0 obj
+<< /Type /Font /Name /R216 /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+217 0 obj
+<< /Length 218 0 R >>
+stream
+BT
+/R216 9.96264 Tf
+1 0 0 1 136.56 729.6 Tm
+(\() Tj
+ET
+endstream
+endobj
+218 0 obj
+55
+endobj
+219 0 obj
+<< /Type /XObject /Name /R219 /Subtype /Image /Length 220 0 R
+/ImageMask true /Width 81 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 81 /BlackIs1 true >>]
+>>
+stream
+< ÜR¸ ¡0É›ÑJﬂ÷ÔÏ>·˜ª˚˛ÔøÓ˜ˇﬂª›ﬂÔªˇ?˜á˜√ø˜Óˇ˜ÓMgˇáˇ∏~ﬂ˝ﬂ}ﬂÔˇ√√í˛E´kæ¯~ˆ√Ì”4ØAË=XÑPbÑ`/ 
+endstream
+endobj
+220 0 obj
+110
+endobj
+221 0 obj
+<< /Length 222 0 R >>
+stream
+q
+8.1 0 0 -4.7 140.1 734.1 cm
+/R219 Do
+Q
+BT
+1 0 0 1 148.68 729.6 Tm
+(,) Tj
+ET
+endstream
+endobj
+222 0 obj
+78
+endobj
+223 0 obj
+<< /Type /XObject /Name /R223 /Subtype /Image /Length 224 0 R
+/ImageMask true /Width 68 /Height 91 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 68 /BlackIs1 true >>]
+>>
+stream
+%ÉÑΩˇøëqËæò}ˇ"·π®¯OB¯|$1ÖáDGL:Zñˇ{pì–n∑¡Í’∫∂≠˜ß”ı7¯|o∑ﬁøoﬂ˚¸?ø˚Ôˇ€oˇˇÌ∑ˇ{˛¸7ﬂÔﬁ˝Ó∑W·áﬁ∑€[u~J√ˆ∞√+iAÍ¡Ñ0`Ç«"A≤E¬¿ @
+endstream
+endobj
+224 0 obj
+135
+endobj
+225 0 obj
+<< /Length 226 0 R >>
+stream
+q
+6.8 0 0 -9.1 155.1 736.7 cm
+/R223 Do
+Q
+endstream
+endobj
+226 0 obj
+41
+endobj
+227 0 obj
+<< /Type /XObject /Name /R227 /Subtype /Image /Length 228 0 R
+/ImageMask true /Width 63 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 63 /BlackIs1 true >>]
+>>
+stream
+8 vF˙0Å˝áª˚∫∑˝øÔˇ∂√møˇøﬂ¸mø·øˇ˜wwÚk·˛|;a∑ˇ˚˚vD{˜√]…¿5aˆ0≈1VöXAÇ @
+endstream
+endobj
+228 0 obj
+78
+endobj
+229 0 obj
+<< /Length 230 0 R >>
+stream
+q
+6.3 0 0 -3.3 162.9 731.3 cm
+/R227 Do
+Q
+endstream
+endobj
+230 0 obj
+41
+endobj
+231 0 obj
+<< /Type /XObject /Name /R231 /Subtype /Image /Length 232 0 R
+/ImageMask true /Width 24 /Height 99 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 24 /BlackIs1 true >>]
+>>
+stream
+P©PZ•XZZÙ/]x]WÎ◊◊ˇKˇˇÖ◊ˇˇˇˇˇˇˇ√ˇ˝ø˝˛æ˝˜·˜o˚º7}€∞Ôæ  
+endstream
+endobj
+232 0 obj
+62
+endobj
+233 0 obj
+<< /Length 234 0 R >>
+stream
+q
+2.4 0 0 -9.9 170.9 737.1 cm
+/R231 Do
+Q
+endstream
+endobj
+234 0 obj
+41
+endobj
+235 0 obj
+<< /Type /XObject /Name /R235 /Subtype /Image /Length 236 0 R
+/ImageMask true /Width 51 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 51 /BlackIs1 true >>]
+>>
+stream
+5H‰Ä¿Nà˘¢pÎ∞Ë&6Ùª¬ˇ{ˇ›˝ﬂ˛¯˚á¯0ˇ·ﬂÔ˜ﬂ{¸ö◊˝˚˚ªªˇ˜˝√á˜˜√Ô˜ˆ˛Ùˆ)®0C‡  
+endstream
+endobj
+236 0 obj
+76
+endobj
+237 0 obj
+<< /Length 238 0 R >>
+stream
+q
+5.1 0 0 -4.7 174.1 734.1 cm
+/R235 Do
+Q
+endstream
+endobj
+238 0 obj
+41
+endobj
+239 0 obj
+<< /Type /XObject /Name /R239 /Subtype /Image /Length 240 0 R
+/ImageMask true /Width 24 /Height 99 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 24 /BlackIs1 true >>]
+>>
+stream
+#€›ªw∞˜∏n˛›á˜∏}˚˝ﬂ·ˇÌˇˇ˚ˇˇˇˇÙøˇ˙_¸/_™˝B˝W^ÇÆ´®KU†©jñº @
+endstream
+endobj
+240 0 obj
+59
+endobj
+241 0 obj
+<< /Length 242 0 R >>
+stream
+q
+2.4 0 0 -9.9 180 737.1 cm
+/R239 Do
+Q
+BT
+1 0 0 1 183.48 729.6 Tm
+(\)) Tj
+1 0 0 1 190.32 729.6 Tm
+(at) Tj
+1 0 0 1 201 729.6 Tm
+(node) Tj
+ET
+endstream
+endobj
+242 0 obj
+140
+endobj
+243 0 obj
+<< /Type /XObject /Name /R243 /Subtype /Image /Length 244 0 R
+/ImageMask true /Width 44 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 44 /BlackIs1 true >>]
+>>
+stream
+5	‡Å¬"‡u∫@ﬁzxV˚¸7˛˛˚˚ﬂﬁ˜ﬂÔ˚Ô˚ìZˇ˝˝ﬂwø˝CáÔW÷˛˝øz´`ö¸ @
+endstream
+endobj
+244 0 obj
+65
+endobj
+245 0 obj
+<< /Length 246 0 R >>
+stream
+q
+4.4 0 0 -4.7 224 734.1 cm
+/R243 Do
+Q
+BT
+1 0 0 1 232.56 729.6 Tm
+(from) Tj
+1 0 0 1 255.36 729.6 Tm
+(node) Tj
+ET
+q
+5.1 0 0 -4.7 278.5 734.1 cm
+/R235 Do
+Q
+BT
+/R213 9.96264 Tf
+1 0 0 1 287.4 729.6 Tm
+(do) Tj
+1 0 0 1 69.84 717.72 Tm
+(if) Tj
+/R216 9.96264 Tf
+1 0 0 1 79.44 717.72 Tm
+(new\() Tj
+ET
+q
+8.1 0 0 -4.7 99.7 722.2 cm
+/R219 Do
+Q
+BT
+1 0 0 1 108.24 717.72 Tm
+(\)) Tj
+/R213 9.96264 Tf
+1 0 0 1 114.96 717.72 Tm
+(then) Tj
+1 0 0 1 80.4 705.72 Tm
+(for) Tj
+1 0 0 1 96.8399 705.72 Tm
+(all) Tj
+ET
+endstream
+endobj
+246 0 obj
+490
+endobj
+247 0 obj
+<< /Type /XObject /Name /R247 /Subtype /Image /Length 248 0 R
+/ImageMask true /Width 66 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 66 /BlackIs1 true >>]
+>>
+stream
+5äuÚ9†bÑEÁ[XtÅàM·4’<+∑˜˝˜˛√ˇˇø˚∑˝√ø˜ˇáÓˇ√æ˛ˇ‹ö◊ˇøÓÔªˇX{ˇ®pˇ}´Óˇø€˝È·X†–x0B◊‡  
+endstream
+endobj
+248 0 obj
+92
+endobj
+249 0 obj
+<< /Length 250 0 R >>
+stream
+q
+6.6 0 0 -4.7 111 710.2 cm
+/R247 Do
+Q
+BT
+/R216 9.96264 Tf
+1 0 0 1 121.68 705.72 Tm
+(with) Tj
+ET
+q
+2.4 0 0 -9.9 143.8 713.2 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 147 710.2 cm
+/R243 Do
+Q
+endstream
+endobj
+250 0 obj
+177
+endobj
+251 0 obj
+<< /Type /XObject /Name /R251 /Subtype /Image /Length 252 0 R
+/ImageMask true /Width 13 /Height 31 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 13 /BlackIs1 true >>]
+>>
+stream
+#ﬂ›ªﬂw√ˇo˛m‡Üø◊ˆP 
+endstream
+endobj
+252 0 obj
+26
+endobj
+253 0 obj
+<< /Length 254 0 R >>
+stream
+q
+1.3 0 0 -3.1 152.7 706.8 cm
+/R251 Do
+Q
+q
+6.6 0 0 -4.7 156.6 710.2 cm
+/R247 Do
+Q
+q
+2.4 0 0 -9.9 164.1 713.2 cm
+/R239 Do
+Q
+endstream
+endobj
+254 0 obj
+123
+endobj
+255 0 obj
+<< /Type /XObject /Name /R255 /Subtype /Image /Length 256 0 R
+/ImageMask true /Width 49 /Height 60 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 49 /BlackIs1 true >>]
+>>
+stream
+! ƒåÄ°j†"¬–PÅjï/K“∫˙Ø˙»2ÔÎ$YÔ˚√w√æÌÓ‹0w∞·êÍ$4«áBà Ä
+endstream
+endobj
+256 0 obj
+65
+endobj
+257 0 obj
+<< /Length 258 0 R >>
+stream
+q
+4.9 0 0 -6 171.2 711.2 cm
+/R255 Do
+Q
+endstream
+endobj
+258 0 obj
+39
+endobj
+259 0 obj
+<< /Type /XObject /Name /R259 /Subtype /Image /Length 260 0 R
+/ImageMask true /Width 73 /Height 69 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 73 /BlackIs1 true >>]
+>>
+stream
+&†Wø‰·	0≈»–MáÌ˛‡¯wﬂº;˚¯o˜{˘?Óˇ˜›ˇ˛7Ì?ı±Ô¯dMÿa˜Ôá›¸Èªˇˆ?ˇ{˛ˇ˛˛˛zvTÅcﬂ 
+endstream
+endobj
+260 0 obj
+84
+endobj
+261 0 obj
+<< /Length 262 0 R >>
+stream
+q
+7.3 0 0 -6.9 180.2 712.6 cm
+/R259 Do
+Q
+q
+6.3 0 0 -3.3 187.5 707.4 cm
+/R227 Do
+Q
+BT
+/R213 9.96264 Tf
+1 0 0 1 198.24 705.72 Tm
+(do) Tj
+ET
+q
+6.8 0 0 -9.1 91.2 700.8 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 99.1 695.4 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 107.1 701.2 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 110.2 698.2 cm
+/R243 Do
+Q
+q
+1.3 0 0 -3.1 116 694.8 cm
+/R251 Do
+Q
+q
+6.6 0 0 -4.7 119.8 698.2 cm
+/R247 Do
+Q
+q
+2.4 0 0 -9.9 127.4 701.2 cm
+/R239 Do
+Q
+endstream
+endobj
+262 0 obj
+421
+endobj
+263 0 obj
+<< /Type /XObject /Name /R263 /Subtype /Image /Length 264 0 R
+/ImageMask true /Width 88 /Height 54 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 88 /BlackIs1 true >>]
+>>
+stream
+%ÀˇÎΩ}(]zU•\(Jïa("ÜÅ¯O√Pd&Ê›Ω√˜∑oÓ˚ø√˜ˇ¯ Ä
+endstream
+endobj
+264 0 obj
+49
+endobj
+265 0 obj
+<< /Length 266 0 R >>
+stream
+q
+8.8 0 0 -5.4 134.3 698.9 cm
+/R263 Do
+Q
+q
+6.8 0 0 -9.1 146.9 700.8 cm
+/R223 Do
+Q
+endstream
+endobj
+266 0 obj
+82
+endobj
+267 0 obj
+<< /Type /XObject /Name /R267 /Subtype /Image /Length 268 0 R
+/ImageMask true /Width 33 /Height 48 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 33 /BlackIs1 true >>]
+>>
+stream
+$	‡à/0àÒ÷Ë nÇa˛ì¸-Èˇ˙ﬂˇˇˇˇˇˇˇ˚◊ˇˇ√÷◊ˇ∂ïÜÇΩX`î1^à@ Ä
+endstream
+endobj
+268 0 obj
+55
+endobj
+269 0 obj
+<< /Length 270 0 R >>
+stream
+q
+3.3 0 0 -4.8 154.6 702 cm
+/R267 Do
+Q
+q
+6.3 0 0 -3.3 154.7 694.4 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 162.9 701.2 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 166 698.2 cm
+/R243 Do
+Q
+q
+1.3 0 0 -3.1 171.8 694.8 cm
+/R251 Do
+Q
+q
+6.6 0 0 -4.7 175.6 698.2 cm
+/R247 Do
+Q
+q
+2.4 0 0 -9.9 183.2 701.2 cm
+/R239 Do
+Q
+BT
+/R216 9.96264 Tf
+1 0 0 1 186.6 693.72 Tm
+(;) Tj
+/R213 9.96264 Tf
+1 0 0 1 192.96 693.72 Tm
+(end) Tj
+1 0 0 1 69.84 681.84 Tm
+(end) Tj
+ET
+q
+6.8 0 0 -9.1 70.2 676.9 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 78.1 671.5 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 86.2 677.3 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 89.4 674.3 cm
+/R243 Do
+Q
+q
+1.3 0 0 -3.1 95.1 670.9 cm
+/R251 Do
+Q
+q
+5.1 0 0 -4.7 99 674.3 cm
+/R235 Do
+Q
+q
+2.4 0 0 -9.9 104.9 677.3 cm
+/R239 Do
+Q
+q
+8.8 0 0 -5.4 111.6 675 cm
+/R263 Do
+Q
+q
+6.8 0 0 -9.1 124.2 676.9 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 132.1 671.5 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 140.2 677.3 cm
+/R231 Do
+Q
+q
+5.1 0 0 -4.7 143.4 674.3 cm
+/R235 Do
+Q
+q
+2.4 0 0 -9.9 149.3 677.3 cm
+/R239 Do
+Q
+BT
+/R216 9.96264 Tf
+1 0 0 1 152.76 669.84 Tm
+(;) Tj
+ET
+q
+6.8 0 0 -9.1 70.2 665.1 cm
+/R223 Do
+Q
+endstream
+endobj
+270 0 obj
+1039
+endobj
+271 0 obj
+<< /Type /XObject /Name /R271 /Subtype /Image /Length 272 0 R
+/ImageMask true /Width 43 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 43 /BlackIs1 true >>]
+>>
+stream
+8»Å˛ÉAÙN˛Í√¯oÔ˛€mˇ√˜¸oÌˇ˚ªø‰÷ˇ√¯v√ˇ˜€∞æ˝…¿5±Ü*”V`†  
+endstream
+endobj
+272 0 obj
+58
+endobj
+273 0 obj
+<< /Length 274 0 R >>
+stream
+q
+4.3 0 0 -3.3 78.1 664.7 cm
+/R271 Do
+Q
+endstream
+endobj
+274 0 obj
+40
+endobj
+275 0 obj
+<< /Type /XObject /Name /R275 /Subtype /Image /Length 276 0 R
+/ImageMask true /Width 28 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 28 /BlackIs1 true >>]
+>>
+stream
+3¡¢\∑ÑH:Aæ¸0“√øˇ»0yú˘)á»oÓ√m˝ﬂ{°àVßQ`  
+endstream
+endobj
+276 0 obj
+49
+endobj
+277 0 obj
+<< /Length 278 0 R >>
+stream
+q
+2.8 0 0 -3.3 83.1 664.7 cm
+/R275 Do
+Q
+endstream
+endobj
+278 0 obj
+40
+endobj
+279 0 obj
+<< /Type /XObject /Name /R279 /Subtype /Image /Length 280 0 R
+/ImageMask true /Width 51 /Height 33 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 51 /BlackIs1 true >>]
+>>
+stream
+:–O…¡¬âsD∏:«z<%M˜á¸?ˇøø¯l6ﬂˇ˚˚›˜Úk0ˇˇá√∞ˆÎø∑ˇÎ}´{ÏW∞öjÄ Ä
+endstream
+endobj
+280 0 obj
+66
+endobj
+281 0 obj
+<< /Length 282 0 R >>
+stream
+q
+5.1 0 0 -3.3 86.7 664.7 cm
+/R279 Do
+Q
+q
+6.3 0 0 -3.3 78.1 658.5 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 93.8 665.5 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 96.9 662.5 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 102.3 665.5 cm
+/R239 Do
+Q
+q
+8.8 0 0 -5.4 109.1 663.2 cm
+/R263 Do
+Q
+endstream
+endobj
+282 0 obj
+242
+endobj
+283 0 obj
+<< /Type /XObject /Name /R283 /Subtype /Image /Length 284 0 R
+/ImageMask true /Width 44 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 44 /BlackIs1 true >>]
+>>
+stream
+$	‡à.0»∫≠–AáIæ	áV˝¬∑¶ˇ√¯{æ˛ˇﬂ¯w·˝˛ˇ~˜wÔˆ‘0Í˝∫∂ªÌ•W©¡ë‡  
+endstream
+endobj
+284 0 obj
+67
+endobj
+285 0 obj
+<< /Length 286 0 R >>
+stream
+q
+4.4 0 0 -4.7 121.6 662.5 cm
+/R283 Do
+Q
+q
+6.3 0 0 -3.3 126.4 659.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 134.7 665.5 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 137.8 662.5 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 143.2 665.5 cm
+/R239 Do
+Q
+endstream
+endobj
+286 0 obj
+205
+endobj
+287 0 obj
+<< /Type /XObject /Name /R287 /Subtype /Image /Length 288 0 R
+/ImageMask true /Width 66 /Height 66 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 66 /BlackIs1 true >>]
+>>
+stream
+#wßˇˇˇˇˇˇˇˇˇˇóO⁄ë£ˇˇˇˇˇˇˇˇˇˇ˚P 
+endstream
+endobj
+288 0 obj
+36
+endobj
+289 0 obj
+<< /Length 290 0 R >>
+stream
+q
+6.6 0 0 -6.6 149.4 663.8 cm
+/R287 Do
+Q
+BT
+1 0 0 1 158.88 657.96 Tm
+(min) Tj
+ET
+q
+5.1 0 0 -3.3 174.7 659.6 cm
+/R279 Do
+Q
+q
+6.8 0 0 -9.1 181.2 665.1 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 189.1 659.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 197.1 665.5 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 200.2 662.5 cm
+/R243 Do
+Q
+q
+1.3 0 0 -3.1 206 659.1 cm
+/R251 Do
+Q
+q
+6.6 0 0 -4.7 209.8 662.5 cm
+/R247 Do
+Q
+q
+2.4 0 0 -9.9 217.4 665.5 cm
+/R239 Do
+Q
+BT
+1 0 0 1 220.8 657.96 Tm
+(;) Tj
+ET
+q
+6.8 0 0 -9.1 70.2 653.1 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 78.1 647.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 86.2 653.5 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 89.4 650.5 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 94.7 653.5 cm
+/R239 Do
+Q
+q
+8.8 0 0 -5.4 101.5 651.2 cm
+/R263 Do
+Q
+q
+6.8 0 0 -9.1 114.2 653.1 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 122 647.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 130.1 653.5 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 133.3 650.5 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 138.6 653.5 cm
+/R239 Do
+Q
+q
+6.6 0 0 -6.6 144.9 651.8 cm
+/R287 Do
+Q
+endstream
+endobj
+290 0 obj
+929
+endobj
+291 0 obj
+<< /Type /XObject /Name /R291 /Subtype /Image /Length 292 0 R
+/ImageMask true /Width 56 /Height 47 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 56 /BlackIs1 true >>]
+>>
+stream
+$%À@¡8",»ß#aØAÇÈ˝˜¬˛¨P˛Ùˇˇ˝ÓˇÔ»£º?˚pˇ˜˝Ô√øÔﬂÔæˇ˜m.{ﬂÌ’∂ì⁄Ì¯0`Ç§@/ÑQ¿ @
+endstream
+endobj
+292 0 obj
+90
+endobj
+293 0 obj
+<< /Length 294 0 R >>
+stream
+q
+5.6 0 0 -4.7 154.6 650.5 cm
+/R291 Do
+Q
+q
+2.4 0 0 -9.9 161.6 653.5 cm
+/R231 Do
+Q
+q
+6.8 0 0 -9.1 164.9 653.1 cm
+/R223 Do
+Q
+q
+4.3 0 0 -3.3 172.7 652.7 cm
+/R271 Do
+Q
+q
+2.8 0 0 -3.3 177.8 652.7 cm
+/R275 Do
+Q
+q
+5.1 0 0 -3.3 181.4 652.7 cm
+/R279 Do
+Q
+q
+6.3 0 0 -3.3 172.7 646.5 cm
+/R227 Do
+Q
+endstream
+endobj
+294 0 obj
+287
+endobj
+295 0 obj
+<< /Type /XObject /Name /R295 /Subtype /Image /Length 296 0 R
+/ImageMask true /Width 61 /Height 6 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 61 /BlackIs1 true >>]
+>>
+stream
+#Å_ßÌ@ @
+endstream
+endobj
+296 0 obj
+10
+endobj
+297 0 obj
+<< /Length 298 0 R >>
+stream
+q
+6.1 0 0 -0.6 190.6 648.8 cm
+/R295 Do
+Q
+q
+6.8 0 0 -9.1 200.2 653.1 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 208 647.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 215.7 653.5 cm
+/R239 Do
+Q
+BT
+1 0 0 1 219.12 645.96 Tm
+(;) Tj
+/R213 9.96264 Tf
+1 0 0 1 69.84 633.96 Tm
+(if) Tj
+/R216 9.96264 Tf
+1 0 0 1 79.44 633.96 Tm
+(satis\256ed\() Tj
+ET
+endstream
+endobj
+298 0 obj
+309
+endobj
+299 0 obj
+<< /Type /XObject /Name /R299 /Subtype /Image /Length 300 0 R
+/ImageMask true /Width 51 /Height 74 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 51 /BlackIs1 true >>]
+>>
+stream
+$B‡Å–tba·oM÷Ø∑ÑıÙ˚Ô«_ˇˇ˛ˇÔ˚ˇ∏ÔÔæB;pˇvÔÿnˇÏ6øˆÓ{ˆ˚·‡⁄≤'CÏd6a© 
+endstream
+endobj
+300 0 obj
+85
+endobj
+301 0 obj
+<< /Length 302 0 R >>
+stream
+q
+5.1 0 0 -7.4 115.5 641.1 cm
+/R299 Do
+Q
+endstream
+endobj
+302 0 obj
+41
+endobj
+303 0 obj
+<< /Type /XObject /Name /R303 /Subtype /Image /Length 304 0 R
+/ImageMask true /Width 36 /Height 50 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 36 /BlackIs1 true >>]
+>>
+stream
+>DÂ¯ aD¯4IıæÙ≈0Í>Éˇ˚mˇˇ·ˇ˝ˇÔ}˛˜Ôˆ˚ø·¥˜ÿ0∞ƒ±ˆ∏5q˝ˇøﬂ˜Ú»¿ @
+endstream
+endobj
+304 0 obj
+67
+endobj
+305 0 obj
+<< /Length 306 0 R >>
+stream
+q
+3.6 0 0 -5 121.7 642.4 cm
+/R303 Do
+Q
+q
+6.3 0 0 -3.3 121 634.5 cm
+/R227 Do
+Q
+BT
+1 0 0 1 128.28 633.96 Tm
+(\)) Tj
+/R213 9.96264 Tf
+1 0 0 1 135 633.96 Tm
+(then) Tj
+1 0 0 1 157.32 633.96 Tm
+(r) Tj
+1 0 0 1 161.64 633.96 Tm
+(eturn) Tj
+/R216 9.96264 Tf
+1 0 0 1 184.92 633.96 Tm
+(;) Tj
+/R213 9.96264 Tf
+1 0 0 1 191.04 633.96 Tm
+(end) Tj
+1 0 0 1 69.84 621.96 Tm
+(if) Tj
+/R216 9.96264 Tf
+1 0 0 1 79.44 621.96 Tm
+(\() Tj
+ET
+q
+8.1 0 0 -4.7 83 626.5 cm
+/R219 Do
+Q
+BT
+1 0 0 1 91.5599 621.96 Tm
+(,) Tj
+ET
+q
+6.8 0 0 -9.1 97.8 629.1 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 105.7 623.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 113.8 629.5 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 117 626.5 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 122.3 629.5 cm
+/R239 Do
+Q
+BT
+1 0 0 1 125.76 621.96 Tm
+(\)) Tj
+1 0 0 1 132.72 621.96 Tm
+(is) Tj
+1 0 0 1 142.8 621.96 Tm
+(in) Tj
+1 0 0 1 154.08 621.96 Tm
+(transmit) Tj
+1 0 0 1 190.2 621.96 Tm
+(queue) Tj
+1 0 0 1 217.44 621.96 Tm
+(and) Tj
+ET
+q
+6.8 0 0 -9.1 235.7 629.1 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 243.5 623.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 251.7 629.5 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 254.8 626.5 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 260.2 629.5 cm
+/R239 Do
+Q
+endstream
+endobj
+306 0 obj
+1111
+endobj
+307 0 obj
+<< /Type /XObject /Name /R307 /Subtype /Image /Length 308 0 R
+/ImageMask true /Width 61 /Height 60 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 61 /BlackIs1 true >>]
+>>
+stream
+#ùáÉº0‡¡·¡á<p¡·¡á<p¡·¡á<p¡·¡á8x7ÇÑ°Ö PXABÖ PXABÖ PXABÖ PZÖfZ 
+endstream
+endobj
+308 0 obj
+89
+endobj
+309 0 obj
+<< /Length 310 0 R >>
+stream
+q
+6.1 0 0 -6 267.3 627.5 cm
+/R307 Do
+Q
+q
+6.8 0 0 -9.1 277.4 629.1 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 285.2 623.6 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 293.3 629.5 cm
+/R231 Do
+Q
+q
+5.1 0 0 -4.7 296.5 626.5 cm
+/R235 Do
+Q
+q
+2.4 0 0 -9.9 302.4 629.5 cm
+/R239 Do
+Q
+BT
+1 0 0 1 305.88 621.96 Tm
+(,) Tj
+/R213 9.96264 Tf
+1 0 0 1 69.84 609.96 Tm
+(then) Tj
+/R216 9.96264 Tf
+1 0 0 1 92.16 609.96 Tm
+(remove) Tj
+ET
+q
+8.1 0 0 -4.7 125.7 614.5 cm
+/R219 Do
+Q
+BT
+1 0 0 1 134.28 609.96 Tm
+(;) Tj
+/R213 9.96264 Tf
+1 0 0 1 140.52 609.96 Tm
+(r) Tj
+1 0 0 1 144.84 609.96 Tm
+(eturn) Tj
+/R216 9.96264 Tf
+1 0 0 1 168.12 609.96 Tm
+(;) Tj
+/R213 9.96264 Tf
+1 0 0 1 174.24 609.96 Tm
+(end) Tj
+1 0 0 1 69.84 598.08 Tm
+(if) Tj
+ET
+q
+2.4 0 0 -9.9 80.3 605.6 cm
+/R231 Do
+Q
+q
+2.4 0 0 -9.9 84.2 605.6 cm
+/R231 Do
+Q
+q
+6.8 0 0 -9.1 87.5 605.2 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 95.3 599.7 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 103.5 605.6 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 106.6 602.6 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 112 605.6 cm
+/R239 Do
+Q
+q
+6.1 0 0 -0.6 118.6 600.9 cm
+/R295 Do
+Q
+q
+6.8 0 0 -9.1 128.2 605.2 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 136 599.7 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 144.1 605.6 cm
+/R231 Do
+Q
+q
+5.1 0 0 -4.7 147.2 602.6 cm
+/R235 Do
+Q
+q
+2.4 0 0 -9.9 153.2 605.6 cm
+/R239 Do
+Q
+q
+2.4 0 0 -9.9 157 605.6 cm
+/R239 Do
+Q
+endstream
+endobj
+310 0 obj
+1246
+endobj
+311 0 obj
+<< /Type /XObject /Name /R311 /Subtype /Image /Length 312 0 R
+/ImageMask true /Width 61 /Height 60 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 61 /BlackIs1 true >>]
+>>
+stream
++	Ö®@†ÇÖÑ
+,(@†ÇÖÑ
+,(@†ÇÖÑ
+,(@†ÇÖÑ
+XT‡Ï8a√√pa√√pa√√pa√√Ä Ä
+endstream
+endobj
+312 0 obj
+89
+endobj
+313 0 obj
+<< /Length 314 0 R >>
+stream
+q
+6.1 0 0 -6 164.1 603.6 cm
+/R311 Do
+Q
+endstream
+endobj
+314 0 obj
+39
+endobj
+315 0 obj
+<< /Type /XObject /Name /R315 /Subtype /Image /Length 316 0 R
+/ImageMask true /Width 67 /Height 69 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 67 /BlackIs1 true >>]
+>>
+stream
+#Ü∑Û®xkﬂﬂ·ˇ˜˝˛ˇøﬂ˜ﬂ˜¯√˝…≠ï˛ˇ˝ﬂ˛√˛·ˇwˇﬂ›˝ﬂ˛ﬂ·∫ÔMÉÜ#ﬂ¿ @
+endstream
+endobj
+316 0 obj
+64
+endobj
+317 0 obj
+<< /Length 318 0 R >>
+stream
+q
+6.7 0 0 -6.9 174 605 cm
+/R315 Do
+Q
+q
+2.4 0 0 -9.9 181.5 605.6 cm
+/R239 Do
+Q
+BT
+1 0 0 1 80.4 586.08 Tm
+(br) Tj
+1 0 0 1 90.2399 586.08 Tm
+(oadcast) Tj
+ET
+q
+3 0 0 -0.48 123.108 586.548 cm
+BI
+/IM true /W 1 /H 1 /BPC 1
+ID  
+EI
+Q
+BT
+1 0 0 1 125.76 586.08 Tm
+(message) Tj
+/R216 9.96264 Tf
+1 0 0 1 160.68 586.08 Tm
+(\() Tj
+ET
+q
+8.1 0 0 -4.7 164.2 590.6 cm
+/R219 Do
+Q
+BT
+1 0 0 1 172.8 586.08 Tm
+(,) Tj
+ET
+q
+6.8 0 0 -9.1 179.1 593.2 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 186.9 587.7 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 195.1 593.6 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 198.2 590.6 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 203.6 593.6 cm
+/R239 Do
+Q
+BT
+1 0 0 1 207 586.08 Tm
+(\)) Tj
+1 0 0 1 213.84 586.08 Tm
+(to) Tj
+1 0 0 1 225.12 586.08 Tm
+(all) Tj
+1 0 0 1 238.56 586.08 Tm
+(neighbors) Tj
+1 0 0 1 90.84 574.08 Tm
+(after) Tj
+ET
+endstream
+endobj
+318 0 obj
+781
+endobj
+319 0 obj
+<< /Type /XObject /Name /R319 /Subtype /Image /Length 320 0 R
+/ImageMask true /Width 47 /Height 72 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 47 /BlackIs1 true >>]
+>>
+stream
+0»1˛<4N√Îw√≠ˇﬁ˜Ôˇﬂwˇ∏{˚ˇÿ_„zÎ“⁄Ú‡êƒCò˜a‰Qﬂ∂ÓŸ˝ßÿa∂Ôª~ÿ~˚aæ√j·√ƒ.[¯√ˇáÔ˛Ô˛˝ˇ‹–ˇ˘¨X Ä
+endstream
+endobj
+320 0 obj
+97
+endobj
+321 0 obj
+<< /Length 322 0 R >>
+stream
+q
+4.7 0 0 -7.2 113 581.1 cm
+/R319 Do
+Q
+q
+2.4 0 0 -9.9 119 581.6 cm
+/R231 Do
+Q
+q
+6.8 0 0 -9.1 122.3 581.2 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 130.1 575.7 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 138.3 581.6 cm
+/R231 Do
+Q
+q
+4.4 0 0 -4.7 141.4 578.6 cm
+/R243 Do
+Q
+q
+2.4 0 0 -9.9 146.8 581.6 cm
+/R239 Do
+Q
+q
+6.1 0 0 -0.6 153.3 576.9 cm
+/R295 Do
+Q
+q
+6.8 0 0 -9.1 162.9 581.2 cm
+/R223 Do
+Q
+q
+6.3 0 0 -3.3 170.7 575.7 cm
+/R227 Do
+Q
+q
+2.4 0 0 -9.9 178.9 581.6 cm
+/R231 Do
+Q
+q
+5.1 0 0 -4.7 182 578.6 cm
+/R235 Do
+Q
+q
+2.4 0 0 -9.9 188 581.6 cm
+/R239 Do
+Q
+q
+2.4 0 0 -9.9 191.8 581.6 cm
+/R239 Do
+Q
+q
+6.6 0 0 -6.6 197.9 579.9 cm
+/R287 Do
+Q
+endstream
+endobj
+322 0 obj
+607
+endobj
+323 0 obj
+<< /Type /XObject /Name /R323 /Subtype /Image /Length 324 0 R
+/ImageMask true /Width 42 /Height 74 /BitsPerComponent 1 /Decode [1 0] /Filter [/CCITTFaxDecode] /DecodeParms [<< /K -1 /Columns 42 /BlackIs1 true >>]
+>>
+stream
+$‡àa8"?uáIáIº'ÔJ˝¬á˜˝?áøøøˇ˚˚áˇá˛Îæ˝˝˚[ﬂz∞÷ﬂ∞∂Aé¬áêa=/™XPøZÆææ◊:æ{O‹,`’ê~)( Ä
+endstream
+endobj
+324 0 obj
+87
+endobj
+325 0 obj
+<< /Length 326 0 R >>
+stream
+q
+4.2 0 0 -7.4 207.7 581.3 cm
+/R323 Do
+Q
+BT
+1 0 0 1 215.76 574.08 Tm
+(time) Tj
+1 0 0 1 236.88 574.08 Tm
+(units;) Tj
+/R213 9.96264 Tf
+1 0 0 1 69.84 562.2 Tm
+(end) Tj
+1 0 0 1 59.4 550.2 Tm
+(end) Tj
+/R216 7.97011 Tf
+1 0 0 1 92.76 526.32 Tm
+(Fig.) Tj
+1 0 0 1 108.24 526.32 Tm
+(2.) Tj
+1 0 0 1 122.52 526.32 Tm
+(Constrained-\257ooding) Tj
+1 0 0 1 193.08 526.32 Tm
+(strategy) Tj
+1 0 0 1 221.039 526.32 Tm
+(for) Tj
+1 0 0 1 233.159 526.32 Tm
+(MCBR) Tj
+/R216 9.96264 Tf
+1 0 0 1 48.96 493.2 Tm
+(minimum) Tj
+1 0 0 1 91.1999 493.2 Tm
+(value) Tj
+1 0 0 1 116.28 493.2 Tm
+(of) Tj
+ET
+q
+4.4 0 0 -4.7 128.3 497.7 cm
+/R283 Do
+Q
+BT
+1 0 0 1 136.32 493.2 Tm
+(over) Tj
+1 0 0 1 157.56 493.2 Tm
+(the) Tj
+1 0 0 1 173.28 493.2 Tm
+(network.) Tj
+1 0 0 1 58.92 481.32 Tm
+(V) Tj
+1 0 0 1 65.04 481.32 Tm
+(ariations) Tj
+1 0 0 1 102.84 481.32 Tm
+(in) Tj
+1 0 0 1 114.12 481.32 Tm
+(this) Tj
+1 0 0 1 132.12 481.32 Tm
+(framework) Tj
+1 0 0 1 179.28 481.32 Tm
+(include) Tj
+1 0 0 1 212.16 481.32 Tm
+(probabilistic) Tj
+1 0 0 1 265.559 481.32 Tm
+(node) Tj
+1 0 0 1 288.359 481.32 Tm
+(se-) Tj
+1 0 0 1 48.96 469.32 Tm
+(lection,) Tj
+1 0 0 1 81.7199 469.32 Tm
+(adaptive) Tj
+1 0 0 1 118.56 469.32 Tm
+(learning) Tj
+1 0 0 1 154.32 469.32 Tm
+(rates,) Tj
+1 0 0 1 178.68 469.32 Tm
+(and) Tj
+1 0 0 1 196.199 469.32 Tm
+(forward) Tj
+1 0 0 1 230.759 469.32 Tm
+(update) Tj
+1 0 0 1 260.399 469.32 Tm
+(estimates.) Tj
+ET
+endstream
+endobj
+326 0 obj
+1357
+endobj
+327 0 obj
+<< /Type /Font /Name /R327 /Subtype /Type1 /BaseFont /Times-Italic >>
+endobj
+328 0 obj
+<< /Length 329 0 R >>
+stream
+BT
+/R327 9.96264 Tf
+1 0 0 1 48.96 451.2 Tm
+(C.) Tj
+1 0 0 1 63.12 451.2 Tm
+(Constrained-\257ooding) Tj
+1 0 0 1 151.8 451.2 Tm
+(strategies) Tj
+/R216 9.96264 Tf
+1 0 0 1 58.92 436.2 Tm
+(In) Tj
+1 0 0 1 71.16 436.2 Tm
+(contrast) Tj
+1 0 0 1 106.68 436.2 Tm
+(to) Tj
+1 0 0 1 118.44 436.2 Tm
+(the) Tj
+1 0 0 1 134.52 436.2 Tm
+(search-based) Tj
+1 0 0 1 189.96 436.2 Tm
+(methods,) Tj
+1 0 0 1 230.16 436.2 Tm
+(where) Tj
+1 0 0 1 258.479 436.2 Tm
+(each) Tj
+1 0 0 1 280.679 436.2 Tm
+(node) Tj
+1 0 0 1 48.96 424.2 Tm
+(decides) Tj
+1 0 0 1 82.6799 424.2 Tm
+(which) Tj
+1 0 0 1 110.76 424.2 Tm
+(of) Tj
+1 0 0 1 122.88 424.2 Tm
+(the) Tj
+1 0 0 1 138.84 424.2 Tm
+(neighboring) Tj
+1 0 0 1 190.8 424.2 Tm
+(nodes) Tj
+1 0 0 1 217.799 424.2 Tm
+(to) Tj
+1 0 0 1 229.319 424.2 Tm
+(forward) Tj
+1 0 0 1 264.719 424.2 Tm
+(the) Tj
+1 0 0 1 280.679 424.2 Tm
+(mes-) Tj
+1 0 0 1 48.96 412.2 Tm
+(sage) Tj
+1 0 0 1 71.64 412.2 Tm
+(to,) Tj
+1 0 0 1 86.7599 412.2 Tm
+(\257ooding-based) Tj
+1 0 0 1 150.84 412.2 Tm
+(strategies) Tj
+1 0 0 1 193.44 412.2 Tm
+(decide) Tj
+1 0 0 1 224.4 412.2 Tm
+(whether) Tj
+1 0 0 1 261.359 412.2 Tm
+(or) Tj
+1 0 0 1 274.559 412.2 Tm
+(not) Tj
+1 0 0 1 292.319 412.2 Tm
+(to) Tj
+1 0 0 1 48.96 400.32 Tm
+(broadcast) Tj
+1 0 0 1 92.3999 400.32 Tm
+(at) Tj
+1 0 0 1 104.76 400.32 Tm
+(each) Tj
+1 0 0 1 128.28 400.32 Tm
+(node.) Tj
+1 0 0 1 155.4 400.32 Tm
+(Comparing) Tj
+1 0 0 1 205.44 400.32 Tm
+(to) Tj
+1 0 0 1 218.4 400.32 Tm
+(search-based) Tj
+1 0 0 1 275.159 400.32 Tm
+(strate-) Tj
+1 0 0 1 48.96 388.32 Tm
+(gies,) Tj
+1 0 0 1 73.08 388.32 Tm
+(\257ooding-based) Tj
+1 0 0 1 138 388.32 Tm
+(strategies) Tj
+1 0 0 1 181.2 388.32 Tm
+(are) Tj
+1 0 0 1 198.96 388.32 Tm
+(more) Tj
+1 0 0 1 225.12 388.32 Tm
+(robust) Tj
+1 0 0 1 255.599 388.32 Tm
+(to) Tj
+1 0 0 1 268.919 388.32 Tm
+(the) Tj
+1 0 0 1 286.679 388.32 Tm
+(dy-) Tj
+1 0 0 1 48.96 376.44 Tm
+(namic) Tj
+1 0 0 1 77.3999 376.44 Tm
+(changes) Tj
+1 0 0 1 113.64 376.44 Tm
+(of) Tj
+1 0 0 1 126 376.44 Tm
+(the) Tj
+1 0 0 1 142.2 376.44 Tm
+(network,) Tj
+1 0 0 1 181.44 376.44 Tm
+(do) Tj
+1 0 0 1 195.6 376.44 Tm
+(not) Tj
+1 0 0 1 212.4 376.44 Tm
+(require) Tj
+1 0 0 1 244.679 376.44 Tm
+(neighborhood) Tj
+1 0 0 1 48.96 364.44 Tm
+(management) Tj
+1 0 0 1 104.28 364.44 Tm
+(and) Tj
+1 0 0 1 123 364.44 Tm
+(work) Tj
+1 0 0 1 147.96 364.44 Tm
+(well) Tj
+1 0 0 1 169.44 364.44 Tm
+(without) Tj
+1 0 0 1 204.359 364.44 Tm
+(the) Tj
+1 0 0 1 220.919 364.44 Tm
+(symmetric) Tj
+1 0 0 1 267.359 364.44 Tm
+(network) Tj
+1 0 0 1 48.96 352.44 Tm
+(assumption.) Tj
+1 0 0 1 101.52 352.44 Tm
+(The) Tj
+1 0 0 1 121.56 352.44 Tm
+(drawbacks) Tj
+1 0 0 1 168.84 352.44 Tm
+(of) Tj
+1 0 0 1 181.8 352.44 Tm
+(the) Tj
+1 0 0 1 198.6 352.44 Tm
+(\257ooding-based) Tj
+1 0 0 1 262.439 352.44 Tm
+(strategies) Tj
+1 0 0 1 48.96 340.56 Tm
+(are) Tj
+1 0 0 1 64.44 340.56 Tm
+(the) Tj
+1 0 0 1 80.0399 340.56 Tm
+(message) Tj
+1 0 0 1 117.12 340.56 Tm
+(collision) Tj
+1 0 0 1 154.8 340.56 Tm
+(in) Tj
+1 0 0 1 165.96 340.56 Tm
+(dense) Tj
+1 0 0 1 192 340.56 Tm
+(networks) Tj
+1 0 0 1 231.839 340.56 Tm
+(and) Tj
+1 0 0 1 249.599 340.56 Tm
+(the) Tj
+1 0 0 1 265.199 340.56 Tm
+(potential) Tj
+1 0 0 1 48.96 328.56 Tm
+(lar) Tj
+1 0 0 1 59.4 328.56 Tm
+(ge) Tj
+1 0 0 1 72.2399 328.56 Tm
+(ener) Tj
+1 0 0 1 89.3999 328.56 Tm
+(gy) Tj
+1 0 0 1 102.6 328.56 Tm
+(consumption) Tj
+1 0 0 1 157.56 328.56 Tm
+(if) Tj
+1 0 0 1 167.16 328.56 Tm
+(the) Tj
+1 0 0 1 182.76 328.56 Tm
+(\257ooding) Tj
+1 0 0 1 219.479 328.56 Tm
+(is) Tj
+1 0 0 1 229.679 328.56 Tm
+(not) Tj
+1 0 0 1 245.879 328.56 Tm
+(controlled.) Tj
+1 0 0 1 58.92 316.68 Tm
+(A) Tj
+1 0 0 1 69.84 316.68 Tm
+(couple) Tj
+1 0 0 1 100.08 316.68 Tm
+(of) Tj
+1 0 0 1 112.08 316.68 Tm
+(gradient-\257ooding) Tj
+1 0 0 1 185.04 316.68 Tm
+(type) Tj
+1 0 0 1 205.92 316.68 Tm
+(of) Tj
+1 0 0 1 217.92 316.68 Tm
+(strategies) Tj
+1 0 0 1 259.199 316.68 Tm
+(are) Tj
+1 0 0 1 275.159 316.68 Tm
+(devel-) Tj
+1 0 0 1 48.96 304.68 Tm
+(oped) Tj
+1 0 0 1 71.28 304.68 Tm
+([13) Tj
+1 0 0 1 84.5999 304.68 Tm
+(];) Tj
+1 0 0 1 93.5998 304.68 Tm
+(all) Tj
+1 0 0 1 106.56 304.68 Tm
+(requiring) Tj
+1 0 0 1 146.04 304.68 Tm
+(a) Tj
+1 0 0 1 153.48 304.68 Tm
+(cost) Tj
+1 0 0 1 172.44 304.68 Tm
+(\256eld) Tj
+1 0 0 1 193.079 304.68 Tm
+(be) Tj
+1 0 0 1 205.439 304.68 Tm
+(established) Tj
+1 0 0 1 252.719 304.68 Tm
+(beforehand.) Tj
+1 0 0 1 48.96 292.8 Tm
+(W) Tj
+1 0 0 1 57.48 292.8 Tm
+(e) Tj
+1 0 0 1 64.56 292.8 Tm
+(propose) Tj
+1 0 0 1 98.7599 292.8 Tm
+(a) Tj
+1 0 0 1 105.84 292.8 Tm
+(constrained-\257ooding) Tj
+1 0 0 1 190.92 292.8 Tm
+(framework,) Tj
+1 0 0 1 239.759 292.8 Tm
+(where) Tj
+1 0 0 1 266.639 292.8 Tm
+(the) Tj
+1 0 0 1 281.519 292.8 Tm
+(cost,) Tj
+1 0 0 1 48.96 280.8 Tm
+(i.e.,) Tj
+1 0 0 1 68.16 280.8 Tm
+(the) Tj
+1 0 0 1 84.9599 280.8 Tm
+(objective,) Tj
+1 0 0 1 128.52 280.8 Tm
+(can) Tj
+1 0 0 1 147 280.8 Tm
+(be) Tj
+1 0 0 1 161.04 280.8 Tm
+(learned) Tj
+1 0 0 1 194.88 280.8 Tm
+(if) Tj
+1 0 0 1 205.56 280.8 Tm
+(not) Tj
+1 0 0 1 222.839 280.8 Tm
+(known) Tj
+1 0 0 1 254.639 280.8 Tm
+(at) Tj
+1 0 0 1 266.399 280.8 Tm
+(a) Tj
+1 0 0 1 275.399 280.8 Tm
+(priori.) Tj
+1 0 0 1 48.96 268.92 Tm
+(Figure) Tj
+1 0 0 1 77.6399 268.92 Tm
+(2) Tj
+1 0 0 1 85.3199 268.92 Tm
+(illustrates) Tj
+1 0 0 1 126.84 268.92 Tm
+(the) Tj
+1 0 0 1 141.72 268.92 Tm
+(basic) Tj
+1 0 0 1 164.88 268.92 Tm
+(idea.) Tj
+1 0 0 1 186.72 268.92 Tm
+(Like) Tj
+1 0 0 1 207.599 268.92 Tm
+(other) Tj
+1 0 0 1 230.879 268.92 Tm
+(gradient-\257ooding) Tj
+1 0 0 1 48.96 256.92 Tm
+(routing) Tj
+1 0 0 1 82.1999 256.92 Tm
+(protocols) Tj
+1 0 0 1 123.84 256.92 Tm
+([13) Tj
+1 0 0 1 137.16 256.92 Tm
+(],) Tj
+1 0 0 1 147.48 256.92 Tm
+(the) Tj
+1 0 0 1 164.16 256.92 Tm
+(cost) Tj
+1 0 0 1 184.68 256.92 Tm
+(is) Tj
+1 0 0 1 195.84 256.92 Tm
+(transmitted) Tj
+1 0 0 1 245.159 256.92 Tm
+(together) Tj
+1 0 0 1 282.359 256.92 Tm
+(with) Tj
+1 0 0 1 48.96 244.92 Tm
+(the) Tj
+1 0 0 1 65.88 244.92 Tm
+(message.) Tj
+1 0 0 1 106.92 244.92 Tm
+(In) Tj
+1 0 0 1 120.12 244.92 Tm
+(addition,) Tj
+1 0 0 1 159.96 244.92 Tm
+(the) Tj
+1 0 0 1 177 244.92 Tm
+(cost) Tj
+1 0 0 1 197.88 244.92 Tm
+(at) Tj
+1 0 0 1 209.879 244.92 Tm
+(each) Tj
+1 0 0 1 232.919 244.92 Tm
+(node) Tj
+1 0 0 1 257.039 244.92 Tm
+(is) Tj
+1 0 0 1 268.439 244.92 Tm
+(updated) Tj
+1 0 0 1 48.96 233.04 Tm
+(every) Tj
+1 0 0 1 74.6399 233.04 Tm
+(time) Tj
+1 0 0 1 95.8799 233.04 Tm
+(a) Tj
+1 0 0 1 103.8 233.04 Tm
+(message) Tj
+1 0 0 1 141.12 233.04 Tm
+(is) Tj
+1 0 0 1 151.32 233.04 Tm
+(arrived.) Tj
+1 0 0 1 185.52 233.04 Tm
+(The) Tj
+1 0 0 1 204.6 233.04 Tm
+(update) Tj
+1 0 0 1 234.599 233.04 Tm
+(rule) Tj
+1 0 0 1 253.679 233.04 Tm
+(is) Tj
+1 0 0 1 263.879 233.04 Tm
+(the) Tj
+1 0 0 1 279.599 233.04 Tm
+(same) Tj
+1 0 0 1 48.96 221.04 Tm
+(as) Tj
+1 0 0 1 61.2 221.04 Tm
+(the) Tj
+1 0 0 1 77.2799 221.04 Tm
+(search-based) Tj
+1 0 0 1 132.6 221.04 Tm
+(strategies.) Tj
+1 0 0 1 176.64 221.04 Tm
+(T) Tj
+1 0 0 1 182.04 221.04 Tm
+(wo) Tj
+1 0 0 1 198.12 221.04 Tm
+(techniques) Tj
+1 0 0 1 244.679 221.04 Tm
+(are) Tj
+1 0 0 1 260.759 221.04 Tm
+(used) Tj
+1 0 0 1 282.839 221.04 Tm
+(here) Tj
+1 0 0 1 48.96 209.04 Tm
+(to) Tj
+1 0 0 1 60.12 209.04 Tm
+(control) Tj
+1 0 0 1 91.7999 209.04 Tm
+(the) Tj
+1 0 0 1 107.52 209.04 Tm
+(\257ood,) Tj
+1 0 0 1 133.92 209.04 Tm
+(\(1\)) Tj
+1 0 0 1 149.04 209.04 Tm
+(cost) Tj
+1 0 0 1 168.48 209.04 Tm
+(dif) Tj
+1 0 0 1 179.4 209.04 Tm
+(ference:) Tj
+1 0 0 1 214.919 209.04 Tm
+(if) Tj
+1 0 0 1 224.399 209.04 Tm
+(the) Tj
+1 0 0 1 239.999 209.04 Tm
+(receiving) Tj
+1 0 0 1 280.559 209.04 Tm
+(node) Tj
+1 0 0 1 48.96 197.16 Tm
+(estimates) Tj
+1 0 0 1 88.9199 197.16 Tm
+(a) Tj
+1 0 0 1 96.2398 197.16 Tm
+(lot) Tj
+1 0 0 1 109.68 197.16 Tm
+(more) Tj
+1 0 0 1 132.96 197.16 Tm
+(cost) Tj
+1 0 0 1 151.92 197.16 Tm
+(than) Tj
+1 0 0 1 171.96 197.16 Tm
+(the) Tj
+1 0 0 1 187.079 197.16 Tm
+(transmitting) Tj
+1 0 0 1 238.079 197.16 Tm
+(node,) Tj
+1 0 0 1 262.799 197.16 Tm
+(no) Tj
+1 0 0 1 275.639 197.16 Tm
+(action) Tj
+1 0 0 1 48.96 185.16 Tm
+(is) Tj
+1 0 0 1 58.32 185.16 Tm
+(taken,) Tj
+1 0 0 1 85.0799 185.16 Tm
+(except) Tj
+1 0 0 1 113.76 185.16 Tm
+(updating) Tj
+1 0 0 1 151.44 185.16 Tm
+(its) Tj
+1 0 0 1 163.56 185.16 Tm
+(cost) Tj
+1 0 0 1 182.28 185.16 Tm
+(\256eld,) Tj
+1 0 0 1 205.2 185.16 Tm
+(\(2\)) Tj
+1 0 0 1 219.48 185.16 Tm
+(time) Tj
+1 0 0 1 239.999 185.16 Tm
+(dif) Tj
+1 0 0 1 250.919 185.16 Tm
+(ference:) Tj
+1 0 0 1 285.599 185.16 Tm
+(add) Tj
+1 0 0 1 48.96 173.28 Tm
+(transmit) Tj
+1 0 0 1 85.5599 173.28 Tm
+(time) Tj
+1 0 0 1 107.16 173.28 Tm
+(dif) Tj
+1 0 0 1 118.08 173.28 Tm
+(ference) Tj
+1 0 0 1 151.2 173.28 Tm
+(to) Tj
+1 0 0 1 162.84 173.28 Tm
+(the) Tj
+1 0 0 1 178.92 173.28 Tm
+(broadcast,) Tj
+1 0 0 1 223.439 173.28 Tm
+(so) Tj
+1 0 0 1 236.279 173.28 Tm
+(that) Tj
+1 0 0 1 255.119 173.28 Tm
+(nodes) Tj
+1 0 0 1 282.239 173.28 Tm
+(with) Tj
+1 0 0 1 48.96 161.28 Tm
+(better) Tj
+1 0 0 1 76.2 161.28 Tm
+(estimates) Tj
+1 0 0 1 117.96 161.28 Tm
+(transmit) Tj
+1 0 0 1 155.16 161.28 Tm
+(\256rst,) Tj
+1 0 0 1 177.72 161.28 Tm
+(while) Tj
+1 0 0 1 204.48 161.28 Tm
+(duplicate) Tj
+1 0 0 1 245.639 161.28 Tm
+(messages) Tj
+1 0 0 1 287.879 161.28 Tm
+(are) Tj
+1 0 0 1 48.96 149.28 Tm
+(suppressed.) Tj
+1 0 0 1 58.92 137.4 Tm
+(V) Tj
+1 0 0 1 65.04 137.4 Tm
+(ariations) Tj
+1 0 0 1 104.64 137.4 Tm
+(in) Tj
+1 0 0 1 117.84 137.4 Tm
+(this) Tj
+1 0 0 1 137.52 137.4 Tm
+(framework) Tj
+1 0 0 1 186.6 137.4 Tm
+(include) Tj
+1 0 0 1 221.28 137.4 Tm
+(adaptive) Tj
+1 0 0 1 260.399 137.4 Tm
+(threshold,) Tj
+1 0 0 1 48.96 125.52 Tm
+(adaptive) Tj
+1 0 0 1 87.9599 125.52 Tm
+(learning) Tj
+1 0 0 1 125.76 125.52 Tm
+(rates,) Tj
+1 0 0 1 152.28 125.52 Tm
+(adaptive) Tj
+1 0 0 1 191.16 125.52 Tm
+(time) Tj
+1 0 0 1 214.079 125.52 Tm
+(delay) Tj
+1 0 0 1 240.839 125.52 Tm
+(constants,) Tj
+1 0 0 1 285.599 125.52 Tm
+(and) Tj
+1 0 0 1 48.96 113.52 Tm
+(probabilistic) Tj
+1 0 0 1 102.24 113.52 Tm
+(decision) Tj
+1 0 0 1 138.96 113.52 Tm
+(making.) Tj
+1 0 0 1 136.8 95.4 Tm
+(I) Tj
+1 0 0 1 140.64 95.4 Tm
+(V) Tj
+1 0 0 1 147 95.4 Tm
+(.) Tj
+1 0 0 1 155.04 95.4 Tm
+(C) Tj
+/R216 7.97011 Tf
+1 0 0 1 162.12 95.4 Tm
+(O) Tj
+1 0 0 1 168.36 95.4 Tm
+(N) Tj
+1 0 0 1 174.6 95.4 Tm
+(C) Tj
+1 0 0 1 180.36 95.4 Tm
+(L) Tj
+1 0 0 1 185.76 95.4 Tm
+(U) Tj
+1 0 0 1 192 95.4 Tm
+(S) Tj
+1 0 0 1 196.92 95.4 Tm
+(I) Tj
+1 0 0 1 200.04 95.4 Tm
+(O) Tj
+1 0 0 1 206.279 95.4 Tm
+(N) Tj
+/R216 9.96264 Tf
+1 0 0 1 58.92 80.4 Tm
+(W) Tj
+1 0 0 1 67.44 80.4 Tm
+(e) Tj
+1 0 0 1 75.6 80.4 Tm
+(have) Tj
+1 0 0 1 98.16 80.4 Tm
+(presented) Tj
+1 0 0 1 140.04 80.4 Tm
+(in) Tj
+1 0 0 1 151.44 80.4 Tm
+(this) Tj
+1 0 0 1 169.56 80.4 Tm
+(paper) Tj
+1 0 0 1 195.36 80.4 Tm
+(a) Tj
+1 0 0 1 203.52 80.4 Tm
+(framework) Tj
+1 0 0 1 250.919 80.4 Tm
+(of) Tj
+1 0 0 1 262.919 80.4 Tm
+(message-) Tj
+1 0 0 1 48.96 68.4 Tm
+(initiated) Tj
+1 0 0 1 84.8399 68.4 Tm
+(constraint-based) Tj
+1 0 0 1 153.36 68.4 Tm
+(routing,) Tj
+1 0 0 1 187.8 68.4 Tm
+(MCBR,) Tj
+1 0 0 1 222.239 68.4 Tm
+(for) Tj
+1 0 0 1 237.119 68.4 Tm
+(ad-hoc) Tj
+1 0 0 1 267.359 68.4 Tm
+(wireless) Tj
+1 0 0 1 312 726 Tm
+(networks,) Tj
+1 0 0 1 355.56 726 Tm
+(which) Tj
+1 0 0 1 384.6 726 Tm
+(makes) Tj
+1 0 0 1 414.72 726 Tm
+(routing) Tj
+1 0 0 1 448.08 726 Tm
+(strategies) Tj
+1 0 0 1 490.319 726 Tm
+(independent) Tj
+1 0 0 1 543.719 726 Tm
+(from) Tj
+1 0 0 1 312 714.12 Tm
+(routing) Tj
+1 0 0 1 343.44 714.12 Tm
+(objectives) Tj
+1 0 0 1 386.64 714.12 Tm
+(and) Tj
+1 0 0 1 403.8 714.12 Tm
+(destination) Tj
+1 0 0 1 450.24 714.12 Tm
+(speci\256cations.) Tj
+1 0 0 1 509.639 714.12 Tm
+(W) Tj
+1 0 0 1 518.159 714.12 Tm
+(e) Tj
+1 0 0 1 525.479 714.12 Tm
+(have) Tj
+1 0 0 1 546.959 714.12 Tm
+(also) Tj
+1 0 0 1 312 702.12 Tm
+(proposed) Tj
+1 0 0 1 353.52 702.12 Tm
+(two) Tj
+1 0 0 1 373.56 702.12 Tm
+(frameworks) Tj
+1 0 0 1 426.24 702.12 Tm
+(of) Tj
+1 0 0 1 439.56 702.12 Tm
+(meta) Tj
+1 0 0 1 464.04 702.12 Tm
+(routing) Tj
+1 0 0 1 497.879 702.12 Tm
+(strategies.) Tj
+1 0 0 1 543.119 702.12 Tm
+(Such) Tj
+1 0 0 1 312 690.12 Tm
+(connectionless) Tj
+1 0 0 1 375.48 690.12 Tm
+(and) Tj
+1 0 0 1 394.68 690.12 Tm
+(QoS-aware) Tj
+1 0 0 1 444.36 690.12 Tm
+(strategies) Tj
+1 0 0 1 486.839 690.12 Tm
+(guarantee) Tj
+1 0 0 1 530.399 690.12 Tm
+(delivery) Tj
+1 0 0 1 312 678.24 Tm
+(when) Tj
+1 0 0 1 336.72 678.24 Tm
+(there) Tj
+1 0 0 1 359.76 678.24 Tm
+(is) Tj
+1 0 0 1 369.6 678.24 Tm
+(a) Tj
+1 0 0 1 377.16 678.24 Tm
+(path) Tj
+1 0 0 1 397.56 678.24 Tm
+(and) Tj
+1 0 0 1 415.08 678.24 Tm
+(conver) Tj
+1 0 0 1 442.32 678.24 Tm
+(gence) Tj
+1 0 0 1 468.479 678.24 Tm
+(to) Tj
+1 0 0 1 479.399 678.24 Tm
+(the) Tj
+1 0 0 1 494.759 678.24 Tm
+(optimum) Tj
+1 0 0 1 533.879 678.24 Tm
+(when) Tj
+1 0 0 1 558.599 678.24 Tm
+(a) Tj
+1 0 0 1 312 666.24 Tm
+(network) Tj
+1 0 0 1 347.88 666.24 Tm
+(is) Tj
+1 0 0 1 357.72 666.24 Tm
+(stable,) Tj
+1 0 0 1 386.64 666.24 Tm
+(and) Tj
+1 0 0 1 404.28 666.24 Tm
+(automatically) Tj
+1 0 0 1 461.759 666.24 Tm
+(adapts) Tj
+1 0 0 1 490.319 666.24 Tm
+(to) Tj
+1 0 0 1 501.359 666.24 Tm
+(dif) Tj
+1 0 0 1 512.279 666.24 Tm
+(ferent) Tj
+1 0 0 1 538.559 666.24 Tm
+(routes) Tj
+1 0 0 1 312 654.36 Tm
+(when) Tj
+1 0 0 1 337.08 654.36 Tm
+(a) Tj
+1 0 0 1 345 654.36 Tm
+(network) Tj
+1 0 0 1 381.12 654.36 Tm
+(has) Tj
+1 0 0 1 397.8 654.36 Tm
+(been) Tj
+1 0 0 1 420.12 654.36 Tm
+(changed.) Tj
+1 0 0 1 321.96 642.36 Tm
+(An) Tj
+1 0 0 1 338.52 642.36 Tm
+(MCBR) Tj
+1 0 0 1 371.64 642.36 Tm
+(protocol,) Tj
+1 0 0 1 411.72 642.36 Tm
+(together) Tj
+1 0 0 1 448.68 642.36 Tm
+(with) Tj
+1 0 0 1 470.759 642.36 Tm
+(both) Tj
+1 0 0 1 492.839 642.36 Tm
+(search-based) Tj
+1 0 0 1 548.639 642.36 Tm
+(and) Tj
+1 0 0 1 312 630.36 Tm
+(constrained-\257ooding) Tj
+1 0 0 1 399.48 630.36 Tm
+(meta) Tj
+1 0 0 1 423.84 630.36 Tm
+(strategies,) Tj
+1 0 0 1 468.96 630.36 Tm
+(has) Tj
+1 0 0 1 487.199 630.36 Tm
+(been) Tj
+1 0 0 1 510.959 630.36 Tm
+(implemented) Tj
+1 0 0 1 312 618.48 Tm
+(in) Tj
+1 0 0 1 323.88 618.48 Tm
+(NesC) Tj
+1 0 0 1 350.04 618.48 Tm
+(on) Tj
+1 0 0 1 364.08 618.48 Tm
+(T) Tj
+1 0 0 1 369.84 618.48 Tm
+(inyOS-1.x) Tj
+1 0 0 1 415.2 618.48 Tm
+(and) Tj
+1 0 0 1 433.68 618.48 Tm
+(demonstrated) Tj
+1 0 0 1 491.519 618.48 Tm
+(with) Tj
+1 0 0 1 513.359 618.48 Tm
+(50) Tj
+1 0 0 1 527.399 618.48 Tm
+(motes) Tj
+1 0 0 1 555.239 618.48 Tm
+(in) Tj
+1 0 0 1 312 606.48 Tm
+(hardware) Tj
+1 0 0 1 352.92 606.48 Tm
+(and) Tj
+1 0 0 1 371.28 606.48 Tm
+(100) Tj
+1 0 0 1 390.12 606.48 Tm
+(motes) Tj
+1 0 0 1 417.84 606.48 Tm
+(in) Tj
+1 0 0 1 429.6 606.48 Tm
+(the) Tj
+1 0 0 1 445.68 606.48 Tm
+(T) Tj
+1 0 0 1 451.68 606.48 Tm
+(OSSIM/T) Tj
+1 0 0 1 490.679 606.48 Tm
+(inyV) Tj
+1 0 0 1 510.119 606.48 Tm
+(iz) Tj
+1 0 0 1 520.919 606.48 Tm
+(simulation) Tj
+1 0 0 1 312 594.48 Tm
+(environment.) Tj
+1 0 0 1 369.48 594.48 Tm
+(Future) Tj
+1 0 0 1 400.08 594.48 Tm
+(work) Tj
+1 0 0 1 425.16 594.48 Tm
+(along) Tj
+1 0 0 1 451.8 594.48 Tm
+(this) Tj
+1 0 0 1 470.88 594.48 Tm
+(line) Tj
+1 0 0 1 490.319 594.48 Tm
+(includes) Tj
+1 0 0 1 528.119 594.48 Tm
+(develop-) Tj
+1 0 0 1 312 582.6 Tm
+(ing) Tj
+1 0 0 1 328.92 582.6 Tm
+(network) Tj
+1 0 0 1 365.88 582.6 Tm
+(and) Tj
+1 0 0 1 384.6 582.6 Tm
+(application) Tj
+1 0 0 1 433.08 582.6 Tm
+(models) Tj
+1 0 0 1 466.079 582.6 Tm
+(as) Tj
+1 0 0 1 478.679 582.6 Tm
+(well) Tj
+1 0 0 1 500.159 582.6 Tm
+(as) Tj
+1 0 0 1 512.639 582.6 Tm
+(performance) Tj
+1 0 0 1 312 570.6 Tm
+(evaluations) Tj
+1 0 0 1 360.84 570.6 Tm
+(for) Tj
+1 0 0 1 375.96 570.6 Tm
+(variations) Tj
+1 0 0 1 418.68 570.6 Tm
+(of) Tj
+1 0 0 1 430.56 570.6 Tm
+(these) Tj
+1 0 0 1 454.44 570.6 Tm
+(two) Tj
+1 0 0 1 472.919 570.6 Tm
+(meta-strategies.) Tj
+1 0 0 1 393.72 552 Tm
+(A) Tj
+/R216 7.97011 Tf
+1 0 0 1 401.4 552 Tm
+(C) Tj
+1 0 0 1 407.16 552 Tm
+(K) Tj
+1 0 0 1 413.4 552 Tm
+(N) Tj
+1 0 0 1 419.64 552 Tm
+(O) Tj
+1 0 0 1 425.88 552 Tm
+(W) Tj
+1 0 0 1 433.92 552 Tm
+(L) Tj
+1 0 0 1 439.32 552 Tm
+(E) Tj
+1 0 0 1 444.72 552 Tm
+(D) Tj
+1 0 0 1 450.96 552 Tm
+(G) Tj
+1 0 0 1 457.2 552 Tm
+(M) Tj
+1 0 0 1 464.759 552 Tm
+(E) Tj
+1 0 0 1 470.159 552 Tm
+(N) Tj
+1 0 0 1 476.399 552 Tm
+(T) Tj
+/R216 9.96264 Tf
+1 0 0 1 321.96 536.88 Tm
+(This) Tj
+1 0 0 1 345.24 536.88 Tm
+(work) Tj
+1 0 0 1 371.28 536.88 Tm
+(is) Tj
+1 0 0 1 383.52 536.88 Tm
+(funded) Tj
+1 0 0 1 416.76 536.88 Tm
+(in) Tj
+1 0 0 1 430.08 536.88 Tm
+(part) Tj
+1 0 0 1 451.08 536.88 Tm
+(by) Tj
+1 0 0 1 466.68 536.88 Tm
+(the) Tj
+1 0 0 1 484.439 536.88 Tm
+(Defense) Tj
+1 0 0 1 522.599 536.88 Tm
+(Advanced) Tj
+1 0 0 1 312 525 Tm
+(Research) Tj
+1 0 0 1 352.44 525 Tm
+(Project) Tj
+1 0 0 1 384.72 525 Tm
+(Agency) Tj
+1 0 0 1 419.64 525 Tm
+(\(DARP) Tj
+1 0 0 1 448.56 525 Tm
+(A\)) Tj
+1 0 0 1 463.2 525 Tm
+(contract) Tj
+1 0 0 1 499.319 525 Tm
+(#) Tj
+1 0 0 1 508.199 525 Tm
+(MDA972-98-) Tj
+1 0 0 1 312 513 Tm
+(C-0009) Tj
+1 0 0 1 345.36 513 Tm
+(and) Tj
+1 0 0 1 363.24 513 Tm
+(contract) Tj
+1 0 0 1 398.76 513 Tm
+(#) Tj
+1 0 0 1 407.28 513 Tm
+(F33615-01-C-1904.) Tj
+1 0 0 1 409.56 494.28 Tm
+(R) Tj
+/R216 7.97011 Tf
+1 0 0 1 416.64 494.28 Tm
+(E) Tj
+1 0 0 1 422.04 494.28 Tm
+(F) Tj
+1 0 0 1 426.96 494.28 Tm
+(E) Tj
+1 0 0 1 432.36 494.28 Tm
+(R) Tj
+1 0 0 1 438.12 494.28 Tm
+(E) Tj
+1 0 0 1 443.52 494.28 Tm
+(N) Tj
+1 0 0 1 449.76 494.28 Tm
+(C) Tj
+1 0 0 1 455.52 494.28 Tm
+(E) Tj
+1 0 0 1 460.92 494.28 Tm
+(S) Tj
+1 0 0 1 315.96 479.52 Tm
+([1]) Tj
+1 0 0 1 330.24 479.52 Tm
+(B.) Tj
+1 0 0 1 339.84 479.52 Tm
+(Karp) Tj
+1 0 0 1 358.2 479.52 Tm
+(and) Tj
+1 0 0 1 372 479.52 Tm
+(H.) Tj
+1 0 0 1 382.08 479.52 Tm
+(T) Tj
+1 0 0 1 386.4 479.52 Tm
+(.) Tj
+1 0 0 1 390.72 479.52 Tm
+(Kung,) Tj
+1 0 0 1 412.8 479.52 Tm
+(\252GPSR:) Tj
+1 0 0 1 440.759 479.52 Tm
+(Greedy) Tj
+1 0 0 1 466.559 479.52 Tm
+(perimeter) Tj
+1 0 0 1 499.439 479.52 Tm
+(stateless) Tj
+1 0 0 1 528.359 479.52 Tm
+(routing) Tj
+1 0 0 1 553.679 479.52 Tm
+(for) Tj
+1 0 0 1 330.24 470.64 Tm
+(wireless) Tj
+1 0 0 1 359.28 470.64 Tm
+(networks,\272) Tj
+1 0 0 1 396.96 470.64 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 406.08 470.64 Tm
+(Pr) Tj
+1 0 0 1 413.88 470.64 Tm
+(oc.) Tj
+1 0 0 1 426.12 470.64 Tm
+(6th) Tj
+1 0 0 1 439.319 470.64 Tm
+(Int'l) Tj
+1 0 0 1 455.879 470.64 Tm
+(Conf.) Tj
+1 0 0 1 476.279 470.64 Tm
+(on) Tj
+1 0 0 1 487.199 470.64 Tm
+(Mobile) Tj
+1 0 0 1 512.759 470.64 Tm
+(Computing) Tj
+1 0 0 1 551.039 470.64 Tm
+(and) Tj
+1 0 0 1 330.24 461.64 Tm
+(Networks) Tj
+1 0 0 1 363.12 461.64 Tm
+(\(ACM) Tj
+1 0 0 1 385.44 461.64 Tm
+(Mobicom\)) Tj
+/R216 7.97011 Tf
+1 0 0 1 417.96 461.64 Tm
+(,) Tj
+1 0 0 1 423 461.64 Tm
+(Boston,) Tj
+1 0 0 1 450.359 461.64 Tm
+(MA,) Tj
+1 0 0 1 467.879 461.64 Tm
+(2000.) Tj
+1 0 0 1 315.96 452.64 Tm
+([2]) Tj
+1 0 0 1 330.24 452.64 Tm
+(Y) Tj
+1 0 0 1 334.92 452.64 Tm
+(.) Tj
+1 0 0 1 340.56 452.64 Tm
+(Y) Tj
+1 0 0 1 345.48 452.64 Tm
+(u,) Tj
+1 0 0 1 354.96 452.64 Tm
+(R.) Tj
+1 0 0 1 365.76 452.64 Tm
+(Govindan,) Tj
+1 0 0 1 402.84 452.64 Tm
+(and) Tj
+1 0 0 1 417.84 452.64 Tm
+(D.) Tj
+1 0 0 1 429.239 452.64 Tm
+(Estrin,) Tj
+1 0 0 1 453.839 452.64 Tm
+(\252Geographical) Tj
+1 0 0 1 503.879 452.64 Tm
+(and) Tj
+1 0 0 1 518.879 452.64 Tm
+(ener) Tj
+1 0 0 1 532.319 452.64 Tm
+(gy) Tj
+1 0 0 1 543.959 452.64 Tm
+(aware) Tj
+1 0 0 1 330.24 443.64 Tm
+(routing:) Tj
+1 0 0 1 359.88 443.64 Tm
+(a) Tj
+1 0 0 1 367.8 443.64 Tm
+(recursive) Tj
+1 0 0 1 401.28 443.64 Tm
+(data) Tj
+1 0 0 1 418.92 443.64 Tm
+(dissemination) Tj
+1 0 0 1 467.639 443.64 Tm
+(protocol) Tj
+1 0 0 1 498.479 443.64 Tm
+(for) Tj
+1 0 0 1 512.159 443.64 Tm
+(wireless) Tj
+1 0 0 1 542.639 443.64 Tm
+(sensor) Tj
+1 0 0 1 330.24 434.76 Tm
+(networks,\272) Tj
+1 0 0 1 369 434.76 Tm
+(UCLA) Tj
+1 0 0 1 394.68 434.76 Tm
+(Computer) Tj
+1 0 0 1 430.56 434.76 Tm
+(Science) Tj
+1 0 0 1 459.359 434.76 Tm
+(Department,\272) Tj
+1 0 0 1 506.519 434.76 Tm
+(T) Tj
+1 0 0 1 510.839 434.76 Tm
+(echnical) Tj
+1 0 0 1 541.319 434.76 Tm
+(Report) Tj
+1 0 0 1 330.24 425.76 Tm
+(UCLA/CSD-TR-01-0023,) Tj
+1 0 0 1 416.52 425.76 Tm
+(May) Tj
+1 0 0 1 433.92 425.76 Tm
+(2001.) Tj
+1 0 0 1 315.96 416.76 Tm
+([3]) Tj
+1 0 0 1 330.24 416.76 Tm
+(C.) Tj
+1 0 0 1 341.16 416.76 Tm
+(Intanagonwiwat,) Tj
+1 0 0 1 398.16 416.76 Tm
+(R.) Tj
+1 0 0 1 409.2 416.76 Tm
+(Govindan,) Tj
+1 0 0 1 446.279 416.76 Tm
+(and) Tj
+1 0 0 1 461.399 416.76 Tm
+(D.) Tj
+1 0 0 1 472.799 416.76 Tm
+(Estrin,) Tj
+1 0 0 1 497.519 416.76 Tm
+(\252Directed) Tj
+1 0 0 1 532.199 416.76 Tm
+(dif) Tj
+1 0 0 1 540.719 416.76 Tm
+(fusion:) Tj
+1 0 0 1 330.24 407.88 Tm
+(A) Tj
+1 0 0 1 339.24 407.88 Tm
+(scalable) Tj
+1 0 0 1 368.16 407.88 Tm
+(and) Tj
+1 0 0 1 382.8 407.88 Tm
+(robust) Tj
+1 0 0 1 405.96 407.88 Tm
+(communication) Tj
+1 0 0 1 458.879 407.88 Tm
+(paradigm) Tj
+1 0 0 1 492.119 407.88 Tm
+(for) Tj
+1 0 0 1 504.719 407.88 Tm
+(sensor) Tj
+1 0 0 1 528.239 407.88 Tm
+(networks,\272) Tj
+1 0 0 1 330.24 398.88 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 340.44 398.88 Tm
+(Pr) Tj
+1 0 0 1 348.24 398.88 Tm
+(oc.) Tj
+1 0 0 1 361.68 398.88 Tm
+(6th) Tj
+1 0 0 1 375.96 398.88 Tm
+(Int'l) Tj
+1 0 0 1 393.72 398.88 Tm
+(Conf.) Tj
+1 0 0 1 415.32 398.88 Tm
+(on) Tj
+1 0 0 1 427.319 398.88 Tm
+(Mobile) Tj
+1 0 0 1 453.959 398.88 Tm
+(Computing) Tj
+1 0 0 1 493.439 398.88 Tm
+(and) Tj
+1 0 0 1 509.399 398.88 Tm
+(Networks) Tj
+1 0 0 1 543.599 398.88 Tm
+(\(ACM) Tj
+1 0 0 1 330.24 389.88 Tm
+(Mobicom\)) Tj
+/R216 7.97011 Tf
+1 0 0 1 362.76 389.88 Tm
+(,) Tj
+1 0 0 1 367.8 389.88 Tm
+(Boston,) Tj
+1 0 0 1 395.16 389.88 Tm
+(MA,) Tj
+1 0 0 1 412.8 389.88 Tm
+(2000.) Tj
+1 0 0 1 315.96 380.88 Tm
+([4]) Tj
+1 0 0 1 330.24 380.88 Tm
+(C.) Tj
+1 0 0 1 341.16 380.88 Tm
+(E.) Tj
+1 0 0 1 351.6 380.88 Tm
+(Perkins) Tj
+1 0 0 1 379.08 380.88 Tm
+(and) Tj
+1 0 0 1 394.2 380.88 Tm
+(E.) Tj
+1 0 0 1 404.64 380.88 Tm
+(M.) Tj
+1 0 0 1 417.24 380.88 Tm
+(Royer) Tj
+1 0 0 1 436.2 380.88 Tm
+(,) Tj
+1 0 0 1 441.96 380.88 Tm
+(\252Ad) Tj
+1 0 0 1 458.879 380.88 Tm
+(hoc) Tj
+1 0 0 1 473.999 380.88 Tm
+(on-demand) Tj
+1 0 0 1 513.359 380.88 Tm
+(distance) Tj
+1 0 0 1 543.119 380.88 Tm
+(vector) Tj
+1 0 0 1 330.24 372 Tm
+(routing,\272) Tj
+1 0 0 1 362.04 372 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 371.4 372 Tm
+(Pr) Tj
+1 0 0 1 379.2 372 Tm
+(oc.) Tj
+1 0 0 1 391.8 372 Tm
+(2nd) Tj
+1 0 0 1 406.92 372 Tm
+(IEEE) Tj
+1 0 0 1 427.44 372 Tm
+(W) Tj
+1 0 0 1 433.32 372 Tm
+(orkshop) Tj
+1 0 0 1 462.239 372 Tm
+(on) Tj
+1 0 0 1 473.399 372 Tm
+(Mobile) Tj
+1 0 0 1 499.199 372 Tm
+(Computing) Tj
+1 0 0 1 537.839 372 Tm
+(Systems) Tj
+1 0 0 1 330.24 363 Tm
+(and) Tj
+1 0 0 1 345 363 Tm
+(Applications) Tj
+/R216 7.97011 Tf
+1 0 0 1 384.96 363 Tm
+(,) Tj
+1 0 0 1 390 363 Tm
+(Febuary) Tj
+1 0 0 1 418.92 363 Tm
+(1999,) Tj
+1 0 0 1 439.679 363 Tm
+(pp.) Tj
+1 0 0 1 452.399 363 Tm
+(90\261100.) Tj
+1 0 0 1 315.96 354 Tm
+([5]) Tj
+1 0 0 1 330.24 354 Tm
+(D.) Tj
+1 0 0 1 341.52 354 Tm
+(B.) Tj
+1 0 0 1 352.44 354 Tm
+(Johnson) Tj
+1 0 0 1 382.08 354 Tm
+(and) Tj
+1 0 0 1 397.08 354 Tm
+(D.) Tj
+1 0 0 1 408.48 354 Tm
+(B.) Tj
+1 0 0 1 419.279 354 Tm
+(Maltz,) Tj
+1 0 0 1 443.399 354 Tm
+(\252Dynamic) Tj
+1 0 0 1 479.759 354 Tm
+(source) Tj
+1 0 0 1 504.119 354 Tm
+(routing) Tj
+1 0 0 1 530.639 354 Tm
+(in) Tj
+1 0 0 1 540.479 354 Tm
+(ad) Tj
+1 0 0 1 551.519 354 Tm
+(hoc) Tj
+1 0 0 1 330.24 345.12 Tm
+(wireless) Tj
+1 0 0 1 359.4 345.12 Tm
+(networks,\272) Tj
+1 0 0 1 397.2 345.12 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 406.44 345.12 Tm
+(Mobile) Tj
+1 0 0 1 432 345.12 Tm
+(Computing) Tj
+/R216 7.97011 Tf
+1 0 0 1 467.159 345.12 Tm
+(,) Tj
+1 0 0 1 472.439 345.12 Tm
+(T) Tj
+1 0 0 1 476.759 345.12 Tm
+(.) Tj
+1 0 0 1 481.799 345.12 Tm
+(Imielinski) Tj
+1 0 0 1 517.079 345.12 Tm
+(and) Tj
+1 0 0 1 531.719 345.12 Tm
+(H.) Tj
+1 0 0 1 542.399 345.12 Tm
+(Korth,) Tj
+1 0 0 1 330.24 336.12 Tm
+(Eds.) Tj
+1 0 0 1 352.2 336.12 Tm
+(Kluwer) Tj
+1 0 0 1 378.84 336.12 Tm
+(Academic,) Tj
+1 0 0 1 415.92 336.12 Tm
+(1996,) Tj
+1 0 0 1 436.68 336.12 Tm
+(pp.) Tj
+1 0 0 1 449.399 336.12 Tm
+(153\261181.) Tj
+1 0 0 1 315.96 327.12 Tm
+([6]) Tj
+1 0 0 1 330.24 327.12 Tm
+(V) Tj
+1 0 0 1 334.92 327.12 Tm
+(.) Tj
+1 0 0 1 340.44 327.12 Tm
+(D.) Tj
+1 0 0 1 351.6 327.12 Tm
+(Park) Tj
+1 0 0 1 369.6 327.12 Tm
+(and) Tj
+1 0 0 1 384.6 327.12 Tm
+(M.) Tj
+1 0 0 1 397.08 327.12 Tm
+(S.) Tj
+1 0 0 1 407.04 327.12 Tm
+(Corson,) Tj
+1 0 0 1 435.479 327.12 Tm
+(\252A) Tj
+1 0 0 1 448.199 327.12 Tm
+(highly) Tj
+1 0 0 1 471.959 327.12 Tm
+(adaptive) Tj
+1 0 0 1 502.439 327.12 Tm
+(distributed) Tj
+1 0 0 1 539.999 327.12 Tm
+(routing) Tj
+1 0 0 1 330.24 318.12 Tm
+(algorithm) Tj
+1 0 0 1 364.68 318.12 Tm
+(for) Tj
+1 0 0 1 377.4 318.12 Tm
+(mobile) Tj
+1 0 0 1 402.96 318.12 Tm
+(wireless) Tj
+1 0 0 1 432.599 318.12 Tm
+(networks,\272) Tj
+1 0 0 1 470.759 318.12 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 480.359 318.12 Tm
+(Pr) Tj
+1 0 0 1 488.159 318.12 Tm
+(oc.) Tj
+1 0 0 1 500.999 318.12 Tm
+(IEEE) Tj
+1 0 0 1 521.759 318.12 Tm
+(InfoCom) Tj
+1 0 0 1 553.079 318.12 Tm
+(97) Tj
+/R216 7.97011 Tf
+1 0 0 1 560.999 318.12 Tm
+(,) Tj
+1 0 0 1 330.24 309.24 Tm
+(April) Tj
+1 0 0 1 349.8 309.24 Tm
+(1997.) Tj
+1 0 0 1 315.96 300.24 Tm
+([7]) Tj
+1 0 0 1 330.24 300.24 Tm
+(C.) Tj
+1 0 0 1 340.2 300.24 Tm
+(T) Tj
+1 0 0 1 344.52 300.24 Tm
+(oh,) Tj
+1 0 0 1 357.12 300.24 Tm
+(\252A) Tj
+1 0 0 1 369.12 300.24 Tm
+(novel) Tj
+1 0 0 1 389.4 300.24 Tm
+(distributed) Tj
+1 0 0 1 426.24 300.24 Tm
+(routing) Tj
+1 0 0 1 451.919 300.24 Tm
+(protocol) Tj
+1 0 0 1 481.079 300.24 Tm
+(to) Tj
+1 0 0 1 489.959 300.24 Tm
+(support) Tj
+1 0 0 1 516.599 300.24 Tm
+(ad-hoc) Tj
+1 0 0 1 540.839 300.24 Tm
+(mobile) Tj
+1 0 0 1 330.24 291.24 Tm
+(computing,\272) Tj
+1 0 0 1 373.08 291.24 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 382.56 291.24 Tm
+(Pr) Tj
+1 0 0 1 390.36 291.24 Tm
+(oc.) Tj
+1 0 0 1 402.96 291.24 Tm
+(15th) Tj
+1 0 0 1 420.36 291.24 Tm
+(IEEE) Tj
+1 0 0 1 440.879 291.24 Tm
+(Annual) Tj
+1 0 0 1 467.039 291.24 Tm
+(Int'l) Tj
+1 0 0 1 484.079 291.24 Tm
+(Phoenix) Tj
+1 0 0 1 513.359 291.24 Tm
+(Conf.) Tj
+1 0 0 1 534.119 291.24 Tm
+(on) Tj
+1 0 0 1 545.279 291.24 Tm
+(Com-) Tj
+1 0 0 1 330.24 282.24 Tm
+(puting) Tj
+1 0 0 1 353.4 282.24 Tm
+(and) Tj
+1 0 0 1 368.16 282.24 Tm
+(Communication) Tj
+/R216 7.97011 Tf
+1 0 0 1 418.68 282.24 Tm
+(,) Tj
+1 0 0 1 423.84 282.24 Tm
+(March) Tj
+1 0 0 1 447.479 282.24 Tm
+(1996.) Tj
+1 0 0 1 315.96 273.36 Tm
+([8]) Tj
+1 0 0 1 330.24 273.36 Tm
+(R.) Tj
+1 0 0 1 341.4 273.36 Tm
+(D.) Tj
+1 0 0 1 352.92 273.36 Tm
+(et.al,) Tj
+1 0 0 1 372.36 273.36 Tm
+(\252Signal) Tj
+1 0 0 1 400.08 273.36 Tm
+(stability) Tj
+1 0 0 1 429.599 273.36 Tm
+(based) Tj
+1 0 0 1 451.559 273.36 Tm
+(adaptive) Tj
+1 0 0 1 482.399 273.36 Tm
+(routing) Tj
+1 0 0 1 509.279 273.36 Tm
+(\(ssa\)) Tj
+1 0 0 1 528.239 273.36 Tm
+(for) Tj
+1 0 0 1 541.319 273.36 Tm
+(ad-hoc) Tj
+1 0 0 1 330.24 264.36 Tm
+(mobile) Tj
+1 0 0 1 355.2 264.36 Tm
+(networks,\272) Tj
+/R327 7.97011 Tf
+1 0 0 1 392.76 264.36 Tm
+(IEEE) Tj
+1 0 0 1 412.8 264.36 Tm
+(Personal) Tj
+1 0 0 1 444.359 264.36 Tm
+(Communications) Tj
+/R216 7.97011 Tf
+1 0 0 1 497.999 264.36 Tm
+(,) Tj
+1 0 0 1 503.159 264.36 Tm
+(Feburary) Tj
+1 0 0 1 534.719 264.36 Tm
+(1997.) Tj
+1 0 0 1 315.96 255.36 Tm
+([9]) Tj
+1 0 0 1 330.24 255.36 Tm
+(M.) Tj
+1 0 0 1 343.68 255.36 Tm
+(Chu,) Tj
+1 0 0 1 363.48 255.36 Tm
+(H.) Tj
+1 0 0 1 375.6 255.36 Tm
+(Haussecker) Tj
+1 0 0 1 411.72 255.36 Tm
+(,) Tj
+1 0 0 1 418.44 255.36 Tm
+(and) Tj
+1 0 0 1 434.4 255.36 Tm
+(F) Tj
+1 0 0 1 438.24 255.36 Tm
+(.) Tj
+1 0 0 1 444.599 255.36 Tm
+(Zhao,) Tj
+1 0 0 1 467.399 255.36 Tm
+(\252Scalable) Tj
+1 0 0 1 502.319 255.36 Tm
+(information-driven) Tj
+1 0 0 1 330.24 246.48 Tm
+(sensor) Tj
+1 0 0 1 352.8 246.48 Tm
+(querying) Tj
+1 0 0 1 383.4 246.48 Tm
+(and) Tj
+1 0 0 1 397.08 246.48 Tm
+(routing) Tj
+1 0 0 1 422.4 246.48 Tm
+(for) Tj
+1 0 0 1 433.92 246.48 Tm
+(ad) Tj
+1 0 0 1 443.639 246.48 Tm
+(hoc) Tj
+1 0 0 1 457.439 246.48 Tm
+(heterogeneous) Tj
+1 0 0 1 505.679 246.48 Tm
+(sensor) Tj
+1 0 0 1 528.239 246.48 Tm
+(networks,\272) Tj
+/R327 7.97011 Tf
+1 0 0 1 330.24 237.48 Tm
+(Int.) Tj
+1 0 0 1 343.8 237.48 Tm
+(Journal) Tj
+1 0 0 1 371.16 237.48 Tm
+(on) Tj
+1 0 0 1 381.84 237.48 Tm
+(High) Tj
+1 0 0 1 400.44 237.48 Tm
+(Performance) Tj
+1 0 0 1 444.719 237.48 Tm
+(Computing) Tj
+1 0 0 1 482.879 237.48 Tm
+(Applications) Tj
+/R216 7.97011 Tf
+1 0 0 1 522.839 237.48 Tm
+(,) Tj
+1 0 0 1 527.759 237.48 Tm
+(June) Tj
+1 0 0 1 545.039 237.48 Tm
+(2002.) Tj
+1 0 0 1 312 228.48 Tm
+([10]) Tj
+1 0 0 1 330.24 228.48 Tm
+(S.) Tj
+1 0 0 1 340.92 228.48 Tm
+(D.) Tj
+1 0 0 1 352.8 228.48 Tm
+(Servetto) Tj
+1 0 0 1 383.64 228.48 Tm
+(and) Tj
+1 0 0 1 399.36 228.48 Tm
+(G.) Tj
+1 0 0 1 411.359 228.48 Tm
+(Barrenechea,) Tj
+1 0 0 1 457.439 228.48 Tm
+(\252Constrained) Tj
+1 0 0 1 503.639 228.48 Tm
+(random) Tj
+1 0 0 1 532.199 228.48 Tm
+(walks) Tj
+1 0 0 1 555.119 228.48 Tm
+(on) Tj
+1 0 0 1 330.24 219.48 Tm
+(random) Tj
+1 0 0 1 359.28 219.48 Tm
+(graphs:) Tj
+1 0 0 1 387.48 219.48 Tm
+(Routing) Tj
+1 0 0 1 417.84 219.48 Tm
+(algorithms) Tj
+1 0 0 1 456.719 219.48 Tm
+(for) Tj
+1 0 0 1 470.639 219.48 Tm
+(lar) Tj
+1 0 0 1 478.799 219.48 Tm
+(ge) Tj
+1 0 0 1 491.159 219.48 Tm
+(scale) Tj
+1 0 0 1 511.799 219.48 Tm
+(wireless) Tj
+1 0 0 1 542.639 219.48 Tm
+(sensor) Tj
+1 0 0 1 330.24 210.6 Tm
+(networks,\272) Tj
+1 0 0 1 369.48 210.6 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 380.16 210.6 Tm
+(1st) Tj
+1 0 0 1 393.84 210.6 Tm
+(ACM) Tj
+1 0 0 1 415.2 210.6 Tm
+(International) Tj
+1 0 0 1 461.639 210.6 Tm
+(W) Tj
+1 0 0 1 467.519 210.6 Tm
+(orkshop) Tj
+1 0 0 1 497.759 210.6 Tm
+(on) Tj
+1 0 0 1 510.119 210.6 Tm
+(W) Tj
+1 0 0 1 516.239 210.6 Tm
+(ir) Tj
+1 0 0 1 521.279 210.6 Tm
+(eless) Tj
+1 0 0 1 541.319 210.6 Tm
+(Sensor) Tj
+1 0 0 1 330.24 201.6 Tm
+(Networks) Tj
+1 0 0 1 363.12 201.6 Tm
+(and) Tj
+1 0 0 1 377.88 201.6 Tm
+(Applications) Tj
+/R216 7.97011 Tf
+1 0 0 1 417.84 201.6 Tm
+(,) Tj
+1 0 0 1 422.999 201.6 Tm
+(September) Tj
+1 0 0 1 459.839 201.6 Tm
+(2002.) Tj
+1 0 0 1 312.24 192.6 Tm
+([1) Tj
+1 0 0 1 318.6 192.6 Tm
+(1]) Tj
+1 0 0 1 330.24 192.6 Tm
+(J.) Tj
+1 0 0 1 337.32 192.6 Tm
+(A.) Tj
+1 0 0 1 347.04 192.6 Tm
+(Boyan) Tj
+1 0 0 1 369.84 192.6 Tm
+(and) Tj
+1 0 0 1 383.28 192.6 Tm
+(M.) Tj
+1 0 0 1 394.44 192.6 Tm
+(L.) Tj
+1 0 0 1 403.2 192.6 Tm
+(Littman,) Tj
+1 0 0 1 432.479 192.6 Tm
+(\252Packet) Tj
+1 0 0 1 459.239 192.6 Tm
+(routing) Tj
+1 0 0 1 484.199 192.6 Tm
+(in) Tj
+1 0 0 1 492.479 192.6 Tm
+(dynamically) Tj
+1 0 0 1 533.759 192.6 Tm
+(changing) Tj
+1 0 0 1 330.24 183.72 Tm
+(networks:) Tj
+1 0 0 1 364.8 183.72 Tm
+(A) Tj
+1 0 0 1 373.68 183.72 Tm
+(reinforcement) Tj
+1 0 0 1 421.44 183.72 Tm
+(learning) Tj
+1 0 0 1 450.719 183.72 Tm
+(approach,\272) Tj
+1 0 0 1 488.639 183.72 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 497.879 183.72 Tm
+(Advances) Tj
+1 0 0 1 531.599 183.72 Tm
+(in) Tj
+1 0 0 1 540.839 183.72 Tm
+(Neural) Tj
+1 0 0 1 330.24 174.72 Tm
+(Information) Tj
+1 0 0 1 371.64 174.72 Tm
+(Pr) Tj
+1 0 0 1 379.44 174.72 Tm
+(ocessing) Tj
+1 0 0 1 410.16 174.72 Tm
+(Systems) Tj
+/R216 7.97011 Tf
+1 0 0 1 435.24 174.72 Tm
+(,) Tj
+1 0 0 1 440.759 174.72 Tm
+(J.) Tj
+1 0 0 1 449.279 174.72 Tm
+(A.) Tj
+1 0 0 1 460.439 174.72 Tm
+(J.) Tj
+1 0 0 1 468.839 174.72 Tm
+(D.) Tj
+1 0 0 1 479.999 174.72 Tm
+(Crowan,) Tj
+1 0 0 1 510.599 174.72 Tm
+(G.) Tj
+1 0 0 1 521.759 174.72 Tm
+(T) Tj
+1 0 0 1 526.079 174.72 Tm
+(esauro,) Tj
+1 0 0 1 552.239 174.72 Tm
+(Ed.) Tj
+1 0 0 1 330.24 165.72 Tm
+(Mor) Tj
+1 0 0 1 343.8 165.72 Tm
+(gan) Tj
+1 0 0 1 358.08 165.72 Tm
+(Kaufmann) Tj
+1 0 0 1 394.56 165.72 Tm
+(Publishers,) Tj
+1 0 0 1 432.48 165.72 Tm
+(Inc.,) Tj
+1 0 0 1 449.519 165.72 Tm
+(1994,) Tj
+1 0 0 1 470.159 165.72 Tm
+(vol.) Tj
+1 0 0 1 485.159 165.72 Tm
+(6,) Tj
+1 0 0 1 493.919 165.72 Tm
+(pp.) Tj
+1 0 0 1 506.639 165.72 Tm
+(671\261678.) Tj
+1 0 0 1 312 156.72 Tm
+([12]) Tj
+1 0 0 1 330.24 156.72 Tm
+(J.) Tj
+1 0 0 1 337.68 156.72 Tm
+(C.) Tj
+1 0 0 1 347.28 156.72 Tm
+(D.) Tj
+1 0 0 1 357.36 156.72 Tm
+(Subramanian,) Tj
+1 0 0 1 403.799 156.72 Tm
+(P) Tj
+1 0 0 1 407.4 156.72 Tm
+(.) Tj
+1 0 0 1 411.719 156.72 Tm
+(Druschel,) Tj
+1 0 0 1 444.719 156.72 Tm
+(\252Ants) Tj
+1 0 0 1 465.719 156.72 Tm
+(and) Tj
+1 0 0 1 479.519 156.72 Tm
+(reinforcement) Tj
+1 0 0 1 526.559 156.72 Tm
+(learning:) Tj
+1 0 0 1 557.279 156.72 Tm
+(A) Tj
+1 0 0 1 330.24 147.84 Tm
+(case) Tj
+1 0 0 1 346.2 147.84 Tm
+(study) Tj
+1 0 0 1 365.64 147.84 Tm
+(in) Tj
+1 0 0 1 374.16 147.84 Tm
+(routing) Tj
+1 0 0 1 399.36 147.84 Tm
+(in) Tj
+1 0 0 1 407.76 147.84 Tm
+(dynamic) Tj
+1 0 0 1 437.519 147.84 Tm
+(networks,\272) Tj
+1 0 0 1 474.479 147.84 Tm
+(Rice) Tj
+1 0 0 1 491.279 147.84 Tm
+(University) Tj
+1 0 0 1 524.159 147.84 Tm
+(,\272) Tj
+1 0 0 1 532.199 147.84 Tm
+(T) Tj
+1 0 0 1 536.519 147.84 Tm
+(echnical) Tj
+1 0 0 1 330.24 138.84 Tm
+(Report) Tj
+1 0 0 1 354.72 138.84 Tm
+(TR96-259,) Tj
+1 0 0 1 392.28 138.84 Tm
+(July) Tj
+1 0 0 1 408.36 138.84 Tm
+(1998.) Tj
+1 0 0 1 312 129.84 Tm
+([13]) Tj
+1 0 0 1 330.24 129.84 Tm
+(F) Tj
+1 0 0 1 334.08 129.84 Tm
+(.) Tj
+1 0 0 1 337.92 129.84 Tm
+(Y) Tj
+1 0 0 1 342.84 129.84 Tm
+(e,) Tj
+1 0 0 1 350.4 129.84 Tm
+(G.) Tj
+1 0 0 1 360.12 129.84 Tm
+(Zhong,) Tj
+1 0 0 1 384.84 129.84 Tm
+(and) Tj
+1 0 0 1 398.28 129.84 Tm
+(S.) Tj
+1 0 0 1 406.68 129.84 Tm
+(L.) Tj
+1 0 0 1 415.44 129.84 Tm
+(andL.) Tj
+1 0 0 1 435.719 129.84 Tm
+(Zhang,) Tj
+1 0 0 1 460.079 129.84 Tm
+(\252A) Tj
+1 0 0 1 471.359 129.84 Tm
+(robust) Tj
+1 0 0 1 493.199 129.84 Tm
+(data) Tj
+1 0 0 1 508.439 129.84 Tm
+(delivery) Tj
+1 0 0 1 536.519 129.84 Tm
+(protocol) Tj
+1 0 0 1 330.24 120.96 Tm
+(for) Tj
+1 0 0 1 342.84 120.96 Tm
+(lar) Tj
+1 0 0 1 351 120.96 Tm
+(ge) Tj
+1 0 0 1 361.8 120.96 Tm
+(scale) Tj
+1 0 0 1 381 120.96 Tm
+(sensor) Tj
+1 0 0 1 404.64 120.96 Tm
+(networks,\272) Tj
+1 0 0 1 442.679 120.96 Tm
+(in) Tj
+/R327 7.97011 Tf
+1 0 0 1 452.159 120.96 Tm
+(Information) Tj
+1 0 0 1 493.439 120.96 Tm
+(Pr) Tj
+1 0 0 1 501.239 120.96 Tm
+(ocessing) Tj
+1 0 0 1 531.839 120.96 Tm
+(in) Tj
+1 0 0 1 541.319 120.96 Tm
+(Sensor) Tj
+1 0 0 1 330.24 111.96 Tm
+(Networks,) Tj
+1 0 0 1 365.16 111.96 Tm
+(Lectur) Tj
+1 0 0 1 385.56 111.96 Tm
+(e) Tj
+1 0 0 1 391.92 111.96 Tm
+(Notes) Tj
+1 0 0 1 412.92 111.96 Tm
+(in) Tj
+1 0 0 1 421.919 111.96 Tm
+(Computer) Tj
+1 0 0 1 456.599 111.96 Tm
+(Science) Tj
+/R216 7.97011 Tf
+1 0 0 1 480.599 111.96 Tm
+(,) Tj
+1 0 0 1 485.639 111.96 Tm
+(no.) Tj
+1 0 0 1 498.479 111.96 Tm
+(2634,) Tj
+1 0 0 1 519.119 111.96 Tm
+(2003,) Tj
+1 0 0 1 539.879 111.96 Tm
+(p.) Tj
+1 0 0 1 548.639 111.96 Tm
+(658.) Tj
+1 0 0 1 312 102.96 Tm
+([14]) Tj
+1 0 0 1 330.24 102.96 Tm
+(S.) Tj
+1 0 0 1 340.32 102.96 Tm
+(Chen,) Tj
+1 0 0 1 362.88 102.96 Tm
+(\252Distributed) Tj
+1 0 0 1 405.96 102.96 Tm
+(quality-of-service) Tj
+1 0 0 1 466.319 102.96 Tm
+(routing) Tj
+1 0 0 1 492.959 102.96 Tm
+(in) Tj
+1 0 0 1 502.919 102.96 Tm
+(ad-hoc) Tj
+1 0 0 1 528.239 102.96 Tm
+(networks,\272) Tj
+/R327 7.97011 Tf
+1 0 0 1 330.24 93.96 Tm
+(IEEE) Tj
+1 0 0 1 351.24 93.96 Tm
+(Journal) Tj
+1 0 0 1 379.8 93.96 Tm
+(on) Tj
+1 0 0 1 391.56 93.96 Tm
+(Selected) Tj
+1 0 0 1 421.92 93.96 Tm
+(Ar) Tj
+1 0 0 1 429.72 93.96 Tm
+(eas) Tj
+1 0 0 1 443.879 93.96 Tm
+(in) Tj
+1 0 0 1 453.839 93.96 Tm
+(Communications) Tj
+/R216 7.97011 Tf
+1 0 0 1 507.479 93.96 Tm
+(,) Tj
+1 0 0 1 513.719 93.96 Tm
+(vol.) Tj
+1 0 0 1 529.559 93.96 Tm
+(17,) Tj
+1 0 0 1 543.359 93.96 Tm
+(no.) Tj
+1 0 0 1 557.039 93.96 Tm
+(8,) Tj
+1 0 0 1 330.24 85.08 Tm
+(August) Tj
+1 0 0 1 356.04 85.08 Tm
+(1999.) Tj
+ET
+Q
+endstream
+endobj
+329 0 obj
+33564
+endobj
+210 0 obj
+<<
+/Type /Page
+/MediaBox [0 0 612 792]
+/Parent 2 0 R
+/Resources << /ProcSet [/PDF /ImageB /Text]
+/Font <<
+/R327 327 0 R
+/R216 216 0 R
+/R213 213 0 R
+>>
+/XObject <<
+/R283 283 0 R
+/R323 323 0 R
+/R287 287 0 R
+/R239 239 0 R
+/R235 235 0 R
+/R231 231 0 R
+/R227 227 0 R
+/R223 223 0 R
+/R295 295 0 R
+/R243 243 0 R
+/R319 319 0 R
+/R219 219 0 R
+/R315 315 0 R
+/R311 311 0 R
+/R307 307 0 R
+/R303 303 0 R
+/R299 299 0 R
+/R279 279 0 R
+/R275 275 0 R
+/R271 271 0 R
+/R291 291 0 R
+/R263 263 0 R
+/R247 247 0 R
+/R251 251 0 R
+/R267 267 0 R
+/R259 259 0 R
+/R255 255 0 R
+>>
+>>
+/Contents [
+211 0 R
+214 0 R
+217 0 R
+221 0 R
+225 0 R
+229 0 R
+233 0 R
+237 0 R
+241 0 R
+245 0 R
+249 0 R
+253 0 R
+257 0 R
+261 0 R
+265 0 R
+269 0 R
+273 0 R
+277 0 R
+281 0 R
+285 0 R
+289 0 R
+293 0 R
+297 0 R
+301 0 R
+305 0 R
+309 0 R
+313 0 R
+317 0 R
+321 0 R
+325 0 R
+328 0 R
+]
+>>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [
+3 0 R
+18 0 R
+210 0 R
+] /Count 3
+>>
+endobj
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R
+>>
+endobj
+330 0 obj
+<< /CreationDate (D:20031015163105)
+/Producer (Aladdin Ghostscript 5.03)
+>>
+endobj
+xref
+0 331
+0000000000 65535 f 
+0000151622 00000 n 
+0000151548 00000 n 
+0000030817 00000 n 
+0000000015 00000 n 
+0000000069 00000 n 
+0000000086 00000 n 
+0000000168 00000 n 
+0000001860 00000 n 
+0000001880 00000 n 
+0000001967 00000 n 
+0000002079 00000 n 
+0000002098 00000 n 
+0000002181 00000 n 
+0000007958 00000 n 
+0000007979 00000 n 
+0000008064 00000 n 
+0000030795 00000 n 
+0000093909 00000 n 
+0000031030 00000 n 
+0000031086 00000 n 
+0000031104 00000 n 
+0000031188 00000 n 
+0000033295 00000 n 
+0000033316 00000 n 
+0000033401 00000 n 
+0000036724 00000 n 
+0000036745 00000 n 
+0000037102 00000 n 
+0000037122 00000 n 
+0000037324 00000 n 
+0000037344 00000 n 
+0000037668 00000 n 
+0000037687 00000 n 
+0000037777 00000 n 
+0000037796 00000 n 
+0000038108 00000 n 
+0000038127 00000 n 
+0000038220 00000 n 
+0000038239 00000 n 
+0000038541 00000 n 
+0000038560 00000 n 
+0000038651 00000 n 
+0000038670 00000 n 
+0000038995 00000 n 
+0000039014 00000 n 
+0000039107 00000 n 
+0000039126 00000 n 
+0000039399 00000 n 
+0000039418 00000 n 
+0000039511 00000 n 
+0000039530 00000 n 
+0000039862 00000 n 
+0000039881 00000 n 
+0000039974 00000 n 
+0000039993 00000 n 
+0000040307 00000 n 
+0000040326 00000 n 
+0000040532 00000 n 
+0000040552 00000 n 
+0000040840 00000 n 
+0000040859 00000 n 
+0000041031 00000 n 
+0000041051 00000 n 
+0000041365 00000 n 
+0000041384 00000 n 
+0000041518 00000 n 
+0000041537 00000 n 
+0000041861 00000 n 
+0000041880 00000 n 
+0000044373 00000 n 
+0000044394 00000 n 
+0000044729 00000 n 
+0000044748 00000 n 
+0000044841 00000 n 
+0000044860 00000 n 
+0000045132 00000 n 
+0000045151 00000 n 
+0000045283 00000 n 
+0000045302 00000 n 
+0000045580 00000 n 
+0000045599 00000 n 
+0000045769 00000 n 
+0000045789 00000 n 
+0000046049 00000 n 
+0000046068 00000 n 
+0000046322 00000 n 
+0000046342 00000 n 
+0000046647 00000 n 
+0000046666 00000 n 
+0000046760 00000 n 
+0000046779 00000 n 
+0000047033 00000 n 
+0000047051 00000 n 
+0000047570 00000 n 
+0000047590 00000 n 
+0000047883 00000 n 
+0000047902 00000 n 
+0000048075 00000 n 
+0000048095 00000 n 
+0000048428 00000 n 
+0000048448 00000 n 
+0000048543 00000 n 
+0000048563 00000 n 
+0000048853 00000 n 
+0000048873 00000 n 
+0000048969 00000 n 
+0000048989 00000 n 
+0000049296 00000 n 
+0000049316 00000 n 
+0000049410 00000 n 
+0000049430 00000 n 
+0000049744 00000 n 
+0000049764 00000 n 
+0000049860 00000 n 
+0000049880 00000 n 
+0000050251 00000 n 
+0000050272 00000 n 
+0000050484 00000 n 
+0000050505 00000 n 
+0000050817 00000 n 
+0000050837 00000 n 
+0000051052 00000 n 
+0000051073 00000 n 
+0000051382 00000 n 
+0000051402 00000 n 
+0000061924 00000 n 
+0000061947 00000 n 
+0000062289 00000 n 
+0000062309 00000 n 
+0000063005 00000 n 
+0000063026 00000 n 
+0000063411 00000 n 
+0000063432 00000 n 
+0000064443 00000 n 
+0000064464 00000 n 
+0000064549 00000 n 
+0000065236 00000 n 
+0000065257 00000 n 
+0000065583 00000 n 
+0000065603 00000 n 
+0000066331 00000 n 
+0000066352 00000 n 
+0000066667 00000 n 
+0000066687 00000 n 
+0000066782 00000 n 
+0000066802 00000 n 
+0000067136 00000 n 
+0000067156 00000 n 
+0000067628 00000 n 
+0000067649 00000 n 
+0000067948 00000 n 
+0000067968 00000 n 
+0000068951 00000 n 
+0000068972 00000 n 
+0000069258 00000 n 
+0000069278 00000 n 
+0000069431 00000 n 
+0000069451 00000 n 
+0000069767 00000 n 
+0000069787 00000 n 
+0000073782 00000 n 
+0000073804 00000 n 
+0000074144 00000 n 
+0000074164 00000 n 
+0000074381 00000 n 
+0000074402 00000 n 
+0000074661 00000 n 
+0000074681 00000 n 
+0000079979 00000 n 
+0000080001 00000 n 
+0000080372 00000 n 
+0000080393 00000 n 
+0000080531 00000 n 
+0000080551 00000 n 
+0000080881 00000 n 
+0000080901 00000 n 
+0000080998 00000 n 
+0000081018 00000 n 
+0000081362 00000 n 
+0000081382 00000 n 
+0000087214 00000 n 
+0000087236 00000 n 
+0000087589 00000 n 
+0000087610 00000 n 
+0000087852 00000 n 
+0000087873 00000 n 
+0000088193 00000 n 
+0000088213 00000 n 
+0000089172 00000 n 
+0000089193 00000 n 
+0000089524 00000 n 
+0000089544 00000 n 
+0000090533 00000 n 
+0000090554 00000 n 
+0000090889 00000 n 
+0000090909 00000 n 
+0000091121 00000 n 
+0000091142 00000 n 
+0000091409 00000 n 
+0000091429 00000 n 
+0000091685 00000 n 
+0000091706 00000 n 
+0000092019 00000 n 
+0000092039 00000 n 
+0000092773 00000 n 
+0000092794 00000 n 
+0000093147 00000 n 
+0000093168 00000 n 
+0000093888 00000 n 
+0000150719 00000 n 
+0000095070 00000 n 
+0000095128 00000 n 
+0000095147 00000 n 
+0000095232 00000 n 
+0000095491 00000 n 
+0000095512 00000 n 
+0000095598 00000 n 
+0000095709 00000 n 
+0000095729 00000 n 
+0000096089 00000 n 
+0000096110 00000 n 
+0000096244 00000 n 
+0000096264 00000 n 
+0000096649 00000 n 
+0000096670 00000 n 
+0000096767 00000 n 
+0000096787 00000 n 
+0000097115 00000 n 
+0000097135 00000 n 
+0000097232 00000 n 
+0000097252 00000 n 
+0000097564 00000 n 
+0000097584 00000 n 
+0000097681 00000 n 
+0000097701 00000 n 
+0000098027 00000 n 
+0000098047 00000 n 
+0000098144 00000 n 
+0000098164 00000 n 
+0000098473 00000 n 
+0000098493 00000 n 
+0000098689 00000 n 
+0000098710 00000 n 
+0000099025 00000 n 
+0000099045 00000 n 
+0000099591 00000 n 
+0000099612 00000 n 
+0000099954 00000 n 
+0000099974 00000 n 
+0000100207 00000 n 
+0000100228 00000 n 
+0000100504 00000 n 
+0000100524 00000 n 
+0000100703 00000 n 
+0000100724 00000 n 
+0000101039 00000 n 
+0000101059 00000 n 
+0000101154 00000 n 
+0000101174 00000 n 
+0000101508 00000 n 
+0000101528 00000 n 
+0000102005 00000 n 
+0000102026 00000 n 
+0000102325 00000 n 
+0000102345 00000 n 
+0000102483 00000 n 
+0000102503 00000 n 
+0000102808 00000 n 
+0000102828 00000 n 
+0000103923 00000 n 
+0000103945 00000 n 
+0000104253 00000 n 
+0000104273 00000 n 
+0000104369 00000 n 
+0000104389 00000 n 
+0000104688 00000 n 
+0000104708 00000 n 
+0000104804 00000 n 
+0000104824 00000 n 
+0000105140 00000 n 
+0000105160 00000 n 
+0000105458 00000 n 
+0000105479 00000 n 
+0000105796 00000 n 
+0000105816 00000 n 
+0000106077 00000 n 
+0000106098 00000 n 
+0000106384 00000 n 
+0000106404 00000 n 
+0000107389 00000 n 
+0000107410 00000 n 
+0000107750 00000 n 
+0000107770 00000 n 
+0000108113 00000 n 
+0000108134 00000 n 
+0000108393 00000 n 
+0000108413 00000 n 
+0000108778 00000 n 
+0000108799 00000 n 
+0000109134 00000 n 
+0000109154 00000 n 
+0000109251 00000 n 
+0000109271 00000 n 
+0000109588 00000 n 
+0000109608 00000 n 
+0000110775 00000 n 
+0000110797 00000 n 
+0000111136 00000 n 
+0000111156 00000 n 
+0000112458 00000 n 
+0000112480 00000 n 
+0000112819 00000 n 
+0000112839 00000 n 
+0000112934 00000 n 
+0000112954 00000 n 
+0000113268 00000 n 
+0000113288 00000 n 
+0000114125 00000 n 
+0000114146 00000 n 
+0000114493 00000 n 
+0000114513 00000 n 
+0000115176 00000 n 
+0000115197 00000 n 
+0000115534 00000 n 
+0000115554 00000 n 
+0000116967 00000 n 
+0000116989 00000 n 
+0000117076 00000 n 
+0000150696 00000 n 
+0000151671 00000 n 
+trailer
+<< /Size 331 /Root 1 0 R /Info 330 0 R
+>>
+startxref
+151764
+%%EOF
