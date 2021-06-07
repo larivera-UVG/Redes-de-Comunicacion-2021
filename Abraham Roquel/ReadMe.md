@@ -10,6 +10,8 @@ Este es el repositorio del trabajo de graduación dedicado a algoritmos de ruteo
 - Control
 - _Flooding_
 
+En la carpeta de documentos se encuentra actualmente una copia del repositorio original del potencial punto de partida, RMSAE desarrollado en MATLAB.
+
 ## Imágenes explicativas
 Recolección<br/>
 ![rec](./imagenes/red_recoleccion.jpg)<br/>
