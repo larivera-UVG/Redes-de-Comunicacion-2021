@@ -11,13 +11,13 @@ Este es el repositorio del trabajo de graduación dedicado a algoritmos de ruteo
 - _Flooding_
 
 ## Imágenes explicativas
-Recolección
+Recolección<br/>
 ![rec](./imagenes/red_recoleccion.jpg)<br/>
 
-Control
+Control<br/>
 ![rec](./imagenes/red_control.jpg)<br/>
 
-_Flooding_
+_Flooding_<br/>
 ![rec](./imagenes/red_flooding.jpg)<br/>
 
 
