@@ -59,7 +59,7 @@ byte Mrf24j::read_short(byte address) {
     return ret;
 }
 
-byte Mrf24j::read_long(word address) {
+byte Mrf24j::read_long(uint16_t address) {
     digitalWrite(_pin_cs, LOW);
     byte ahigh = address >> 3;
     byte alow = address << 5;
@@ -79,7 +79,7 @@ void Mrf24j::write_short(byte address, byte data) {
     digitalWrite(_pin_cs, HIGH);
 }
 
-void Mrf24j::write_long(word address, byte data) {
+void Mrf24j::write_long(uint16_t address, byte data) {
     digitalWrite(_pin_cs, LOW);
     byte ahigh = address >> 3;
     byte alow = address << 5;
@@ -99,12 +99,12 @@ void Mrf24j::set_pan(uint16_t panid) {
     write_short(MRF_PANIDL, panid & 0xff);
 }
 
-void Mrf24j::address16_write(word address16) {
+void Mrf24j::address16_write(uint16_t address16) {
     write_short(MRF_SADRH, address16 >> 8);
     write_short(MRF_SADRL, address16 & 0xff);
 }
 
-word Mrf24j::address16_read(void) {
+uint16_t Mrf24j::address16_read(void) {
     byte a16h = read_short(MRF_SADRH);
     return a16h << 8 | read_short(MRF_SADRL);
 }
@@ -113,7 +113,7 @@ word Mrf24j::address16_read(void) {
  * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
  * @param data
  */
-void Mrf24j::send16(word dest16, char * data) {
+void Mrf24j::send16(uint16_t dest16, char * data) {
     byte len = strlen(data); // get the length of the char* array
     int i = 0;
     write_long(i++, bytes_MHR); // header length
@@ -325,13 +325,31 @@ void Mrf24j::rx_enable(void) {
     write_short(MRF_BBREG1, 0x00);  // RXDECINV - enable receiver
 }
 
+//MAC layer
 void Mrf24j::set_cca(uint8_t method){
     switch(method){
         case 1: //Energy above threshold
             write_short(MRF_BBREG2,0x80);
             write_short(MRF_CCAEDTH,0x96);  //the threshold is according to RSSI value and in ZigBee the standard says 40dB
             break;
-        case 2: //Carrie sense only (CS)
-            write_short(MRF_BBREG2,0x40);
+        case 2: //Carrier sense only (CS)
+            write_short(MRF_BBREG2,0x40);   //PREGUNTAR POR EL CS
+            break;
+        case 3: //Carrier sense and energy
+            write_short(MRF_BBREG2,0xC0);   //PREGUNTAR POR EL CS
+            write_short(MRF_CCAEDTH,0x96);
+            break;
+        default:
+            write_short(MRF_BBREG2,0x80);
+            write_short(MRF_CCAEDTH,0x96);
+            break;
     }
 }
+
+//MAC layer
+uint8_t Mrf24j::lqi(void){
+    write_short(MRF_BBERG6,0x80);
+    while((MRF_BBREG6 & 0x01) != 0x01){};
+    return MRF_RSSI; //measures the link quality by the energy detection
+}
+

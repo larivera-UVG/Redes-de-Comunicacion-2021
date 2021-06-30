@@ -172,16 +172,16 @@ class Mrf24j
         void init(void);
 
         byte read_short(byte address);
-        byte read_long(word address);
+        byte read_long(uint16_t address);
 
         void write_short(byte address, byte data);
-        void write_long(word address, byte data);
+        void write_long(uint16_t address, byte data);
 
         uint16_t get_pan(void);
-        void set_pan(word panid);
+        void set_pan(uint16_t panid);
 
         void address16_write(uint16_t address16);
-        word address16_read(void);
+        uint16_t address16_read(void);
 
         void set_interrupts(void);
 
@@ -230,6 +230,10 @@ class Mrf24j
          * Evaluation for the channel to determine if it is busy or free (CCA)
          */ 
         void set_cca(uint8_t method);
+
+        uint8_t lqi(void);
+
+        
     private:
         int _pin_reset;
         int _pin_cs;
