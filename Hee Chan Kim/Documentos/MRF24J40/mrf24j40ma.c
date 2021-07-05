@@ -9,6 +9,7 @@
 static uint8_t rx_buf[127];
 
 // essential for obtaining the data frame only
+// MAC header (MHR)
 // bytes_MHR = 2 Frame control + 1 sequence number + 2 panid + 2 shortAddr Destination + 2 shortAddr Source
 static int bytes_MHR = 9;
 static int bytes_FCS = 2; // FCS length = 2
@@ -186,6 +187,7 @@ void Mrf24j::init(void) {
     write_short(MRF_BBREG6, 0x40); // – Set appended RSSI value to RXFIFO.
     set_interrupts();
     set_channel(12);
+    set_promiscuous(false); // - for a normal reception mode.
     // max power is by default.. just leave it...
     // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
     write_short(MRF_RFCTL, 0x04); //  – Reset RF state machine.
@@ -204,7 +206,7 @@ void Mrf24j::interrupt_handler(void) {
     if (last_interrupt & MRF_I_RXIF) {
         flag_got_rx++;
         // read out the packet data...
-        noInterrupts();
+        noInterrupts(); //depende del micro que utilicemos
         rx_disable();
         // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
         uint8_t frame_length = read_long(0x300);
@@ -264,9 +266,9 @@ void Mrf24j::check_flags(void (*rx_handler)(void), void (*tx_handler)(void)){
  */
 void Mrf24j::set_promiscuous(boolean enabled) {
     if (enabled) {
-        write_short(MRF_RXMCR, 0x01);
+        write_short(MRF_RXMCR, *MRF_RXMCR | 0x01); //promiscuous
     } else {
-        write_short(MRF_RXMCR, 0x00);
+        write_short(MRF_RXMCR, *MRF_RXMCR | 0x00); //normal
     }
 }
 
@@ -329,19 +331,19 @@ void Mrf24j::rx_enable(void) {
 void Mrf24j::set_cca(uint8_t method){
     switch(method){
         case 1: //Energy above threshold
-            write_short(MRF_BBREG2,0x80);
-            write_short(MRF_CCAEDTH,0x96);  //the threshold is according to RSSI value and in ZigBee the standard says 40dB
+            write_short(MRF_BBREG2, *MRF_BBREG2 | 0x80);
+            write_short(MRF_CCAEDTH, *MRF_CCAEDTH | 0x96);  //the threshold is according to RSSI value and in ZigBee the standard says 40dB
             break;
         case 2: //Carrier sense only (CS)
-            write_short(MRF_BBREG2,0x40);   //PREGUNTAR POR EL CS
+            write_short(MRF_BBREG2, *MRF_BBREG2 | 0x40);   //PREGUNTAR POR EL CS
             break;
         case 3: //Carrier sense and energy
-            write_short(MRF_BBREG2,0xC0);   //PREGUNTAR POR EL CS
-            write_short(MRF_CCAEDTH,0x96);
+            write_short(MRF_BBREG2, *MRF_BBREG2 | 0xC0);   //PREGUNTAR POR EL CS
+            write_short(MRF_CCAEDTH, *MRF_CCAEDTH | 0x96);
             break;
         default:
-            write_short(MRF_BBREG2,0x80);
-            write_short(MRF_CCAEDTH,0x96);
+            write_short(MRF_BBREG2, *MRF_BBREG2 | 0x80);
+            write_short(MRF_CCAEDTH, *MRF_CCAEDTH | 0x96);
             break;
     }
 }
@@ -349,7 +351,179 @@ void Mrf24j::set_cca(uint8_t method){
 //MAC layer
 uint8_t Mrf24j::lqi(void){
     write_short(MRF_BBERG6,0x80);
-    while((MRF_BBREG6 & 0x01) != 0x01){};
+    while((MRF_BBREG6 & 0x01) != 0x01);
     return MRF_RSSI; //measures the link quality by the energy detection
 }
 
+//MAC layer
+void Mrf24j::BeaconInitCoo(void){
+    //preguntar
+}
+
+//MAC layer
+void Mrf24j::BeaconInit(void){
+
+}
+
+//MAC layer
+void Mrf24j::NoBeaconInitCoo(void){
+    write_short(MRF_RXMCR, *MRF_RXMCR | 0x08);
+    write_short(MRF_TXMCR, *MRF_TXMCR | 0x20);
+    write_short(MRF_ORDER, *MRF_ORDER | 0xFF);
+}
+
+//MAC layer
+void Mrf24j::NoBeaconInit(void){
+    write_short(MRF_RXMCR, *MRF_RXMCR & 0xF7);
+    write_short(MRF_TXMCR, *MRF_TXMCR & 0xDF);
+}
+
+//MAC layer
+ void Mrf24j::UnslottedCSMACA(void){        //no beacon
+    write_short(MRF_TXMCR, *MRF_TXMCR  & 0xDF);
+    //MACminBE and MACMaxCSMABackoff  are default
+ }
+
+ //MAC layer
+ void Mrf24j::SlottedCSMACA(void){          //with beacon
+    write_short(MRF_TXMCR, *MRF_TXMCR | 0x20);
+    //MACminBE and MACMaxCSMABackoff are default
+ }
+
+//MAC layer (modified from interrupt_handler)
+void Mrf24j::Read(void){
+    // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
+    uint8_t frame_length = read_long(0x300);
+    uint8_t frame_format = (read_short(MRF_RXFLUSH)| 0x0E);
+
+    // buffer header bytes
+    int rd_ptr = 0;
+    // from (0x301) to (0x301 + bytes_MHR)
+    for (int i = 0; i < bytes_MHR; I++){
+        rx_info.rx_data[rd_ptr++] = read_long(0x301 + i);
+    }
+
+    // buffer data bytes
+    int rd_ptr = 0;
+    // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
+    for (int i = 0; i < rx_datalength(); i++) {
+        rx_info.rx_data[bytes_MHR + rd_ptr++] = read_long(0x301 + bytes_MHR + i);
+    }
+
+    rx_info.frame_length = frame_length; //posiblemente habrá que ponerlo arriba de buffer data bytes.
+    // same as datasheet 0x301 + (m + n + 2) <-- frame_length
+    rx_info.lqi = read_long(0x301 + frame_length);
+    // same as datasheet 0x301 + (m + n + 3) <-- frame_length + 1
+    rx_info.rssi = read_long(0x301 + frame_length + 1);
+}
+
+//MAC layer (modified from send16())
+void Mrf24j::sendAck(uint16_t dest16, char * data) {
+    byte len = strlen(data); // get the length of the char* array
+    int i = 0;
+    write_long(i++, bytes_MHR); // header length
+    // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
+    // default: ignoreBytes = 0;
+    write_long(i++, bytes_MHR+ignoreBytes+len);
+
+    // 0 | pan compression | ack | no security | no data pending | data frame[3 bits]
+    write_long(i++, 0b01100001); // first byte of Frame Control
+    // 16 bit source, 802.15.4 (2003), 16 bit dest,
+    write_long(i++, 0b10001000); // second byte of frame control
+    write_long(i++, 1);  // sequence number 1
+
+    word panid = get_pan();
+
+    write_long(i++, panid & 0xff);  // dest panid
+    write_long(i++, panid >> 8);
+    write_long(i++, dest16 & 0xff);  // dest16 low
+    write_long(i++, dest16 >> 8); // dest16 high
+
+    word src16 = address16_read();
+    write_long(i++, src16 & 0xff); // src16 low
+    write_long(i++, src16 >> 8); // src16 high
+
+    // All testing seems to indicate that the next two  bytes are ignored.
+    //2 bytes on FCS appended by TXMAC
+    i+=ignoreBytes;
+    for (int q = 0; q < len; q++) {
+        write_long(i++, data[q]);
+    }
+    // ack on, and go!
+    write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+    // the amount of waiting time for the ack can be programmed by the 
+    // MAWD (ACKTMOUT 0x12<6:0>) bits.
+    // the recipient via hardware will respond after "aTurnaroundTime" (12) symbols,
+    // it can be programmed by the TURNTIME (TXTIME 0x27<7:4>) and RFSTBL 
+    // (TXSTBL 0x2E<7:4>) bits where "aTurnaroundTime" = TURNTIME + RFSTBL
+}
+
+//MAC layer (modified from send16())
+void Mrf24j::sendNoAck(uint16_t dest16, char * data) {
+    byte len = strlen(data); // get the length of the char* array
+    int i = 0;
+    write_long(i++, bytes_MHR); // header length
+    // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
+    // default: ignoreBytes = 0;
+    write_long(i++, bytes_MHR+ignoreBytes+len);
+
+    // 0 | pan compression | no ack | no security | no data pending | data frame[3 bits]
+    write_long(i++, 0b01000001); // first byte of Frame Control
+    // 16 bit source, 802.15.4 (2003), 16 bit dest,
+    write_long(i++, 0b10001000); // second byte of frame control
+    write_long(i++, 1);  // sequence number 1
+
+    word panid = get_pan();
+
+    write_long(i++, panid & 0xff);  // dest panid
+    write_long(i++, panid >> 8);
+    write_long(i++, dest16 & 0xff);  // dest16 low
+    write_long(i++, dest16 >> 8); // dest16 high
+
+    word src16 = address16_read();
+    write_long(i++, src16 & 0xff); // src16 low
+    write_long(i++, src16 >> 8); // src16 high
+
+    // All testing seems to indicate that the next two  bytes are ignored.
+    //2 bytes on FCS appended by TXMAC
+    i+=ignoreBytes;
+    for (int q = 0; q < len; q++) {
+        write_long(i++, data[q]);
+    }
+    // ack on, and go!
+    write_short(MRF_TXNCON, (1<<MRF_TXNTRIG));
+}
+
+//MAC layer (modified from send16())
+void Mrf24j::broadcast(char * data){
+    byte len = strlen(data); // get the length of the char* array
+    int i = 0;
+    write_long(i++, bytes_MHR); // header length
+    // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
+    // default: ignoreBytes = 0;
+    write_long(i++, bytes_MHR+ignoreBytes+len);
+
+    // 0 | pan compression | no ack | no security | no data pending | data frame[3 bits]
+    write_long(i++, 0b01000001); // first byte of Frame Control
+    // 16 bit source, 802.15.4 (2003), 16 bit dest,
+    write_long(i++, 0b10001000); // second byte of frame control
+    write_long(i++, 1);  // sequence number 1
+
+    write_long(i++, 0xFF);  // dest panid high
+    write_long(i++, 0xFF);  // dest panid low
+    write_long(i++, 0xFF);  // dest16 low
+    write_long(i++, 0xFF); // dest16 high
+
+    word src16 = address16_read();
+    write_long(i++, src16 & 0xff); // src16 low
+    write_long(i++, src16 >> 8); // src16 high
+
+    // All testing seems to indicate that the next two  bytes are ignored.
+    //2 bytes on FCS appended by TXMAC
+    i+=ignoreBytes;
+    for (int q = 0; q < len; q++) {
+        write_long(i++, data[q]);
+    }
+    // ack on, and go!
+    write_short(MRF_TXNCON, (1<<MRF_TXNTRIG));
+}
