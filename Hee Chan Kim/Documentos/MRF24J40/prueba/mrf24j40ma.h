@@ -5,7 +5,9 @@
  */
 
 #ifndef __MRF24J40MA_H__
-#define __MRF24JMA_H__
+#define __MRF24J40MA_H__
+
+#pragma once //because we only want to compile it once.
 
 #if defined(ARDUINO) && ARDUINO >= 100 // Arduino IDE version >= 1.0
     #include "Arduino.h"
@@ -148,6 +150,11 @@
 #define MRF_I_RXIF  0b00001000
 #define MRF_I_TXNIF 0b00000001
 
+
+#define MACResponseWaitTime 10000
+#define BROADCAST 0xFF
+#define NewMember 0x0000
+
 typedef struct _rx_info_t{
     uint8_t frame_length;
     uint8_t rx_data[116]; //max data length = (127 aMaxPHYPacketSize - 2 Frame control - 1 sequence number - 2 panid - 2 shortAddr Destination - 2 shortAddr Source - 2 FCS)
@@ -163,6 +170,14 @@ typedef struct _tx_info_t{
     uint8_t retries:2;
     uint8_t channel_busy:1;
 } tx_info_t;
+/**
+ * Pool for getting the addresses. It's better to include it here because anyone can become the coordinator.
+ */
+typedef struct _pool_t{
+    uint8_t size = 10;
+    uint16_t address[size] = {0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,0x0009,0x000A};
+    uint8_t availability[size] = {0,0,0,0,0,0,0,0,0,0};  //0:available 1:occupy
+} pool_t;
 
 class Mrf24j
 {
@@ -220,24 +235,59 @@ class Mrf24j
          */
         void set_palna(boolean enabled);
 
-        void send16(word dest16, char * data);
+        void send16(uint16_t dest16, char * data);
 
         void interrupt_handler(void);
 
         void check_flags(void (*rx_handler)(void), void (*tx_handler)(void));
 
+        // ------------------------------- MAC -------------------------------
         /**
          * Evaluation for the channel to determine if it is busy or free (CCA)
          */ 
         void set_cca(uint8_t method);
-
         uint8_t lqi(void);
 
-        
+        /*
+         * Mask when it's necessary to modify certain bits from register
+         */
+        uint8_t mask_short(uint8_t reg, uint8_t mask, uint8_t change);
+        uint16_t mask_long(uint16_t reg, uint16_t mask, uint8_t change);
+
+        /*
+         * Functions for a Non beacon network
+         */
+        void NoBeaconInitCoo(void);
+        void NoBeaconInit(void);
+        void UnslottedCSMACA(void);
+
+        /*
+         * Functions for a beacon network
+         */
+        void BeaconInitCoo(void);
+        void BeaconInit(void);
+        void SlottedCSMACA(void);
+
+        /*
+         * Functions for sending data
+         */
+        void sendAck(uint16_t dest16, char * data);
+        void sendNoAck(uint16_t dest16, char * data);
+        void broadcast(char * data, uint16_t address = BROADCAST);
+
+        /*
+         * To associate to a PAN
+         */
+        void association_set(uint16_t panid, uint16_t address);
+        bool association_request(byte node);
+        pool_t * get_pool(void);
+        bool association_response(void);
+
     private:
         int _pin_reset;
         int _pin_cs;
         int _pin_int;
+        bool _ACK_FAIL;
 };
 
 #endif  /* LIB_MRF24J_H */

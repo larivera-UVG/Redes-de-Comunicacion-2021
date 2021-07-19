@@ -24,7 +24,7 @@ volatile uint8_t flag_got_tx;
 
 static rx_info_t rx_info;
 static tx_info_t tx_info;
-
+static pool_t pool;
 
 /**
  * Constructor MRF24J Object.
@@ -139,8 +139,7 @@ void Mrf24j::send16(uint16_t dest16, char * data) {
     write_long(i++, src16 & 0xff); // src16 low
     write_long(i++, src16 >> 8); // src16 high
 
-    // All testing seems to indicate that the next two 
-    bytes are ignored.
+    // All testing seems to indicate that the next two bytes are ignored.
     //2 bytes on FCS appended by TXMAC
     i+=ignoreBytes;
     for (int q = 0; q < len; q++) {
@@ -266,9 +265,9 @@ void Mrf24j::check_flags(void (*rx_handler)(void), void (*tx_handler)(void)){
  */
 void Mrf24j::set_promiscuous(boolean enabled) {
     if (enabled) {
-        write_short(MRF_RXMCR, *MRF_RXMCR | 0x01); //promiscuous
+        write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x01, 0x01)); //promiscuous
     } else {
-        write_short(MRF_RXMCR, *MRF_RXMCR | 0x00); //normal
+        write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x01, 0x00)); //normal
     }
 }
 
@@ -327,30 +326,44 @@ void Mrf24j::rx_enable(void) {
     write_short(MRF_BBREG1, 0x00);  // RXDECINV - enable receiver
 }
 
+//Useful function
+uint8_t Mrf24j::mask_short(uint8_t reg, uint8_t mask, uint8_t change){
+    uint8_t receive =  read_short(reg);
+    uint8_t temp = receive & ~(mask);
+    return temp | change;
+}
+
+//Useful function
+uint16_t Mrf24j::mask_long(uint16_t reg, uint16_t mask, uint8_t change){
+    uint16_t receive =  read_long(reg);
+    uint8_t temp = receive & ~(mask);
+    return temp | change;
+}
+
 //MAC layer
 void Mrf24j::set_cca(uint8_t method){
     switch(method){
         case 1: //Energy above threshold
-            write_short(MRF_BBREG2, *MRF_BBREG2 | 0x80);
-            write_short(MRF_CCAEDTH, *MRF_CCAEDTH | 0x96);  //the threshold is according to RSSI value and in ZigBee the standard says 40dB
+            write_short(MRF_BBREG2, mask_short(MRF_BBREG2, 0xC0, 0x80));
+            write_short(MRF_CCAEDTH, mask_short(MRF_CCAEDTH, 0xFF, 0x96));  //the threshold is according to RSSI value and in ZigBee the standard says 40dB
             break;
         case 2: //Carrier sense only (CS)
-            write_short(MRF_BBREG2, *MRF_BBREG2 | 0x40);   //PREGUNTAR POR EL CS
+            write_short(MRF_BBREG2, mask_short(MRF_BBREG2, 0xC0, 0x40));   //PREGUNTAR POR EL CS
             break;
         case 3: //Carrier sense and energy
-            write_short(MRF_BBREG2, *MRF_BBREG2 | 0xC0);   //PREGUNTAR POR EL CS
-            write_short(MRF_CCAEDTH, *MRF_CCAEDTH | 0x96);
+            write_short(MRF_BBREG2, mask_short(MRF_BBREG2, 0xC0, 0xC0));   //PREGUNTAR POR EL CS
+            write_short(MRF_CCAEDTH, mask_short(MRF_CCAEDTH, 0xFF, 0x96));
             break;
         default:
-            write_short(MRF_BBREG2, *MRF_BBREG2 | 0x80);
-            write_short(MRF_CCAEDTH, *MRF_CCAEDTH | 0x96);
+            write_short(MRF_BBREG2, mask_short(MRF_BBREG2, 0xC0, 0x80));
+            write_short(MRF_CCAEDTH, mask_short(MRF_CCAEDTH, 0xFF, 0x96));
             break;
     }
 }
 
 //MAC layer
 uint8_t Mrf24j::lqi(void){
-    write_short(MRF_BBERG6,0x80);
+    write_short(MRF_BBREG6,0x80);
     while((MRF_BBREG6 & 0x01) != 0x01);
     return MRF_RSSI; //measures the link quality by the energy detection
 }
@@ -367,55 +380,32 @@ void Mrf24j::BeaconInit(void){
 
 //MAC layer
 void Mrf24j::NoBeaconInitCoo(void){
-    write_short(MRF_RXMCR, *MRF_RXMCR | 0x08);
-    write_short(MRF_TXMCR, *MRF_TXMCR | 0x20);
-    write_short(MRF_ORDER, *MRF_ORDER | 0xFF);
+    write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x08, 0x08));
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x02, 0x00));
+    write_short(MRF_ORDER, 0xFF);
 }
 
 //MAC layer
 void Mrf24j::NoBeaconInit(void){
-    write_short(MRF_RXMCR, *MRF_RXMCR & 0xF7);
-    write_short(MRF_TXMCR, *MRF_TXMCR & 0xDF);
+    write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x08, 0x00));
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x02, 0x00));
 }
 
 //MAC layer
  void Mrf24j::UnslottedCSMACA(void){        //no beacon
-    write_short(MRF_TXMCR, *MRF_TXMCR  & 0xDF);
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x20, 0x00));
     //MACminBE and MACMaxCSMABackoff  are default
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x18, 0x18));
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x07, 0x04));
  }
 
  //MAC layer
  void Mrf24j::SlottedCSMACA(void){          //with beacon
-    write_short(MRF_TXMCR, *MRF_TXMCR | 0x20);
-    //MACminBE and MACMaxCSMABackoff are default
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x20, 0x20));
+    //MACminBE and MACMaxCSMABackoff  are default
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x18, 0x18));
+    write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x07, 0x04));
  }
-
-//MAC layer (modified from interrupt_handler)
-void Mrf24j::Read(void){
-    // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
-    uint8_t frame_length = read_long(0x300);
-    uint8_t frame_format = (read_short(MRF_RXFLUSH)| 0x0E);
-
-    // buffer header bytes
-    int rd_ptr = 0;
-    // from (0x301) to (0x301 + bytes_MHR)
-    for (int i = 0; i < bytes_MHR; I++){
-        rx_info.rx_data[rd_ptr++] = read_long(0x301 + i);
-    }
-
-    // buffer data bytes
-    int rd_ptr = 0;
-    // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
-    for (int i = 0; i < rx_datalength(); i++) {
-        rx_info.rx_data[bytes_MHR + rd_ptr++] = read_long(0x301 + bytes_MHR + i);
-    }
-
-    rx_info.frame_length = frame_length; //posiblemente habrá que ponerlo arriba de buffer data bytes.
-    // same as datasheet 0x301 + (m + n + 2) <-- frame_length
-    rx_info.lqi = read_long(0x301 + frame_length);
-    // same as datasheet 0x301 + (m + n + 3) <-- frame_length + 1
-    rx_info.rssi = read_long(0x301 + frame_length + 1);
-}
 
 //MAC layer (modified from send16())
 void Mrf24j::sendAck(uint16_t dest16, char * data) {
@@ -490,12 +480,12 @@ void Mrf24j::sendNoAck(uint16_t dest16, char * data) {
     for (int q = 0; q < len; q++) {
         write_long(i++, data[q]);
     }
-    // ack on, and go!
-    write_short(MRF_TXNCON, (1<<MRF_TXNTRIG));
+    // no ack on, and go!
+    write_short(MRF_TXNCON, (0<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
 }
 
 //MAC layer (modified from send16())
-void Mrf24j::broadcast(char * data){
+void Mrf24j::broadcast(char * data, uint16_t address = BROADCAST){
     byte len = strlen(data); // get the length of the char* array
     int i = 0;
     write_long(i++, bytes_MHR); // header length
@@ -503,16 +493,16 @@ void Mrf24j::broadcast(char * data){
     // default: ignoreBytes = 0;
     write_long(i++, bytes_MHR+ignoreBytes+len);
 
-    // 0 | pan compression | no ack | no security | no data pending | data frame[3 bits]
-    write_long(i++, 0b01000001); // first byte of Frame Control
+    // 0 | pan compression | ack | no security | no data pending | data frame[3 bits]
+    write_long(i++, 0b01100001); // first byte of Frame Control
     // 16 bit source, 802.15.4 (2003), 16 bit dest,
     write_long(i++, 0b10001000); // second byte of frame control
     write_long(i++, 1);  // sequence number 1
 
-    write_long(i++, 0xFF);  // dest panid high
-    write_long(i++, 0xFF);  // dest panid low
-    write_long(i++, 0xFF);  // dest16 low
-    write_long(i++, 0xFF); // dest16 high
+    write_long(i++, BROADCAST);  // dest panid high
+    write_long(i++, BROADCAST);  // dest panid low
+    write_long(i++, BROADCAST);  // dest16 low
+    write_long(i++, BROADCAST); // dest16 high
 
     word src16 = address16_read();
     write_long(i++, src16 & 0xff); // src16 low
@@ -525,5 +515,89 @@ void Mrf24j::broadcast(char * data){
         write_long(i++, data[q]);
     }
     // ack on, and go!
-    write_short(MRF_TXNCON, (1<<MRF_TXNTRIG));
+    write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+}
+
+//MAC layer association response
+void Mrf24j::association_set(uint16_t panid, uint16_t address){
+    set_pan(panid);
+    address16_write(address);
+}
+
+//NTW layer association request
+bool Mrf24j::association_request(byte node){  //it needs to have the interruption handler created in MCU
+    char join[4] = "JOIN";
+    bool joined = false;
+    int timeout = 0;
+    byte channel = 11;
+    while(!joined){
+
+        timeout++;
+        if(timeout>MACResponseWaitTime) 
+        break;
+
+        if(get_txinfo()->tx_ok){ //if the ack was received then wait and read
+            address16_write(0x0000);
+            // 1: PAN HIGH - 2: PAN LOW - 3: ADDRESS UP - 4: ADDRESS LOW 
+            if (rx_datalength() > 3) {
+                uint16_t panid = get_rxinfo()->rx_data[0];
+                panid = ((panid << 8)|get_rxinfo()->rx_data[1]);
+                uint16_t address = get_rxinfo()->rx_data[2];
+                address = ((address << 8)|get_rxinfo()->rx_data[3]);
+                association_set(panid, address);
+                joined = true;
+            }
+        } else {
+            //channel sweep
+            set_channel(channel); 
+            broadcast(join);
+            int i = 0;
+            while(i<1000)
+            i++;
+            channel++;
+            if(channel==27)
+            channel = 11;
+        }
+        
+    }
+    return joined;
+}
+
+// Useful function
+pool_t * Mrf24j::get_pool(void) {
+    return &pool;
+}
+
+//NTW layer association response
+bool Mrf24j::association_response(void){
+    bool response = false;
+    char buffer[105];
+    uint16_t panid = get_pan();
+    uint16_t address;
+    int i;
+    for (i = 0;get_pool()->size;i++){
+        if(get_pool()->availability[i]==0){
+            address = get_pool()->address[i];
+            break;
+        }
+    }
+
+    buffer[0] = (panid >> 8 | 0x00FF);
+    buffer[1] = (panid >> 0 | 0x00FF);
+    buffer[2] = (address >> 8 | 0x00FF);
+    buffer[3] = (address >> 0 | 0x00FF);
+
+    broadcast(buffer, NewMember);
+    
+    int timeout = 0;
+    while(timeout<MACResponseWaitTime){
+        timeout++;
+        if(get_txinfo()->tx_ok){
+            response = true;
+            get_pool()->availability[i] = 1;
+            break;
+        }
+    }
+
+    return response;
 }
