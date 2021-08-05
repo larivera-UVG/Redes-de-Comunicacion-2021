@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [ArduinoNano_IoT_shield_MRF24J40MA.PrjPcb]
+   Generated File[shield_MRF24J40MA.TXT]
+   Generated File[shield_MRF24J40MA.LDP]
+   Generated File[shield_MRF24J40MA.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 12:06:28 PM On 8/3/2021
