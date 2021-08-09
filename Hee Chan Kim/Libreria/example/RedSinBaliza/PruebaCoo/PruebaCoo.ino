@@ -1,4 +1,4 @@
-//led blanca: sin red asociada
+//verde significa coordinador
 
 //Inicialización del módulo
 
@@ -17,40 +17,38 @@
 #define NUMPIXELS 1 // How many NeoPixels are attached to the Arduino
 #define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
 
-bool asociado = false;
-
-
 //RGB
 Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
+char led[3] = {0,250,0};
 
 //PAN
-const uint16_t pan = 0x0000;
+const uint16_t pan = 0x1234;
 //Dirección
-const uint16_t direccion = 0x1A21;
+const uint16_t direccion = 0x000A;
 //Dirección envio
-const uint16_t dest = 0x0000;
+const uint16_t dest = 0x000F;
 
-//mandar código RGB a la red
-char led[3] = {0,150,0};
-
+//buffer serial
+char serialBuffer[105];
 
 //Clase
 Mrf24j mrf(rst, cs, itr);
 
 void MRFInterruptRoutine() {
   //rutina para la interrupción
-  //Serial.println("interrupcion");
+  //Serial.println("interrupción");
   mrf.interrupt_handler();
+
 }
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pixels.begin(); 
 
   //reinicio del modulo
   mrf.reset();
   
-  //inicialización. Default sin beacon
+  //inicialización
   mrf.init();
 
   //asigna PAN
@@ -59,31 +57,20 @@ void setup() {
   //asigna la dirección
   mrf.address16_write(direccion);
 
+  //inicia no beacon
+  mrf.NoBeaconInitCoo();
+  Serial.print("Coo: "); Serial.println(mrf.check_coo());
+  
   //interrupción asociado al pin itr
   attachInterrupt(digitalPinToInterrupt(itr), MRFInterruptRoutine, CHANGE);
 
   interrupts();
 
-  //inicializa red sin baliza
-  mrf.NoBeaconInit();
 
-  
-  pixels.clear(); // Set all pixel colors to 'off'
-  pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
-  pixels.show();   // Send the updated pixel colors to the hardware.
-  
-  while(!asociado){
-    Serial.println("asociandose... ");
-    asociado = mrf.association_request();
-    delay(100);
-  } 
   uint16_t pan_received = mrf.get_pan();
   uint16_t address_received = mrf.address16_read();
-  uint16_t origin = mrf.get_rxinfo()->origin;
-  
   Serial.print("Está conectada a la red: "); Serial.println(pan_received);
   Serial.print("Su dirección es: "); Serial.println(address_received);
-  Serial.print("Vino de: "); Serial.println(origin);
 }
 
 void loop() {
@@ -96,15 +83,40 @@ void loop() {
 
 //maneja la bandera de recepción
 void handleRx(void){
-  //Serial.println("fue el rx");
+  
+  if(mrf.rx_datalength() > 3){    
+    if(mrf.get_rxinfo()->rx_data[0] == 'J' &&
+       mrf.get_rxinfo()->rx_data[1] == 'O' &&
+       mrf.get_rxinfo()->rx_data[2] == 'I' &&
+       mrf.get_rxinfo()->rx_data[3] == 'N'){
+        Serial.println("asociando... ");
+        bool response = false;
+        char buffer[4];
+        uint16_t panid = mrf.get_pan();
+        uint16_t address = 0x4546;
+
+        buffer[0] = (panid >> 8 & 0x00FF);
+        buffer[1] = (panid >> 0 & 0x00FF);
+        buffer[2] = (address >> 8 & 0x00FF);
+        buffer[3] = (address >> 0 & 0x00FF);
+
+        for (int i = 0; i < 4; i++)
+        Serial.println(buffer[i]);
+
+        mrf.broadcast(buffer, 0x0000);
+     }
+   }
+  /*Serial.println(mrf.rx_datalength());
   if(mrf.rx_datalength() == 3){
     led[0] = mrf.get_rxinfo()->rx_data[0];
     led[1] = mrf.get_rxinfo()->rx_data[1];
     led[2] = mrf.get_rxinfo()->rx_data[2];
-  }
+  }*/
+  //for (int i = 0; i < mrf.rx_datalength(); i++)
+  //Serial.write(mrf.get_rxinfo()->rx_data[i]);
 }
 
 //maneja la bandera de envío
 void handleTx(void){
-  //Serial.println("fue el tx");
+  
 }

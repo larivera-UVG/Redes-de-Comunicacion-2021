@@ -29,7 +29,10 @@ const uint16_t direccion = 0x000F;
 const uint16_t dest = 0x0000;
 
 //mandar código RGB a la red
-char led[3] = {0,0,150};
+char led[] = "sd!";
+//led[0] = 0;
+//led[1] = 0;
+//led[2] = 150;
 
 
 //Clase
@@ -39,10 +42,13 @@ void MRFInterruptRoutine() {
   //rutina para la interrupción
   Serial.println("interrupcion");
   mrf.interrupt_handler();
+  for (int i = 0; i < mrf.rx_datalength(); i++)
+  Serial.write(mrf.get_rxinfo()->rx_data[i]);
+  Serial.println(" ");
 }
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   pixels.begin(); 
 
   //reinicio del modulo
@@ -66,7 +72,13 @@ void setup() {
   interrupts();
 
   //inicializa red sin baliza
-  //mrf.NoBeaconInitCoo();
+  mrf.NoBeaconInitCoo();
+
+  uint16_t pan_received = mrf.get_pan();
+  uint16_t address_received = mrf.address16_read();
+
+  Serial.print("Está conectada a la red: "); Serial.println(pan_received);
+  Serial.print("Su dirección es: "); Serial.println(address_received);
 }
 
 void loop() {
@@ -75,31 +87,29 @@ void loop() {
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
-
+  
   for(int i = 0; i < 10; i++){
     if(mrf.get_pool()->availability[i]){
-      Serial.println("hay miembro");
       mrf.sendAck(mrf.get_pool()->address[i], led);
     }
   }
 }
 
 //maneja la bandera de recepción
-void handleRx(void){
-  int buf = mrf.rx_datalength();
-  for(int i = 0; i > buf; i++){
-    Serial.println(mrf.get_rxinfo()->rx_data[i]); 
-  }
+void handleRx(void){  
+  for (int i = 0; i < mrf.rx_datalength(); i++)
+  Serial.write(mrf.get_rxinfo()->rx_data[i]);
+  Serial.println(" ");
   
-    if(mrf.rx_datalength() > 3){
-      if(mrf.get_rxinfo()->rx_data[0] == 'J' &&
-         mrf.get_rxinfo()->rx_data[1] == 'O' &&
-         mrf.get_rxinfo()->rx_data[2] == 'I' &&
-         mrf.get_rxinfo()->rx_data[3] == 'N'){
-          Serial.println("asociando... ");
-          mrf.association_response();
-      }
+  if(mrf.rx_datalength() > 3){
+    if(mrf.get_rxinfo()->rx_data[0] == 'J' &&
+       mrf.get_rxinfo()->rx_data[1] == 'O' &&
+       mrf.get_rxinfo()->rx_data[2] == 'I' &&
+       mrf.get_rxinfo()->rx_data[3] == 'N'){
+        Serial.println("asociando... ");
+        mrf.association_response();
     }
+  }
 }
 
 //maneja la bandera de envío

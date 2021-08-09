@@ -1,4 +1,4 @@
-//rojo significa enviar
+//rojo significa miembro
 
 //Inicialización del módulo
 
@@ -22,7 +22,7 @@
 Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 
 //PAN
-const uint16_t pan = 0x1234;
+const uint16_t pan = 0xFFFF;
 //Dirección
 const uint16_t direccion = 0x000F;
 //Dirección envio
@@ -60,6 +60,10 @@ void setup() {
   //asigna la dirección
   mrf.address16_write(direccion);
 
+  //inicia no beacon
+  mrf.NoBeaconInit();
+  Serial.print("Coo: "); Serial.println(mrf.check_coo());
+
   //interrupción asociado al pin itr
   attachInterrupt(digitalPinToInterrupt(itr), MRFInterruptRoutine, CHANGE);
 
@@ -87,32 +91,30 @@ void loop() {
         Serial.println(adios);
         mrf.broadcast(adios,dest);
         //mrf.sendAck(dest,palabra);
-        //mrf.sendNoAck(dest,palabra);     
+        //mrf.sendNoAck(dest,palabra);  
+        mrf.address16_write(0x0000);   
       }
   }
-  
-  /*
-  int i = 0;
-  if (Serial.available() > 0) {
-      //String data = Serial.readStringUntil('\n');
-      int hola = Serial.readBytesUntil('\n',buf,SIZE);
-      hola++;
-      buf[hola] = '\n';
-      if (hola){
-        Serial.println("enviando...");
-        //mrf.broadcast(hola);
-        mrf.sendAck(dest,buf);
-        //mrf.sendNoAck(dest,buf);
-        for(int i;i< hola; i++){
-          buf[i] = {};
-        }     
-      }
-  }*/
 }
 
 //maneja la bandera de recepción
 void handleRx(void){
-  
+  //for (int i = 0; i < mrf.rx_datalength(); i++)
+  //Serial.write(mrf.get_rxinfo()->rx_data[i]);
+
+  // 1: PAN HIGH - 2: PAN LOW - 3: ADDRESS UP - 4: ADDRESS LOW 
+  if (mrf.rx_datalength() > 3) {
+      uint16_t panid = mrf.get_rxinfo()->rx_data[0];
+      panid = ((panid << 8)|mrf.get_rxinfo()->rx_data[1]);
+      uint16_t address = mrf.get_rxinfo()->rx_data[2];
+      address = ((address << 8)|mrf.get_rxinfo()->rx_data[3]);
+      mrf.association_set(panid, address);
+
+      uint16_t pan_received = mrf.get_pan();
+      uint16_t address_received = mrf.address16_read();
+      Serial.print("Está conectada a la red: "); Serial.println(pan_received);
+      Serial.print("Su dirección es: "); Serial.println(address_received);
+  }
 }
 
 //maneja la bandera de envío

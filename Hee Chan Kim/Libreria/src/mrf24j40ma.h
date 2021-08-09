@@ -1,7 +1,8 @@
 /*
- * File:   mrf24j.h
+ * File:   mrf24jma.h
  * copyright Karl Palsson, karlp@tweak.net.au, 2011
  * modified BSD License / apache license
+ * modified by Hee Chan Kim.
  */
 
 #ifndef __MRF24J40MA_H__
@@ -151,12 +152,14 @@
 #define MRF_I_TXNIF 0b00000001
 
 
-#define MACResponseWaitTime 10000
+#define MACResponseWaitTime 30000
+#define MACJoinedWaitTime 50000
 #define BROADCAST 0xFF
 #define NewMember 0x0000
 
 typedef struct _rx_info_t{
     uint8_t frame_length;
+    uint16_t origin;
     uint8_t rx_data[116]; //max data length = (127 aMaxPHYPacketSize - 2 Frame control - 1 sequence number - 2 panid - 2 shortAddr Destination - 2 shortAddr Source - 2 FCS)
     uint8_t lqi;
     uint8_t rssi;
@@ -174,8 +177,8 @@ typedef struct _tx_info_t{
  * Pool for getting the addresses. It's better to include it here because anyone can become the coordinator.
  */
 typedef struct _pool_t{
-    uint8_t size:10;
-    uint16_t address[10] = {0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,0x0009,0x000A};
+    uint8_t size = 10;
+    uint16_t address[10] = {0x1001,0x1002,0x1003,0x1004,0x1005,0x1006,0x1007,0x1008,0x1009,0x100A};
     uint8_t availability[10] = {0,0,0,0,0,0,0,0,0,0};  //0:available 1:occupy
 } pool_t;
 
@@ -258,6 +261,7 @@ class Mrf24j
          * Functions for a Non beacon network
          */
         void NoBeaconInitCoo(void);
+        bool check_coo(void);
         void NoBeaconInit(void);
         void UnslottedCSMACA(void);
 

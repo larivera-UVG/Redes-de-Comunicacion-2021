@@ -1,6 +1,7 @@
 /**
  * mrf24j.cpp, Karl Palsson, 2011, karlp@tweak.net.au
  * modified bsd license / apache license
+ * modified by Hee Chan Kim.
  */
 
 #include "mrf24j40ma.h"
@@ -191,6 +192,8 @@ void Mrf24j::init(void) {
     // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
     write_short(MRF_RFCTL, 0x04); //  – Reset RF state machine.
     write_short(MRF_RFCTL, 0x00); // part 2
+    // The filter is set to zero, so it accepts all type of frames
+    write_short(MRF_RXFLUSH, 0x01);
     delay(1); // delay at least 192usec
 }
 
@@ -209,6 +212,12 @@ void Mrf24j::interrupt_handler(void) {
         rx_disable();
         // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
         uint8_t frame_length = read_long(0x300);
+        // Now it is ok. The rx.datalength() was called before changing the frame length
+        rx_info.frame_length = frame_length;
+
+        // now we get the source address. If we need to send a message back, we are able now
+        uint8_t origin = read_long(0x309);
+        rx_info.origin = (origin << 8) | read_long(0x308);
 
         // buffer all bytes in PHY Payload
         if(bufPHY){
@@ -225,7 +234,6 @@ void Mrf24j::interrupt_handler(void) {
             rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
         }
 
-        rx_info.frame_length = frame_length;
         // same as datasheet 0x301 + (m + n + 2) <-- frame_length
         rx_info.lqi = read_long(0x301 + frame_length);
         // same as datasheet 0x301 + (m + n + 3) <-- frame_length + 1
@@ -385,6 +393,15 @@ void Mrf24j::NoBeaconInitCoo(void){
     write_short(MRF_ORDER, 0xFF);
 }
 
+//NTW layer
+bool Mrf24j::check_coo(void){
+    bool check = false;
+    byte temp = read_short(MRF_RXMCR);
+    if (temp & 0x08)
+    check = true;
+    return check;
+}
+
 //MAC layer
 void Mrf24j::NoBeaconInit(void){
     write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x08, 0x00));
@@ -528,37 +545,57 @@ void Mrf24j::association_set(uint16_t panid, uint16_t address){
 bool Mrf24j::association_request(void){  //it needs to have the interruption handler created in MCU
     char join[] = "JOIN";
     bool joined = false;
+    bool heard = false;
     int timeout = 0;
     byte channel = 11;
+    tx_info.tx_ok = 0;
+    int i = 0;
+
     while(!joined){
 
         timeout++;
-        if(timeout>MACResponseWaitTime)
-        break;
-
-        if(get_txinfo()->tx_ok){ //if the ack was received then wait and read
-            address16_write(0x0000);
-            // 1: PAN HIGH - 2: PAN LOW - 3: ADDRESS UP - 4: ADDRESS LOW 
-            if (rx_datalength() > 3) {
-                uint16_t panid = get_rxinfo()->rx_data[0];
-                panid = ((panid << 8)|get_rxinfo()->rx_data[1]);
-                uint16_t address = get_rxinfo()->rx_data[2];
-                address = ((address << 8)|get_rxinfo()->rx_data[3]);
-                association_set(panid, address);
-                joined = true;
-            }
-        } else {
-            //channel sweep
-            set_channel(channel); 
-            broadcast(join);
-            int i = 0;
-            while(i<1000)
-            i++;
-            channel++;
-            if(channel==27)
-            channel = 11;
+        if(timeout>MACResponseWaitTime){
+            break;
         }
         
+        if (!heard){
+            if (tx_info.tx_ok){
+                flag_got_tx = 0;
+                //address16_write(0x0000);
+                heard = true;
+            } else {
+                if(i>1000){
+                    //channel sweep
+                    channel++;
+                    if(channel==27)
+                    channel = 11;
+                    //set_channel(channel); 
+                    broadcast(join);
+                    i = 0;
+                }
+                i++;
+            }
+        }
+
+        if (rx_datalength()>0) { //if the ack was received then wait and read   
+            // 1: PAN HIGH - 2: PAN LOW - 3: ADDRESS UP - 4: ADDRESS LOW 
+            if (rx_datalength() > 3) {
+                uint16_t panid = rx_info.rx_data[0];
+                panid = ((panid << 8)|rx_info.rx_data[1]);
+                uint16_t address = rx_info.rx_data[2];
+                address = ((address << 8)|rx_info.rx_data[3]);
+                association_set(panid, address);
+                joined = true;
+                break;
+            }
+        }        
+    }
+    if(!joined){
+        //Serial.println("ocurrió un break");
+    } else {
+        //Serial.println("lo recibió");
+        char add[] = "OK";
+        sendAck(rx_info.origin,add);
     }
     return joined;
 }
@@ -573,31 +610,43 @@ bool Mrf24j::association_response(void){
     bool response = false;
     char buffer[4];
     uint16_t panid = get_pan();
-    uint16_t address;
+    uint16_t address = 0;
     int i;
-    for (i = 0;get_pool()->size;i++){
-        if(get_pool()->availability[i]==0){
-            address = get_pool()->address[i];
+    for (i = 0; i<pool.size; i++){
+        if(pool.availability[i]==0){
+            address = pool.address[i];
+            Serial.print("dirección por asignar: "); Serial.println(address);
             break;
         }
     }
-
-    buffer[0] = (panid >> 8 | 0x00FF);
-    buffer[1] = (panid >> 0 | 0x00FF);
-    buffer[2] = (address >> 8 | 0x00FF);
-    buffer[3] = (address >> 0 | 0x00FF);
-
-    broadcast(buffer, NewMember);
     
+    buffer[0] = (panid >> 8 & 0x00FF);
+    buffer[1] = (panid >> 0 & 0x00FF);
+    buffer[2] = (address >> 8 & 0x00FF);
+    buffer[3] = (address >> 0 & 0x00FF);
+    
+    broadcast(buffer, rx_info.origin);
     int timeout = 0;
-    while(timeout<MACResponseWaitTime){
+    while(!response){
         timeout++;
-        if(get_txinfo()->tx_ok){
-            response = true;
-            get_pool()->availability[i] = 1;
+        if(timeout>MACJoinedWaitTime){
             break;
         }
-    }
+        
+        if(rx_datalength() > 1){
+            if(rx_info.rx_data[0] == 'O' &&
+               rx_info.rx_data[1] == 'K'){
 
+                Serial.println("se unio uno nuevo");
+                response = true;
+                pool.availability[i] = 1;
+                break;
+            }
+        } else {
+            //broadcast(buffer, NewMember);
+        }
+    }
+    if(!response)
+    Serial.println("no se unio nadie...");
     return response;
 }
