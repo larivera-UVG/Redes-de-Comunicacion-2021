@@ -248,7 +248,7 @@ class Mrf24j
         /**
          * Evaluation for the channel to determine if it is busy or free (CCA)
          */ 
-        void set_cca(uint8_t method);
+        void set_cca(uint8_t method = 0);
         uint8_t lqi(void);
 
         /*
@@ -283,9 +283,15 @@ class Mrf24j
          * To associate to a PAN
          */
         void association_set(uint16_t panid, uint16_t address);
+
+        // ------------------------------- NTW -------------------------------
+        /*
+         * To associate to a PAN
+         */
+        bool association_response(void);
         bool association_request(void);
         pool_t * get_pool(void);
-        bool association_response(void);
+
 
     private:
         int _pin_reset;
@@ -294,4 +300,4 @@ class Mrf24j
         bool _ACK_FAIL;
 };
 
-#endif  /* LIB_MRF24J_H */
+#endif  /* __MRF24J40MA_H__ */

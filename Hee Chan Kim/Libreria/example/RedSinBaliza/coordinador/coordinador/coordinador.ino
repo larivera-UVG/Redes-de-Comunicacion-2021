@@ -17,7 +17,6 @@
 #define NUMPIXELS 1 // How many NeoPixels are attached to the Arduino
 #define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
 
-
 //RGB
 Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 
@@ -26,25 +25,26 @@ const uint16_t pan = 0x1234;
 //Dirección
 const uint16_t direccion = 0x000F;
 //Dirección envio
-const uint16_t dest = 0x0000;
+uint16_t dest = 0x0000;
 
 //mandar código RGB a la red
 char led[] = "sd!";
 //led[0] = 0;
 //led[1] = 0;
 //led[2] = 150;
+bool member = false;
 
+//buffer serial
+const int SIZE = 105;
+char buf[SIZE];
 
-//Clase
+//MRF24J40
 Mrf24j mrf(rst, cs, itr);
 
 void MRFInterruptRoutine() {
   //rutina para la interrupción
-  Serial.println("interrupcion");
+  //Serial.println("interrupcion");
   mrf.interrupt_handler();
-  for (int i = 0; i < mrf.rx_datalength(); i++)
-  Serial.write(mrf.get_rxinfo()->rx_data[i]);
-  Serial.println(" ");
 }
 
 void setup() {
@@ -73,6 +73,8 @@ void setup() {
 
   //inicializa red sin baliza
   mrf.NoBeaconInitCoo();
+  mrf.set_cca(3);
+  mrf.UnslottedCSMACA();
 
   uint16_t pan_received = mrf.get_pan();
   uint16_t address_received = mrf.address16_read();
@@ -87,11 +89,33 @@ void loop() {
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
-  
-  for(int i = 0; i < 10; i++){
-    if(mrf.get_pool()->availability[i]){
-      mrf.sendAck(mrf.get_pool()->address[i], led);
+
+  if(member){
+    for(int i = 0; i < 10; i++){
+      if(mrf.get_pool()->availability[i]){
+        Serial.println("asigna color");
+        mrf.sendAck(mrf.get_pool()->address[i], led);
+        dest = mrf.get_pool()->address[i];
+      }
     }
+    member = false;
+  }
+
+  int i = 0;
+  if (Serial.available() > 0) {
+      //String data = Serial.readStringUntil('\n');
+      int hola = Serial.readBytesUntil('\n',buf,SIZE);
+      hola++;
+      buf[hola] = '\n';
+      if (hola){
+        Serial.println("enviando...");
+        //mrf.broadcast(hola);
+        mrf.sendAck(dest,buf);
+        //mrf.sendNoAck(dest,buf);
+        for(int i;i< hola; i++){
+          buf[i] = {};
+        }     
+      }
   }
 }
 
@@ -100,14 +124,14 @@ void handleRx(void){
   for (int i = 0; i < mrf.rx_datalength(); i++)
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
-  
+
   if(mrf.rx_datalength() > 3){
     if(mrf.get_rxinfo()->rx_data[0] == 'J' &&
        mrf.get_rxinfo()->rx_data[1] == 'O' &&
        mrf.get_rxinfo()->rx_data[2] == 'I' &&
        mrf.get_rxinfo()->rx_data[3] == 'N'){
         Serial.println("asociando... ");
-        mrf.association_response();
+        member = mrf.association_response();
     }
   }
 }

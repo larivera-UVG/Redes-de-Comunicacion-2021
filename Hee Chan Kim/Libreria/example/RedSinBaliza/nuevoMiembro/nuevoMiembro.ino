@@ -18,6 +18,7 @@
 #define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
 
 bool asociado = false;
+int contador = 0;
 
 
 //RGB
@@ -28,10 +29,14 @@ const uint16_t pan = 0x0000;
 //Dirección
 const uint16_t direccion = 0x1A21;
 //Dirección envio
-const uint16_t dest = 0x0000;
+const uint16_t dest = 0x000F;
 
 //mandar código RGB a la red
 char led[3] = {0,150,0};
+
+//buffer serial
+const int SIZE = 105;
+char buf[SIZE];
 
 
 //Clase
@@ -42,6 +47,10 @@ void MRFInterruptRoutine() {
   //Serial.println("interrupcion");
   mrf.interrupt_handler();
 }
+
+//función para reiniciar el microcontrolador
+void(* resetFunc) (void) = 0;  // declare reset fuction at address 0
+
 
 void setup() {
   Serial.begin(9600);
@@ -66,16 +75,20 @@ void setup() {
 
   //inicializa red sin baliza
   mrf.NoBeaconInit();
+  mrf.set_cca(3);
+  mrf.UnslottedCSMACA();
 
-  
+  //RGB
   pixels.clear(); // Set all pixel colors to 'off'
   pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
   pixels.show();   // Send the updated pixel colors to the hardware.
   
   while(!asociado){
-    Serial.println("asociandose... ");
+    contador++;
     asociado = mrf.association_request();
-    delay(100);
+    if(contador>3){
+      resetFunc(); //call reset
+    }
   } 
   uint16_t pan_received = mrf.get_pan();
   uint16_t address_received = mrf.address16_read();
@@ -92,11 +105,30 @@ void loop() {
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
+  int i = 0;
+  if (Serial.available() > 0) {
+      //String data = Serial.readStringUntil('\n');
+      int hola = Serial.readBytesUntil('\n',buf,SIZE);
+      hola++;
+      buf[hola] = '\n';
+      if (hola){
+        Serial.println("enviando...");
+        //mrf.broadcast(hola);
+        mrf.sendAck(dest,buf);
+        //mrf.sendNoAck(dest,buf);
+        for(int i;i< hola; i++){
+          buf[i] = {};
+        }     
+      }
+  }
 }
 
 //maneja la bandera de recepción
 void handleRx(void){
-  //Serial.println("fue el rx");
+  for (int i = 0; i < mrf.rx_datalength(); i++)
+  Serial.write(mrf.get_rxinfo()->rx_data[i]);
+  Serial.println(" ");
+  
   if(mrf.rx_datalength() == 3){
     led[0] = mrf.get_rxinfo()->rx_data[0];
     led[1] = mrf.get_rxinfo()->rx_data[1];

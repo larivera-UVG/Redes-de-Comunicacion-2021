@@ -372,8 +372,7 @@ void Mrf24j::set_cca(uint8_t method){
 //MAC layer
 uint8_t Mrf24j::lqi(void){
     write_short(MRF_BBREG6,0x80);
-    while((MRF_BBREG6 & 0x01) != 0x01);
-    return MRF_RSSI; //measures the link quality by the energy detection
+    return read_long(MRF_RSSI); //measures the link quality by the energy detection
 }
 
 //MAC layer
@@ -532,7 +531,7 @@ void Mrf24j::broadcast(char * data, uint16_t address){
         write_long(i++, data[q]);
     }
     // ack on, and go!
-    write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+    write_short(MRF_TXNCON, (0<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
 }
 
 //MAC layer association response
@@ -548,7 +547,6 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
     bool heard = false;
     int timeout = 0;
     byte channel = 11;
-    tx_info.tx_ok = 0;
     int i = 0;
 
     while(!joined){
@@ -561,7 +559,6 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
         if (!heard){
             if (tx_info.tx_ok){
                 flag_got_tx = 0;
-                //address16_write(0x0000);
                 heard = true;
             } else {
                 if(i>1000){
@@ -642,8 +639,6 @@ bool Mrf24j::association_response(void){
                 pool.availability[i] = 1;
                 break;
             }
-        } else {
-            //broadcast(buffer, NewMember);
         }
     }
     if(!response)
