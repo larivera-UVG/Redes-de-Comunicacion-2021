@@ -3,7 +3,6 @@
 //Inicialización del módulo
 
 #include <mrf24j40ma.h>
-#include <SPI.h>
 #include <Adafruit_NeoPixel.h>
 
 #define CLK 13

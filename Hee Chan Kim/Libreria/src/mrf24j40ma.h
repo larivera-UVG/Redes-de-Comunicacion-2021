@@ -17,6 +17,7 @@
 #endif
 #include <SPI.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
 #define MRF_RXMCR 0x00
@@ -155,7 +156,7 @@
 #define MACResponseWaitTime 30000
 #define MACJoinedWaitTime 50000
 #define BROADCAST 0xFF
-#define NewMember 0x0000
+#define N_DECIMAL_POINTS_PRECISION (10000) // n = 4
 
 typedef struct _rx_info_t{
     uint8_t frame_length;
@@ -283,7 +284,7 @@ class Mrf24j
          * To associate to a PAN
          */
         void association_set(uint16_t panid, uint16_t address);
-
+        
         // ------------------------------- NTW -------------------------------
         /*
          * To associate to a PAN
@@ -292,12 +293,27 @@ class Mrf24j
         bool association_request(void);
         pool_t * get_pool(void);
 
+        // ------------------------------- APP -------------------------------
+        /*
+         * Sending/Returning a float
+         */
+        float readF(void);
+        void sendF(uint16_t address, float value, bool ack = 1);
+
+        /*
+         * Time Sync service 
+         */
+        bool sync(void); //for the Coordinator ONLY
+
 
     private:
         int _pin_reset;
         int _pin_cs;
         int _pin_int;
         bool _ACK_FAIL;
+        uint16_t coord;
+        bool _timerGo;
+        uint32_t _timer;
 };
 
 #endif  /* __MRF24J40MA_H__ */

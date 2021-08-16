@@ -27,6 +27,12 @@ static rx_info_t rx_info;
 static tx_info_t tx_info;
 static pool_t pool;
 
+// word send to know when to start the timer
+static char timerGo[] = "timerGo";
+
+// word send to start the association service
+char join[] = "JOIN";
+
 /**
  * Constructor MRF24J Object.
  * @param pin_reset, @param pin_chip_select, @param pin_interrupt
@@ -542,7 +548,6 @@ void Mrf24j::association_set(uint16_t panid, uint16_t address){
 
 //NTW layer association request
 bool Mrf24j::association_request(void){  //it needs to have the interruption handler created in MCU
-    char join[] = "JOIN";
     bool joined = false;
     bool heard = false;
     int timeout = 0;
@@ -582,6 +587,7 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
                 uint16_t address = rx_info.rx_data[2];
                 address = ((address << 8)|rx_info.rx_data[3]);
                 association_set(panid, address);
+                coord = rx_info.origin;
                 joined = true;
                 break;
             }
@@ -597,7 +603,7 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
     return joined;
 }
 
-// Useful function
+// Function to call the struct that contain the addresses
 pool_t * Mrf24j::get_pool(void) {
     return &pool;
 }
@@ -644,4 +650,91 @@ bool Mrf24j::association_response(void){
     if(!response)
     Serial.println("no se unio nadie...");
     return response;
+}
+
+
+//APP layer convert the chart array to a float variable
+float Mrf24j::readF(void){ //read the value as a float
+    return atof(rx_info.rx_data);
+}
+
+//APP layer send a float number with a maximum of 4 digits after the decimal point
+void Mrf24j::sendF(uint16_t address, float value, bool ack){
+    char sz[116] = {' '} ;
+    int val_int, val_fra;
+    float temp = value;
+    val_int = (int) temp;   // compute the integer part of the float
+    float val_float = (temp - val_int);
+    val_fra = ((int)(val_float*N_DECIMAL_POINTS_PRECISION)%N_DECIMAL_POINTS_PRECISION); //compute the fraction
+    snprintf(sz, 116, "%d.%d", val_int, val_fra);
+    if(ack)
+    sendAck(address, sz);
+    else
+    sendNoAck(address,sz);
+    return;
+}
+
+//APP layer for the COORDINATOR ONLY starts the sync timer for the PAN
+bool Mrf24j::sync(void){
+    int timeout = 0;
+    bool done = false;
+
+    if(check_coo()){
+        for (byte i = 0, i < pool.size, i++){
+            timeout = 0;
+            if(!pool.availability[i])
+            continue;
+
+            sendAck(pool.address[i],timerGo);
+            while(true){
+                timeout++;
+                if(timeout>MACResponseWaitTime){
+                    return(done);
+                }
+                if(tx_info.tx_ok){
+                    flag_got_tx = 0;
+                    break;
+                }
+            }
+        }
+        done = true;
+    }
+
+    return(done);
+}
+
+//APP layer algorithm to check if the message came from the coordinator
+bool Mrf24j::readCoo(void){
+    bool received = false;
+    char read[127];
+
+    if(rx_info.origin == coord){
+        for (int i = 0; i < mrf.rx_datalength(); i++)
+        read[i] = rx_info.rx_data[i];
+
+        if(read == timerGo){
+            _timerGo = true;
+            _timer = 0;
+            received = true;
+        }
+    }
+
+    return(received);
+}
+
+//APP layer constantly updating the counter for sending a message.
+bool Mrf24j::syncSending(void){
+    bool done = false;
+    if(_timerGo){
+        uint32_t until = address16_read() - 0x1000;
+        until *= 10000;
+        _timer++;
+        if(_timer >= until){
+            _timerGo = false;
+            _timer = 0;
+            done = true;
+        }
+    }
+
+    return(done);
 }

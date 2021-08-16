@@ -3,7 +3,6 @@
 //Inicialización del módulo
 
 #include <mrf24j40ma.h>
-#include <SPI.h>
 #include <Adafruit_NeoPixel.h>
 
 #define CLK 13
@@ -29,7 +28,8 @@ const uint16_t direccion = 0x000A;
 const uint16_t dest = 0x000F;
 
 //buffer serial
-char serialBuffer[105];
+const int SIZE = 105;
+char buf[SIZE];
 
 //Clase
 Mrf24j mrf(rst, cs, itr);
@@ -57,6 +57,9 @@ void setup() {
   //asigna la dirección
   mrf.address16_write(direccion);
 
+  //asigna el canal
+  //mrf.set_channel(12);
+
   //inicia no beacon
   mrf.NoBeaconInitCoo();
   Serial.print("Coo: "); Serial.println(mrf.check_coo());
@@ -79,33 +82,27 @@ void loop() {
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
+
+  int i = 0;
+  if (Serial.available() > 0) {
+      //String data = Serial.readStringUntil('\n');
+      int hola = Serial.readBytesUntil('\n',buf,SIZE);
+      hola++;
+      buf[hola] = '\n';
+      if (hola){
+        Serial.println("enviando...");
+        //mrf.broadcast(hola);
+        mrf.sendAck(dest,buf);
+        //mrf.sendNoAck(dest,buf);
+        for(int i;i< hola; i++){
+          buf[i] = {};
+        }     
+      }
+  }
 }
 
 //maneja la bandera de recepción
 void handleRx(void){
-  
-  if(mrf.rx_datalength() > 3){    
-    if(mrf.get_rxinfo()->rx_data[0] == 'J' &&
-       mrf.get_rxinfo()->rx_data[1] == 'O' &&
-       mrf.get_rxinfo()->rx_data[2] == 'I' &&
-       mrf.get_rxinfo()->rx_data[3] == 'N'){
-        Serial.println("asociando... ");
-        bool response = false;
-        char buffer[4];
-        uint16_t panid = mrf.get_pan();
-        uint16_t address = 0x4546;
-
-        buffer[0] = (panid >> 8 & 0x00FF);
-        buffer[1] = (panid >> 0 & 0x00FF);
-        buffer[2] = (address >> 8 & 0x00FF);
-        buffer[3] = (address >> 0 & 0x00FF);
-
-        for (int i = 0; i < 4; i++)
-        Serial.println(buffer[i]);
-
-        mrf.broadcast(buffer, 0x0000);
-     }
-   }
   /*Serial.println(mrf.rx_datalength());
   if(mrf.rx_datalength() == 3){
     led[0] = mrf.get_rxinfo()->rx_data[0];
@@ -114,6 +111,8 @@ void handleRx(void){
   }*/
   //for (int i = 0; i < mrf.rx_datalength(); i++)
   //Serial.write(mrf.get_rxinfo()->rx_data[i]);
+  float numero = mrf.readF();
+  Serial.println(numero);
 }
 
 //maneja la bandera de envío

@@ -3,7 +3,6 @@
 //Inicialización del módulo
 
 #include <mrf24j40ma.h>
-#include <SPI.h>
 #include <Adafruit_NeoPixel.h>
 
 #define CLK 13
@@ -22,17 +21,18 @@
 Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 
 //PAN
-const uint16_t pan = 0xFFFF;
+const uint16_t pan = 0x1234;
 //Dirección
 const uint16_t direccion = 0x000F;
 //Dirección envio
-const uint16_t dest = 0x0000;
+const uint16_t dest = 0x000A;
 
 //buffer serial
 const int SIZE = 105;
 char buf[SIZE];
 char adios[] = "sd!";
 char palabra[] = "JOIN\n";
+float numero = 1577.345;
 
 //Clase
 Mrf24j mrf(rst, cs, itr);
@@ -64,6 +64,9 @@ void setup() {
   mrf.NoBeaconInit();
   Serial.print("Coo: "); Serial.println(mrf.check_coo());
 
+  //asigna el canal
+  //mrf.set_channel(11);
+
   //interrupción asociado al pin itr
   attachInterrupt(digitalPinToInterrupt(itr), MRFInterruptRoutine, CHANGE);
 
@@ -82,39 +85,29 @@ void loop() {
       String data = Serial.readStringUntil('\n');
       if (data == "enviar"){
         Serial.println("enviando...");
-        mrf.broadcast(palabra,dest);
-        //mrf.sendAck(dest,palabra);
+        //mrf.broadcast(palabra,dest);
+        mrf.sendAck(dest,palabra);
         //mrf.sendNoAck(dest,palabra);     
       }
 
       if (data == "rgb"){
         Serial.println(adios);
-        mrf.broadcast(adios,dest);
-        //mrf.sendAck(dest,palabra);
-        //mrf.sendNoAck(dest,palabra);  
-        mrf.address16_write(0x0000);   
+        //mrf.broadcast(adios,dest);
+        mrf.sendAck(dest,adios);
+        //mrf.sendNoAck(dest,adios);  
+      }
+      if (data == "float"){
+        //mrf.broadcast(numero,dest);
+        mrf.sendF(dest,numero);
+        //mrf.sendNoAck(dest,numero);  
       }
   }
 }
 
 //maneja la bandera de recepción
 void handleRx(void){
-  //for (int i = 0; i < mrf.rx_datalength(); i++)
-  //Serial.write(mrf.get_rxinfo()->rx_data[i]);
-
-  // 1: PAN HIGH - 2: PAN LOW - 3: ADDRESS UP - 4: ADDRESS LOW 
-  if (mrf.rx_datalength() > 3) {
-      uint16_t panid = mrf.get_rxinfo()->rx_data[0];
-      panid = ((panid << 8)|mrf.get_rxinfo()->rx_data[1]);
-      uint16_t address = mrf.get_rxinfo()->rx_data[2];
-      address = ((address << 8)|mrf.get_rxinfo()->rx_data[3]);
-      mrf.association_set(panid, address);
-
-      uint16_t pan_received = mrf.get_pan();
-      uint16_t address_received = mrf.address16_read();
-      Serial.print("Está conectada a la red: "); Serial.println(pan_received);
-      Serial.print("Su dirección es: "); Serial.println(address_received);
-  }
+  for (int i = 0; i < mrf.rx_datalength(); i++)
+  Serial.write(mrf.get_rxinfo()->rx_data[i]);
 }
 
 //maneja la bandera de envío
