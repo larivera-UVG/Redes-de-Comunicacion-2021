@@ -38,7 +38,7 @@ char led[3] = {0,150,0};
 const int SIZE = 105;
 char buf[SIZE];
 
-char miembro[] = "miembro 1";
+char miembro[] = "miembro 2";
 
 //Clase
 Mrf24j mrf(rst, cs, itr);

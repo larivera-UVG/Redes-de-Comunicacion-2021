@@ -31,7 +31,7 @@ static pool_t pool;
 static char timerGo[] = "timerGo";
 
 // word send to start the association service
-char join[] = "JOIN";
+static char join[] = "JOIN";
 
 /**
  * Constructor MRF24J Object.
@@ -224,6 +224,10 @@ void Mrf24j::interrupt_handler(void) {
         // now we get the source address. If we need to send a message back, we are able now
         uint8_t origin = read_long(0x309);
         rx_info.origin = (origin << 8) | read_long(0x308);
+
+        // we identify the pan from the source. Now we can now if it's a broadcast or from our pan
+        uint8_t panid = read_long(0x305);
+        rx_info.panid = (panid << 8) | read_long(0x304);
 
         // buffer all bytes in PHY Payload
         if(bufPHY){
@@ -652,6 +656,21 @@ bool Mrf24j::association_response(void){
     return response;
 }
 
+//APP layer service for the coordinator when someone tries to associate
+bool Mrf24j::association(void){
+    bool member = false;
+    if(rx_datalength() == 4){
+        if(rx_info.rx_data[0] == 'J' &&
+        rx_info.rx_data[1] == 'O' &&
+        rx_info.rx_data[2] == 'I' &&
+        rx_info.rx_data[3] == 'N'){
+            Serial.println("asociando... ");
+            member = association_response();
+        }
+    }
+    return(member);
+}
+
 
 //APP layer convert the chart array to a float variable
 float Mrf24j::readF(void){ //read the value as a float
@@ -680,22 +699,28 @@ bool Mrf24j::sync(void){
     bool done = false;
 
     if(check_coo()){
-        for (byte i = 0, i < pool.size, i++){
+        for (int i = 0; i < pool.size; i++){
             timeout = 0;
             if(!pool.availability[i])
             continue;
-
+            Serial.print("posición "); Serial.println(i);
             sendAck(pool.address[i],timerGo);
             while(true){
                 timeout++;
                 if(timeout>MACResponseWaitTime){
+                    Serial.print("se salió");
                     return(done);
                 }
-                if(tx_info.tx_ok){
-                    flag_got_tx = 0;
-                    break;
+                if(flag_got_tx){
+                    if(tx_info.tx_ok){
+                        flag_got_tx = 0;
+                        break;
+                    }
                 }
             }
+            int contador = 0;
+            while(contador<1000)
+            contador++;
         }
         done = true;
     }
@@ -706,13 +731,16 @@ bool Mrf24j::sync(void){
 //APP layer algorithm to check if the message came from the coordinator
 bool Mrf24j::readCoo(void){
     bool received = false;
-    char read[127];
 
     if(rx_info.origin == coord){
-        for (int i = 0; i < mrf.rx_datalength(); i++)
-        read[i] = rx_info.rx_data[i];
-
-        if(read == timerGo){
+        
+        if(rx_info.rx_data[0] == 't' &&
+        rx_info.rx_data[1] == 'i' &&
+        rx_info.rx_data[2] == 'm' &&
+        rx_info.rx_data[3] == 'e' &&
+        rx_info.rx_data[4] == 'r' &&
+        rx_info.rx_data[5] == 'G' &&
+        rx_info.rx_data[6] == 'o'){
             _timerGo = true;
             _timer = 0;
             received = true;
@@ -727,7 +755,7 @@ bool Mrf24j::syncSending(void){
     bool done = false;
     if(_timerGo){
         uint32_t until = address16_read() - 0x1000;
-        until *= 10000;
+        until *= 1000;
         _timer++;
         if(_timer >= until){
             _timerGo = false;

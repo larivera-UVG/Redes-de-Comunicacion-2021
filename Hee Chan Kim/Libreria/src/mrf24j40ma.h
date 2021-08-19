@@ -161,6 +161,7 @@
 typedef struct _rx_info_t{
     uint8_t frame_length;
     uint16_t origin;
+    uint16_t panid;
     uint8_t rx_data[116]; //max data length = (127 aMaxPHYPacketSize - 2 Frame control - 1 sequence number - 2 panid - 2 shortAddr Destination - 2 shortAddr Source - 2 FCS)
     uint8_t lqi;
     uint8_t rssi;
@@ -297,14 +298,24 @@ class Mrf24j
         /*
          * Sending/Returning a float
          */
-        float readF(void);
+        float readF(void); // max 4 numbers after decimal point.
         void sendF(uint16_t address, float value, bool ack = 1);
 
         /*
          * Time Sync service 
          */
         bool sync(void); //for the Coordinator ONLY
+        bool syncSending(void);
 
+        /*
+         * Algorithm to check coordinator messages 
+         */
+        bool readCoo(void);
+
+        /*
+         * To associate to a PAN
+         */
+        bool association(void); //for the coordinator ONLY
 
     private:
         int _pin_reset;

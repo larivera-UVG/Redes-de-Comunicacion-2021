@@ -36,6 +36,7 @@ bool member = false;
 //buffer serial
 const int SIZE = 105;
 char buf[SIZE];
+char recibido[SIZE];
 
 //MRF24J40
 Mrf24j mrf(rst, cs, itr);
@@ -108,8 +109,8 @@ void loop() {
       buf[hola] = '\n';
       if (hola){
         Serial.println("enviando...");
-        //mrf.broadcast(hola);
-        mrf.sendAck(dest,buf);
+        mrf.broadcast(buf,dest);
+        //mrf.sendAck(dest,buf);
         //mrf.sendNoAck(dest,buf);
         for(int i;i< hola; i++){
           buf[i] = {};
@@ -123,19 +124,18 @@ void handleRx(void){
   for (int i = 0; i < mrf.rx_datalength(); i++)
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
-
-  if(mrf.rx_datalength() > 3){
-    if(mrf.get_rxinfo()->rx_data[0] == 'J' &&
-       mrf.get_rxinfo()->rx_data[1] == 'O' &&
-       mrf.get_rxinfo()->rx_data[2] == 'I' &&
-       mrf.get_rxinfo()->rx_data[3] == 'N'){
-        Serial.println("asociando... ");
-        member = mrf.association_response();
-    }
+  
+  member = mrf.association();
+  if(mrf.get_rxinfo()->rx_data[0] == 's' &&
+  mrf.get_rxinfo()->rx_data[1] == 'y' &&
+  mrf.get_rxinfo()->rx_data[2] == 'n' &&
+  mrf.get_rxinfo()->rx_data[3] == 'c'){
+    Serial.println("servicio sync...");
+    mrf.sync();
   }
 }
 
 //maneja la bandera de envío
 void handleTx(void){
-  Serial.println("fue el tx");
+  //Serial.println("fue el tx");
 }
