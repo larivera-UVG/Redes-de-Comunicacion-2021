@@ -37,6 +37,11 @@ float numero = 1577.345;
 //Clase
 Mrf24j mrf(rst, cs, itr);
 
+//Creo mis timers de software
+uint8_t my_timer = 10;
+uint8_t my_timer2 = 5;
+
+//Interrupciones
 void MRFInterruptRoutine() {
   //rutina para la interrupción
   // Serial.println("interrupcion");
@@ -44,6 +49,11 @@ void MRFInterruptRoutine() {
 
 }
 
+ISR(TIMER2_OVF_vect){
+   ISR_timer2();  
+}
+
+//Setup
 void setup() {
   Serial.begin(115200);
   pixels.begin(); 
@@ -69,6 +79,10 @@ void setup() {
 
   //interrupción asociado al pin itr
   attachInterrupt(digitalPinToInterrupt(itr), MRFInterruptRoutine, CHANGE);
+  //interrupción asociada al timer2
+  timer_init();
+  timer_register_100ms(&my_timer);
+  timer_register_100ms(&my_timer2);
 
   interrupts();
   
@@ -102,6 +116,15 @@ void loop() {
         //mrf.sendNoAck(dest,numero);  
       }
   }
+  
+  if (my_timer == 0){
+    Serial.println("1 segundo");
+    my_timer = 10;
+  }
+  if (my_timer2 == 0){
+    Serial.println("0.5 segundo");
+    my_timer2 = 5;
+  }
 }
 
 //maneja la bandera de recepción
@@ -113,5 +136,5 @@ void handleRx(void){
 //maneja la bandera de envío
 void handleTx(void){
   uint8_t hola = mrf.get_txinfo()->tx_ok;
-  //Serial.print("enviar ok: "); Serial.println(hola);
+  Serial.print("enviar ok: "); Serial.println(hola);
 }

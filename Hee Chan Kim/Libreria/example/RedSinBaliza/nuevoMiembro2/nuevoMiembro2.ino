@@ -3,7 +3,6 @@
 //Inicialización del módulo
 
 #include <mrf24j40ma.h>
-#include <SPI.h>
 #include <Adafruit_NeoPixel.h>
 
 #define CLK 13
@@ -49,12 +48,16 @@ void MRFInterruptRoutine() {
   mrf.interrupt_handler();
 }
 
+ISR(TIMER2_OVF_vect){
+   ISR_timer2();  
+}
+
 //función para reiniciar el microcontrolador
 void(* resetFunc) (void) = 0;  // declare reset fuction at address 0
 
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pixels.begin(); 
 
   //reinicio del modulo

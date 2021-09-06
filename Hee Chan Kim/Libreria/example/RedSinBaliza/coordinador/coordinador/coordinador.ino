@@ -47,8 +47,16 @@ void MRFInterruptRoutine() {
   mrf.interrupt_handler();
 }
 
+//Timers en software
+uint8_t my_timer = 10;
+uint8_t my_timer2 = 5;
+
+ISR(TIMER2_OVF_vect){
+   ISR_timer2();  
+}
+
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pixels.begin(); 
 
   //reinicio del modulo
@@ -68,6 +76,11 @@ void setup() {
 
   //interrupción asociado al pin itr
   attachInterrupt(digitalPinToInterrupt(itr), MRFInterruptRoutine, CHANGE);
+
+  //interrupción asociada al timer2
+  //timer_init();
+  timer_register_100ms(&my_timer);
+  timer_register_100ms(&my_timer2);
 
   interrupts();
 
@@ -90,17 +103,6 @@ void loop() {
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
 
-  if(member){
-    for(int i = 0; i < 10; i++){
-      if(mrf.get_pool()->availability[i]){
-        Serial.println("asigna color");
-        mrf.sendAck(mrf.get_pool()->address[i], led);
-        dest = mrf.get_pool()->address[i];
-      }
-    }
-    member = false;
-  }
-
   int i = 0;
   if (Serial.available() > 0) {
       //String data = Serial.readStringUntil('\n');
@@ -117,6 +119,15 @@ void loop() {
         }     
       }
   }
+
+  if (my_timer == 0){
+    //Serial.println("1 segundo");
+    my_timer = 10;
+  }
+  if (my_timer2 == 0){
+    //Serial.println("0.5 segundo");
+    my_timer2 = 5;
+  }
 }
 
 //maneja la bandera de recepción
@@ -124,6 +135,11 @@ void handleRx(void){
   for (int i = 0; i < mrf.rx_datalength(); i++)
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
+  Serial.println(mrf.get_rxinfo()->origin);
+  if(member){
+        mrf.sendNoAck(mrf.get_rxinfo()->origin, led);
+  }
+  member = false;
   
   member = mrf.association();
   if(mrf.get_rxinfo()->rx_data[0] == 's' &&
@@ -132,6 +148,15 @@ void handleRx(void){
   mrf.get_rxinfo()->rx_data[3] == 'c'){
     Serial.println("servicio sync...");
     mrf.sync();
+  }
+  if(mrf.get_rxinfo()->rx_data[0] == 'c' &&
+  mrf.get_rxinfo()->rx_data[1] == 'h' &&
+  mrf.get_rxinfo()->rx_data[2] == 'e' &&
+  mrf.get_rxinfo()->rx_data[3] == 'c' &&
+  mrf.get_rxinfo()->rx_data[4] == 'k'){
+    Serial.println("chequeando");
+    byte conectados = mrf.still();
+    Serial.print("se desconectaron "); Serial.println(conectados);
   }
 }
 

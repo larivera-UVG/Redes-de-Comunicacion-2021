@@ -33,6 +33,9 @@ static char timerGo[] = "timerGo";
 // word send to start the association service
 static char join[] = "JOIN";
 
+// word send to notice everyone that the coordinator is here
+static char here[] = "HERE";
+
 /**
  * Constructor MRF24J Object.
  * @param pin_reset, @param pin_chip_select, @param pin_interrupt
@@ -200,6 +203,11 @@ void Mrf24j::init(void) {
     write_short(MRF_RFCTL, 0x00); // part 2
     // The filter is set to zero, so it accepts all type of frames
     write_short(MRF_RXFLUSH, 0x01);
+
+    // Create all the timers
+    setTimer();
+    timer_init();
+
     delay(1); // delay at least 192usec
 }
 
@@ -344,21 +352,21 @@ void Mrf24j::rx_enable(void) {
     write_short(MRF_BBREG1, 0x00);  // RXDECINV - enable receiver
 }
 
-//Useful function
+//Function for masking a register with a short address
 uint8_t Mrf24j::mask_short(uint8_t reg, uint8_t mask, uint8_t change){
     uint8_t receive =  read_short(reg);
     uint8_t temp = receive & ~(mask);
     return temp | change;
 }
 
-//Useful function
+//Function for masking a register with a long address
 uint16_t Mrf24j::mask_long(uint16_t reg, uint16_t mask, uint8_t change){
     uint16_t receive =  read_long(reg);
     uint8_t temp = receive & ~(mask);
     return temp | change;
 }
 
-//MAC layer
+//MAC layer. Set the clear channel assessment settings to check if the channel is busy or idle.
 void Mrf24j::set_cca(uint8_t method){
     switch(method){
         case 1: //Energy above threshold
@@ -372,14 +380,14 @@ void Mrf24j::set_cca(uint8_t method){
             write_short(MRF_BBREG2, mask_short(MRF_BBREG2, 0xC0, 0xC0));   //PREGUNTAR POR EL CS
             write_short(MRF_CCAEDTH, mask_short(MRF_CCAEDTH, 0xFF, 0x96));
             break;
-        default:
+        default: //Energy above threshold
             write_short(MRF_BBREG2, mask_short(MRF_BBREG2, 0xC0, 0x80));
             write_short(MRF_CCAEDTH, mask_short(MRF_CCAEDTH, 0xFF, 0x96));
             break;
     }
 }
 
-//MAC layer
+//MAC layer. reads the energy level in the channel
 uint8_t Mrf24j::lqi(void){
     write_short(MRF_BBREG6,0x80);
     return read_long(MRF_RSSI); //measures the link quality by the energy detection
@@ -392,17 +400,17 @@ void Mrf24j::BeaconInitCoo(void){
 
 //MAC layer
 void Mrf24j::BeaconInit(void){
-
+    //hola
 }
 
-//MAC layer
+//MAC layer. Set the transceptor as a no beacon coordinantor
 void Mrf24j::NoBeaconInitCoo(void){
     write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x08, 0x08));
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x02, 0x00));
     write_short(MRF_ORDER, 0xFF);
 }
 
-//NTW layer
+//NTW layer. Check if the current transceptor is a coordinator. 1-coordinator 0-no coordinator.
 bool Mrf24j::check_coo(void){
     bool check = false;
     byte temp = read_short(MRF_RXMCR);
@@ -411,27 +419,27 @@ bool Mrf24j::check_coo(void){
     return check;
 }
 
-//MAC layer
+//MAC layer. Set the transceptor as a no beacon node.
 void Mrf24j::NoBeaconInit(void){
     write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x08, 0x00));
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x02, 0x00));
 }
 
-//MAC layer
- void Mrf24j::UnslottedCSMACA(void){        //no beacon
+//MAC layer. Set the Unslotted CSMA-CA algorithm in the transceptor. For more info check datasheet section 3.9
+void Mrf24j::UnslottedCSMACA(void){        //no beacon
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x20, 0x00));
     //MACminBE and MACMaxCSMABackoff  are default
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x18, 0x18));
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x07, 0x04));
- }
+}
 
- //MAC layer
- void Mrf24j::SlottedCSMACA(void){          //with beacon
+ //MAC layer. Set the Slotted CSMA-CA algorithm in the transceptor. For more info check datasheet section 3.9
+void Mrf24j::SlottedCSMACA(void){          //with beacon
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x20, 0x20));
-    //MACminBE and MACMaxCSMABackoff  are default
+    //MACminBE and MACMaxCSMABackoff are default. Set to the IEEE 802.15.4 Standard
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x18, 0x18));
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x07, 0x04));
- }
+}
 
 //MAC layer (modified from send16())
 void Mrf24j::sendAck(uint16_t dest16, char * data) {
@@ -527,8 +535,8 @@ void Mrf24j::broadcast(char * data, uint16_t address){
 
     write_long(i++, BROADCAST);  // dest panid high
     write_long(i++, BROADCAST);  // dest panid low
-    write_long(i++, BROADCAST);  // dest16 low
-    write_long(i++, BROADCAST); // dest16 high
+    write_long(i++, address & 0xff);  // dest16 low
+    write_long(i++, address >> 8); // dest16 high
 
     word src16 = address16_read();
     write_long(i++, src16 & 0xff); // src16 low
@@ -544,65 +552,79 @@ void Mrf24j::broadcast(char * data, uint16_t address){
     write_short(MRF_TXNCON, (0<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
 }
 
-//MAC layer association response
+//MAC layer association response. Modify de the PAN and ip address
 void Mrf24j::association_set(uint16_t panid, uint16_t address){
     set_pan(panid);
     address16_write(address);
 }
 
-//NTW layer association request
+//NTW layer association request. Request created by the orphan or node without a PAN set.
 bool Mrf24j::association_request(void){  //it needs to have the interruption handler created in MCU
     bool joined = false;
     bool heard = false;
     int timeout = 0;
-    byte channel = 11;
+    byte channel = 11; // starts checking in the channel 11
     int i = 0;
+    Timer_500ms_request = 5*WAIT_100MS;
 
     while(!joined){
 
-        timeout++;
+        // Timer for the service. If the timeout reaches MACResponseWaitTime the service ends
+        // and returns a 0.
+        /*timeout++;
         if(timeout>MACResponseWaitTime){
+            break;
+        }*/
+        if(Timer_500ms_request == 0){ //implementation of the "timer.h" library of software timer
             break;
         }
         
+        // When the request gets a ack as response, the sweep between channels and broadcast stops.
         if (!heard){
-            if (tx_info.tx_ok){
+            if (tx_info.tx_ok){ 
+                // if an ACK is received tx_ok will be 1.
                 flag_got_tx = 0;
                 heard = true;
             } else {
+                // the broadcast is made each cycle of 1000 figures sweeping the channel.
                 if(i>1000){
                     //channel sweep
                     channel++;
                     if(channel==27)
                     channel = 11;
                     //set_channel(channel); 
-                    broadcast(join);
+                    broadcast(join); // the message for association service is "JOIN"
                     i = 0;
                 }
                 i++;
             }
         }
 
-        if (rx_datalength()>0) { //if the ack was received then wait and read   
-            // 1: PAN HIGH - 2: PAN LOW - 3: ADDRESS UP - 4: ADDRESS LOW 
-            if (rx_datalength() > 3) {
-                uint16_t panid = rx_info.rx_data[0];
-                panid = ((panid << 8)|rx_info.rx_data[1]);
-                uint16_t address = rx_info.rx_data[2];
-                address = ((address << 8)|rx_info.rx_data[3]);
-                association_set(panid, address);
-                coord = rx_info.origin;
-                joined = true;
-                break;
+        if (heard){
+            // after the ACK sent by the coordinator, it sends the info of the PAN.
+            if(flag_got_rx){
+                Serial.println("recibio algo");
+                flag_got_rx = 0;        
+                if (rx_datalength()>3) {   
+                    // 0: PAN HIGH - 1: PAN LOW - 2: ADDRESS UP - 3: ADDRESS LOW 
+                    if (rx_datalength() > 3) {
+                        uint16_t panid = rx_info.rx_data[0]; //pan high
+                        panid = ((panid << 8)|rx_info.rx_data[1]); //pan low
+                        uint16_t address = rx_info.rx_data[2]; //address up
+                        address = ((address << 8)|rx_info.rx_data[3]); //address low
+                        association_set(panid, address);
+                        coord = rx_info.origin; // the coordinantor is the only capable to make the associaton response service
+                        joined = true;
+                        break;
+                    }
+                }
             }
         }        
     }
-    if(!joined){
-        //Serial.println("ocurrió un break");
-    } else {
-        //Serial.println("lo recibió");
+    if(joined){
+        // if the node successfully joined the PAN. it sends an OK to the coordinator to let it know everything is ok.
         char add[] = "OK";
-        sendAck(rx_info.origin,add);
+        sendAck(coord,add);
     }
     return joined;
 }
@@ -616,9 +638,11 @@ pool_t * Mrf24j::get_pool(void) {
 bool Mrf24j::association_response(void){
     bool response = false;
     char buffer[4];
-    uint16_t panid = get_pan();
+    uint16_t panid = get_pan(); //gets the pan id
     uint16_t address = 0;
     int i;
+    // calls the pool and extract the address of an unassign address
+    // the available addresses are set to 0 in pool.availability
     for (i = 0; i<pool.size; i++){
         if(pool.availability[i]==0){
             address = pool.address[i];
@@ -627,26 +651,33 @@ bool Mrf24j::association_response(void){
         }
     }
     
-    buffer[0] = (panid >> 8 & 0x00FF);
-    buffer[1] = (panid >> 0 & 0x00FF);
-    buffer[2] = (address >> 8 & 0x00FF);
-    buffer[3] = (address >> 0 & 0x00FF);
+    buffer[0] = (panid >> 8 & 0x00FF); // pan id high
+    buffer[1] = (panid >> 0 & 0x00FF); // pan id low
+    buffer[2] = (address >> 8 & 0x00FF); // address high
+    buffer[3] = (address >> 0 & 0x00FF); // address low
     
-    broadcast(buffer, rx_info.origin);
+    broadcast(buffer, rx_info.origin); // sends the info to the node
     int timeout = 0;
+    Timer_500ms_response = 5*WAIT_100MS;
     while(!response){
         timeout++;
-        if(timeout>MACJoinedWaitTime){
+
+        // if the time out occur the service fail.
+        /*if(timeout>MACJoinedWaitTime){
+            break;
+        }*/
+        if(Timer_500ms_response==0){
             break;
         }
         
+
+        // the coordinator expects an "OK" to confirm the info received.
         if(rx_datalength() > 1){
             if(rx_info.rx_data[0] == 'O' &&
                rx_info.rx_data[1] == 'K'){
-
                 Serial.println("se unio uno nuevo");
                 response = true;
-                pool.availability[i] = 1;
+                pool.availability[i] = 1; // sets occupy the selected address
                 break;
             }
         }
@@ -656,9 +687,11 @@ bool Mrf24j::association_response(void){
     return response;
 }
 
-//APP layer service for the coordinator when someone tries to associate
+// APP layer service for the coordinator when someone tries to associate
+// Use by the coordinator
 bool Mrf24j::association(void){
     bool member = false;
+    // reads the command "JOIN" to starts the association service
     if(rx_datalength() == 4){
         if(rx_info.rx_data[0] == 'J' &&
         rx_info.rx_data[1] == 'O' &&
@@ -672,7 +705,7 @@ bool Mrf24j::association(void){
 }
 
 
-//APP layer convert the chart array to a float variable
+//APP layer convert the chart array to a float variable. MAX 4 digits after decimal point
 float Mrf24j::readF(void){ //read the value as a float
     return atof(rx_info.rx_data);
 }
@@ -685,7 +718,7 @@ void Mrf24j::sendF(uint16_t address, float value, bool ack){
     val_int = (int) temp;   // compute the integer part of the float
     float val_float = (temp - val_int);
     val_fra = ((int)(val_float*N_DECIMAL_POINTS_PRECISION)%N_DECIMAL_POINTS_PRECISION); //compute the fraction
-    snprintf(sz, 116, "%d.%d", val_int, val_fra);
+    snprintf(sz, 116, "%d.%d", val_int, val_fra); // convert the float number into char array
     if(ack)
     sendAck(address, sz);
     else
@@ -693,47 +726,52 @@ void Mrf24j::sendF(uint16_t address, float value, bool ack){
     return;
 }
 
-//APP layer for the COORDINATOR ONLY starts the sync timer for the PAN
+// APP layer for the COORDINATOR ONLY starts the sync timer for the PAN
 bool Mrf24j::sync(void){
     int timeout = 0;
     bool done = false;
 
-    if(check_coo()){
-        for (int i = 0; i < pool.size; i++){
+    if(check_coo()){ //checks if it's configure as a coordinator
+        broadcast(timerGo);
+        /*for (int i = 0; i < pool.size; i++){ // sweep between all the 
             timeout = 0;
-            if(!pool.availability[i])
+            if(!pool.availability[i]) // only for the occupy addresses
             continue;
             Serial.print("posición "); Serial.println(i);
-            sendAck(pool.address[i],timerGo);
-            while(true){
+            sendNoAck(pool.address[i],timerGo); // sends the command
+            /*while(true){
                 timeout++;
+                // a return here means it fails.
                 if(timeout>MACResponseWaitTime){
                     Serial.print("se salió");
                     return(done);
                 }
+                // an ok means received.
                 if(flag_got_tx){
+                    flag_got_tx = 0;
                     if(tx_info.tx_ok){
-                        flag_got_tx = 0;
                         break;
                     }
                 }
             }
+            // waits 500 figures to send it to the next address
             int contador = 0;
-            while(contador<1000)
+            while(contador<500)
             contador++;
-        }
+        }*/
         done = true;
     }
 
     return(done);
 }
 
-//APP layer algorithm to check if the message came from the coordinator
+// APP layer algorithm to check if the message came from the coordinator
+// Here we put all  the commads that the coordinator can send
 bool Mrf24j::readCoo(void){
     bool received = false;
 
     if(rx_info.origin == coord){
-        
+        // command for sync the messages in the PAN
         if(rx_info.rx_data[0] == 't' &&
         rx_info.rx_data[1] == 'i' &&
         rx_info.rx_data[2] == 'm' &&
@@ -741,8 +779,8 @@ bool Mrf24j::readCoo(void){
         rx_info.rx_data[4] == 'r' &&
         rx_info.rx_data[5] == 'G' &&
         rx_info.rx_data[6] == 'o'){
-            _timerGo = true;
-            _timer = 0;
+            _timerGo = true; // activate the sync 
+            _timer = 0; // set the timer
             received = true;
         }
     }
@@ -750,19 +788,105 @@ bool Mrf24j::readCoo(void){
     return(received);
 }
 
-//APP layer constantly updating the counter for sending a message.
+// APP layer constantly updating the counter for sending a message.
+// must be in main loop to function correctly
 bool Mrf24j::syncSending(void){
     bool done = false;
-    if(_timerGo){
-        uint32_t until = address16_read() - 0x1000;
-        until *= 1000;
+    if(_timerGo){ // if sync is activated
+        uint32_t until = address16_read() - 0x1000; // substract the 1 in the beggining of the address. (check the pool)
+        until *= 1000; // makes the wait (1...10)*1000 figures
         _timer++;
         if(_timer >= until){
-            _timerGo = false;
-            _timer = 0;
-            done = true;
+            _timerGo = false; // deactivate the sync
+            _timer = 0; //restart the timer
+            done = true; // means ready to send
         }
     }
 
     return(done);
 }
+
+// APP layer for the coordinador
+// checks if the members are still in the network
+byte Mrf24j::still(void){
+    double timeout = 0;
+    bool answer = false;
+    bool send = true;
+    byte change = 0;
+    char there[] = "still?";
+
+    if(check_coo()){ // check if it's the coordinator
+
+        for(int i = 0; i < pool.size; i++){
+            Serial.println(i);
+            if(pool.availability[i]){
+                timeout = 0;
+                answer = false; //restart the algorithm
+                send = true;
+                Timer_100ms_still = WAIT_100MS;
+                while(!answer){
+                    /*timeout++;
+
+                    // if the time out occur the node didn't answer and is remove from the PAN.
+                    if(timeout>50000){
+                        break;
+                    }*/
+                    if(Timer_100ms_still==0){
+                        break;
+                    }
+
+                    // sends the message to every occupy address
+                    if(send){
+                        Serial.println(pool.address[i]);
+                        sendAck(pool.address[i],there);
+                        send = false;
+                    }
+                    
+                    // if the message wasn't receive after the wait time in MAC, send it again.
+                    // the ack recieve
+                    if(flag_got_tx){
+                        flag_got_tx = 0;
+                        if(!tx_info.tx_ok){
+                            Serial.println("send");
+                            send = true; // send the message again
+                        } else {
+                            Serial.println("answer");
+                            answer = true; // great! the node still is connected
+                            break;
+                        }
+                    }
+                    /*int tiempo=0;
+                    while(tiempo<1000)
+                    tiempo++;*/
+                    Timer_10ms_general = WAIT_10MS;
+                    while(Timer_10ms_general==0);
+
+                }
+
+                Serial.println("se salió");
+                // if it answers, the for loop continues, but no answer means remove
+                if(!answer){
+                    pool.availability[i] = 0; // 0 means free to assign
+                    change++; // counter for the nodes that disappeared
+                } 
+            }
+        }
+    }
+
+    return(change);
+}
+
+// APP creates the handlers of the software timers. It needs only 1 timer of the MCU
+void Mrf24j::setTimer(void){ // current 4 timers of 10ms in use
+    timer_register_10ms(&Timer_500ms_request);
+    timer_register_10ms(&Timer_500ms_response);
+    timer_register_10ms(&Timer_100ms_still);
+    timer_register_10ms(&Timer_10ms_general);
+}
+
+/*
+// APP layer ONLY for the coordinator
+// Constant check for the coordinator.
+Mrf24j::CooPing(void){
+
+}*/

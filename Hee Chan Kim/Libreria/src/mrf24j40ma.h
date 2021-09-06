@@ -17,7 +17,10 @@
 #endif
 #include <SPI.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>    /* for NULL */
+#include <stdint.h>    /* uint8_t, etc. */
+#include <stdbool.h>   /* bool type, true, false */
+#include "timer.h" /* for software timers */
 
 
 #define MRF_RXMCR 0x00
@@ -155,8 +158,10 @@
 
 #define MACResponseWaitTime 30000
 #define MACJoinedWaitTime 50000
-#define BROADCAST 0xFF
+#define BROADCAST 0xFFFF
 #define N_DECIMAL_POINTS_PRECISION (10000) // n = 4
+#define WAIT_10MS 1 // implement in the timer to wait 10 ms
+#define WAIT_100MS 10 // implement in the timer to wait 100 ms
 
 typedef struct _rx_info_t{
     uint8_t frame_length;
@@ -317,6 +322,16 @@ class Mrf24j
          */
         bool association(void); //for the coordinator ONLY
 
+        /*
+         * To associate to a PAN
+         */
+        byte still(void); // check if the members are still connected.
+
+        /*
+         * Set the software timers
+         */
+        void setTimer(void);
+
     private:
         int _pin_reset;
         int _pin_cs;
@@ -325,6 +340,13 @@ class Mrf24j
         uint16_t coord;
         bool _timerGo;
         uint32_t _timer;
+
+        // Timers. MAX: 10 of 10ms and 10 of 10ms
+        uint8_t Timer_500ms_request = WAIT_100MS;
+        uint8_t Timer_500ms_response = 5*WAIT_100MS;
+        uint8_t Timer_100ms_still = WAIT_100MS;
+        uint8_t Timer_10ms_general = WAIT_10MS;
+
 };
 
 #endif  /* __MRF24J40MA_H__ */
