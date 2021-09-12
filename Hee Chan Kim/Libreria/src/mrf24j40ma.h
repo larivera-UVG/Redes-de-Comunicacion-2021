@@ -161,7 +161,8 @@
 #define BROADCAST 0xFFFF
 #define N_DECIMAL_POINTS_PRECISION (10000) // n = 4
 #define WAIT_10MS 1 // implement in the timer to wait 10 ms
-#define WAIT_100MS 10 // implement in the timer to wait 100 ms
+#define WAIT_100MS 1 // implement in the timer to wait 100 ms
+#define QUORUM 2 // the amount of nodes that are need to approve the coordinator election service
 
 typedef struct _rx_info_t{
     uint8_t frame_length;
@@ -186,7 +187,7 @@ typedef struct _tx_info_t{
 typedef struct _pool_t{
     uint8_t size = 10;
     uint16_t address[10] = {0x1001,0x1002,0x1003,0x1004,0x1005,0x1006,0x1007,0x1008,0x1009,0x100A};
-    uint8_t availability[10] = {0,0,0,0,0,0,0,0,0,0};  //0:available 1:occupy
+    uint8_t availability[10] = {0,0,0,0,0,0,0,0,0,0};  // 0:available 1:occupy
 } pool_t;
 
 class Mrf24j
@@ -332,6 +333,16 @@ class Mrf24j
          */
         void setTimer(void);
 
+        /*
+         * Coordinator election service
+         */
+        void cooBeat(void);
+        bool heartbeat(void);
+        bool electionCoo(void);
+        void approval(void);
+        bool votation(void);
+        void cooElection(void);
+
     private:
         int _pin_reset;
         int _pin_cs;
@@ -340,12 +351,18 @@ class Mrf24j
         uint16_t coord;
         bool _timerGo;
         uint32_t _timer;
+        bool previousCooRequest;
+        uint16_t newcoord;
+        volatile uint8_t quorum;
 
-        // Timers. MAX: 10 of 10ms and 10 of 10ms
-        uint8_t Timer_500ms_request = WAIT_100MS;
-        uint8_t Timer_500ms_response = 5*WAIT_100MS;
-        uint8_t Timer_100ms_still = WAIT_100MS;
-        uint8_t Timer_10ms_general = WAIT_10MS;
+        // Timers. MAX: 10 of 10ms and 10 of 100ms
+        uint8_t Timer_500ms_request; // 100ms_timer
+        uint8_t Timer_100ms_response; // 100ms_timer
+        uint8_t Timer_100ms_still; // 100ms_timer
+        uint8_t Timer_10ms_general; // 10ms_timer
+        uint8_t Timer_250ms_beat; // 10ms_timer
+        uint8_t Timer_500ms_heartbeat; // 100ms_timer
+        uint8_t Timer_1000ms_acceptNew; // 100ms_timer
 
 };
 
