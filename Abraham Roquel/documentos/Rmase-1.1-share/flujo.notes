@@ -1,0 +1,74 @@
+flujo de aplicación Prowler / RMASE
+
+- prowler: main simulation program, accepting one command and variable arguments
+	"" 					#opens the GUI
+	"Init"
+	"StartSimulation"
+	"InsertEvents2Q"	#potentially our "events list" desired input
+	"GetRadioName"
+	"GetAnimationName"
+	"GetTopologyinfo"
+	"RefreshApplicationAndRadioInfo"
+	"RefreshTopologyInfo"
+	"TextMessage"
+	"LED"
+	"Draw"
+	"Line"
+	"Arrow"
+	"Delete"
+	"Redraw"
+	"Gui_Mouse_Axes_Click"
+	"GuiMouseMoteClick"
+	"show_LEDs"
+	"show_distances"
+	"show_animation"
+	"show_events"
+	"ShowApplicationInfo"
+	"ShowApplicationParams"
+	"OpenGUI"
+	"CloseGUI"
+	"SwitchDisplay"
+	"GetDisplayHandle"
+	"PrintEvent"
+	"version"
+
+	one may start prowler including the "prowler_v1_25" folder to the path and executing "prowler" on the command line
+
+- simgui: with no arguments it launches the GUI
+
+
+useful definitions:
+
+- nargin
+	returns the number of function input arguments fuven in the call to the currently executing function
+	nargin(fun) returns the number of input arguments that appear in the fun function definition
+
+- varargin
+	is an input variable in a function definition statement that enables the function to accept any number of unput arguments. Specify varargin usinf lowercase charactes and inlude it as the last input argument after any explicitly declared inputs.
+
+- varargout
+	is an output variable in a funtion definition statement that enables the function to return any nuber of ouput arguments
+
+
+
+n processing / forwarding nodes
+links between pairs of nodes are viewed as bit pipes characterized by a bandwidth and a transmission delay
+every node is of type store-andforward and has a a buffer where the incoming and outgoung packets are stored
+	this buffer is a shared resource among all the queues
+packets	are subdivided into two classes
+	data
+	routing
+two priority levels in queues
+	data packets in low priority
+	routing packets in high priority
+no disticntion amog nodes, they act at the same time as
+	hosts
+	routers
+transport layer does no manage retransmissions or error handling
+
+in the event of a packet coming
+	node's routing component uses the local routing table to choose the outgoing link
+	when the link resources beceom available, the are reserved and the transfer is set up
+	if there is not enough buufer space to hold it, the packet is discarded
+
+

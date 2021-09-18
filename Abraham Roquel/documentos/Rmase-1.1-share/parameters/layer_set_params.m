@@ -164,6 +164,13 @@ param(i).type='checkbox';
 % param(i).type='checkbox';
 
 i=i+1;
+param(i).name='mainAntNet';
+param(i).default=0;
+param(i).group=gId;
+param(i).type='checkbox';
+
+
+i=i+1;
 param(i).name='mcbr_tree';
 param(i).default=0;
 param(i).group=gId;
