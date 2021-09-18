@@ -324,9 +324,11 @@ class Mrf24j
         bool association(void); //for the coordinator ONLY
 
         /*
-         * To associate to a PAN
+         * Check all members are still connected
          */
         byte still(void); // check if the members are still connected.
+        void update(void); // send an update to all nodes.
+        void updateInfo(void); // update the information of the PAN
 
         /*
          * Set the software timers

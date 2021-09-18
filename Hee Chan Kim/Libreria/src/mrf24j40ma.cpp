@@ -42,8 +42,11 @@ const char newCooR[] = "NEWCOOR";
 // word send to request the vote
 const char vote[] = "VOTE";
 
-//word send to let know the PAN a new coordinator is set
+// word send to let know the PAN a new coordinator is set
 const char newMe[] = "NEWME";
+
+// word send for updating the PAN information
+const char updateinfo[] = "UPDATE";
 
 /**
  * Constructor MRF24J Object.
@@ -737,32 +740,6 @@ bool Mrf24j::sync(void){
 
     if(check_coo()){ //checks if it's configure as a coordinator
         broadcast(timerGo);
-        /*for (int i = 0; i < pool.size; i++){ // sweep between all the 
-            timeout = 0;
-            if(!pool.availability[i]) // only for the occupy addresses
-            continue;
-            Serial.print("posición "); Serial.println(i);
-            sendNoAck(pool.address[i],timerGo); // sends the command
-            /*while(true){
-                timeout++;
-                // a return here means it fails.
-                if(timeout>MACResponseWaitTime){
-                    Serial.print("se salió");
-                    return(done);
-                }
-                // an ok means received.
-                if(flag_got_tx){
-                    flag_got_tx = 0;
-                    if(tx_info.tx_ok){
-                        break;
-                    }
-                }
-            }
-            // waits 500 figures to send it to the next address
-            int contador = 0;
-            while(contador<500)
-            contador++;
-        }*/
         done = true;
     }
 
@@ -789,6 +766,16 @@ bool Mrf24j::readCoo(void){
             _timerGo = true; // activate the sync 
             _timer = 0; // set the timer
             received = true;
+        }
+        
+        // command to update PAN info
+        if(rx_info.rx_data[0] == 'U' &&
+        rx_info.rx_data[1] == 'P' &&
+        rx_info.rx_data[2] == 'D' &&
+        rx_info.rx_data[3] == 'A' &&
+        rx_info.rx_data[4] == 'T' &&
+        rx_info.rx_data[5] == 'E'){
+
         }
     }
 
@@ -873,6 +860,30 @@ byte Mrf24j::still(void){
 
     return(change);
 }
+
+// NTW layer
+// method ONLY for the coordinator. sends the update PAN information to everyone
+void Mrf24j::update(void){
+    char mensaje[16] = "";
+    strcat(mensaje,updateinfo);
+    int i, j;
+
+    for (i = 6, j = 0; i<16; i++, j++){
+        mensaje[i] = pool.availability[j];
+    }
+
+    broadcast(mensaje);
+}
+
+// NTW layer
+// update the information
+void Mrf24j::updateInfo(void){
+    int i, j;
+    for(i=6,j=0; i<16; i++){
+        pool.availability[j] = rx_info.rx_data[i];
+    }
+}
+
 
 // APP creates the handlers of the software timers. It needs only 1 timer of the MCU
 void Mrf24j::setTimer(void){ // current 1 timers of 10ms in use and 6 timer of 100ms in use
