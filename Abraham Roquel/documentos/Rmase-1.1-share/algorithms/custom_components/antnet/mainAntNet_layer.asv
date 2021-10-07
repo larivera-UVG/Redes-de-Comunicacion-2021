@@ -57,7 +57,7 @@ case 'Init_Application'
     %%%%%%%%%%%%%%   Memory should be initialized here  %%%%%%%%%%%%%%%%%
     memory=struct('parent', -inf, 'hops', inf);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-    Set_Flood_Clock(1000);
+    Set_Flood_Clock(1000 + rand*50);
     if (ix==1)
          loginit('log/ant_net.log');
     end
@@ -76,9 +76,7 @@ case 'Packet_Received'
     try msgID = rdata.msgID; catch msgID = 0; end
     if (msgID >= 0) %source data
         logevent('PacketReceived');
-        if(rdata.value == 'Ant_discover')
-            pass = 0;
-        end
+        
     end
 
 case 'Collided_Packet_Received'
