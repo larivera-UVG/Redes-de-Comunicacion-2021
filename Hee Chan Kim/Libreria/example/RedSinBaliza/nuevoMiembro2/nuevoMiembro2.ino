@@ -79,7 +79,7 @@ void setup() {
 
   //inicializa red sin baliza
   mrf.NoBeaconInit();
-  mrf.set_cca(3);
+  mrf.set_cca(1);
   mrf.UnslottedCSMACA();
 
   //RGB
@@ -109,6 +109,12 @@ void loop() {
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
+  mrf.cooElection();
+
+  if(mrf.am_I_the_coordinator)
+  mrf.cooBeat();
+  
+  
   int i = 0;
   if (Serial.available() > 0) {
       //String data = Serial.readStringUntil('\n');
@@ -135,6 +141,8 @@ void handleRx(void){
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
 
+  mrf.electionCoo();
+  
   bool fromCoo = mrf.readCoo();
   if(mrf.rx_datalength() == 3){
     led[0] = mrf.get_rxinfo()->rx_data[0];

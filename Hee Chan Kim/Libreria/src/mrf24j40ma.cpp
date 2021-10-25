@@ -215,6 +215,9 @@ void Mrf24j::init(void) {
     write_short(MRF_RFCTL, 0x00); // part 2
     // The filter is set to zero, so it accepts all type of frames
     write_short(MRF_RXFLUSH, 0x01);
+    // Set the TX stabilization period. Recommended 0x95
+    write_short(MRF_TXSTBL,0x95); // aMinSIFSPeriod 
+    // Refer to IEEE 802.15.4™-2003 Standard, Section 7.5.1.2 “IFS” and Table 70: MAC Sublayer Constants.
 
     // Create all the timers
     setTimer();
@@ -560,7 +563,7 @@ void Mrf24j::broadcast(char * data, uint16_t address){
     for (int q = 0; q < len; q++) {
         write_long(i++, data[q]);
     }
-    // ack on, and go!
+    // NO ack on, and go!
     write_short(MRF_TXNCON, (0<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
 }
 
@@ -576,39 +579,37 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
     bool heard = false;
     int timeout = 0;
     byte channel = 11; // starts checking in the channel 11
-    int i = 0;
     Timer_500ms_request = 5*WAIT_100MS;
+    Timer_10ms_general = 1*WAIT_10MS;
 
     while(!joined){
 
         // Timer for the service. If the timeout reaches MACResponseWaitTime the service ends
         // and returns a 0.
-        /*timeout++;
-        if(timeout>MACResponseWaitTime){
-            break;
-        }*/
         if(Timer_500ms_request == 0){ //implementation of the "timer.h" library of software timer
             break;
         }
-        
+
         // When the request gets a ack as response, the sweep between channels and broadcast stops.
         if (!heard){
-            if (tx_info.tx_ok){ 
-                // if an ACK is received tx_ok will be 1.
-                flag_got_tx = 0;
-                heard = true;
+            if(rx_datalength()==2 && flag_got_rx){
+                flag_got_rx = 0;
+                if(rx_info.rx_data[0] == 'O' &&
+                rx_info.rx_data[1] == 'K'){
+                    // if an ACK is received tx_ok will be 1.
+                    heard = true;
+                }
             } else {
                 // the broadcast is made each cycle of 1000 figures sweeping the channel.
-                if(i>1000){
+                if(Timer_10ms_general==0){
+                    Timer_10ms_general = 1*WAIT_10MS;
                     //channel sweep
                     channel++;
                     if(channel==27)
                     channel = 11;
                     //set_channel(channel); 
                     broadcast(join); // the message for association service is "JOIN"
-                    i = 0;
                 }
-                i++;
             }
         }
 
@@ -616,19 +617,20 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
             // after the ACK sent by the coordinator, it sends the info of the PAN.
             if(flag_got_rx){
                 Serial.println("recibio algo");
-                flag_got_rx = 0;        
+                for (int i = 0; i < rx_datalength(); i++)
+                Serial.write(rx_info.rx_data[i]);
+                Serial.println(" ");
+                flag_got_rx = 0;   
                 if (rx_datalength()>3) {   
-                    // 0: PAN HIGH - 1: PAN LOW - 2: ADDRESS UP - 3: ADDRESS LOW 
-                    if (rx_datalength() > 3) {
-                        uint16_t panid = rx_info.rx_data[0]; //pan high
-                        panid = ((panid << 8)|rx_info.rx_data[1]); //pan low
-                        uint16_t address = rx_info.rx_data[2]; //address up
-                        address = ((address << 8)|rx_info.rx_data[3]); //address low
-                        association_set(panid, address);
-                        coord = rx_info.origin; // the coordinantor is the only capable to make the associaton response service
-                        joined = true;
-                        break;
-                    }
+                // 0: PAN HIGH - 1: PAN LOW - 2: ADDRESS UP - 3: ADDRESS LOW 
+                    uint16_t panid = rx_info.rx_data[0]; //pan high
+                    panid = ((panid << 8)|rx_info.rx_data[1]); //pan low
+                    uint16_t address = rx_info.rx_data[2]; //address up
+                    address = ((address << 8)|rx_info.rx_data[3]); //address low
+                    association_set(panid, address);
+                    coord = rx_info.origin; // the coordinantor is the only capable to make the associaton response service
+                    joined = true;
+                    break;
                 }
             }
         }        
@@ -638,6 +640,7 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
         char add[] = "OK";
         sendAck(coord,add);
     }
+    Timer_5000ms_heartbeat = 50*WAIT_100MS; // reset the new coordinator timer
     return joined;
 }
 
@@ -652,45 +655,44 @@ bool Mrf24j::association_response(void){
     char buffer[4];
     uint16_t panid = get_pan(); //gets the pan id
     uint16_t address = 0;
-    int i;
+    int i, j;
     // calls the pool and extract the address of an unassign address
     // the available addresses are set to 0 in pool.availability
     for (i = 0; i<pool.size; i++){
         if(pool.availability[i]==0){
             address = pool.address[i];
-            Serial.print("dirección por asignar: "); Serial.println(address);
             break;
         }
     }
     
+    Serial.print("dirección por asignar: "); Serial.println(address);
     buffer[0] = (panid >> 8 & 0x00FF); // pan id high
     buffer[1] = (panid >> 0 & 0x00FF); // pan id low
     buffer[2] = (address >> 8 & 0x00FF); // address high
     buffer[3] = (address >> 0 & 0x00FF); // address low
-    
+
     broadcast(buffer, rx_info.origin); // sends the info to the node
     Timer_100ms_response = 1*WAIT_100MS;
     while(!response){
-
-        // if the time out occur the service fail.
-        if(Timer_100ms_response==0){
-            break;
-        }
-        
+        Serial.print("");
 
         // the coordinator expects an "OK" to confirm the info received.
-        if(rx_datalength() > 1){
+        if(rx_datalength()==2 && flag_got_rx){
+            flag_got_rx = 0; // clean the flag of rx
             if(rx_info.rx_data[0] == 'O' &&
                rx_info.rx_data[1] == 'K'){
                 Serial.println("se unio uno nuevo");
                 response = true;
                 pool.availability[i] = 1; // sets occupy the selected address
-                break;
             }
         }
+
+        // if the time out occur the service fail.
+        if(Timer_100ms_response==0){
+            Serial.println("se acabo el tiempo");
+            break;
+        } 
     }
-    if(!response)
-    Serial.println("no se unio nadie...");
     return response;
 }
 
@@ -698,14 +700,21 @@ bool Mrf24j::association_response(void){
 // Use by the coordinator
 bool Mrf24j::association(void){
     bool member = false;
-    // reads the command "JOIN" to starts the association service
-    if(rx_datalength() == 4){
-        if(rx_info.rx_data[0] == 'J' &&
-        rx_info.rx_data[1] == 'O' &&
-        rx_info.rx_data[2] == 'I' &&
-        rx_info.rx_data[3] == 'N'){
-            Serial.println("asociando... ");
-            member = association_response();
+    bool coordinator = check_coo();
+    if(coordinator){
+        // reads the command "JOIN" to starts the association service
+        if(rx_datalength() == 4){
+            if(rx_info.rx_data[0] == 'J' &&
+            rx_info.rx_data[1] == 'O' &&
+            rx_info.rx_data[2] == 'I' &&
+            rx_info.rx_data[3] == 'N'){
+                char add[] = "OK";
+                broadcast(add,rx_info.origin);
+                Timer_10ms_general = 1*WAIT_10MS;
+                while(Timer_10ms_general>0) // waiting timer for sending the message
+                Serial.println("asociando... ");
+                member = association_response();
+            }
         }
     }
     return(member);
@@ -737,9 +746,9 @@ void Mrf24j::sendF(uint16_t address, float value, bool ack){
 bool Mrf24j::sync(void){
     int timeout = 0;
     bool done = false;
-
-    if(check_coo()){ //checks if it's configure as a coordinator
-        broadcast(timerGo);
+    bool coordinator = check_coo(); // checks if it's configure as a coordinator 
+    if(coordinator){
+        sendNoAck(BROADCAST,timerGo);
         done = true;
     }
 
@@ -753,7 +762,7 @@ bool Mrf24j::readCoo(void){
 
     if(rx_info.origin == coord){
         // reset the timer of the coordinator election service
-        Timer_500ms_heartbeat = 5*WAIT_100MS;
+        Timer_5000ms_heartbeat = 50*WAIT_100MS;
 
         // command for sync the messages in the PAN
         if(rx_info.rx_data[0] == 't' &&
@@ -775,7 +784,8 @@ bool Mrf24j::readCoo(void){
         rx_info.rx_data[3] == 'A' &&
         rx_info.rx_data[4] == 'T' &&
         rx_info.rx_data[5] == 'E'){
-
+            updateInfo();
+            Serial.println("actualizado");
         }
     }
 
@@ -807,8 +817,8 @@ byte Mrf24j::still(void){
     bool send = true;
     byte change = 0;
     char there[] = "still?";
-
-    if(check_coo()){ // check if it's the coordinator
+    bool coordinator = check_coo();
+    if(coordinator){ // check if it's the coordinator
 
         for(int i = 0; i < pool.size; i++){
             // Serial.println(i);
@@ -857,7 +867,7 @@ byte Mrf24j::still(void){
             }
         }
     }
-
+    update();
     return(change);
 }
 
@@ -868,19 +878,26 @@ void Mrf24j::update(void){
     strcat(mensaje,updateinfo);
     int i, j;
 
-    for (i = 6, j = 0; i<16; i++, j++){
-        mensaje[i] = pool.availability[j];
+    for (i = 6, j = 0; i<6 + pool.size; i++, j++){
+        if (pool.availability[j] == 1)
+        mensaje[i] = 0xAA; // for a reason i can't have a 0 before a 1 or "empty" before something
+        else if (pool.availability[j] == 0)
+        mensaje[i] = 0xBB;
     }
 
-    broadcast(mensaje);
+    sendNoAck(BROADCAST,mensaje);
 }
 
 // NTW layer
 // update the information
 void Mrf24j::updateInfo(void){
     int i, j;
-    for(i=6,j=0; i<16; i++){
-        pool.availability[j] = rx_info.rx_data[i];
+    for(i=6,j=0; i<16; i++,j++){
+        if (rx_info.rx_data[i] == 0xAA)
+        pool.availability[j] = 1;
+        else if (rx_info.rx_data[i] == 0xBB)
+        pool.availability[j] = 0;
+        Serial.println(pool.availability[j]);
     }
 }
 
@@ -891,18 +908,23 @@ void Mrf24j::setTimer(void){ // current 1 timers of 10ms in use and 6 timer of 1
     timer_register_100ms(&Timer_100ms_response);
     timer_register_100ms(&Timer_100ms_still);
     timer_register_10ms(&Timer_10ms_general);
-    timer_register_10ms(&Timer_250ms_beat);
-    timer_register_100ms(&Timer_500ms_heartbeat);
-    timer_register_100ms(&Timer_1000ms_acceptNew);
+    timer_register_10ms(&Timer_2500ms_beat);
+    timer_register_100ms(&Timer_5000ms_heartbeat);
+    timer_register_100ms(&Timer_5000ms_acceptNew);
 }
 
 
 // APP layer ONLY for the coordinator
 // It's use to constantly report the PAN that the coordinador still is working fine.
 void Mrf24j::cooBeat(void){
-    if(check_coo() && Timer_250ms_beat==0){
-        Timer_250ms_beat = 25*WAIT_10MS;
-        broadcast(beat);
+    if(Timer_2500ms_beat==0){
+        /*uint8_t free = read_short(MRF_TXNCON);
+        if ( (free&0x01) == 0){
+            Timer_2500ms_beat = 250*WAIT_10MS;
+            sendNoAck(BROADCAST,beat);
+        }*/
+        sendNoAck(BROADCAST,"BEAT");
+        Timer_2500ms_beat = 250*WAIT_100MS;
     }
 }
 
@@ -915,36 +937,37 @@ void Mrf24j::cooBeat(void){
 // APP layer for all the nodes
 // Each node expects a heartbeat from the coordinator
 bool Mrf24j::heartbeat(void){
-    static bool newCooRequest = false;
-
     // the time was reached and the coordinador didn't send his beat and no one has
     // sent the request
-    if(Timer_500ms_heartbeat == 0 && !newCooRequest && !previousCooRequest){
-        broadcast(newCooR);
-        Timer_1000ms_acceptNew = 10*WAIT_100MS;
+    if(Timer_5000ms_heartbeat == 0 && !newCooRequest && !previousCooRequest){
+        sendNoAck(BROADCAST,newCooR);
+        Timer_5000ms_acceptNew = 50*WAIT_100MS;
         newCooRequest = true;
+        IamCoo = true;
         quorum = 1;
+        Serial.println("inicia servicio");
     }
 
     // the time was reached and a previous request was made. So the node send its approval
     // of the request.
-    if(Timer_500ms_heartbeat == 0 && previousCooRequest){
-        sendAck(vote,newcoord);
+    if(Timer_5000ms_heartbeat == 0 && previousCooRequest && !newCooRequest){
+        newCooRequest = true;
+        Timer_5000ms_acceptNew = 50*WAIT_100MS; // the time the service has to complete the election.
+        Serial.println("voy a votar");
+        sendAck(newcoord,vote);
     }
 
-    // the request was denied because quorum wasn't reached.
-    if(Timer_1000ms_acceptNew == 0 && newCooRequest){
+    // The request was denied because quorum wasn't reached or
+    // the request didn't follow through so the service is reset
+    if(Timer_5000ms_acceptNew == 0 && newCooRequest){
         newCooRequest = false;
-        Timer_500ms_heartbeat = 5*WAIT_100MS;
+        previousCooRequest = false;
+        IamCoo = false;
+        Timer_5000ms_heartbeat = 50*WAIT_100MS;
         quorum = 0;
     }
 
-    if(Timer_1000ms_acceptNew == 0 && previousCooRequest){
-        previousCooRequest = false;
-        Timer_500ms_heartbeat = 5*WAIT_100MS;
-    }
-
-    return newCooRequest;
+    return IamCoo;
 }
 
 // APP layer for all the nodes
@@ -952,110 +975,127 @@ bool Mrf24j::heartbeat(void){
 // must be implemented when the rx flag is high.
 bool Mrf24j::electionCoo(void){
     bool request_made = false;
+    bool coordinator = check_coo();
 
-    if(previousCooRequest && (Timer_500ms_heartbeat==0)){
-        if(rx_info.rx_data[0] == 'N' &&
-            rx_info.rx_data[1] == 'E' &&
-            rx_info.rx_data[2] == 'W' &&
-            rx_info.rx_data[3] == 'M' &&
-            rx_info.rx_data[4] == 'E'){
-                coord = newcoord;
+    if(!coordinator){
+        if(previousCooRequest && (Timer_5000ms_heartbeat==0)){
+            if(rx_info.rx_data[0] == 'N' &&
+                rx_info.rx_data[1] == 'E' &&
+                rx_info.rx_data[2] == 'W' &&
+                rx_info.rx_data[3] == 'M' &&
+                rx_info.rx_data[4] == 'E'){
+                    coord = newcoord;
+                    newCooRequest = false;
+                    previousCooRequest = false;
+                    IamCoo = false;
+                    Timer_5000ms_heartbeat = 50*WAIT_100MS;
+                    quorum = 0;
+                }
+        }
+
+        if(rx_datalength() == 7){
+            if(rx_info.rx_data[0] == 'N' &&
+                rx_info.rx_data[1] == 'E' &&
+                rx_info.rx_data[2] == 'W' &&
+                rx_info.rx_data[3] == 'C' &&
+                rx_info.rx_data[4] == 'O' &&
+                rx_info.rx_data[5] == 'O' &&
+                rx_info.rx_data[6] == 'R'){
+                    previousCooRequest = true;
+                    request_made = true;
+                    newcoord = rx_info.origin;
+                }
+        }
+
+        // APP layer for all the nodes
+        // when the node that started the service receives an approval.
+        if(rx_datalength() == 4 && IamCoo){
+            if(rx_info.rx_data[0] == 'V' &&
+                rx_info.rx_data[1] == 'O' &&
+                rx_info.rx_data[2] == 'T' &&
+                rx_info.rx_data[3] == 'E'){
+                    quorum++;
             }
+        }
     }
 
-    if(rx_datalength() == 7){
-        if(rx_info.rx_data[0] == 'N' &&
-            rx_info.rx_data[1] == 'E' &&
-            rx_info.rx_data[2] == 'W' &&
-            rx_info.rx_data[3] == 'C' &&
-            rx_info.rx_data[4] == 'O' &&
-            rx_info.rx_data[5] == 'O' &&
-            rx_info.rx_data[6] == 'R'){
-                previousCooRequest = true;
-                Timer_1000ms_acceptNew = 10*WAIT_100MS; // the time the service has to complete the election.
-                request_made = true;
-                newcoord = rx_info.origin;
-            }
-    }    
+
     return request_made;
-}
-
-// APP layer for all the nodes
-// when the node that started the service receives an approval.
-// must be implemented when the rx flag is high.
-void Mrf24j::approval(void){
-    if(rx_datalength() == 4){
-        if(rx_info.rx_data[0] == 'V' &&
-            rx_info.rx_data[1] == 'O' &&
-            rx_info.rx_data[2] == 'T' &&
-            rx_info.rx_data[3] == 'E'){
-                quorum++;
-            }
-    }
 }
 
 
 // APP layer for all the nodes
 // when the node that started the service checks if quorum was reach.
 bool Mrf24j::votation(void){
-
     // if the amount of votes aren't enough to reach quorum
-    if(!(quorum >= QUORUM))
+    if((quorum < QUORUM))
     return false;
+    else{
+        coord = address16_read();
+        NoBeaconInitCoo();
+        uint16_t address = address16_read();
 
-    coord = address16_read();
-    NoBeaconInitCoo();
+        for(int i = 0; i < pool.size; i++){
+                if(pool.availability[i]&&(pool.availability[i])!=address){
+                    Serial.print("dirección "); Serial.println(pool.address[i]);
+                    bool answer = false; //restart the algorithm
+                    bool send = true;
+                    Timer_100ms_still = 1*WAIT_100MS;
+                    while(!answer){
 
-    for(int i = 0; i < pool.size; i++){
-            // Serial.println(i);
-            if(pool.availability[i]){
-                bool answer = false; //restart the algorithm
-                bool send = true;
-                Timer_100ms_still = 1*WAIT_100MS;
-                while(!answer){
-
-                    // if the time out occurs the node didn't answer and is remove from the PAN.
-                    if(Timer_100ms_still==0){
-                        break;
-                    }
-
-                    // sends the message to every occupy address
-                    if(send){
-                        //Serial.println(pool.address[i]);
-                        sendAck(pool.address[i],newMe);
-                        send = false;
-                    }
-                    
-                    // if the message wasn't receive after the wait time in MAC, send it again.
-                    // the ack recieve
-                    if(flag_got_tx){
-                        flag_got_tx = 0;
-                        if(!tx_info.tx_ok){
-                            //Serial.println("send");
-                            send = true; // send the message again
-                        } else {
-                            //Serial.println("answer");
-                            answer = true; // great! the node still is connected
+                        // if the time out occurs the node didn't answer and is remove from the PAN.
+                        if(Timer_100ms_still==0){
                             break;
                         }
-                    }
-                    /*Timer_10ms_general = WAIT_10MS;
-                    while(Timer_10ms_general==0);*/
 
+                        // sends the message to every occupy address
+                        if(send){
+                            //Serial.println(pool.address[i]);
+                            sendAck(pool.address[i],newMe);
+                            send = false;
+                        }
+                        
+                        // if the message wasn't receive after the wait time in MAC, send it again.
+                        // the ack recieve
+                        if(flag_got_tx){
+                            flag_got_tx = 0;
+                            if(!tx_info.tx_ok){
+                                //Serial.println("send");
+                                send = true; // send the message again
+                            } else {
+                                //Serial.println("answer");
+                                answer = true; // great! the node still is connected
+                                break;
+                            }
+                        }
+                        /*Timer_10ms_general = WAIT_10MS;
+                        while(Timer_10ms_general==0);*/
+
+                    }
                 }
-            }
+        }
+        IamCoo = false; // ends the service
+        newCooRequest = false;
+        previousCooRequest = false;
+        Timer_5000ms_heartbeat = 50*WAIT_100MS;
+        quorum = 0;
+        am_I_the_coordinator = true;
+        return true;
     }
-    return true;
 }
 
 // APP layer for all the nodes
 // The full service
 void Mrf24j::cooElection(void){
-    bool start = heartbeat();
-    bool accomplished = false;
-
-    if(start){
-        accomplished = votation();
+    heartbeat();
+    if(IamCoo){
+        votation();
     }
 
+}
+
+
+// Check if i started the new coordinator service
+bool Mrf24j::check_IamCoo(void){
+    return IamCoo;
 }

@@ -1,5 +1,3 @@
-//defina el color de la red: azul
-
 //Inicialización del módulo
 
 #include <mrf24j40ma.h>
@@ -97,16 +95,24 @@ void setup() {
 }
 
 void loop() {
+  // put your main code here, to run repeatedly:
+  if(mrf.check_coo())
+  coordinatorLoop();
+  else
+  nodeLoop();
+}
+
+void coordinatorLoo() {
   pixels.clear(); // Set all pixel colors to 'off'
   pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
-  mrf.cooBeat();
-  /*if (my_timer2 == 0){
+  //mrf.cooBeat();
+  if (my_timer2 == 0){
     mrf.sendNoAck(0xFFFF,"BEAT");
     my_timer2 = 25;
-  }*/
+  }
   
   int i = 0;
   if (Serial.available() > 0) {
@@ -130,22 +136,52 @@ void loop() {
   }
 }
 
-//maneja la bandera de recepción
+void nodeLoop() {
+  pixels.clear(); // Set all pixel colors to 'off'
+  pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
+  pixels.show();   // Send the updated pixel colors to the hardware.
+  // revisa las banderas para enviar y recibir datos
+  mrf.check_flags(&handleRx, &handleTx);
+  mrf.heartbeat();
+  
+  
+  int i = 0;
+  if (Serial.available() > 0) {
+      //String data = Serial.readStringUntil('\n');
+      int hola = Serial.readBytesUntil('\n',buf,SIZE);
+      hola++;
+      buf[hola] = '\n';
+      if (hola){
+        Serial.println("enviando...");
+        //mrf.broadcast(hola);
+        mrf.sendAck(dest,buf);
+        //mrf.sendNoAck(dest,buf);
+        for(int i;i< hola; i++){
+          buf[i] = {};
+        }     
+      }
+  }
+  if(mrf.syncSending())
+  mrf.sendAck(dest,miembro);
+}
+
 void handleRx(void){  
-  Serial.print("Vino de "); Serial.println(mrf.get_rxinfo()->origin);
   for (int i = 0; i < mrf.rx_datalength(); i++)
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
 
-  member = mrf.association();
+  Serial.println(mrf.get_rxinfo()->origin);
   if(member){
         mrf.sendAck(mrf.get_rxinfo()->origin, led);
         member = false;
   }
+  
+  member = mrf.association();
+  mrf.electionCoo();
+  bool fromCoo = mrf.readCoo();
 }
 
 //maneja la bandera de envío
 void handleTx(void){
   //Serial.println("fue el tx");
-  //Serial.print("ACK "); Serial.println(mrf.get_txinfo()->tx_ok);
 }

@@ -1,5 +1,3 @@
-//defina el color de la red: azul
-
 //Inicialización del módulo
 
 #include <mrf24j40ma.h>
@@ -16,6 +14,11 @@
 #define NUMPIXELS 1 // How many NeoPixels are attached to the Arduino
 #define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
 
+//Variables
+int i, iter;
+bool begin = false;
+float inicio;
+
 //RGB
 Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 
@@ -24,17 +27,14 @@ const uint16_t pan = 0x1234;
 //Dirección
 const uint16_t direccion = 0x000F;
 //Dirección envio
-uint16_t dest = 0x0000;
+uint16_t dest = 0x000C;
 
 //mandar código RGB a la red
 char led[] = "sd!";
-//led[0] = 0;
-//led[1] = 0;
-//led[2] = 150;
 bool member = false;
 
 //buffer serial
-const int SIZE = 105;
+const int SIZE = 116;
 char buf[SIZE];
 char recibido[SIZE];
 
@@ -85,67 +85,64 @@ void setup() {
   interrupts();
 
   //inicializa red sin baliza
-  mrf.NoBeaconInitCoo();
+  mrf.NoBeaconInit();
   mrf.set_cca(1);
   mrf.UnslottedCSMACA();
-
-  uint16_t pan_received = mrf.get_pan();
-  uint16_t address_received = mrf.address16_read();
-
-  Serial.print("Está conectada a la red: "); Serial.println(pan_received);
-  Serial.print("Su dirección es: "); Serial.println(address_received);
+  
+  for(int j = 0;j<SIZE;j++){
+    buf[j] = 'A';
+  }
 }
 
 void loop() {
-  pixels.clear(); // Set all pixel colors to 'off'
-  pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
-  pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
-  mrf.cooBeat();
-  /*if (my_timer2 == 0){
-    mrf.sendNoAck(0xFFFF,"BEAT");
-    my_timer2 = 25;
-  }*/
   
-  int i = 0;
   if (Serial.available() > 0) {
-      String data = Serial.readStringUntil('\n');
-
-      if (data == "sync"){
-        Serial.println("servicio sync...");
-        mrf.sync();
-      } else if (data == "still"){
-        Serial.println("chequeando");
-        byte conectados = mrf.still();
-        Serial.print("se desconectaron "); Serial.println(conectados);
-      } else if (data == "update"){
-        mrf.update();
-      }
+    String data = Serial.readStringUntil('\n');
+    if (data == "start"){
+      iter = 2000;
+     }
   }
 
-  if (my_timer == 0){
-    //Serial.println("1 segundo");
-    my_timer = 10;
+  if(iter>0 & begin == false){
+    //Serial.println("throughput...");
+    delay(25);
+    begin = true;
+    mrf.sendAck(dest,"hola");
+    inicio = micros();
+    i = 0;
+  }
+
+  if (begin){
+    float tiempo = (micros() - inicio)/1000000;
+    if (tiempo < 1.0){
+      //Serial.println(tiempo);
+    } else {
+      begin = false;
+      Serial.println(i);
+      iter--;
+    }
   }
 }
 
 //maneja la bandera de recepción
 void handleRx(void){  
-  Serial.print("Vino de "); Serial.println(mrf.get_rxinfo()->origin);
-  for (int i = 0; i < mrf.rx_datalength(); i++)
-  Serial.write(mrf.get_rxinfo()->rx_data[i]);
-  Serial.println(" ");
+  /*for (int i = 0; i < mrf.rx_datalength(); i++)
+  Serial.write(mrf.get_rxinfo()->rx_data[i]);*/
 
-  member = mrf.association();
-  if(member){
-        mrf.sendAck(mrf.get_rxinfo()->origin, led);
-        member = false;
+  if(begin){
+    if(mrf.get_rxinfo()->rx_data[0] == 'S'){
+      i++;
+      mrf.sendAck(dest,"hola\n");
+    } else if (mrf.get_rxinfo()->rx_data[0] == 'N'){
+      mrf.sendAck(dest,"hola\n");
+    }
   }
+  
 }
 
 //maneja la bandera de envío
 void handleTx(void){
   //Serial.println("fue el tx");
-  //Serial.print("ACK "); Serial.println(mrf.get_txinfo()->tx_ok);
 }

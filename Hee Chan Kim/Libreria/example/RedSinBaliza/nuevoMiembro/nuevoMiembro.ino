@@ -24,9 +24,9 @@ int contador = 0;
 Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 
 //PAN
-const uint16_t pan = 0x0000;
+const uint16_t pan = 0x0040;
 //Dirección
-const uint16_t direccion = 0x1A21;
+const uint16_t direccion = 0x1A31;
 //Dirección envio
 const uint16_t dest = 0x000F;
 
@@ -79,7 +79,7 @@ void setup() {
 
   //inicializa red sin baliza
   mrf.NoBeaconInit();
-  mrf.set_cca(3);
+  mrf.set_cca(1);
   mrf.UnslottedCSMACA();
 
   //RGB
@@ -109,6 +109,11 @@ void loop() {
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
+  mrf.cooElection();
+  if(mrf.am_I_the_coordinator)
+  mrf.cooBeat();
+  
+  
   int i = 0;
   if (Serial.available() > 0) {
       //String data = Serial.readStringUntil('\n');
@@ -135,12 +140,15 @@ void handleRx(void){
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
 
+  mrf.electionCoo();
+  
   bool fromCoo = mrf.readCoo();
   if(mrf.rx_datalength() == 3){
     led[0] = mrf.get_rxinfo()->rx_data[0];
     led[1] = mrf.get_rxinfo()->rx_data[1];
     led[2] = mrf.get_rxinfo()->rx_data[2];
   }
+
 }
 
 //maneja la bandera de envío

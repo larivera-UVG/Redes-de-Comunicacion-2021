@@ -341,9 +341,10 @@ class Mrf24j
         void cooBeat(void);
         bool heartbeat(void);
         bool electionCoo(void);
-        void approval(void);
         bool votation(void);
         void cooElection(void);
+        bool check_IamCoo(void);
+        bool am_I_the_coordinator;
 
     private:
         int _pin_reset;
@@ -354,6 +355,8 @@ class Mrf24j
         bool _timerGo;
         uint32_t _timer;
         bool previousCooRequest;
+        bool newCooRequest;
+        bool IamCoo;
         uint16_t newcoord;
         volatile uint8_t quorum;
 
@@ -362,9 +365,9 @@ class Mrf24j
         uint8_t Timer_100ms_response; // 100ms_timer
         uint8_t Timer_100ms_still; // 100ms_timer
         uint8_t Timer_10ms_general; // 10ms_timer
-        uint8_t Timer_250ms_beat; // 10ms_timer
-        uint8_t Timer_500ms_heartbeat; // 100ms_timer
-        uint8_t Timer_1000ms_acceptNew; // 100ms_timer
+        uint8_t Timer_2500ms_beat; // 10ms_timer
+        uint8_t Timer_5000ms_heartbeat; // 100ms_timer
+        uint8_t Timer_5000ms_acceptNew; // 100ms_timer
 
 };
 
