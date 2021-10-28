@@ -1,4 +1,4 @@
-function status = mainAntNet_layer(N, S)
+function status = mainAntNet_layer_prev(N, S)
 
 % Universidad del Valle de Guatemala
 % DiseÃ±o e innovaciÃ³n en ingenierÃ­a 2
