@@ -243,6 +243,18 @@ function t_sched = get_random_time(t, interval, pm)
 %retornar un valor aleatorio de tiempo t + rand[interval-pm, interval+pm]
 t_sched = (t + floor((((interval - pm) + rand*2*pm) * 100)/3))
 
+function v = pick_random_value(val_list, val_weights)
+s = sum(val_weights);
+val_probs = val_weights / s;    % normalizar los pesos
+test_n = rand;                  % numero aleatorio entre 0 y 1
+k = 1;                          % apunta a la posicion de val_list a retornar
+accum_sum = val_probs(k);       % valor para comparacion, suma acumulada
+while test_n > accum_sum        % vemos si la suma acumulada es menor que el numero aleatorio
+    k = k + 1;
+    accum_sum = accum_sum + val_probs(k);
+end
+v = val_list(k);
+
 function PrintMessage(msg)
 global ID
 prowler('TextMessage', ID, msg)
