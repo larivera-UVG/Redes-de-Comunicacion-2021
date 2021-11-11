@@ -51,6 +51,7 @@ S; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 global DESTINATIONS
 global NEIGHBORS
 global SOURCES
+global CUSTOM_COLOR
 
 persistent possible_destinations_count      % cantidad posible de destinos
 persistent forward_ant_interval             % intervalo de tiempo entre envio de hormigas de forward
@@ -63,6 +64,9 @@ persistent k                                % estimacion del numero de nodos alc
 persistent p_t                              % probabilidad optima para maximizar probabilidad de conocer vecinos (aproximacion para k grande)
 persistent Tp                               % cantidad de time slots antes de pasar a modo de construccion de soluciones
 persistent TmaxHops                         % numero de saltos limite para hormiga de forward
+persistent forced_source
+persistent forced_destination
+persistent force_endpoints
 
 switch event
 case 'Init_Application'
@@ -75,12 +79,16 @@ case 'Init_Application'
     backoff_time = 100 + 30;                                                    % bit-time
     packet_lenght_time = 960;                                                   % bit-time
     total_waiting_time = waiting_time + backoff_time + packet_lenght_time;      % bit-time
-    TmaxHops = 20;
+    TmaxHops = 5;
     forward_ant_interval = total_waiting_time * TmaxHops * 2;
     theta = pi;
     k = possible_destinations_count;                                            % sobre estimacion del numero de nodos en la vecindad (one-hop)
     p_t = 2*pi / (k*theta);
-    Tp = (possible_destinations_count);                                   % estimamos el cuadrado de vecinos posibles
+    Tp = 2 * (possible_destinations_count);                                   % estimamos el cuadrado de vecinos posibles
+    force_endpoints = 1;
+    forced_source = 1;
+    forced_destination = 6;
+    CUSTOM_COLOR = [0 0 0];
     
     % inicializacion de la memoria de cada elemento del enjambre
     % neighbors_count ->    cantidad de vecinos del elemento
@@ -125,7 +133,15 @@ case 'Packet_Received'
             rdata.maxhops = rdata.maxhops - 1;
             if rdata.destination == ID                                              % condicion de paro
                 % enviar hormiga de backward
-                pass = 0; % dummy
+                bdata.msgID = 2;                                                    % ID para hormigas de backward
+                bdata.source = ID;
+                bdata.destination = rdata.source;
+                %bdata.maxhops = TmaxHops;
+                bdata.back_path = rdata.path;
+                bdata.back_path.remove_loops();
+                bdata.address = bdata.back_path.pop();
+                bdata.value = 'Backward_Ant';
+                mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, bdata));
             else
                 % evaluar el numero de saltos, si ya no le quedan saltos (maxhops == 0) botar el paquete (en este caso no hacer nada)
                 if rdata.maxhops ~= 0
@@ -139,6 +155,14 @@ case 'Packet_Received'
                     mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, rdata));
                 end
             end
+        elseif (msgID == 2)
+            pass = 0;
+            if rdata.destination == ID
+                pass = 0; % dummy
+            else
+                rdata.address = rdata.back_path.pop();
+                mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, rdata));
+            end 
         end
     end
 
@@ -149,7 +173,7 @@ case 'Clock_Tick'
     if (strcmp(data.type,'ant_net_discovery'))
         memory.time_slot_count = memory.time_slot_count  + 1;                       % actualizar contador de time slots
         if (memory.time_slot_count >= Tp) && (memory.neighbors_count > 0)           % si ya se llego a Tp time slots y se tienen vecinos pasar al siguiente modo
-            if (SOURCES(ID))                                                        % si el nodo es fuente, pasar a construir soluciones
+            if (force_endpoints && (ID == forced_source)) || ((~forced_destination) && SOURCES(ID)) % evaluar nodo fuente
                 Set_Forward_Ant_Clock(t + forward_ant_interval);
             end
         else            
@@ -168,7 +192,11 @@ case 'Clock_Tick'
         fdata.msgID = 1;                                                            % id para hormigas de forward
         fdata.maxhops = TmaxHops;                                                   % maximo de saltos
         %fdata.destination = randsample(memory.destinations, 1);                    % elegir un destino al azar (omitido por el momento)
-        fdata.destination = find(DESTINATIONS == 1, 1);                             % acoplar el destino elegido por RMASE
+        if force_endpoints
+            fdata.destination = forced_destination;
+        else
+            fdata.destination = find(DESTINATIONS == 1, 1);                         % acoplar el destino elegido por RMASE
+        end
         fdata.source = ID;                                                          % source a nivel de capa 3
         fdata.path = CStack(fdata.source);                                          % pila para guardar el camino en forward
         fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, cell2mat(fdata.path.content()));

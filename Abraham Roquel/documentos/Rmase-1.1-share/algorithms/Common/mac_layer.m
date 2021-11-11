@@ -52,6 +52,8 @@ persistent promiscuous;
 persistent initPower;
 persistent randPower;
 
+global CUSTOM_COLOR
+
 used = 0;
 
 switch event
@@ -94,9 +96,9 @@ case 'Packet_Received'
         try width = data.data.width; catch width = 0; end
         if ((from ~= 0) && (address == ID))
             if (width)
-                DrawLine('Arrow', from, ID, 'color', [1 1 0], 'LineWidth', width);
+                DrawLine('Arrow', from, ID, 'color', CUSTOM_COLOR, 'LineWidth', width); % aqui se cambia el color de las flechas
             else
-                DrawLine('Arrow', from, ID, 'color', [1 1 0]);
+                DrawLine('Arrow', from, ID, 'color', CUSTOM_COLOR);
             end
         end
         %test connectivity
