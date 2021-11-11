@@ -157,6 +157,8 @@ case 'Packet_Received'
             end
         elseif (msgID == 2)
             pass = 0;
+            r_T = 0.7;
+            memory.T_matrix = udpate_T_matrix(memory.T_matrix, rdata.source, memory.destinations, r_T, rdata.from, memory.neighbors_list);
             if rdata.destination == ID
                 pass = 0; % dummy
             else
@@ -300,6 +302,23 @@ if isempty(find(pick_list == 1, 1))                                             
 else
     nh = pick_random_value(neighors_list, pick_list .* T_matrix(:, target_index));
 end
+
+
+% actualizar la matriz de feromonas para el destino correspondiente con base en el refuero r
+function new_T = udpate_T_matrix(old_T, destination, destinations_list, r, chosen_neighbor, neighbors_list)
+new_T = old_T(:, :); % hacer una copia de la matriz de feromonas
+target_destination_index = find(destinations_list == destination, 1);       % hallar los indices apropiados de la matriz T
+target_neighbor_index = find(neighbors_list ==chosen_neighbor, 1);
+% aplicar la regla de asignacion
+old_chosen = new_T(target_neighbor_index, target_destination_index);
+new_T(target_neighbor_index, target_destination_index) = old_chosen + r * (1 - old_chosen);
+for ii = 1 : max(size(neighbors_list))
+    if ii ~= target_neighbor_index
+        old_val = new_T(ii, target_destination_index);
+        new_T(ii, target_destination_index) = old_val - r * old_val;
+    end
+end
+
 
 function PrintMessage(msg)
 global ID
