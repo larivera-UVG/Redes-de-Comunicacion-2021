@@ -52,54 +52,51 @@ global DESTINATIONS
 global NEIGHBORS
 global SOURCES
 
-persistent neighbors_discover_interval
-persistent neighbors_discover_pm
-persistent neighbors_discovery
-persistent forward_ant_interval
-persistent waiting_time
-persistent backoff_time
-persistent packet_lenght_time
-persistent theta
-persistent total_waiting_time
-persistent p_t %probabilidad optima para maximizar probabilidad de conocer vecinos (aproximacion para k grande)
-persistent k % estimacion del numero de nodos alcanzables en la vecindad
-persistent possible_destinations_count
-persistent steady_neighbor %cantidad de slots sin cambios en la vencidad antes de empezar construccion de soluciones
-persistent Tp %cantidad de time slots antes de pasar a modo de construccion de soluciones
+persistent possible_destinations_count      % cantidad posible de destinos
+persistent forward_ant_interval             % intervalo de tiempo entre envio de hormigas de forward
+persistent waiting_time                     % tiempo de espera maximo de espera antes de sensar canal
+persistent backoff_time                     % tiempo de espera de TinyOS al hallar colisiones
+persistent packet_lenght_time               % delay para desplazamiento del paquete en el medio
+persistent total_waiting_time               % time-slot para algoritmo de descubrimiento de vecinos
+persistent theta                            % angulo de ancho del haz de la antena
+persistent k                                % estimacion del numero de nodos alcanzables en la vecindad
+persistent p_t                              % probabilidad optima para maximizar probabilidad de conocer vecinos (aproximacion para k grande)
+persistent Tp                               % cantidad de time slots antes de pasar a modo de construccion de soluciones
+persistent TmaxHops                         % numero de saltos limite para hormiga de forward
 
 switch event
 case 'Init_Application'
         
     %%%%%%%%%%%%%%   Memory should be initialized here  %%%%%%%%%%%%%%%%%
-    possible_destinations_count = (max(size(mote_IDs)) - 1);
-    Tp = 2*(possible_destinations_count ^ 2);
-    steady_neighbor = possible_destinations_count / 3;
-    waiting_time = 200 + 128; %bit-time
-    backoff_time = 100 + 30; %bit-time
-    packet_lenght_time = 960; %bit-time
-    total_waiting_time = waiting_time + backoff_time + packet_lenght_time; %bit-time
+    % incializacion de constantes
+    possible_destinations_count = (max(size(mote_IDs)) - 1);                    % el destino es cualquier nodo menos el mismo
+    %forward_ant_interval = (50 * 100)/3;                                        % bit-time
+    waiting_time = 200 + 128;                                                   % bit-time
+    backoff_time = 100 + 30;                                                    % bit-time
+    packet_lenght_time = 960;                                                   % bit-time
+    total_waiting_time = waiting_time + backoff_time + packet_lenght_time;      % bit-time
+    TmaxHops = 20;
+    forward_ant_interval = total_waiting_time * TmaxHops * 2;
     theta = pi;
-    k = possible_destinations_count; %sobre estimacion del numero de nodos en la vecindad
+    k = possible_destinations_count;                                            % sobre estimacion del numero de nodos en la vecindad (one-hop)
     p_t = 2*pi / (k*theta);
-    neighbors_discover_interval = 60; %ms
-    neighbors_discover_pm = 30; %ms
-    forward_ant_interval = 50; %ms
-    neighbors_discovery = max(size(mote_IDs));
+    Tp = (possible_destinations_count);                                   % estimamos el cuadrado de vecinos posibles
+    
+    % inicializacion de la memoria de cada elemento del enjambre
+    % neighbors_count ->    cantidad de vecinos del elemento
+    % destinations ->       IDs (direcciones) de los nodos destino
+    % time_slot_count ->    cantidad de slots transcurridos desde inicio del programa (condicion de para para pasar a fase de construccion de soluciones)
+    % T_matrix ->           matriz de feromonas (alineada en filas con el orden de NEIGHBORS{ID})
+    % neighbors_list ->     copia de NEIGHBORS{ID} para preservar la interidad de las funciones locales (vector columna) en el orden cronologico de descubrimiento
     memory = struct('neighbors_count', 0, 'destinations', mote_IDs(mote_IDs ~= ID),... 
-        'steady_neighbor_count', 0, 'time_slot_count', 0);
+        'time_slot_count', 0, 'T_matrix', [], 'neighbors_list', []);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-    %Set_Flood_Clock(get_random_time(t, neighbors_discover_interval, neighbors_discover_pm));
+
+    % se inicia la tarea para descubrir vecinos
     Set_Flood_Clock(t + total_waiting_time);
     if (ix==1)
          loginit('log/ant_net.log');
     end
-
-    % if DESTINATIONS(ID)
-    %     LED(['yellow', 'on']);
-    % elseif SOURCES(ID)
-    %     LED(['yellow', 'on']);
-    % end
-
 case 'Send_Packet'
     try msgID = data.msgID; catch msgID = 0; end
     if (msgID >= 0)
@@ -113,32 +110,35 @@ case 'Packet_Sent'
 case 'Packet_Received'
     rdata = data.data;
     try msgID = rdata.msgID; catch msgID = 0; end
-    if (msgID >= 0) %source data
+    if (msgID >= 0) % identificador del paquete                                                       
         logevent('PacketReceived');
-        if(strcmp(rdata.value,'Ant_discover'))
-            pass = 0;
-            PrintMessage(sprintf("id: %d ne: %d", ID, max(size(NEIGHBORS{ID}))));
-            % if (msgID == 0)
-            %     sdata.msgID = 1;
-            %     sdata.maxhops = 1;
-            %     sdata.address = rdata.from;
-            %     sdata.source = ID;
-            %     sdata.value = 'Ant_discover';
-            %     mainAntNet_layer(N, make_event(t + 500, 'Send_Packet', ID, sdata));
-            % end
-        elseif (strcmp(rdata.value,'Forward_Ant'))
-            pass = 0;
-            fdata.msgID = 2; %id para hormigas de forward
-            fdata.maxhops = rdata.maxhops - 1; %tope 20 saltos
-            %elegir un destino aleatorio que no sea el mismo y de dónde vino
-            fdata.value = 'Forward_Ant';
-            possible_hops = NEIGHBORS{ID}(NEIGHBORS{ID} ~= rdata.from);
-            if isempty(possible_hops)
-                fdata.address = rdata.from;
-            else
-                fdata.address = randsample(possible_hops,1);
+        if(msgID == 0)                                                              % paquete para descubrir vecinos
+            pass = 0;                                                               % no es de interes que llegue a capa de app
+            PrintMessage(sprintf("id: %d ne: %d", ID, max(size(NEIGHBORS{ID}))));            
+            if max(size(NEIGHBORS{ID})) > memory.neighbors_count                    % verificamos si el vecino es nuevo
+                memory.neighbors_count = max(size(NEIGHBORS{ID}));                  % es nuevo vecino, actualizar matriz de feromonas
+                memory.neighbors_list = [memory.neighbors_list; NEIGHBORS{ID}(end)];
+                memory.T_matrix = enter_new_row(memory.T_matrix, possible_destinations_count);
             end
-            mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));
+        elseif (msgID == 1)                                                         % paquete de hormiga de forward
+            pass = 0;                                                               % no es de interes que llegue a capa de app
+            rdata.maxhops = rdata.maxhops - 1;
+            if rdata.destination == ID                                              % condicion de paro
+                % enviar hormiga de backward
+                pass = 0; % dummy
+            else
+                % evaluar el numero de saltos, si ya no le quedan saltos (maxhops == 0) botar el paquete (en este caso no hacer nada)
+                if rdata.maxhops ~= 0
+                    % se quiere elegir el siguiente salto, dentro de la vecindad
+                    % los nodos no visitados ya
+                    % con la distribucion de probabilidad de la matriz T
+                    % si ya toda la vecindad fue visitada, dentro de todos
+                    rdata.path.push(ID);     % agregar el nodo actual al path
+                    rdata.address = next_hop_forward_ant(rdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, cell2mat(rdata.path.content()));
+                    PrintMessage(sprintf("%d -> %d: %d", rdata.source, rdata.destination, rdata.address));
+                    mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, rdata));
+                end
+            end
         end
     end
 
@@ -147,60 +147,35 @@ case 'Collided_Packet_Received'
     
 case 'Clock_Tick'
     if (strcmp(data.type,'ant_net_discovery'))
-        %comparar los vecinos conocidos actuales para ver si hubo cambios
-        %current_neighbors_count = max(size(NEIGHBORS{ID}));
-        %if current_neighbors_count == memory.neighbors_count
-        %    memory.steady_neighbor_count = memory.steady_neighbor_count + 1;
-        %else
-        %    memory.steady_neighbor_count = 0;
-        %    memory.neighbors_count = current_neighbors_count;
-        %end
-        % si ya no hay cambios agendar construccion de soluciones si es nodo fuente
-        %if (memory.steady_neighbor_count >= steady_neighbor) && (current_neighbors_count > 0)
-        %    if (SOURCES(ID)) 
-        %        Set_Forward_Ant_Clock(t + (neighbors_discover_interval*100)/3);
-        %    end
-        %else
-        % actualizar contador de time slots
-        memory.time_slot_count = memory.time_slot_count  + 1;
-        % si ya se llego a Tp y se tienen vecinos pasar al siguiente modo
-        if (memory.time_slot_count >= Tp) && (current_neighbors_count > 0)
-            if (SOURCES(ID)) 
-                Set_Forward_Ant_Clock(t + (neighbors_discover_interval*100)/3);
+        memory.time_slot_count = memory.time_slot_count  + 1;                       % actualizar contador de time slots
+        if (memory.time_slot_count >= Tp) && (memory.neighbors_count > 0)           % si ya se llego a Tp time slots y se tienen vecinos pasar al siguiente modo
+            if (SOURCES(ID))                                                        % si el nodo es fuente, pasar a construir soluciones
+                Set_Forward_Ant_Clock(t + forward_ant_interval);
             end
-        else
-            % enviar un frame de descubrimiento con probabilidad pt
-            if (rand < p_t)
-                fdata.msgID = 0; %id de mensaje hello
-                fdata.maxhops = 1; %solo un salto
-                fdata.address = 0; %broadcast
-                fdata.source = ID; %source en capa 3
-                fdata.value = 'Ant_discover'; %identificador de discover
-                mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));
+        else            
+            if (rand < p_t)                                                         % enviar un frame de descubrimiento con probabilidad pt
+                fdata.msgID = 0;                                                    % id de mensaje hello
+                fdata.maxhops = 1;                                                  % solo un salto
+                fdata.address = 0;                                                  % direccion de broadcast
+                fdata.source = ID;                                                  % source en capa 3
+                fdata.value = 'Ant_discover';                                       % identificador de paquete para descubrir vecinos
+                mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));       % enviar paquete
             end
             Set_Flood_Clock(t + total_waiting_time);
         end
-        %mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));
-        %memory.neighbors_discovery_count = memory.neighbors_discovery_count + 1;
-        %if  memory.neighbors_discovery_count == neighbors_discovery
-        %    %empezar el envío de paquetes de ruteo
-        %    memory.neighbors_discovery_count = 0;
-        %    Set_Forward_Ant_Clock(t + (memory.destinations_count * forward_ant_interval * 100)/3);
-        %else
-        %    Set_Flood_Clock(get_random_time(t, neighbors_discover_interval, neighbors_discover_pm));
-        %end
     elseif (strcmp(data.type,'periodic_ant_send'))
-        fdata.msgID = 2; %id para hormigas de forward
-        fdata.maxhops = 20; %tope 20 saltos
-        fdata.source = ID; %source a nivel de capa 3
-        %elegir un destino aleatorio que no sea el mismo
-        %fdata.destination = randsample(memory.destinations, 1); 
+        % construccion de soluciones - paso 1
+        fdata.msgID = 1;                                                            % id para hormigas de forward
+        fdata.maxhops = TmaxHops;                                                   % maximo de saltos
+        %fdata.destination = randsample(memory.destinations, 1);                    % elegir un destino al azar (omitido por el momento)
+        fdata.destination = find(DESTINATIONS == 1, 1);                             % acoplar el destino elegido por RMASE
+        fdata.source = ID;                                                          % source a nivel de capa 3
+        fdata.path = CStack(fdata.source);                                          % pila para guardar el camino en forward
+        fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, cell2mat(fdata.path.content()));
         fdata.value = 'Forward_Ant';
-        fdata.address = randsample(NEIGHBORS{ID},1);
+        PrintMessage(sprintf("%d -> %d: %d", fdata.source, fdata.destination, fdata.address));
         mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));
-        %PrintMessage(sprintf("%d picked %d", ID, fdata.destination));
-        %este evento siempre se reagenda a sí mismo en intervalos regulares
-        Set_Forward_Ant_Clock(t + (forward_ant_interval * 100)/3); 
+        Set_Forward_Ant_Clock(t + forward_ant_interval);                  % este evento siempre se reagenda a sí mismo en intervalos regulares
         
     end
     
@@ -243,6 +218,10 @@ function t_sched = get_random_time(t, interval, pm)
 %retornar un valor aleatorio de tiempo t + rand[interval-pm, interval+pm]
 t_sched = (t + floor((((interval - pm) + rand*2*pm) * 100)/3))
 
+
+% val_list es una lista (vector fila o columna de largo L)
+% val_weights es una lista de largo L con pesos correspondientes con val_list
+% se retorna un valor aleatorio entre los elementos de val_list con distribucion de probabilidad dada por val_weights
 function v = pick_random_value(val_list, val_weights)
 s = sum(val_weights);
 val_probs = val_weights / s;    % normalizar los pesos
@@ -254,6 +233,45 @@ while test_n > accum_sum        % vemos si la suma acumulada es menor que el num
     accum_sum = accum_sum + val_probs(k);
 end
 v = val_list(k);
+
+
+% A es una matriz de M X N
+% retorno de una nueva matriz de (M + 1) X N con probabilidad normalizada por columnas
+% la probabilidad asignada a la nueva fila es 
+function B = enter_new_row(A, N)
+K = size(A, 1);         % filas en A
+if K == 0
+    B = ones([1, N]);   % al inicio toda la probabilidad esta concentrada
+else
+    new_prob = (1 / (K + 1));                   % nueva probabilidad que tendra la fila nueva
+    rem_prob = 1 - new_prob;                    % probabilidad a la que deben ajustarse los elementos viejos de cada columna
+    scale_per_column = rem_prob ./ sum(A, 1);   % factores de escalamiento de cada columna
+    A_rescaled = scale_per_column .* A;
+    new_row = new_prob * ones([1, N]);
+    B = [A_rescaled; new_row];
+end
+
+
+function marked_list = zeros_from_black_list(black_list, target_list)
+% toma una lista negra con valores i, y otra lista negra con valores j
+% devuelve una lista marked_list tal que las entradas con valor j = i para alguna i se hacen 0, de lo contrario 1
+marked_list = zeros(size(target_list)); % ya se sabe el tamaño de la salida
+for ii = 1 : max(size(target_list)) % ya se sabe cuántas iteraciones se van a tener
+    lookup_value = target_list(ii);
+    if isempty(find(black_list == lookup_value, 1)) % el elemento lookup_value no está en black_list, se puede quedar sin alteraciones
+        marked_list(ii) = 1;
+    end
+end
+
+% elije el siguiente salto para las hormigas de forward con base en el distino, los vecinos, la matriz de feromonas y los nodos ya visitados
+function nh = next_hop_forward_ant(destination, destinations_list, neighors_list, T_matrix, visited_nodes)
+target_index = find(destinations_list == destination, 1);                   % indice de la columna correspondiente al nodo destino
+pick_list = zeros_from_black_list(visited_nodes, neighors_list);            % factor de escala para la columna de correspondiente al nodo destino
+if isempty(find(pick_list == 1, 1))                                               % todos los nodos ya se visitaron
+    nh = pick_random_value(neighors_list, T_matrix(:, target_index));
+else
+    nh = pick_random_value(neighors_list, pick_list .* T_matrix(:, target_index));
+end
 
 function PrintMessage(msg)
 global ID
