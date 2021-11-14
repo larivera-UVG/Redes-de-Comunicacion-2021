@@ -128,6 +128,13 @@ classdef CStack < handle
                 n_pivote = remove_loops_from_position(obj, n_pivote); % actualizar el siguiente paso
             end
         end
+
+        function remove_loops2(obj)
+            n_pivote = 1; % empezar por el primer elemento
+            while n_pivote < obj.cur % condicion de paro
+                n_pivote = remove_loops_from_position2(obj, n_pivote); % actualizar el siguiente paso
+            end 
+        end
     end
 
     methods (Access = private)
@@ -146,6 +153,35 @@ classdef CStack < handle
             k_el = obj.buffer{k}; % obtener el elemento en la posicion k
             % obtener las posiciones de las ocurrencias del elemento dentro del stack
             pos = find(cell2mat(obj.buffer(1:obj.cur)) == k_el);
+            % filtrar por las que sean mayores a k
+            pos_g_k = pos > k;
+            % obtener la posicion del primer 1 en variable anterior
+            pos_f_1 = find(pos_g_k == 1, 1);
+            if ~isempty(pos_f_1) % si aplica el loop
+                % obtener la posicion del duplicado en el arreglo original
+                pos_u = pos(pos_f_1);
+                % cuantas veces hacer shift
+                n_remove = pos_u - k;
+                % objetivo para hacer shift
+                target_p = k + 1;
+                for cc = 1:n_remove
+                    remove_kth_position(obj, target_p);
+                end
+                next_index = k; % si se hallaron loops reevaluar
+            else
+                next_index = k + 1; % no se hallaron repetidos, seguir
+            end
+        end
+
+        function next_index = remove_loops_from_position2(obj, k)
+            % con este codigo se preserva el timer mas antiguo si ocurre un loop
+            % remover los duplicados desde la referencia en posicion k
+            k_el2 = obj.buffer{k}; % obtener el elemento en la posicion k
+            k_el = k_el2(1);       % referir solo a la primera posicion del elemento
+            content = cell2mat(obj.buffer(1:obj.cur));  % obtener el contenido del stack
+            focus_column = content(:, 1);               % evaluar loops sobre la primera columna del contenido
+            % obtener las posiciones de las ocurrencias del elemento dentro del stack
+            pos = find(focus_column == k_el);
             % filtrar por las que sean mayores a k
             pos_g_k = pos > k;
             % obtener la posicion del primer 1 en variable anterior

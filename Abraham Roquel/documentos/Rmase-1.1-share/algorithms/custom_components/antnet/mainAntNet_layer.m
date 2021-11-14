@@ -96,12 +96,17 @@ case 'Init_Application'
     % time_slot_count ->    cantidad de slots transcurridos desde inicio del programa (condicion de para para pasar a fase de construccion de soluciones)
     % T_matrix ->           matriz de feromonas (alineada en filas con el orden de NEIGHBORS{ID})
     % neighbors_list ->     copia de NEIGHBORS{ID} para preservar la interidad de las funciones locales (vector columna) en el orden cronologico de descubrimiento
+    % i_counter ->          contador que aumenta en cada unidad de tiempo para calcular el RTT
     memory = struct('neighbors_count', 0, 'destinations', mote_IDs(mote_IDs ~= ID),... 
-        'time_slot_count', 0, 'T_matrix', [], 'neighbors_list', []);
+        'time_slot_count', 0, 'T_matrix', [], 'neighbors_list', [], 'i_counter', 0);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
     % se inicia la tarea para descubrir vecinos
     Set_Flood_Clock(t + total_waiting_time);
+
+    % agendar tarea de contador
+    %Set_Counter_Clock(t + 1);
+
     if (ix==1)
          loginit('log/ant_net.log');
     end
@@ -136,11 +141,12 @@ case 'Packet_Received'
                 bdata.msgID = 2;                                                    % ID para hormigas de backward
                 bdata.source = ID;
                 bdata.destination = rdata.source;
-                %bdata.maxhops = TmaxHops;
-                bdata.back_path = rdata.path;
-                bdata.back_path.remove_loops();
-                bdata.address = bdata.back_path.pop();
-                bdata.value = 'Backward_Ant';
+                % bdata.maxhops = TmaxHops;
+                bdata.back_path = rdata.path;                                       % hacer una copia de la pila de la hormiga de forward
+                bdata.back_path.remove_loops2();                                    % quitar los loops (v2)
+                top_element = bdata.back_path.top();                                % tomar el elemento en el top de la pila
+                bdata.address = top_element(1);                                     % seguir el mismo camino de regreso, sin loops
+                bdata.value = 'Backward_Ant';                               
                 mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, bdata));
             else
                 % evaluar el numero de saltos, si ya no le quedan saltos (maxhops == 0) botar el paquete (en este caso no hacer nada)
@@ -149,20 +155,26 @@ case 'Packet_Received'
                     % los nodos no visitados ya
                     % con la distribucion de probabilidad de la matriz T
                     % si ya toda la vecindad fue visitada, dentro de todos
-                    rdata.path.push(ID);     % agregar el nodo actual al path
-                    rdata.address = next_hop_forward_ant(rdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, cell2mat(rdata.path.content()));
+                    rdata.path.push([ID, t]);                                       % agregar el nodo actual al path, con tiempo t para calcular el rtt
+                    content_path = cell2mat(rdata.path.content());                  % extraer el contenido de la pila
+                    focus_column = content_path(:, 1);                              % tomar la columna del path
+                    rdata.address = next_hop_forward_ant(rdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, focus_column);
                     PrintMessage(sprintf("%d -> %d: %d", rdata.source, rdata.destination, rdata.address));
                     mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, rdata));
                 end
             end
-        elseif (msgID == 2)
-            pass = 0;
-            r_T = 0.7;
+        elseif (msgID == 2)                                                         % se recibio una hormiga de backwards
+            pass = 0;                                                               % no debe llegar a capa de app
+            top_element = rdata.back_path.top();                                    % el top element trae nuestro ID y el tiempo t cuando enviamos (o hicimos forward) la hormiga
+            spent_time = t - top_element(2);                                        % rtt
+            r_T = 0.7;                                                              % reinforcement
             memory.T_matrix = udpate_T_matrix(memory.T_matrix, rdata.source, memory.destinations, r_T, rdata.from, memory.neighbors_list);
             if rdata.destination == ID
                 pass = 0; % dummy
             else
-                rdata.address = rdata.back_path.pop();
+                rdata.back_path.pop();                                              % remover elemento en top                       
+                top_element_new = rdata.back_path.top();
+                rdata.address = top_element_new(1);                                 % seguir camino de regreso    
                 mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, rdata));
             end 
         end
@@ -195,18 +207,26 @@ case 'Clock_Tick'
         fdata.maxhops = TmaxHops;                                                   % maximo de saltos
         %fdata.destination = randsample(memory.destinations, 1);                    % elegir un destino al azar (omitido por el momento)
         if force_endpoints
-            fdata.destination = forced_destination;
+            fdata.destination = forced_destination;                                 % elegir el destino indicado explícitamente
         else
             fdata.destination = find(DESTINATIONS == 1, 1);                         % acoplar el destino elegido por RMASE
         end
         fdata.source = ID;                                                          % source a nivel de capa 3
-        fdata.path = CStack(fdata.source);                                          % pila para guardar el camino en forward
-        fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, cell2mat(fdata.path.content()));
+        %fdata.path = CStack(fdata.source);                                          
+        %fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, cell2mat(fdata.path.content()));
+        %v2
+        fdata.path = CStack([fdata.source, t]);                                     % pila para guardar el camino en forward, con su tiempo t
+        content_path = cell2mat(fdata.path.content());                              % extraer el conenido de la pila en forma matricial
+        focus_column = content_path(:, 1);                                          % tomar la primera columna (columna de IDs sobre el path)
+        fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, focus_column);
         fdata.value = 'Forward_Ant';
         PrintMessage(sprintf("%d -> %d: %d", fdata.source, fdata.destination, fdata.address));
         mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));
         Set_Forward_Ant_Clock(t + forward_ant_interval);                  % este evento siempre se reagenda a sí mismo en intervalos regulares
-        
+    elseif (strcmp(data.type,'counter_up'))
+        % tarea para aumentar contador
+        memory.i_counter = memory.i_counter + 1;
+        Set_Counter_Clock(t + 1);
     end
     
 end
@@ -243,6 +263,11 @@ global ID
 clock.type = 'periodic_ant_send';
 prowler('InsertEvents2Q', make_event(alarm_time, 'Clock_Tick', ID, clock));
 
+
+function b =Set_Counter_Clock(alarm_time)
+global ID
+clock.type = 'counter_up';
+prowler('InsertEvents2Q', make_event(alarm_time, 'Clock_Tick', ID, clock));
 
 function t_sched = get_random_time(t, interval, pm)
 %retornar un valor aleatorio de tiempo t + rand[interval-pm, interval+pm]
