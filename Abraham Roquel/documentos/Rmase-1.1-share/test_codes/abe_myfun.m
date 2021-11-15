@@ -1,8 +1,4 @@
-function abe_myfun()
-    persistent n
-    if isempty(n)
-        n = 0;
-    end
-    n = n+1
-    n
+function [h1, h2] = abe_myfun(sample_s)
+   h1 = 5;
+   h2 = 4;
 end
