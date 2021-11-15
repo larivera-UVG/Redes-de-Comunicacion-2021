@@ -89,7 +89,7 @@ case 'Init_Application'
     k = possible_destinations_count;                                            % sobre estimacion del numero de nodos en la vecindad (one-hop)
     p_t = 2*pi / (k*theta);
     Tp = 2 * (possible_destinations_count);                                   % estimamos el cuadrado de vecinos posibles
-    force_endpoints = 1;
+    force_endpoints = 0;
     forced_source = 1;
     forced_destination = 6;
     CUSTOM_COLOR = [0 0 0];
@@ -109,7 +109,7 @@ case 'Init_Application'
     % R_martix ->     matriz de valores previos del rtt para los diferentes destinos (alineado en columnas memory.destinations)
     memory = struct('neighbors_count', 0, 'destinations', mote_IDs(mote_IDs ~= ID),... 
         'time_slot_count', 0, 'T_matrix', [], 'neighbors_list', [], 'i_counter', 0,...
-        'S_matrix', zeros([2, possible_destinations_count]), 'R_martix', zeros([max_window_size, possible_destinations_count]));
+        'S_matrix', zeros([2, possible_destinations_count]), 'R_matrix', zeros([max_window_size, possible_destinations_count]));
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
     % se inicia la tarea para descubrir vecinos
@@ -182,6 +182,7 @@ case 'Packet_Received'
             memory.T_matrix = udpate_T_matrix(memory.T_matrix, rdata.source, memory.destinations, r_T, rdata.from, memory.neighbors_list);
             if rdata.destination == ID
                 pass = 0; % dummy
+                DrawLine('delete', inf, inf); % borrar todas las flechas
             else
                 rdata.back_path.pop();                                              % remover elemento en top                       
                 top_element_new = rdata.back_path.top();
@@ -198,7 +199,7 @@ case 'Clock_Tick'
     if (strcmp(data.type,'ant_net_discovery'))
         memory.time_slot_count = memory.time_slot_count  + 1;                       % actualizar contador de time slots
         if (memory.time_slot_count >= Tp) && (memory.neighbors_count > 0)           % si ya se llego a Tp time slots y se tienen vecinos pasar al siguiente modo
-            if (force_endpoints && (ID == forced_source)) || ((~forced_destination) && SOURCES(ID)) % evaluar nodo fuente
+            if (force_endpoints && (ID == forced_source)) || ((~force_endpoints) && SOURCES(ID)) % evaluar nodo fuente
                 Set_Forward_Ant_Clock(t + forward_ant_interval);
             end
         else            
@@ -232,6 +233,7 @@ case 'Clock_Tick'
         fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, focus_column);
         fdata.value = 'Forward_Ant';
         PrintMessage(sprintf("%d -> %d: %d", fdata.source, fdata.destination, fdata.address));
+        %DrawLine('delete', inf, inf); % borrar todas las flechas
         mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));
         Set_Forward_Ant_Clock(t + forward_ant_interval);                  % este evento siempre se reagenda a sí mismo en intervalos regulares
     elseif (strcmp(data.type,'counter_up'))
@@ -357,7 +359,7 @@ end
 
 % debe devolver un valor entre 0 y 1 para calcular el reinforcement
 function r = get_reinforcement(rtt_mean, rtt_variance, rtt_best, new_rtt)
-r = min([rtt_best/new_rtt, 1]);
+r = min([rtt_best/new_rtt, 0.5]);
 
 % devuelve las nuevas matrices de modelos y valores previos del rtt, y el reinforcement para los nuevos valores
 function [new_S, new_R, reinf] = udpate_and_get_r(old_S, old_R, destination, destinations_list, new_rtt, p_zeta, p_window)
