@@ -120,6 +120,7 @@ uint16_t Mrf24j::get_pan(void) {
 void Mrf24j::set_pan(uint16_t panid) {
     write_short(MRF_PANIDH, panid >> 8);
     write_short(MRF_PANIDL, panid & 0xff);
+    PANID = panid;
 }
 
 void Mrf24j::address16_write(uint16_t address16) {
@@ -207,7 +208,7 @@ void Mrf24j::init(void) {
     write_short(MRF_CCAEDTH, 0x60); // – Set CCA ED threshold.
     write_short(MRF_BBREG6, 0x40); // – Set appended RSSI value to RXFIFO.
     set_interrupts();
-    set_channel(12);
+    set_channel(25);
     set_promiscuous(false); // - for a normal reception mode.
     // max power is by default.. just leave it...
     // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
@@ -423,6 +424,7 @@ void Mrf24j::NoBeaconInitCoo(void){
     write_short(MRF_RXMCR, mask_short(MRF_RXMCR, 0x08, 0x08));
     write_short(MRF_TXMCR, mask_short(MRF_TXMCR, 0x02, 0x00));
     write_short(MRF_ORDER, 0xFF);
+    am_I_the_coordinator = true;
 }
 
 //NTW layer. Check if the current transceptor is a coordinator. 1-coordinator 0-no coordinator.
@@ -602,7 +604,7 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
             } else {
                 // the broadcast is made each cycle of 1000 figures sweeping the channel.
                 if(Timer_10ms_general==0){
-                    Timer_10ms_general = 1*WAIT_10MS;
+                    Timer_10ms_general = 10*WAIT_10MS;
                     //channel sweep
                     channel++;
                     if(channel==27)
@@ -616,10 +618,10 @@ bool Mrf24j::association_request(void){  //it needs to have the interruption han
         if (heard){
             // after the ACK sent by the coordinator, it sends the info of the PAN.
             if(flag_got_rx){
-                Serial.println("recibio algo");
-                for (int i = 0; i < rx_datalength(); i++)
-                Serial.write(rx_info.rx_data[i]);
-                Serial.println(" ");
+                //Serial.println("recibio algo");
+                //for (int i = 0; i < rx_datalength(); i++)
+                //Serial.write(rx_info.rx_data[i]);
+                //Serial.println(" ");
                 flag_got_rx = 0;   
                 if (rx_datalength()>3) {   
                 // 0: PAN HIGH - 1: PAN LOW - 2: ADDRESS UP - 3: ADDRESS LOW 
@@ -649,11 +651,38 @@ pool_t * Mrf24j::get_pool(void) {
     return &pool;
 }
 
+// APP layer service for the coordinator when someone tries to associate
+// Use by the coordinator
+bool Mrf24j::association(void){
+    bool member = false;
+    //bool coordinator = check_coo();
+    if(am_I_the_coordinator){
+        // reads the command "JOIN" to starts the association service
+        if(rx_datalength() == 4){
+            if(rx_info.rx_data[0] == 'J' &&
+            rx_info.rx_data[1] == 'O' &&
+            rx_info.rx_data[2] == 'I' &&
+            rx_info.rx_data[3] == 'N'){
+                char add[] = "OK";
+                broadcast(add,rx_info.origin);
+                Timer_10ms_general = 10*WAIT_10MS;
+                // int dummy;
+                while(Timer_10ms_general>0){
+                    // Serial.print("");
+                    // dummy++;
+                } // waiting timer for sending the message
+                member = association_response();
+            }
+        }
+    }
+    return(member);
+}
+
 //NTW layer association response
 bool Mrf24j::association_response(void){
     bool response = false;
     char buffer[4];
-    uint16_t panid = get_pan(); //gets the pan id
+    uint16_t panid = PANID; //gets the pan id
     uint16_t address = 0;
     int i, j;
     // calls the pool and extract the address of an unassign address
@@ -665,7 +694,7 @@ bool Mrf24j::association_response(void){
         }
     }
     
-    Serial.print("dirección por asignar: "); Serial.println(address);
+    //Serial.print("dirección por asignar: "); Serial.println(address);
     buffer[0] = (panid >> 8 & 0x00FF); // pan id high
     buffer[1] = (panid >> 0 & 0x00FF); // pan id low
     buffer[2] = (address >> 8 & 0x00FF); // address high
@@ -674,8 +703,7 @@ bool Mrf24j::association_response(void){
     broadcast(buffer, rx_info.origin); // sends the info to the node
     Timer_100ms_response = 1*WAIT_100MS;
     while(!response){
-        Serial.print("");
-
+        //Serial.print("");
         // the coordinator expects an "OK" to confirm the info received.
         if(rx_datalength()==2 && flag_got_rx){
             flag_got_rx = 0; // clean the flag of rx
@@ -694,30 +722,6 @@ bool Mrf24j::association_response(void){
         } 
     }
     return response;
-}
-
-// APP layer service for the coordinator when someone tries to associate
-// Use by the coordinator
-bool Mrf24j::association(void){
-    bool member = false;
-    bool coordinator = check_coo();
-    if(coordinator){
-        // reads the command "JOIN" to starts the association service
-        if(rx_datalength() == 4){
-            if(rx_info.rx_data[0] == 'J' &&
-            rx_info.rx_data[1] == 'O' &&
-            rx_info.rx_data[2] == 'I' &&
-            rx_info.rx_data[3] == 'N'){
-                char add[] = "OK";
-                broadcast(add,rx_info.origin);
-                Timer_10ms_general = 1*WAIT_10MS;
-                while(Timer_10ms_general>0) // waiting timer for sending the message
-                Serial.println("asociando... ");
-                member = association_response();
-            }
-        }
-    }
-    return(member);
 }
 
 
@@ -742,19 +746,6 @@ void Mrf24j::sendF(uint16_t address, float value, bool ack){
     return;
 }
 
-// APP layer for the COORDINATOR ONLY starts the sync timer for the PAN
-bool Mrf24j::sync(void){
-    int timeout = 0;
-    bool done = false;
-    bool coordinator = check_coo(); // checks if it's configure as a coordinator 
-    if(coordinator){
-        sendNoAck(BROADCAST,timerGo);
-        done = true;
-    }
-
-    return(done);
-}
-
 // APP layer algorithm to check if the message came from the coordinator
 // Here we put all  the commads that the coordinator can send
 bool Mrf24j::readCoo(void){
@@ -775,6 +766,7 @@ bool Mrf24j::readCoo(void){
             _timerGo = true; // activate the sync 
             _timer = 0; // set the timer
             received = true;
+            Timer_sync = (address16_read() - 0x1000)*10*WAIT_10MS;
         }
         
         // command to update PAN info
@@ -792,22 +784,46 @@ bool Mrf24j::readCoo(void){
     return(received);
 }
 
-// APP layer constantly updating the counter for sending a message.
-// must be in main loop to function correctly
-bool Mrf24j::syncSending(void){
-    bool done = false;
-    if(_timerGo){ // if sync is activated
-        uint32_t until = address16_read() - 0x1000; // substract the 1 in the beggining of the address. (check the pool)
-        until *= 1000; // makes the wait (1...10)*1000 figures
-        _timer++;
-        if(_timer >= until){
-            _timerGo = false; // deactivate the sync
-            _timer = 0; //restart the timer
-            done = true; // means ready to send
-        }
+// APP layer for the COORDINATOR ONLY starts the sync timer for the PAN
+bool Mrf24j::sync(void){
+    int timeout = 0;
+    bool done = false; 
+    if(am_I_the_coordinator){
+        sendNoAck(BROADCAST,timerGo);
+        done = true;
     }
 
     return(done);
+}
+
+// APP layer constantly updating the counter for sending a message.
+// must be in main loop to function correctly
+bool Mrf24j::syncSending(uint16_t dest, char * message){
+    bool done = false;
+    if(_timerGo && Timer_sync == 0){ // if sync is activated
+        _timerGo = false; // deactivate the sync
+        done = true;
+        sendAck(dest, message);
+        Timer_sync = (address16_read() - 0x1000)*WAIT_10MS;
+    }
+
+    return(done);
+}
+
+// APP layer fo the coordinator
+// have the service synchronized with the number of nodes
+void Mrf24j::synchronizedNodes(void){
+    int last = -1;
+    if(Timer_sync != 0)
+    return;
+    for(int i = 0; i < pool.size; i++){
+        if(pool.availability[i])
+        last = i;
+    }
+    if(last != -1)
+    sync();
+    Timer_sync = (last+1)*50*WAIT_10MS;
+    return;
 }
 
 // APP layer for the coordinador
@@ -818,6 +834,7 @@ byte Mrf24j::still(void){
     byte change = 0;
     char there[] = "still?";
     bool coordinator = check_coo();
+    uint16_t coord = address16_read();
     if(coordinator){ // check if it's the coordinator
 
         for(int i = 0; i < pool.size; i++){
@@ -825,11 +842,11 @@ byte Mrf24j::still(void){
             if(pool.availability[i]){
                 answer = false; //restart the algorithm
                 send = true;
-                Timer_100ms_still = 1*WAIT_100MS;
+                Timer_200ms_still = 2*WAIT_100MS;
                 while(!answer){
 
                     // if the time out occur the node didn't answer and is remove from the PAN.
-                    if(Timer_100ms_still==0){
+                    if(Timer_200ms_still==0){
                         break;
                     }
 
@@ -853,9 +870,6 @@ byte Mrf24j::still(void){
                             break;
                         }
                     }
-                    /*Timer_10ms_general = WAIT_10MS;
-                    while(Timer_10ms_general==0);*/
-
                 }
 
                 //Serial.println("se salió");
@@ -864,6 +878,13 @@ byte Mrf24j::still(void){
                     pool.availability[i] = 0; // 0 means free to assign
                     change++; // counter for the nodes that disappeared
                 } 
+            }
+        }
+
+        for(int i = 0; i < pool.size; i++){
+            if(coord == pool.address[i]){
+                pool.availability[i] = 1;
+                break;
             }
         }
     }
@@ -892,25 +913,40 @@ void Mrf24j::update(void){
 // update the information
 void Mrf24j::updateInfo(void){
     int i, j;
+    uint16_t my_address = address16_read();
     for(i=6,j=0; i<16; i++,j++){
         if (rx_info.rx_data[i] == 0xAA)
         pool.availability[j] = 1;
         else if (rx_info.rx_data[i] == 0xBB)
         pool.availability[j] = 0;
+        if (pool.address[j] == my_address && pool.availability[j] == 0) // aparentemente no estoy en la red
+        association_request();
         Serial.println(pool.availability[j]);
+
     }
 }
 
+// APP layer ONLY for the coordinator
+// It's use to call the still service in a "seconds" period
+void Mrf24j::cooCheck(uint8_t seconds){
+    if(Timer_connected==0){
+        still();
+        Timer_connected = seconds*10*WAIT_100MS;
+    }
+}
 
 // APP creates the handlers of the software timers. It needs only 1 timer of the MCU
 void Mrf24j::setTimer(void){ // current 1 timers of 10ms in use and 6 timer of 100ms in use
     timer_register_100ms(&Timer_500ms_request);
     timer_register_100ms(&Timer_100ms_response);
-    timer_register_100ms(&Timer_100ms_still);
+    timer_register_100ms(&Timer_200ms_still);
     timer_register_10ms(&Timer_10ms_general);
     timer_register_10ms(&Timer_2500ms_beat);
     timer_register_100ms(&Timer_5000ms_heartbeat);
     timer_register_100ms(&Timer_5000ms_acceptNew);
+    timer_register_100ms(&Timer_connected);
+    timer_register_10ms(&Timer_sync);
+    timer_register_100ms(&Timer_10000ms_lqi);
 }
 
 
@@ -918,11 +954,6 @@ void Mrf24j::setTimer(void){ // current 1 timers of 10ms in use and 6 timer of 1
 // It's use to constantly report the PAN that the coordinador still is working fine.
 void Mrf24j::cooBeat(void){
     if(Timer_2500ms_beat==0){
-        /*uint8_t free = read_short(MRF_TXNCON);
-        if ( (free&0x01) == 0){
-            Timer_2500ms_beat = 250*WAIT_10MS;
-            sendNoAck(BROADCAST,beat);
-        }*/
         sendNoAck(BROADCAST,"BEAT");
         Timer_2500ms_beat = 250*WAIT_100MS;
     }
@@ -945,7 +976,8 @@ bool Mrf24j::heartbeat(void){
         newCooRequest = true;
         IamCoo = true;
         quorum = 1;
-        Serial.println("inicia servicio");
+        tries += 1;
+        Serial.print("intentos "); Serial.println(tries);
     }
 
     // the time was reached and a previous request was made. So the node send its approval
@@ -975,9 +1007,8 @@ bool Mrf24j::heartbeat(void){
 // must be implemented when the rx flag is high.
 bool Mrf24j::electionCoo(void){
     bool request_made = false;
-    bool coordinator = check_coo();
 
-    if(!coordinator){
+    if(!am_I_the_coordinator){
         if(previousCooRequest && (Timer_5000ms_heartbeat==0)){
             if(rx_info.rx_data[0] == 'N' &&
                 rx_info.rx_data[1] == 'E' &&
@@ -986,6 +1017,7 @@ bool Mrf24j::electionCoo(void){
                 rx_info.rx_data[4] == 'E'){
                     coord = newcoord;
                     newCooRequest = false;
+                    request_made = false;
                     previousCooRequest = false;
                     IamCoo = false;
                     Timer_5000ms_heartbeat = 50*WAIT_100MS;
@@ -1028,23 +1060,30 @@ bool Mrf24j::electionCoo(void){
 // when the node that started the service checks if quorum was reach.
 bool Mrf24j::votation(void){
     // if the amount of votes aren't enough to reach quorum
-    if((quorum < QUORUM))
+    pool.QUORUM = 0;
+    for(int i = 0; i<pool.size; i++){
+        pool.QUORUM += pool.availability[i];
+    }
+    pool.QUORUM += -1;
+
+    if((quorum < pool.QUORUM))
     return false;
     else{
         coord = address16_read();
         NoBeaconInitCoo();
         uint16_t address = address16_read();
+        tries = 0;
 
         for(int i = 0; i < pool.size; i++){
                 if(pool.availability[i]&&(pool.availability[i])!=address){
                     Serial.print("dirección "); Serial.println(pool.address[i]);
                     bool answer = false; //restart the algorithm
                     bool send = true;
-                    Timer_100ms_still = 1*WAIT_100MS;
+                    Timer_200ms_still = 2*WAIT_100MS;
                     while(!answer){
 
                         // if the time out occurs the node didn't answer and is remove from the PAN.
-                        if(Timer_100ms_still==0){
+                        if(Timer_200ms_still==0){
                             break;
                         }
 
@@ -1074,6 +1113,7 @@ bool Mrf24j::votation(void){
                     }
                 }
         }
+
         IamCoo = false; // ends the service
         newCooRequest = false;
         previousCooRequest = false;
@@ -1098,4 +1138,46 @@ void Mrf24j::cooElection(void){
 // Check if i started the new coordinator service
 bool Mrf24j::check_IamCoo(void){
     return IamCoo;
+}
+
+// Loop for the coordinator for an easy implementation of all the services. Call it in the main loop
+int Mrf24j::coo_loop(uint8_t seconds, bool synchronize){
+    if(!am_I_the_coordinator)
+    return 0;
+
+    cooBeat();
+    cooCheck(seconds);
+    if(synchronize)
+    synchronizedNodes();
+    return 0;
+}
+
+// Loop for the node for an easy implementation of all the services. Call it in the main loop
+int Mrf24j::node_loop(){
+    if(am_I_the_coordinator)
+    return 0;    
+
+    if(tries>3){
+        association_request();
+        tries = 0;
+    }
+    // The implementation of the new coordinator service
+    heartbeat();
+    if(IamCoo)
+    votation();
+
+    return 0;
+}
+
+bool Mrf24j::channel_occupied(void){
+    Timer_10000ms_lqi = 100*WAIT_100MS;
+    bool occupy = false;
+    while(Timer_10000ms_lqi != 0){
+        uint8_t energy = lqi();
+        if(energy>0){
+            occupy = true;
+            break;
+        }
+    }
+    return occupy;
 }

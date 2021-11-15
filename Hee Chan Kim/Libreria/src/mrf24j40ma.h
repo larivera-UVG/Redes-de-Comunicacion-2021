@@ -162,7 +162,6 @@
 #define N_DECIMAL_POINTS_PRECISION (10000) // n = 4
 #define WAIT_10MS 1 // implement in the timer to wait 10 ms
 #define WAIT_100MS 1 // implement in the timer to wait 100 ms
-#define QUORUM 2 // the amount of nodes that are need to approve the coordinator election service
 
 typedef struct _rx_info_t{
     uint8_t frame_length;
@@ -188,6 +187,7 @@ typedef struct _pool_t{
     uint8_t size = 10;
     uint16_t address[10] = {0x1001,0x1002,0x1003,0x1004,0x1005,0x1006,0x1007,0x1008,0x1009,0x100A};
     uint8_t availability[10] = {0,0,0,0,0,0,0,0,0,0};  // 0:available 1:occupy
+    int QUORUM = 1; // the amount of nodes that are need to approve the coordinator election service
 } pool_t;
 
 class Mrf24j
@@ -258,7 +258,7 @@ class Mrf24j
          */ 
         void set_cca(uint8_t method = 0);
         uint8_t lqi(void);
-
+        bool channel_occupied(void);
         /*
          * Mask when it's necessary to modify certain bits from register
          */
@@ -310,8 +310,9 @@ class Mrf24j
         /*
          * Time Sync service 
          */
-        bool sync(void); //for the Coordinator ONLY
-        bool syncSending(void);
+        bool sync(void); // for the Coordinator ONLY
+        bool syncSending(uint16_t dest, char * message); // sends the message
+        void synchronizedNodes(void); //synchronized the service with the number of nodes 
 
         /*
          * Algorithm to check coordinator messages 
@@ -329,6 +330,7 @@ class Mrf24j
         byte still(void); // check if the members are still connected.
         void update(void); // send an update to all nodes.
         void updateInfo(void); // update the information of the PAN
+        void cooCheck(uint8_t seconds = 2); // calls the still service every "seconds"
 
         /*
          * Set the software timers
@@ -346,6 +348,12 @@ class Mrf24j
         bool check_IamCoo(void);
         bool am_I_the_coordinator;
 
+        /*
+         * The two principal loops: coordinator and node
+         */
+        int coo_loop(uint8_t seconds = 2, bool synchronize = false);
+        int node_loop(void);
+
     private:
         int _pin_reset;
         int _pin_cs;
@@ -359,16 +367,20 @@ class Mrf24j
         bool IamCoo;
         uint16_t newcoord;
         volatile uint8_t quorum;
+        volatile uint8_t tries;
+        uint16_t PANID;
 
         // Timers. MAX: 10 of 10ms and 10 of 100ms
         uint8_t Timer_500ms_request; // 100ms_timer
         uint8_t Timer_100ms_response; // 100ms_timer
-        uint8_t Timer_100ms_still; // 100ms_timer
-        uint8_t Timer_10ms_general; // 10ms_timer
+        uint8_t Timer_200ms_still; // 100ms_timer
+        volatile uint8_t Timer_10ms_general; // 10ms_timer
         uint8_t Timer_2500ms_beat; // 10ms_timer
         uint8_t Timer_5000ms_heartbeat; // 100ms_timer
         uint8_t Timer_5000ms_acceptNew; // 100ms_timer
-
+        uint8_t Timer_connected; // 100ms_timer
+        uint8_t Timer_sync; // 10ms_timer
+        uint8_t Timer_10000ms_lqi; // 100ms_timer
 };
 
 #endif  /* __MRF24J40MA_H__ */
