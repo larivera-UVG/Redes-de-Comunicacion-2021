@@ -27,9 +27,9 @@ Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 //PAN
 const uint16_t pan = 0x0040;
 //Dirección
-const uint16_t direccion = 0x1A31;
+const uint16_t direccion = 0x1A32;
 //Dirección envio
-const uint16_t dest = 0x000F;
+const uint16_t dest = 0x1001;
 
 //mandar código RGB a la red
 char led[3] = {0,150,0};
@@ -109,8 +109,7 @@ void loop() {
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
 
-  if(mrf.syncSending())
-  mrf.sendAck(dest,miembro);
+  mrf.syncSending(dest,miembro);
 }
 
 //maneja la bandera de recepción

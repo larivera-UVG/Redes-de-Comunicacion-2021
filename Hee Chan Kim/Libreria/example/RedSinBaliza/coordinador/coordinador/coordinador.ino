@@ -38,15 +38,20 @@ const int SIZE = 105;
 char buf[SIZE];
 char recibido[SIZE];
 
+// **********************************************************
+// interrupcion asociada al transceptor
+// **********************************************************
 //MRF24J40
 Mrf24j mrf(rst, cs, itr);
 
 void MRFInterruptRoutine() {
   //rutina para la interrupción
-  //Serial.println("interrupcion");
   mrf.interrupt_handler();
 }
 
+// **********************************************************
+// interrupcion asociada al timer 2
+// **********************************************************
 //Timers en software
 uint8_t my_timer = 10;
 uint8_t my_timer2 = 25;
@@ -55,10 +60,10 @@ ISR(TIMER2_OVF_vect){
    ISR_timer2();  
 }
 
-void setup() {
-  Serial.begin(115200);
-  pixels.begin(); 
-
+// **********************************************************
+// setup
+// **********************************************************
+void mrf_setup(){
   //reinicio del modulo
   mrf.reset();
   
@@ -74,6 +79,13 @@ void setup() {
   //asigna la dirección
   mrf.address16_write(direccion);
 
+  //inicializa red sin baliza
+  mrf.NoBeaconInitCoo();
+  mrf.set_cca(1);
+  mrf.UnslottedCSMACA();
+}
+
+void isr_setup(void){
   //interrupción asociado al pin itr
   attachInterrupt(digitalPinToInterrupt(itr), MRFInterruptRoutine, CHANGE);
 
@@ -83,11 +95,14 @@ void setup() {
   timer_register_10ms(&my_timer2);
 
   interrupts();
+}
 
-  //inicializa red sin baliza
-  mrf.NoBeaconInitCoo();
-  mrf.set_cca(1);
-  mrf.UnslottedCSMACA();
+void setup() {
+  Serial.begin(115200);
+  pixels.begin(); 
+
+  mrf_setup();
+  isr_setup();
 
   uint16_t pan_received = mrf.get_pan();
   uint16_t address_received = mrf.address16_read();
@@ -96,47 +111,20 @@ void setup() {
   Serial.print("Su dirección es: "); Serial.println(address_received);
 }
 
+// **********************************************************
+// loop
+// **********************************************************
 void loop() {
   pixels.clear(); // Set all pixel colors to 'off'
   pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
-  mrf.cooBeat();
-  /*if (my_timer2 == 0){
-    mrf.sendNoAck(0xFFFF,"BEAT");
-    my_timer2 = 25;
-  }*/
-  
-  int i = 0;
-  if (Serial.available() > 0) {
-      String data = Serial.readStringUntil('\n');
-
-      if (data == "sync"){
-        Serial.println("servicio sync...");
-        mrf.sync();
-      } else if (data == "still"){
-        Serial.println("chequeando");
-        byte conectados = mrf.still();
-        Serial.print("se desconectaron "); Serial.println(conectados);
-      } else if (data == "update"){
-        mrf.update();
-      }
-  }
-
-  if (my_timer == 0){
-    //Serial.println("1 segundo");
-    my_timer = 10;
-  }
+  mrf.coo_loop(10,true);
 }
 
 //maneja la bandera de recepción
-void handleRx(void){  
-  Serial.print("Vino de "); Serial.println(mrf.get_rxinfo()->origin);
-  for (int i = 0; i < mrf.rx_datalength(); i++)
-  Serial.write(mrf.get_rxinfo()->rx_data[i]);
-  Serial.println(" ");
-
+void handleRx(void){
   member = mrf.association();
   if(member){
         mrf.sendAck(mrf.get_rxinfo()->origin, led);
@@ -146,6 +134,5 @@ void handleRx(void){
 
 //maneja la bandera de envío
 void handleTx(void){
-  //Serial.println("fue el tx");
-  //Serial.print("ACK "); Serial.println(mrf.get_txinfo()->tx_ok);
+
 }

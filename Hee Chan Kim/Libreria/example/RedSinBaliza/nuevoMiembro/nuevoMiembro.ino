@@ -1,3 +1,6 @@
+#include <SAMDTimerInterrupt.h>
+#include <SAMD_ISR_Timer.h>
+
 //led blanca: sin red asociada
 
 //Inicialización del módulo
@@ -20,15 +23,16 @@ bool asociado = false;
 int contador = 0;
 
 
+
 //RGB
 Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 
 //PAN
 const uint16_t pan = 0x0040;
 //Dirección
-const uint16_t direccion = 0x1A31;
+const uint16_t direccion = 0x1A32;
 //Dirección envio
-const uint16_t dest = 0x000F;
+const uint16_t dest = 0x1002;
 
 //mandar código RGB a la red
 char led[3] = {0,150,0};
@@ -44,17 +48,16 @@ Mrf24j mrf(rst, cs, itr);
 
 void MRFInterruptRoutine() {
   //rutina para la interrupción
-  //Serial.println("interrupcion");
   mrf.interrupt_handler();
 }
 
-ISR(TIMER2_OVF_vect){
+/*ISR(TIMER2_OVF_vect){
    ISR_timer2();  
+}*/
+
+_irq void IRQHandler (void){
+  
 }
-
-//función para reiniciar el microcontrolador
-void(* resetFunc) (void) = 0;  // declare reset fuction at address 0
-
 
 void setup() {
   Serial.begin(115200);
@@ -86,21 +89,19 @@ void setup() {
   pixels.clear(); // Set all pixel colors to 'off'
   pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
   pixels.show();   // Send the updated pixel colors to the hardware.
-  
+
   while(!asociado){
-    contador++;
+    //contador++;
     asociado = mrf.association_request();
-    if(contador>3){
-      resetFunc(); //call reset
-    }
+    //if(contador>3){
+    //  resetFunc(); //call reset
+    //}
   } 
+  
+  
   uint16_t pan_received = mrf.get_pan();
   uint16_t address_received = mrf.address16_read();
   uint16_t origin = mrf.get_rxinfo()->origin;
-  
-  Serial.print("Está conectada a la red: "); Serial.println(pan_received);
-  Serial.print("Su dirección es: "); Serial.println(address_received);
-  Serial.print("Vino de: "); Serial.println(origin);
 }
 
 void loop() {
@@ -108,30 +109,10 @@ void loop() {
   pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
-  mrf.check_flags(&handleRx, &handleTx);
-  mrf.cooElection();
-  if(mrf.am_I_the_coordinator)
-  mrf.cooBeat();
-  
-  
-  int i = 0;
-  if (Serial.available() > 0) {
-      //String data = Serial.readStringUntil('\n');
-      int hola = Serial.readBytesUntil('\n',buf,SIZE);
-      hola++;
-      buf[hola] = '\n';
-      if (hola){
-        Serial.println("enviando...");
-        //mrf.broadcast(hola);
-        mrf.sendAck(dest,buf);
-        //mrf.sendNoAck(dest,buf);
-        for(int i;i< hola; i++){
-          buf[i] = {};
-        }     
-      }
-  }
-  if(mrf.syncSending())
-  mrf.sendAck(dest,miembro);
+  mrf.check_flags(&handleRx, &handleTx);  
+  mrf.coo_loop(10,true);
+  mrf.node_loop();
+  mrf.syncSending(dest,miembro);
 }
 
 //maneja la bandera de recepción
@@ -140,18 +121,23 @@ void handleRx(void){
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
 
-  mrf.electionCoo();
-  
   bool fromCoo = mrf.readCoo();
+  bool electionCoo = mrf.electionCoo();
+
   if(mrf.rx_datalength() == 3){
     led[0] = mrf.get_rxinfo()->rx_data[0];
     led[1] = mrf.get_rxinfo()->rx_data[1];
     led[2] = mrf.get_rxinfo()->rx_data[2];
   }
 
+  bool member = mrf.association();
+  if(member){
+        mrf.sendAck(mrf.get_rxinfo()->origin, led);
+        member = false;
+  }
+  
 }
 
 //maneja la bandera de envío
 void handleTx(void){
-  //Serial.println("fue el tx");
 }

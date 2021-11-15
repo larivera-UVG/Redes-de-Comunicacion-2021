@@ -1,0 +1,6 @@
+{
+    "configuration": "cpu=atmega328old",
+    "board": "arduino:avr:nano",
+    "sketch": "RedSinBaliza\\PruebaCoo\\PruebaCoo.ino",
+    "port": "COM12"
+}

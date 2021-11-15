@@ -117,7 +117,7 @@ void loop() {
 
       if (data == "exitos"){
         Serial.print("Se realizaron 2000 pruebas y se tuvo exito en "); Serial.println(success);
-      } else if (data == "sync"){
+      } else if (data == "conectados"){
         conectados = true;
         mrf.still();
       }
@@ -132,7 +132,6 @@ void loop() {
     success += 1;
     else
     conectados = false;
-    delay(100);
   }
 
   if (my_timer == 0){
@@ -142,6 +141,8 @@ void loop() {
 
   if (iter >= 2000)
   conectados = false;
+
+  delay(100);
 }
 
 //maneja la bandera de recepción
