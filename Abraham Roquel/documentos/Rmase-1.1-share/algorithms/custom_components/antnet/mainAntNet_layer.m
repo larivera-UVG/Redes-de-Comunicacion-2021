@@ -70,12 +70,20 @@ persistent force_endpoints
 persistent window_size                      % cantidad de muestras sobre las cuales tomar el mejor rtt
 persistent max_window_size                  % valor maximo de window_size
 persistent p_zeta
+persistent t_arr                            % arreglo de tiempo para almacenar las trayectorias
+persistent T_column_arr                     % matriz que guarda las columnas de T_matrix correspondientes con t arr
+persistent N_column_arr                     % matriz que guarda los vecinos correspondientes con t arr
+persistent counter_arr                      % contador para apuntar al ultimo valor valido
+persistent bit_time                         % da acceso al factor de conversion
+persistent stop_condition                   % valor para parar la simulacion
+persistent standalone_figure
 
 switch event
 case 'Init_Application'
         
     %%%%%%%%%%%%%%   Memory should be initialized here  %%%%%%%%%%%%%%%%%
     % incializacion de constantes
+    bit_time = sim_params('get', 'BIT_TIME');
     possible_destinations_count = (max(size(mote_IDs)) - 1);                    % el destino es cualquier nodo menos el mismo
     %forward_ant_interval = (50 * 100)/3;                                        % bit-time
     waiting_time = 200 + 128;                                                   % bit-time
@@ -88,13 +96,27 @@ case 'Init_Application'
     theta = pi;
     k = possible_destinations_count;                                            % sobre estimacion del numero de nodos en la vecindad (one-hop)
     p_t = 2*pi / (k*theta);
-    Tp = 2 * (possible_destinations_count);                                   % estimamos el cuadrado de vecinos posibles
+    Tp = (possible_destinations_count);                                   % estimamos el cuadrado de vecinos posibles
     force_endpoints = 0;
     forced_source = 1;
     forced_destination = 6;
     CUSTOM_COLOR = [0 0 0];
     max_window_size = 60;
     window_size = 10;
+    max_iterations = 100;
+    if (not(isempty(SOURCES)) && SOURCES(ID))
+        stop_condition = 1e-3;
+        counter_arr = 0;                                                        % empezar sin valores validos
+        t_arr = zeros([1, max_iterations]);                                     % vector fila
+        T_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr
+        N_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr
+        h2 = findall(groot,'Type','figure');
+        if strcmp(h2(1).Name, 'Prowler - Display')
+            standalone_figure = h2(1);
+        else
+            standalone_figure = h2(2);
+        end
+    end 
 
     
     % inicializacion de la memoria de cada elemento del enjambre
@@ -119,23 +141,23 @@ case 'Init_Application'
     %Set_Counter_Clock(t + 1);
 
     if (ix==1)
-         loginit('log/ant_net.log');
+         loginit('log/reinf_ant_net.log');
     end
 case 'Send_Packet'
     try msgID = data.msgID; catch msgID = 0; end
     if (msgID >= 0)
-        logevent('sendPacket');
+        %logevent('sendPacket');
     end
 case 'Packet_Sent'
     try msgID = data.msgID; catch msgID = 0; end
     if (msgID >= 0)
-        logevent('PacketSent');
+        %logevent('PacketSent');
     end
 case 'Packet_Received'
     rdata = data.data;
     try msgID = rdata.msgID; catch msgID = 0; end
     if (msgID >= 0) % identificador del paquete                                                       
-        logevent('PacketReceived');
+        %logevent('PacketReceived');
         if(msgID == 0)                                                              % paquete para descubrir vecinos
             pass = 0;                                                               % no es de interes que llegue a capa de app
             PrintMessage(sprintf("id: %d ne: %d", ID, max(size(NEIGHBORS{ID}))));            
@@ -182,6 +204,18 @@ case 'Packet_Received'
             memory.T_matrix = udpate_T_matrix(memory.T_matrix, rdata.source, memory.destinations, r_T, rdata.from, memory.neighbors_list);
             if rdata.destination == ID
                 pass = 0; % dummy
+                % guardar en memoria los valores actualizados
+                counter_arr = counter_arr + 1;
+                saveas(standalone_figure, sprintf('img_%d.jpg', counter_arr));
+                t_arr(counter_arr) = t * bit_time;
+                N_column_arr(1 : memory.neighbors_count, counter_arr) = memory.neighbors_list;
+                f_column_save = memory.T_matrix(:, find(memory.destinations == rdata.source, 1));
+                T_column_arr(1:  memory.neighbors_count, counter_arr) = f_column_save;
+                % evalar la condicion de paro
+                if (1 - max(f_column_save)) < stop_condition
+                    save('test_results.mat', 'counter_arr', 't_arr', 'N_column_arr', 'T_column_arr');
+                    prowler('StopSimulation');
+                end
                 DrawLine('delete', inf, inf); % borrar todas las flechas
             else
                 rdata.back_path.pop();                                              % remover elemento en top                       
@@ -359,7 +393,7 @@ end
 
 % debe devolver un valor entre 0 y 1 para calcular el reinforcement
 function r = get_reinforcement(rtt_mean, rtt_variance, rtt_best, new_rtt)
-r = min([rtt_best/new_rtt, 0.5]);
+r = min([rtt_best/new_rtt, 0.4]);
 
 % devuelve las nuevas matrices de modelos y valores previos del rtt, y el reinforcement para los nuevos valores
 function [new_S, new_R, reinf] = udpate_and_get_r(old_S, old_R, destination, destinations_list, new_rtt, p_zeta, p_window)

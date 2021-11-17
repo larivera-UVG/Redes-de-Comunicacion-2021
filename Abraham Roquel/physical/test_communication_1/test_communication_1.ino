@@ -14,9 +14,11 @@
 // class B private address range: 172.16.0.0 to 172.31.255.255
 
 #if device_id == 1
-  #define device_ip "172.21.0.1"
+  IPAddress ip_loc(172, 16, 0, 1);
+  IPAddress ip_rem(172, 16, 0, 2);
 #else
-  #define device_ip "172.21.0.2"
+  IPAddress ip_rem(172, 16, 0, 1);
+  IPAddress ip_loc(172, 16, 0, 2);
 #endif
 
 //void printMacAddress(byte mac[]) {
@@ -32,6 +34,8 @@
 //  Serial.println();
 //}
 
+WiFiUDP udp;
+unsigned int port = 4096;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -40,8 +44,13 @@ void setup() {
   }
 
   char buff_message[50];
-  sprintf(buff_message, "I'm device no. %d, with ip %s\n", device_id, device_ip);
+  sprintf(buff_message, "I'm device no. %d", device_id);
   Serial.print(buff_message);
+
+  WiFi.config(ip_loc);
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+  Serial.println(udp.begin(port));  
 
 //  byte mac[6];
 //  WiFi.macAddress(mac);
@@ -51,5 +60,12 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  #if device_id == 1
+  delay(100);
+  udp.beginPacket(ip_rem, port);
+  udp.write(5);
+  Serial.println(udp.endPacket());
+  #else
+  delay(100);
+  #endif
 }
