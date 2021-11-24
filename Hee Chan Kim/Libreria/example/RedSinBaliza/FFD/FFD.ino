@@ -34,10 +34,10 @@ char led[] = "sd!";
 //bool member = false;
 
 //buffer serial
-const int SIZE = 105;
+/*const int SIZE = 105;
 char buf[SIZE];
 char recibido[SIZE];
-
+*/
 // **********************************************************
 // interrupcion asociada al transceptor
 // **********************************************************
@@ -81,7 +81,7 @@ void mrf_setup(){
 
   //inicializa red sin baliza
   mrf.NoBeaconInitCoo();
-  mrf.set_cca(1);
+  //mrf.set_cca(1);
   mrf.UnslottedCSMACA();
 }
 
@@ -91,8 +91,8 @@ void isr_setup(void){
 
   //interrupción asociada al timer2
   //timer_init();
-  timer_register_100ms(&my_timer);
-  timer_register_10ms(&my_timer2);
+  //timer_register_100ms(&my_timer);
+  //timer_register_10ms(&my_timer2);
 
   interrupts();
 }
