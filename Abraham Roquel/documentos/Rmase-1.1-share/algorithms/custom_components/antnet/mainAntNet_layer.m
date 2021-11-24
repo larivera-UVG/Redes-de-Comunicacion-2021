@@ -51,7 +51,8 @@ S; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 global DESTINATIONS
 global NEIGHBORS
 global SOURCES
-global CUSTOM_COLOR
+global CUSTOM_COLOR_FORWARD
+global CUSTOM_COLOR_BACKWARD
 
 persistent possible_destinations_count      % cantidad posible de destinos
 persistent forward_ant_interval             % intervalo de tiempo entre envio de hormigas de forward
@@ -69,14 +70,22 @@ persistent forced_destination
 persistent force_endpoints
 persistent window_size                      % cantidad de muestras sobre las cuales tomar el mejor rtt
 persistent max_window_size                  % valor maximo de window_size
-persistent p_zeta
 persistent t_arr                            % arreglo de tiempo para almacenar las trayectorias
 persistent T_column_arr                     % matriz que guarda las columnas de T_matrix correspondientes con t arr
 persistent N_column_arr                     % matriz que guarda los vecinos correspondientes con t arr
 persistent counter_arr                      % contador para apuntar al ultimo valor valido
 persistent bit_time                         % da acceso al factor de conversion
 persistent stop_condition                   % valor para parar la simulacion
-persistent standalone_figure
+persistent standalone_figure                % handler para capturar las imagenes de los paths
+persistent p_zeta
+persistent p_c
+persistent p_v
+persistent p_c1
+persistent p_c2
+persistent reinf_mode
+persistent penalize_forward_loss            % variable para decidir si se penalizan las perdidas de las hormigas de forward
+persistent penalize_k                       % factor de penalizacion
+persistent i_am_source
 
 switch event
 case 'Init_Application'
@@ -90,21 +99,35 @@ case 'Init_Application'
     backoff_time = 100 + 30;                                                    % bit-time
     packet_lenght_time = 960;                                                   % bit-time
     total_waiting_time = waiting_time + backoff_time + packet_lenght_time;      % bit-time
-    p_zeta = 0.2;
     TmaxHops = 5;
     forward_ant_interval = total_waiting_time * TmaxHops * 2;
     theta = pi;
     k = possible_destinations_count;                                            % sobre estimacion del numero de nodos en la vecindad (one-hop)
     p_t = 2*pi / (k*theta);
-    Tp = (possible_destinations_count);                                   % estimamos el cuadrado de vecinos posibles
-    force_endpoints = 0;
-    forced_source = 1;
-    forced_destination = 6;
-    CUSTOM_COLOR = [0 0 0];
-    max_window_size = 60;
-    window_size = 10;
+    Tp = ceil(possible_destinations_count/2);                                   % estimamos el cuadrado de vecinos posibles
+    force_endpoints = 1;
+    forced_source = 17;
+    forced_destination = 41;
+    CUSTOM_COLOR_FORWARD = [0 0 0];
+    CUSTOM_COLOR_BACKWARD = [1 0 0];
+
+    penalize_forward_loss = 1;
+    penalize_k = 0.05;
+
+    p_zeta = 0.2;
+    p_c = 1;
+    max_window_size = 5*p_c/p_zeta;
+    window_size = max_window_size;
+
+    p_v = 0.9;
+    p_c1 = 0.5;
+    p_c2 = 0.5;
+
+    reinf_mode = 2; % 1 para modelo del libro, 2 para solo wbest, 3 para solo modelo de la media
+
     max_iterations = 100;
-    if (not(isempty(SOURCES)) && SOURCES(ID))
+    i_am_source = ((force_endpoints && (ID == forced_source)) || (~force_endpoints && not(isempty(SOURCES)) && SOURCES(ID)));
+    if i_am_source
         stop_condition = 1e-3;
         counter_arr = 0;                                                        % empezar sin valores validos
         t_arr = zeros([1, max_iterations]);                                     % vector fila
@@ -129,9 +152,15 @@ case 'Init_Application'
     % S_matrix ->           matriz d 4 x N donde N es el número de destinos (alineado en columnas con memory.destinations)
     %   fila 1 para la media, 2 para la varianza
     % R_martix ->     matriz de valores previos del rtt para los diferentes destinos (alineado en columnas memory.destinations)
+    % seq ->                vector fila alineado con destinations que guarda un numero de secuencia de para cada destino
+        % fila 1 es un contador que asciende cada vez que se envia (o se hace forward) una hormiga de forward al destino d
+        % fila 2 es un contador que asciende cada vez que se recibe una hormiga de backward del destino d
+        % fila 3 es la perdida actual (fila 1 - fila 2) que se actualiza cada vez que se envia una hormiga de forward
+        % fila 4 guarda el id del ultimo vecino por medio del cual se mando el paquete
     memory = struct('neighbors_count', 0, 'destinations', mote_IDs(mote_IDs ~= ID),... 
         'time_slot_count', 0, 'T_matrix', [], 'neighbors_list', [], 'i_counter', 0,...
-        'S_matrix', zeros([2, possible_destinations_count]), 'R_matrix', zeros([max_window_size, possible_destinations_count]));
+        'S_matrix', zeros([2, possible_destinations_count]), 'R_matrix', zeros([window_size, possible_destinations_count]),...
+        'seq', zeros([4, possible_destinations_count]));
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
     % se inicia la tarea para descubrir vecinos
@@ -190,7 +219,19 @@ case 'Packet_Received'
                     rdata.path.push([ID, t]);                                       % agregar el nodo actual al path, con tiempo t para calcular el rtt
                     content_path = cell2mat(rdata.path.content());                  % extraer el contenido de la pila
                     focus_column = content_path(:, 1);                              % tomar la columna del path
+                    % actualizar valores de matriz de secuencias
+                    target_index_seq = find(memory.destinations == rdata.destination, 1);
+                    previous_loss = memory.seq(3, target_index_seq);
+                    current_loss = memory.seq(1, target_index_seq) - memory.seq(2, target_index_seq);
+                    if penalize_forward_loss && (current_loss > previous_loss)
+                        % penalizar las perdidas
+                        memory.T_matrix = penalize_loss(memory.T_matrix, rdata.destination, memory.destinations, penalize_k, memory.seq(4, target_index_seq), memory.neighbors_list);
+                    end
+                    memory.seq(1, target_index_seq) = memory.seq(1, target_index_seq) + 1;  % actualizar contador de forward
+                    memory.seq(3, target_index_seq) = current_loss;                         % actualizar las perdidas actuales
+
                     rdata.address = next_hop_forward_ant(rdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, focus_column);
+                    memory.seq(4, target_index_seq) = rdata.address;                        % actualizar el ultimo vecino
                     PrintMessage(sprintf("%d -> %d: %d", rdata.source, rdata.destination, rdata.address));
                     mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, rdata));
                 end
@@ -199,9 +240,14 @@ case 'Packet_Received'
             pass = 0;                                                               % no debe llegar a capa de app
             top_element = rdata.back_path.top();                                    % el top element trae nuestro ID y el tiempo t cuando enviamos (o hicimos forward) la hormiga
             spent_time = t - top_element(2);                                        % rtt
-            [memory.S_matrix, memory.R_matrix, r_T] = udpate_and_get_r(memory.S_matrix, memory.R_matrix, rdata.source, memory.destinations, spent_time, p_zeta, window_size);
+            [memory.S_matrix, memory.R_matrix, r_T] = udpate_and_get_r(memory.S_matrix, memory.R_matrix, rdata.source, memory.destinations, spent_time, p_zeta, window_size, p_c1, p_c2, p_v, reinf_mode);
             %r_T = 0.7;                                                              % reinforcement
             memory.T_matrix = udpate_T_matrix(memory.T_matrix, rdata.source, memory.destinations, r_T, rdata.from, memory.neighbors_list);
+
+            % actualizar el contador apropiado de la matriz de secuencias
+            target_index_seq = find(memory.destinations == rdata.source, 1);
+            memory.seq(2, target_index_seq) = memory.seq(2, target_index_seq) + 1;
+
             if rdata.destination == ID
                 pass = 0; % dummy
                 % guardar en memoria los valores actualizados
@@ -214,6 +260,7 @@ case 'Packet_Received'
                 % evalar la condicion de paro
                 if (1 - max(f_column_save)) < stop_condition
                     save('test_results.mat', 'counter_arr', 't_arr', 'N_column_arr', 'T_column_arr');
+                    abe_myfun();
                     prowler('StopSimulation');
                 end
                 DrawLine('delete', inf, inf); % borrar todas las flechas
@@ -264,7 +311,20 @@ case 'Clock_Tick'
         fdata.path = CStack([fdata.source, t]);                                     % pila para guardar el camino en forward, con su tiempo t
         content_path = cell2mat(fdata.path.content());                              % extraer el conenido de la pila en forma matricial
         focus_column = content_path(:, 1);                                          % tomar la primera columna (columna de IDs sobre el path)
+        % actualizar la matriz de secuencias
+        target_index_seq = find(memory.destinations == fdata.destination, 1);
+        previous_loss = memory.seq(3, target_index_seq);
+        current_loss = memory.seq(1, target_index_seq) - memory.seq(2, target_index_seq);
+        if penalize_forward_loss && (current_loss > previous_loss)
+            % penalizar las perdidas
+            memory.T_matrix = penalize_loss(memory.T_matrix, fdata.destination, memory.destinations, penalize_k, memory.seq(4, target_index_seq), memory.neighbors_list);
+            pGGG = 0;
+        end
+        memory.seq(1, target_index_seq) = memory.seq(1, target_index_seq) + 1;  % actualizar contador de forward
+        memory.seq(3, target_index_seq) = current_loss;                         % actualizar perdidas actuales
+
         fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, focus_column);
+        memory.seq(4, target_index_seq) = fdata.address;    % actualizar el ultimo vecino
         fdata.value = 'Forward_Ant';
         PrintMessage(sprintf("%d -> %d: %d", fdata.source, fdata.destination, fdata.address));
         %DrawLine('delete', inf, inf); % borrar todas las flechas
@@ -274,6 +334,12 @@ case 'Clock_Tick'
         % tarea para aumentar contador
         memory.i_counter = memory.i_counter + 1;
         Set_Counter_Clock(t + 1);
+    end
+
+    if (abs(t - sim_params('get', 'STOP_SIM_TIME')) <= 1) && i_am_source
+        save('test_results.mat', 'counter_arr', 't_arr', 'N_column_arr', 'T_column_arr', 'penalize_forward_loss', 'penalize_k');
+        abe_myfun();
+        prowler('StopSimulation');
     end
     
 end
@@ -392,11 +458,28 @@ for ii = 1 : max(size(neighbors_list))
 end
 
 % debe devolver un valor entre 0 y 1 para calcular el reinforcement
-function r = get_reinforcement(rtt_mean, rtt_variance, rtt_best, new_rtt)
-r = min([rtt_best/new_rtt, 0.4]);
+function r = get_reinforcement(rtt_mean, rtt_variance, rtt_best, new_rtt, c1, c2, w, v, reinf_mode)
+if reinf_mode == 1
+    Iinf = rtt_best;
+    z = 1.0 / sqrt(1 - v);
+    Isup =  rtt_mean + z * (rtt_variance / sqrt(w));
+    denominator = (Isup - Iinf) + (new_rtt - Iinf);
+    if denominator == 0
+        term_mean = 0;
+    else
+        term_mean = c2 * (Isup - Iinf) / denominator;
+    end
+    term_best = c1 * rtt_best / new_rtt;
+    r = term_best + term_mean;
+    r = min([r, 0.3]);
+elseif reinf_mode == 2
+    r = min([rtt_best/new_rtt, 0.3]);
+else
+    r = min([rtt_mean/new_rtt, 0.3]);
+end
 
 % devuelve las nuevas matrices de modelos y valores previos del rtt, y el reinforcement para los nuevos valores
-function [new_S, new_R, reinf] = udpate_and_get_r(old_S, old_R, destination, destinations_list, new_rtt, p_zeta, p_window)
+function [new_S, new_R, reinf] = udpate_and_get_r(old_S, old_R, destination, destinations_list, new_rtt, p_zeta, p_window, c1, c2, v, reinf_mode)
 new_S = old_S(:, :);                                                                    % hacer una copia de la matriz de modelos
 new_R = old_R(:, :);                                                                    % hacer una copia de la matriz de rtts
 target_destination_index = find(destinations_list == destination, 1);                   % indice de columna clave en ambas matrices
@@ -408,8 +491,22 @@ new_R(end, target_destination_index) = new_rtt;                                 
 focus_column_best = new_R(end + 1 - p_window : end, target_destination_index);          % grupo de interes para hallar el mínimo
 current_best = min(focus_column_best(focus_column_best > 0));                           % calcular el máximo sobre el grupo de interés
 % obtener el refuerzo
-reinf = get_reinforcement(new_S(1, target_destination_index), new_S(2, target_destination_index), current_best, new_rtt);
+reinf = get_reinforcement(new_S(1, target_destination_index), new_S(2, target_destination_index), current_best, new_rtt, c1, c2, p_window, v, reinf_mode);
 
+
+% disminuye la feromona para los parametros indicados manteniendo la normalizacion
+function new_T = penalize_loss(old_T, destination, destinations_list, k, neighbor, neighbors_list)
+new_T = old_T(:, :);                                                    % hacer una copia de la matriz de feromonas
+target_destination_index = find(destinations_list == destination, 1);   % ubicar la columna de interes
+target_neighbor_index = find(neighbors_list == neighbor, 1);            % ubicar la fila de interes
+select_y = (neighbors_list == neighbor);                                % vectores de seleccion
+select_x = ~ select_y;
+old_column = old_T(:, target_destination_index);                        % valores antiguos de la columna
+alpha_y = 1 - k;                                                        % factor de escala para el target
+K = 1 - (alpha_y * old_column(target_neighbor_index));                  % factor de escala para el resto de filas
+L = sum(old_column .* select_x);
+alpha_x = K/L;
+new_T(:, target_destination_index) = (alpha_y * (select_y .* old_column)) + (alpha_x * (select_x .* old_column));
 
 function PrintMessage(msg)
 global ID
