@@ -33,11 +33,6 @@ char led[] = "sd!";
 //led[2] = 150;
 //bool member = false;
 
-//buffer serial
-/*const int SIZE = 105;
-char buf[SIZE];
-char recibido[SIZE];
-*/
 // **********************************************************
 // interrupcion asociada al transceptor
 // **********************************************************
