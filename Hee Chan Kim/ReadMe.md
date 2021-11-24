@@ -5,22 +5,16 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Las redes desarrolladas están basadas en una topología descentralizada enfocadas
-en dos algoritmos de la inteligencia de enjambre:
+Se utilizó el transceptor MRF24J40MA para fabricar la placa de desarrollo y construir la librería asociada.
 
-- Particle Swarm Optimization, PSO.
-- Ant Colony Optimization, ACO.
+# Placa de desarrollo
+La placa de desarrollo esta disponible en la UVG y los gerbers necesarios para su fabricación están en este Git. La placa está desarrollada entorno al transceptor MRF24J40MA y se utilizó exitosamente el Arduino Nano.
 
-## Primera Red
-Enfocada a PSO
-Esta red tiene un enfoque UDP ya que la importancia en este caso es la rápida transmisión de datos y luego la certeza de transmisión.
+# Librería
+La Librería cuenta con cuatro servicios para su funcionamiento adecuado en aplicaciones de robótica de enjambre.
 
-## Segunda Red
-
-Enfocada a ACO
-Esta red tiene un enfoque TCP ya que la importancia en este caso es la certeza de transmisión.
-
-![title](Images/protocolo-TCP-IP-05.png)
+# Documentación
+En la carpeta de documentación se encuentra toda la información referente a Zigbee y el transceptor.
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
