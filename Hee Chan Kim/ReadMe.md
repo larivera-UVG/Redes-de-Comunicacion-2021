@@ -1,4 +1,4 @@
-# Redes ZigBee para Swarm Robotics
+# Diseño e Implementación de un Sistema de Comunicación Inalámbrica para Aplicaciones de Robótica de Enjambre - Fase II
 ## _Hee Chan Kim_
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
