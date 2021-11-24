@@ -6,7 +6,7 @@ Esta librería es para el manejo del transceptor MRF24J40MA junto con cuatro ser
  - **Estructuras, métodos y funciones**
 
 # Configuración
-El usuario debe de incluir en el `main.c` únicamente el encabezado `mrf24j40ma.h`, pero agregar al folder donde este el `main.c` la librería de mrf24j40ma y timer. 
+El usuario debe de incluir en el `main.cpp` únicamente el encabezado `mrf24j40ma.h`, pero agregar al folder donde este el `main.cpp` la librería de mrf24j40ma y timer. 
 
 ## Inicialización
 
