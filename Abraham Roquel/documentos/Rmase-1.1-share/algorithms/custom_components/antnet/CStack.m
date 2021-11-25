@@ -1,3 +1,7 @@
+%  UNIVERSIDAD DEL VALLE DE GUATEMALA
+%  CLASE PARA DEFINIR PILAS
+%  MODIFICADO DEL CODIGO BASE DE zhang@zhiqiang.org
+
 classdef CStack < handle
 % CStack define a stack data strcuture
 % 

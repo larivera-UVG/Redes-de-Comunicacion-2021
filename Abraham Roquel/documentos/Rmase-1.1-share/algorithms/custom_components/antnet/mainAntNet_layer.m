@@ -1,3 +1,6 @@
+% UNIVERSIDAD DEL VALLE DE GUATEMALA
+% IMPLEMENTACION DE ANTNET
+
 function status = mainAntNet_layer(N, S)
 
 %* Copyright (C) 2003 PARC Inc.  All Rights Reserved.
@@ -48,9 +51,11 @@ S; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv%
 
+% variables globales genericas (ver Rmase-1.1-share/doc/html/Rmase/utilities.htm Global and Local Variables)
 global DESTINATIONS
 global NEIGHBORS
 global SOURCES
+% variables globales propias para modificar el color de las flechas
 global CUSTOM_COLOR_FORWARD
 global CUSTOM_COLOR_BACKWARD
 
@@ -65,9 +70,9 @@ persistent k                                % estimacion del numero de nodos alc
 persistent p_t                              % probabilidad optima para maximizar probabilidad de conocer vecinos (aproximacion para k grande)
 persistent Tp                               % cantidad de time slots antes de pasar a modo de construccion de soluciones
 persistent TmaxHops                         % numero de saltos limite para hormiga de forward
-persistent forced_source
-persistent forced_destination
-persistent force_endpoints
+persistent force_endpoints                  % determina si la fuente y destino se define en este codigo
+persistent forced_source                    % fuente "forzada"
+persistent forced_destination               % destino "forzado"
 persistent window_size                      % cantidad de muestras sobre las cuales tomar el mejor rtt
 persistent max_window_size                  % valor maximo de window_size
 persistent t_arr                            % arreglo de tiempo para almacenar las trayectorias
@@ -75,17 +80,20 @@ persistent T_column_arr                     % matriz que guarda las columnas de 
 persistent N_column_arr                     % matriz que guarda los vecinos correspondientes con t arr
 persistent counter_arr                      % contador para apuntar al ultimo valor valido
 persistent bit_time                         % da acceso al factor de conversion
-persistent stop_condition                   % valor para parar la simulacion
+persistent stop_condition                   % % de error parar la simulacion
 persistent standalone_figure                % handler para capturar las imagenes de los paths
-persistent p_zeta
-persistent p_c
-persistent p_v
-persistent p_c1
-persistent p_c2
-persistent reinf_mode
+persistent reinf_mode                       % qué modelo de refuerzo de backward usar
 persistent penalize_forward_loss            % variable para decidir si se penalizan las perdidas de las hormigas de forward
 persistent penalize_k                       % factor de penalizacion
-persistent i_am_source
+persistent i_am_source                      % define si el nodo actual es fuente o no
+persistent pp                               % contador para los nombres de las figuras a guardar
+persistent last_rtt                         % último RTT calculado
+% hiperparámetros de antnet
+persistent p_zeta                           % varsigma
+persistent p_c                              % c
+persistent p_v                              % v
+persistent p_c1                             % c1
+persistent p_c2                             % c2
 
 switch event
 case 'Init_Application'
@@ -94,31 +102,29 @@ case 'Init_Application'
     % incializacion de constantes
     bit_time = sim_params('get', 'BIT_TIME');
     possible_destinations_count = (max(size(mote_IDs)) - 1);                    % el destino es cualquier nodo menos el mismo
-    %forward_ant_interval = (50 * 100)/3;                                        % bit-time
     waiting_time = 200 + 128;                                                   % bit-time
     backoff_time = 100 + 30;                                                    % bit-time
     packet_lenght_time = 960;                                                   % bit-time
-    total_waiting_time = waiting_time + backoff_time + packet_lenght_time;      % bit-time
+    total_waiting_time = waiting_time + backoff_time + packet_lenght_time;      % bit-time, sobre estimacion del tiempo de espera
     TmaxHops = 5;
     forward_ant_interval = total_waiting_time * TmaxHops * 2;
     theta = pi;
     k = possible_destinations_count;                                            % sobre estimacion del numero de nodos en la vecindad (one-hop)
-    p_t = 2*pi / (k*theta);
-    Tp = ceil(possible_destinations_count/2);                                   % estimamos el cuadrado de vecinos posibles
+    p_t = 2*pi / (k*theta);                                                     % ver paper en Redes-de-Comunicacion-2021\Abraham Roquel\paper
+    Tp = ceil(possible_destinations_count/2);                                   % estimamos la mitad de vecinos posible como cantidad de slots para descubrir
     force_endpoints = 1;
     forced_source = 17;
     forced_destination = 41;
-    CUSTOM_COLOR_FORWARD = [0 0 0];
-    CUSTOM_COLOR_BACKWARD = [1 0 0];
+    CUSTOM_COLOR_FORWARD = [0 0 0];                                             % negro
+    CUSTOM_COLOR_BACKWARD = [1 0 0];                                            % rojo
 
-    penalize_forward_loss = 1;
-    penalize_k = 0.05;
+    penalize_forward_loss = 1;                                                  % si penalizar pérdidas
+    penalize_k = 0.1;
 
-    p_zeta = 0.2;
+    p_zeta = 0.2;                                                               % ver libro de Ant Colony
     p_c = 1;
     max_window_size = 5*p_c/p_zeta;
     window_size = max_window_size;
-
     p_v = 0.9;
     p_c1 = 0.5;
     p_c2 = 0.5;
@@ -128,16 +134,28 @@ case 'Init_Application'
     max_iterations = 100;
     i_am_source = ((force_endpoints && (ID == forced_source)) || (~force_endpoints && not(isempty(SOURCES)) && SOURCES(ID)));
     if i_am_source
+        % alocar memoria para guardar los resultados
         stop_condition = 1e-3;
         counter_arr = 0;                                                        % empezar sin valores validos
         t_arr = zeros([1, max_iterations]);                                     % vector fila
-        T_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr
-        N_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr
+        T_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr en feromona
+        N_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr en vecinos
+        % elegir la figura de display externo
         h2 = findall(groot,'Type','figure');
         if strcmp(h2(1).Name, 'Prowler - Display')
             standalone_figure = h2(1);
         else
             standalone_figure = h2(2);
+        end
+        % un nuevo número para la figura
+        pp = persis_poiner(1);
+        % inicializar archivo de resultados si no existe
+        if pp == 1
+            arr_first_time = [];
+            arr_con_time = [];
+            arr_last_rtt = [];
+            save('res.mat', 'arr_first_time', 'arr_con_time', 'arr_last_rtt');
+            clearvars arr_first_time arr_con_time arr_last_rtt;
         end
     end 
 
@@ -185,11 +203,10 @@ case 'Packet_Sent'
 case 'Packet_Received'
     rdata = data.data;
     try msgID = rdata.msgID; catch msgID = 0; end
-    if (msgID >= 0) % identificador del paquete                                                       
-        %logevent('PacketReceived');
+    if (msgID >= 0) % identificador del paquete, que sea valido                                                       
         if(msgID == 0)                                                              % paquete para descubrir vecinos
             pass = 0;                                                               % no es de interes que llegue a capa de app
-            PrintMessage(sprintf("id: %d ne: %d", ID, max(size(NEIGHBORS{ID}))));            
+            PrintMessage(sprintf("id: %d ne: %d", ID, max(size(NEIGHBORS{ID}))));   % actualizar el numero de vecinos en pantalla         
             if max(size(NEIGHBORS{ID})) > memory.neighbors_count                    % verificamos si el vecino es nuevo
                 memory.neighbors_count = max(size(NEIGHBORS{ID}));                  % es nuevo vecino, actualizar matriz de feromonas
                 memory.neighbors_list = [memory.neighbors_list; NEIGHBORS{ID}(end)];
@@ -221,7 +238,7 @@ case 'Packet_Received'
                     focus_column = content_path(:, 1);                              % tomar la columna del path
                     % actualizar valores de matriz de secuencias
                     target_index_seq = find(memory.destinations == rdata.destination, 1);
-                    previous_loss = memory.seq(3, target_index_seq);
+                    previous_loss = memory.seq(3, target_index_seq);                % guardar las pérdidas previas para ver si hay cambio
                     current_loss = memory.seq(1, target_index_seq) - memory.seq(2, target_index_seq);
                     if penalize_forward_loss && (current_loss > previous_loss)
                         % penalizar las perdidas
@@ -230,7 +247,7 @@ case 'Packet_Received'
                     memory.seq(1, target_index_seq) = memory.seq(1, target_index_seq) + 1;  % actualizar contador de forward
                     memory.seq(3, target_index_seq) = current_loss;                         % actualizar las perdidas actuales
 
-                    rdata.address = next_hop_forward_ant(rdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, focus_column);
+                    rdata.address = next_hop_forward_ant(rdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, focus_column); % elegir con base en T_matrix
                     memory.seq(4, target_index_seq) = rdata.address;                        % actualizar el ultimo vecino
                     PrintMessage(sprintf("%d -> %d: %d", rdata.source, rdata.destination, rdata.address));
                     mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, rdata));
@@ -240,6 +257,7 @@ case 'Packet_Received'
             pass = 0;                                                               % no debe llegar a capa de app
             top_element = rdata.back_path.top();                                    % el top element trae nuestro ID y el tiempo t cuando enviamos (o hicimos forward) la hormiga
             spent_time = t - top_element(2);                                        % rtt
+            last_rtt = spent_time * bit_time;
             [memory.S_matrix, memory.R_matrix, r_T] = udpate_and_get_r(memory.S_matrix, memory.R_matrix, rdata.source, memory.destinations, spent_time, p_zeta, window_size, p_c1, p_c2, p_v, reinf_mode);
             %r_T = 0.7;                                                              % reinforcement
             memory.T_matrix = udpate_T_matrix(memory.T_matrix, rdata.source, memory.destinations, r_T, rdata.from, memory.neighbors_list);
@@ -252,15 +270,25 @@ case 'Packet_Received'
                 pass = 0; % dummy
                 % guardar en memoria los valores actualizados
                 counter_arr = counter_arr + 1;
-                saveas(standalone_figure, sprintf('img_%d.jpg', counter_arr));
-                t_arr(counter_arr) = t * bit_time;
-                N_column_arr(1 : memory.neighbors_count, counter_arr) = memory.neighbors_list;
+                saveas(standalone_figure, sprintf('img_%d.jpg', counter_arr));                      % guardar la imagen de interes
+                t_arr(counter_arr) = t * bit_time;                                                  % calcular tiempo
+                N_column_arr(1 : memory.neighbors_count, counter_arr) = memory.neighbors_list;      % actualizar trayectorias
                 f_column_save = memory.T_matrix(:, find(memory.destinations == rdata.source, 1));
                 T_column_arr(1:  memory.neighbors_count, counter_arr) = f_column_save;
-                % evalar la condicion de paro
+                % evaluar la condicion de paro
                 if (1 - max(f_column_save)) < stop_condition
+                    % guardar imagenes finales
+                    saveas(standalone_figure, sprintf('img_%d.jpg', pp));
+                    saveas(standalone_figure, sprintf('img_%d.eps', pp));
+                    % guardar resultados finales
                     save('test_results.mat', 'counter_arr', 't_arr', 'N_column_arr', 'T_column_arr');
                     abe_myfun();
+                    load('res.mat');
+                    arr_first_time = [arr_first_time; t_arr(1)];
+                    arr_con_time = [arr_con_time; t_arr(counter_arr)];
+                    arr_last_rtt = [arr_last_rtt; last_rtt];
+                    save('res.mat', 'arr_first_time', 'arr_con_time', 'arr_last_rtt');
+                    % parar programa
                     prowler('StopSimulation');
                 end
                 DrawLine('delete', inf, inf); % borrar todas las flechas
@@ -305,9 +333,6 @@ case 'Clock_Tick'
             fdata.destination = find(DESTINATIONS == 1, 1);                         % acoplar el destino elegido por RMASE
         end
         fdata.source = ID;                                                          % source a nivel de capa 3
-        %fdata.path = CStack(fdata.source);                                          
-        %fdata.address = next_hop_forward_ant(fdata.destination, memory.destinations, memory.neighbors_list, memory.T_matrix, cell2mat(fdata.path.content()));
-        %v2
         fdata.path = CStack([fdata.source, t]);                                     % pila para guardar el camino en forward, con su tiempo t
         content_path = cell2mat(fdata.path.content());                              % extraer el conenido de la pila en forma matricial
         focus_column = content_path(:, 1);                                          % tomar la primera columna (columna de IDs sobre el path)
@@ -336,9 +361,18 @@ case 'Clock_Tick'
         Set_Counter_Clock(t + 1);
     end
 
-    if (abs(t - sim_params('get', 'STOP_SIM_TIME')) <= 1) && i_am_source
+    if (abs(t - sim_params('get', 'STOP_SIM_TIME')) <= 2500) && i_am_source
+        % se repite código anterior para el caso donde la simulación se extendió demasiado, guardar resultados e imagen
         save('test_results.mat', 'counter_arr', 't_arr', 'N_column_arr', 'T_column_arr', 'penalize_forward_loss', 'penalize_k');
         abe_myfun();
+
+        saveas(standalone_figure, sprintf('img_%d.jpg', pp));
+        saveas(standalone_figure, sprintf('img_%d.eps', pp));
+        load('res.mat');
+        arr_first_time = [arr_first_time; t_arr(1)];
+        arr_con_time = [arr_con_time; t_arr(counter_arr)];
+        arr_last_rtt = [arr_last_rtt; last_rtt];
+        save('res.mat', 'arr_first_time', 'arr_con_time', 'arr_last_rtt');
         prowler('StopSimulation');
     end
     
@@ -458,24 +492,27 @@ for ii = 1 : max(size(neighbors_list))
 end
 
 % debe devolver un valor entre 0 y 1 para calcular el reinforcement
+% se pueden usar cualquiera de las variables descritas aca
+% media, varianza, mejor valor, valor actual de RTT y los hiperparámetros de antnet
 function r = get_reinforcement(rtt_mean, rtt_variance, rtt_best, new_rtt, c1, c2, w, v, reinf_mode)
 if reinf_mode == 1
     Iinf = rtt_best;
     z = 1.0 / sqrt(1 - v);
     Isup =  rtt_mean + z * (rtt_variance / sqrt(w));
-    denominator = (Isup - Iinf) + (new_rtt - Iinf);
+    denominator = (Isup - Iinf) + (new_rtt - Iinf); % intervalo de confianza para u
     if denominator == 0
         term_mean = 0;
     else
         term_mean = c2 * (Isup - Iinf) / denominator;
     end
+    % aplicar función de acotamiento
     term_best = c1 * rtt_best / new_rtt;
     r = term_best + term_mean;
     r = min([r, 0.3]);
 elseif reinf_mode == 2
-    r = min([rtt_best/new_rtt, 0.3]);
+    r = min([rtt_best/new_rtt, 0.3]); % tomar en cuenta solo el mejor valor de rtt para comparar
 else
-    r = min([rtt_mean/new_rtt, 0.3]);
+    r = min([rtt_mean/new_rtt, 0.3]); % tomar en cuenta solo la media para comparar
 end
 
 % devuelve las nuevas matrices de modelos y valores previos del rtt, y el reinforcement para los nuevos valores

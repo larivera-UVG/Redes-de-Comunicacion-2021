@@ -52,7 +52,7 @@ persistent promiscuous;
 persistent initPower;
 persistent randPower;
 
-global CUSTOM_COLOR_FORWARD
+global CUSTOM_COLOR_FORWARD         % se invocan las variables globales de colores de flechas
 global CUSTOM_COLOR_BACKWARD
 
 used = 0;
@@ -100,6 +100,7 @@ case 'Packet_Received'
             if (width)
                 DrawLine('Arrow', from, ID, 'color', [0 0 0], 'LineWidth', width); % aqui se cambia el color de las flechas
             else
+                % cambiar el color de las flechas con base en lo que sucede en capa 3
                 if msgID == 1
                     DrawLine('Arrow', from, ID, 'color', CUSTOM_COLOR_FORWARD);
                 elseif msgID == 2

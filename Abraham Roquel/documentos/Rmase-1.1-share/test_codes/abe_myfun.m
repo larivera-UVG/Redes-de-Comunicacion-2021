@@ -22,7 +22,7 @@ function abe_myfun()
 		end
 	end
 	ll = legend('Location', 'eastoutside');
-	title(ll,'my title');
+	title(ll,'ID vecino');
 	%[leg,att] = legend('Location', 'eastoutside');
 	%title(leg,'my title')
 	%leg.Title.Visible = 'on';
