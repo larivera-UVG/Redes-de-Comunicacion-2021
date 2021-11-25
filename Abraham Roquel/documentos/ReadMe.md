@@ -10,22 +10,19 @@ Rmase-1.1-share/topologies/
   
 El documento "Manual de uso simulador de AntNet en RMASE.pdf" incluye los detalles para ejecutar las simulaciones correspondientes.
 
+## Acerca de RMASE
 
-## Ilustración de algunos gráficas de evolución de la feromona en el tiempo, desarrollado en Matlab
-![rec](./../imagenes/evo_1.jpg)<br/>
-![rec](./imagenes/evo_2.jpg)<br/>
-![rec](./imagenes/evo_3.jpg)<br/>
-![rec](./imagenes/final.jpg)<br/>
+RMASE (Routing Modelling Application Simulation Environment) es un entorno de simulación de eventos discretos desarrollado como una aplicación dentro de Prowler. Este a su vez genera las simulaciones del modelo de radio, según la especificación de acceso al medio de TinyOS. Para más información acerca de prowler puede visitarse su sitio oficial: https://www.isis.vanderbilt.edu/projects/nest/prowler/
 
-## Ilustración de los modos de comunicación a investigar con la implementación física
-Recolección<br/>
-![rec](./imagenes/red_recoleccion.jpg)<br/>
+RMASE permite escribir el código de cada agente del enjambre, para luego simular el algoritmo distribuido. Tiene incluidas muchas funcionalidades como generación de gráficas, estadísticas, animación de los resultados, etc. Se pueden añadir nuevos componentes de ruteo al definir las acciones que cada agente realizará con cada comando y evento. Los comandos, eventos y las capas son los principales componentes de RMASE. Para más información puede verse la documentación oficial dentro de este respositorio en: Rmase-1.1-share/doc/html/Rmase/
 
-Control<br/>
-![rec](./imagenes/red_control.jpg)<br/>
+## Acerca de AntNet
+AntNet es un algoritmo de ruteo basado en ACO que utiliza el round-trip-time como variable de enfoque para hallar rutas óptimas. La ruta óptima es aquella con el menor RTT. Una excelente explicación de ACO junto con el ejemplo explicativo del experimento de la doble rendija está en https://www.youtube.com/watch?v=xpyKmjJuqhk
 
-_Flooding_<br/>
-![rec](./imagenes/red_flooding.jpg)<br/>
+Las estructuras principales en memoria de cada agente del enjambre son:
+- La matriz T: contiene entradas que representan la probabilidad (feromona) de que una hormiga de forward con destino d tome como siguiente salto el vecino v.
+- La estructura S: contiene modelos del RTT hacia cada destino que se actualizan en el tiempo y permiten definir funciones para actualizar T.
+
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
