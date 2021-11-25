@@ -11,11 +11,10 @@ Este es el repositorio del trabajo de graduación dedicado a algoritmos de ruteo
 - red fisica: contiene los archivos de la implementacion fisica del algoritmo AntNet
 
 ## Ilustración de algunos gráficas de evolución de la feromona en el tiempo, desarrollado en Matlab
-Recolección<br/>
 ![rec](./imagenes/evo_1.jpg)<br/>
 ![rec](./imagenes/evo_2.jpg)<br/>
 ![rec](./imagenes/evo_3.jpg)<br/>
-![rec](./imagenes/feromona.jpg)<br/>
+![rec](./imagenes/final.jpg)<br/>
 
 ## Ilustración de los modos de comunicación a investigar con la implementación física
 Recolección<br/>
