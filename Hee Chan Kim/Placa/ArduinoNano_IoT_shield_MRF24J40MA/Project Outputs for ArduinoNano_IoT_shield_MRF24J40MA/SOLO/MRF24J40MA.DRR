@@ -1,15 +1,14 @@
 ----------------------------------------------------------------------------------------------------------------------------------
-NCDrill File Report For: shield_MRF24J40MA.PcbDoc   8/3/2021  12:06:28 PM
+NCDrill File Report For: MRF24J40MA.PcbDoc   12/7/2021  12:11:24 AM
 ----------------------------------------------------------------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
-ASCII RoundHoles File : shield_MRF24J40MA.TXT
+ASCII RoundHoles File : MRF24J40MA.TXT
 
 Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
 ----------------------------------------------------------------------------------------------------------------------------------
-T1      28mil (0.711mm)                                           Round             10        PTH        0.00inch (0.00mm)
-T2      35mil (0.9mm)                                             Round             64        PTH        0.00inch (0.00mm)
+T1      35mil (0.9mm)                                             Round             12        PTH        0.00inch (0.00mm)
 ----------------------------------------------------------------------------------------------------------------------------------
-Totals                                                                              74
+Totals                                                                              12
 
 Total Processing Time (hh:mm:ss) : 00:00:00

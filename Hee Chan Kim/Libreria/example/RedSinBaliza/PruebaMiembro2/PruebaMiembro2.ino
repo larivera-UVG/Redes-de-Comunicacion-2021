@@ -110,7 +110,7 @@ void loop() {
   mrf.check_flags(&handleRx, &handleTx);  
   mrf.coo_loop(10,true);
   mrf.node_loop();
-  mrf.syncSending(dest,miembro);
+  mrf.syncSending(mrf.coord,miembro);
 }
 
 //maneja la bandera de recepción
