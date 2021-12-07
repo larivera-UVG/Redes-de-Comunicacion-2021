@@ -1,0 +1,43 @@
+*************************************************************
+FileName = shield_MRF24J40MA.GBR
+AutoAperture = True
+*************************************************************
+Generating : Keep-Out Layer
+      File : shield_MRF24J40MA.GKO
+
+    Adding Layer      : Keep-Out Layer
+
+
+Used DCodes :
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : shield_MRF24J40MA.GBL
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+*************************************************************
+
+*************************************************************
+Generating : Top Layer
+      File : shield_MRF24J40MA.GTL
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+*************************************************************
+

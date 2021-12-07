@@ -1,1 +1,0 @@
-Esta es la carpeta donde estarán los documentos para el sistema de comunicación para robótica de enjambre.
