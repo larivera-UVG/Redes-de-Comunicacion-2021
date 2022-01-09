@@ -22,21 +22,20 @@ Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 //PAN
 const uint16_t pan = 0x1234;
 //Dirección
-const uint16_t direccion = 0x000F;
+const uint16_t direccion = 0x000A;
 //Dirección envio
 uint16_t dest = 0x0000;
 
 //mandar código RGB a la red
-char led[] = "sd!";
-//led[0] = 0;
-//led[1] = 0;
-//led[2] = 150;
+uint8_t led[] = {0,0,250};
+
 bool member = false;
 
 //buffer serial
 const int SIZE = 105;
 char buf[SIZE];
 char recibido[SIZE];
+char miembro[] = "SAVEHOLA";
 
 // **********************************************************
 // interrupcion asociada
@@ -77,7 +76,8 @@ void mrf_setup(){
   //mrf.set_channel(12);
 
   //asigna la dirección
-  mrf.address16_write(direccion);
+  mrf.address16_write(mrf.get_pool()->address[mrf.get_pool()->size-1]);
+  //mrf.address16_write(0x000F);
 
   //inicializa red sin baliza
   mrf.NoBeaconInitCoo();
@@ -101,6 +101,17 @@ void setup() {
   Serial.begin(115200);
   pixels.begin(); 
 
+  Serial.println("comenzar? Y/N");
+  while(true){
+    if (Serial.available() > 0) {
+      String data = Serial.readStringUntil('\n');
+      if (data == "Y")
+      break;
+      else if ( data == "N")
+      Serial.println("comenzar? Y/N");
+    }
+  }
+  
   mrf_setup();
   isr_setup();
 
@@ -109,15 +120,17 @@ void setup() {
 
   Serial.print("Está conectada a la red: "); Serial.println(pan_received);
   Serial.print("Su dirección es: "); Serial.println(address_received);
+
+  pixels.clear(); // Set all pixel colors to 'off'
+  pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
+  pixels.setBrightness(10);
+  pixels.show();   // Send the updated pixel colors to the hardware.
 }
 
 // **********************************************************
 // loop
 // **********************************************************
 void loop() {
-  pixels.clear(); // Set all pixel colors to 'off'
-  pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
-  pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);
   mrf.coo_loop(10,true);
@@ -146,20 +159,18 @@ void loop() {
 
 //maneja la bandera de recepción
 void handleRx(void){  
-  Serial.print("Vino de "); Serial.println(mrf.get_rxinfo()->origin);
   for (int i = 0; i < mrf.rx_datalength(); i++)
   Serial.write(mrf.get_rxinfo()->rx_data[i]);
   Serial.println(" ");
 
   member = mrf.association();
   if(member){
-        mrf.sendAck(mrf.get_rxinfo()->origin, led);
+        mrf.sendNoAck_byte(mrf.get_rxinfo()->origin,led,3);
         member = false;
   }
 }
 
 //maneja la bandera de envío
 void handleTx(void){
-  //Serial.println("fue el tx");
   //Serial.print("ACK "); Serial.println(mrf.get_txinfo()->tx_ok);
 }
