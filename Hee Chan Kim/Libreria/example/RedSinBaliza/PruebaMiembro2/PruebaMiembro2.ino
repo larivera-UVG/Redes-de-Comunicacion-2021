@@ -27,12 +27,12 @@ Adafruit_NeoPixel pixels(NUMPIXELS, rgb, NEO_GRB + NEO_KHZ800);
 //PAN
 const uint16_t pan = 0x0040;
 //Dirección
-const uint16_t direccion = 0x1A32;
+const uint16_t direccion = 0x1AF2;
 //Dirección envio
-const uint16_t dest = 0x1003;
+const uint16_t dest = 0x1002;
 
 //mandar código RGB a la red
-char led[3] = {0,150,0};
+uint8_t led[] = {0,150,0};
 
 //buffer serial
 const int SIZE = 105;
@@ -52,10 +52,6 @@ void MRFInterruptRoutine() {
 ISR(TIMER2_OVF_vect){
    ISR_timer2();  
 }
-
-//función para reiniciar el microcontrolador
-void(* resetFunc) (void) = 0;  // declare reset fuction at address 0
-
 
 void setup() {
   Serial.begin(115200);
@@ -86,16 +82,23 @@ void setup() {
   //RGB
   pixels.clear(); // Set all pixel colors to 'off'
   pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
+  pixels.setBrightness(10);
   pixels.show();   // Send the updated pixel colors to the hardware.
 
-  while(!asociado){
-    contador++;
-    asociado = mrf.association_request();
-    if(contador>3){
-      resetFunc(); //call reset
+  Serial.println("comenzar? Y/N");
+  while(true){
+    if (Serial.available() > 0) {
+      String data = Serial.readStringUntil('\n');
+      if (data == "Y")
+      break;
+      else if ( data == "N")
+      Serial.println("comenzar? Y/N");
     }
+  }
+
+  while(!asociado){
+    asociado = mrf.association_request();
   } 
-  
   
   uint16_t pan_received = mrf.get_pan();
   uint16_t address_received = mrf.address16_read();
@@ -105,6 +108,7 @@ void setup() {
 void loop() {
   pixels.clear(); // Set all pixel colors to 'off'
   pixels.setPixelColor(0, pixels.Color(led[0], led[1], led[2])); 
+  pixels.setBrightness(10);
   pixels.show();   // Send the updated pixel colors to the hardware.
   // revisa las banderas para enviar y recibir datos
   mrf.check_flags(&handleRx, &handleTx);  
@@ -130,7 +134,7 @@ void handleRx(void){
 
   bool member = mrf.association();
   if(member){
-        mrf.sendAck(mrf.get_rxinfo()->origin, led);
+        mrf.sendNoAck_byte(mrf.get_rxinfo()->origin,led,3);
         member = false;
   }
   
