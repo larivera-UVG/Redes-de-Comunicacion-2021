@@ -1,3 +1,5 @@
+%  UNIVERSIDAD DEL VALLE DE GUATEMALA
+%  funcion para desplegar resultados obtenidos
 function abe_myfun()
    load('test_results.mat')
    figure;

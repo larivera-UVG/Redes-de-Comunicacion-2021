@@ -78,17 +78,18 @@ persistent max_window_size                  % valor maximo de window_size
 persistent t_arr                            % arreglo de tiempo para almacenar las trayectorias
 persistent T_column_arr                     % matriz que guarda las columnas de T_matrix correspondientes con t arr
 persistent N_column_arr                     % matriz que guarda los vecinos correspondientes con t arr
+persistent rtt_path                         % arreglo que guarda la evoluci√≥n del rtt en el tiempo
 persistent counter_arr                      % contador para apuntar al ultimo valor valido
 persistent bit_time                         % da acceso al factor de conversion
 persistent stop_condition                   % % de error parar la simulacion
 persistent standalone_figure                % handler para capturar las imagenes de los paths
-persistent reinf_mode                       % quÈ modelo de refuerzo de backward usar
+persistent reinf_mode                       % qu√© modelo de refuerzo de backward usar
 persistent penalize_forward_loss            % variable para decidir si se penalizan las perdidas de las hormigas de forward
 persistent penalize_k                       % factor de penalizacion
 persistent i_am_source                      % define si el nodo actual es fuente o no
 persistent pp                               % contador para los nombres de las figuras a guardar
-persistent last_rtt                         % ˙ltimo RTT calculado
-% hiperpar·metros de antnet
+persistent last_rtt                         % √∫ltimo RTT calculado
+% hiperpar√°metros de antnet
 persistent p_zeta                           % varsigma
 persistent p_c                              % c
 persistent p_v                              % v
@@ -112,14 +113,15 @@ case 'Init_Application'
     k = possible_destinations_count;                                            % sobre estimacion del numero de nodos en la vecindad (one-hop)
     p_t = 2*pi / (k*theta);                                                     % ver paper en Redes-de-Comunicacion-2021\Abraham Roquel\paper
     Tp = ceil(possible_destinations_count/2);                                   % estimamos la mitad de vecinos posible como cantidad de slots para descubrir
+    %Tp = possible_destinations_count ^ 2;
     force_endpoints = 1;
-    forced_source = 17;
-    forced_destination = 41;
+    forced_source = 1; 
+    forced_destination = 12;
     CUSTOM_COLOR_FORWARD = [0 0 0];                                             % negro
     CUSTOM_COLOR_BACKWARD = [1 0 0];                                            % rojo
 
-    penalize_forward_loss = 1;                                                  % si penalizar pÈrdidas
-    penalize_k = 0.1;
+    penalize_forward_loss = 0;                                                  % si penalizar p√©rdidas
+    penalize_k = 0.2;                                                           % lo podemos hacer funci√≥n de algo
 
     p_zeta = 0.2;                                                               % ver libro de Ant Colony
     p_c = 1;
@@ -129,15 +131,16 @@ case 'Init_Application'
     p_c1 = 0.5;
     p_c2 = 0.5;
 
-    reinf_mode = 2; % 1 para modelo del libro, 2 para solo wbest, 3 para solo modelo de la media
+    reinf_mode = 1; % 1 para modelo del libro, 2 para solo wbest, 3 para solo modelo de la media
 
     max_iterations = 100;
     i_am_source = ((force_endpoints && (ID == forced_source)) || (~force_endpoints && not(isempty(SOURCES)) && SOURCES(ID)));
     if i_am_source
         % alocar memoria para guardar los resultados
-        stop_condition = 1e-3;
+        stop_condition = 5e-3;
         counter_arr = 0;                                                        % empezar sin valores validos
         t_arr = zeros([1, max_iterations]);                                     % vector fila
+        rtt_path = zeros([1, max_iterations]);                                  % vector fila
         T_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr en feromona
         N_column_arr = zeros([possible_destinations_count, max_iterations]);    % cada columna corresponde con t_arr en vecinos
         % elegir la figura de display externo
@@ -147,7 +150,7 @@ case 'Init_Application'
         else
             standalone_figure = h2(2);
         end
-        % un nuevo n˙mero para la figura
+        % un nuevo n√∫mero para la figura
         pp = persis_poiner(1);
         % inicializar archivo de resultados si no existe
         if pp == 1
@@ -167,7 +170,7 @@ case 'Init_Application'
     % T_matrix ->           matriz de feromonas (alineada en filas con memory.neighbors_list , y en columnas con memory.destinations)
     % neighbors_list ->     copia de NEIGHBORS{ID} para preservar la interidad de las funciones locales (vector columna) en el orden cronologico de descubrimiento
     % i_counter ->          contador que aumenta en cada unidad de tiempo para calcular el RTT
-    % S_matrix ->           matriz d 4 x N donde N es el n˙mero de destinos (alineado en columnas con memory.destinations)
+    % S_matrix ->           matriz d 4 x N donde N es el n√∫mero de destinos (alineado en columnas con memory.destinations)
     %   fila 1 para la media, 2 para la varianza
     % R_martix ->     matriz de valores previos del rtt para los diferentes destinos (alineado en columnas memory.destinations)
     % seq ->                vector fila alineado con destinations que guarda un numero de secuencia de para cada destino
@@ -238,7 +241,7 @@ case 'Packet_Received'
                     focus_column = content_path(:, 1);                              % tomar la columna del path
                     % actualizar valores de matriz de secuencias
                     target_index_seq = find(memory.destinations == rdata.destination, 1);
-                    previous_loss = memory.seq(3, target_index_seq);                % guardar las pÈrdidas previas para ver si hay cambio
+                    previous_loss = memory.seq(3, target_index_seq);                % guardar las p√©rdidas previas para ver si hay cambio
                     current_loss = memory.seq(1, target_index_seq) - memory.seq(2, target_index_seq);
                     if penalize_forward_loss && (current_loss > previous_loss)
                         % penalizar las perdidas
@@ -272,6 +275,7 @@ case 'Packet_Received'
                 counter_arr = counter_arr + 1;
                 saveas(standalone_figure, sprintf('img_%d.jpg', counter_arr));                      % guardar la imagen de interes
                 t_arr(counter_arr) = t * bit_time;                                                  % calcular tiempo
+                rtt_path(counter_arr) = last_rtt;
                 N_column_arr(1 : memory.neighbors_count, counter_arr) = memory.neighbors_list;      % actualizar trayectorias
                 f_column_save = memory.T_matrix(:, find(memory.destinations == rdata.source, 1));
                 T_column_arr(1:  memory.neighbors_count, counter_arr) = f_column_save;
@@ -283,6 +287,15 @@ case 'Packet_Received'
                     % guardar resultados finales
                     save('test_results.mat', 'counter_arr', 't_arr', 'N_column_arr', 'T_column_arr');
                     abe_myfun();
+
+                    figure;
+                    plot(t_arr(1: counter_arr), rtt_path(1: counter_arr));
+                    xlim([t_arr(1), t_arr(counter_arr)]);
+                    ylim([0, max(rtt_path)]);
+                    title("Cambio del RTT en el tiempo");
+                    ylabel("RTT (s)");
+                    xlabel("tiempo (s)");
+
                     load('res.mat');
                     arr_first_time = [arr_first_time; t_arr(1)];
                     arr_con_time = [arr_con_time; t_arr(counter_arr)];
@@ -290,6 +303,8 @@ case 'Packet_Received'
                     save('res.mat', 'arr_first_time', 'arr_con_time', 'arr_last_rtt');
                     % parar programa
                     prowler('StopSimulation');
+
+
                 end
                 DrawLine('delete', inf, inf); % borrar todas las flechas
             else
@@ -328,7 +343,7 @@ case 'Clock_Tick'
         fdata.maxhops = TmaxHops;                                                   % maximo de saltos
         %fdata.destination = randsample(memory.destinations, 1);                    % elegir un destino al azar (omitido por el momento)
         if force_endpoints
-            fdata.destination = forced_destination;                                 % elegir el destino indicado explÌcitamente
+            fdata.destination = forced_destination;                                 % elegir el destino indicado expl√≠citamente
         else
             fdata.destination = find(DESTINATIONS == 1, 1);                         % acoplar el destino elegido por RMASE
         end
@@ -354,7 +369,7 @@ case 'Clock_Tick'
         PrintMessage(sprintf("%d -> %d: %d", fdata.source, fdata.destination, fdata.address));
         %DrawLine('delete', inf, inf); % borrar todas las flechas
         mainAntNet_layer(N, make_event(t, 'Send_Packet', ID, fdata));
-        Set_Forward_Ant_Clock(t + forward_ant_interval);                  % este evento siempre se reagenda a sÌ mismo en intervalos regulares
+        Set_Forward_Ant_Clock(t + forward_ant_interval);                  % este evento siempre se reagenda a s√≠ mismo en intervalos regulares
     elseif (strcmp(data.type,'counter_up'))
         % tarea para aumentar contador
         memory.i_counter = memory.i_counter + 1;
@@ -362,7 +377,7 @@ case 'Clock_Tick'
     end
 
     if (abs(t - sim_params('get', 'STOP_SIM_TIME')) <= 2500) && i_am_source
-        % se repite cÛdigo anterior para el caso donde la simulaciÛn se extendiÛ demasiado, guardar resultados e imagen
+        % se repite c√≥digo anterior para el caso donde la simulaci√≥n se extendi√≥ demasiado, guardar resultados e imagen
         save('test_results.mat', 'counter_arr', 't_arr', 'N_column_arr', 'T_column_arr', 'penalize_forward_loss', 'penalize_k');
         abe_myfun();
 
@@ -457,10 +472,10 @@ end
 function marked_list = zeros_from_black_list(black_list, target_list)
 % toma una lista negra con valores i, y otra lista negra con valores j
 % devuelve una lista marked_list tal que las entradas con valor j = i para alguna i se hacen 0, de lo contrario 1
-marked_list = zeros(size(target_list)); % ya se sabe el tamaÒo de la salida
-for ii = 1 : max(size(target_list)) % ya se sabe cu·ntas iteraciones se van a tener
+marked_list = zeros(size(target_list)); % ya se sabe el tama√±o de la salida
+for ii = 1 : max(size(target_list)) % ya se sabe cu√°ntas iteraciones se van a tener
     lookup_value = target_list(ii);
-    if isempty(find(black_list == lookup_value, 1)) % el elemento lookup_value no est· en black_list, se puede quedar sin alteraciones
+    if isempty(find(black_list == lookup_value, 1)) % el elemento lookup_value no est√° en black_list, se puede quedar sin alteraciones
         marked_list(ii) = 1;
     end
 end
@@ -493,7 +508,7 @@ end
 
 % debe devolver un valor entre 0 y 1 para calcular el reinforcement
 % se pueden usar cualquiera de las variables descritas aca
-% media, varianza, mejor valor, valor actual de RTT y los hiperpar·metros de antnet
+% media, varianza, mejor valor, valor actual de RTT y los hiperpar√°metros de antnet
 function r = get_reinforcement(rtt_mean, rtt_variance, rtt_best, new_rtt, c1, c2, w, v, reinf_mode)
 if reinf_mode == 1
     Iinf = rtt_best;
@@ -505,14 +520,14 @@ if reinf_mode == 1
     else
         term_mean = c2 * (Isup - Iinf) / denominator;
     end
-    % aplicar funciÛn de acotamiento
+    % aplicar funci√≥n de acotamiento
     term_best = c1 * rtt_best / new_rtt;
     r = term_best + term_mean;
     r = min([r, 0.3]);
 elseif reinf_mode == 2
-    r = min([rtt_best/new_rtt, 0.3]); % tomar en cuenta solo el mejor valor de rtt para comparar
+    r = min([rtt_best/new_rtt, 0.15]); % tomar en cuenta solo el mejor valor de rtt para comparar
 else
-    r = min([rtt_mean/new_rtt, 0.3]); % tomar en cuenta solo la media para comparar
+    r = min([rtt_mean/new_rtt, 0.15]); % tomar en cuenta solo la media para comparar
 end
 
 % devuelve las nuevas matrices de modelos y valores previos del rtt, y el reinforcement para los nuevos valores
@@ -525,8 +540,8 @@ new_S(1, target_destination_index) = old_values(1) + p_zeta*(new_rtt - old_value
 new_S(2, target_destination_index) = old_values(2) + p_zeta*((new_rtt - new_S(1, target_destination_index))^2 - old_values(2)); % actualizar modelo de varianza
 new_R(1:end-1, target_destination_index) = new_R(2:end, target_destination_index);      % hacer el shift de los valores previos de rtt
 new_R(end, target_destination_index) = new_rtt;                                         % hacer el feed del registro con new_rtt
-focus_column_best = new_R(end + 1 - p_window : end, target_destination_index);          % grupo de interes para hallar el mÌnimo
-current_best = min(focus_column_best(focus_column_best > 0));                           % calcular el m·ximo sobre el grupo de interÈs
+focus_column_best = new_R(end + 1 - p_window : end, target_destination_index);          % grupo de interes para hallar el m√≠nimo
+current_best = min(focus_column_best(focus_column_best > 0));                           % calcular el m√°ximo sobre el grupo de inter√©s
 % obtener el refuerzo
 reinf = get_reinforcement(new_S(1, target_destination_index), new_S(2, target_destination_index), current_best, new_rtt, c1, c2, p_window, v, reinf_mode);
 

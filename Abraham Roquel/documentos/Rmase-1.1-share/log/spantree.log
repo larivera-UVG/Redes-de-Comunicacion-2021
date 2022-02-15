@@ -1,11 +1,12 @@
-Node <1> Time <0.054> Event <PacketSent>[]:
-Node <1> Time <0.029> Event <Message sent from 1 to broadcast>[]:
-Node <3> Time <0.030> Event <Message sent from 3 to broadcast>[]:
-Node <2> Time <0.030> Event <Message sent from 2 to broadcast>[]:
-Node <1> Time <0.032> Event <Message sent from 1 to broadcast>[]:
-Node <2> Time <0.033> Event <Message sent from 2 to broadcast>[]:
-Node <3> Time <0.034> Event <Message sent from 3 to broadcast>[]:
-Node <1> Time <0.037> Event <Message sent from 1 to broadcast>[]:
-Node <2> Time <0.037> Event <Message sent from 2 to broadcast>[]:
-Node <3> Time <0.038> Event <Message sent from 3 to broadcast>[]:
-Node <2> Time <0.040> Event <Message sent from 2 to broadcast>[]:
+Node <26> Time <0.057> Event <PacketSent>[]:
+Node <24> Time <0.086> Event <PacketSent>[]:
+Node <40> Time <0.087> Event <PacketSent>[]:
+Node <4> Time <0.087> Event <PacketSent>[]:
+Node <20> Time <0.088> Event <PacketSent>[]:
+Node <30> Time <0.110> Event <PacketSent>[]:
+Node <41> Time <0.112> Event <PacketSent>[]:
+Node <12> Time <0.112> Event <PacketSent>[]:
+Node <21> Time <0.113> Event <PacketSent>[]:
+Node <47> Time <0.113> Event <PacketSent>[]:
+Node <44> Time <0.116> Event <PacketSent>[]:
+Node <9> Time <0.117> Event <PacketSent>[]:
