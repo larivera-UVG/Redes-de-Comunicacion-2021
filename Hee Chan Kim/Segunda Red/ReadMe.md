@@ -1,1 +1,0 @@
-Esta es la carpeta donde estarán los archivos relacionados a la segunda red descentralizada con un enfoque TCP.

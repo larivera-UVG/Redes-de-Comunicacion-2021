@@ -1,0 +1,5 @@
+DRC Rules Export File for PCB: C:\Users\moise\OneDrive - Universidad del Valle de Guatemala\Documentos\GitHub\Redes-de-Comunicacion-2021\Hee Chan Kim\Placa\ArduinoNano_IoT_shield_MRF24J40MA\shield_MRF24J40MA.PcbDoc
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=10.00
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=20.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0

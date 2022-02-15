@@ -1,18 +1,22 @@
-## _Swarm-based Routing Algorithms simulator_
+## Algoritmos de Enrutamiento Basados en Inteligencia de Enjambre
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Este es el repositorio del trabajo de graduación dedicado a algoritmos de ruteo _swarm-based_. El contenido principal es el conjunto de todos los archivos relacionado con el segundo objetivo, que consta de implementar un simulador de estos algoritmos para las diferentes tareas en la red:
+Este es el repositorio del trabajo de graduación dedicado a algoritmos de ruteo basados en inteligencia de enjambre, en particular ANTNET. Las carpetas principales son:
+- documentos: tiene los archivos de MATLAB que implementan RMASE (_Routing Modelling Application Simulation Environment_).
+- documentos_curso: contiene el documento de tesis y el artículo escrito para el curso
+- imagenes: fólder para las imágnes que se presentan en los archivmos README
+- red fisica: contiene los archivos de la implementacion fisica del algoritmo AntNet
 
-- Recolección
-- Control
-- _Flooding_
+## Ilustración de algunos gráficas de evolución de la feromona en el tiempo, desarrollado en Matlab
+![rec](./imagenes/evo_1.jpg)<br/>
+![rec](./imagenes/evo_2.jpg)<br/>
+![rec](./imagenes/evo_3.jpg)<br/>
+![rec](./imagenes/final.jpg)<br/>
 
-En la carpeta de documentos se encuentra actualmente una copia del repositorio original del potencial punto de partida, RMSAE desarrollado en MATLAB.
-
-## Imágenes explicativas
+## Ilustración de los modos de comunicación a investigar con la implementación física
 Recolección<br/>
 ![rec](./imagenes/red_recoleccion.jpg)<br/>
 
