@@ -207,8 +207,8 @@ void Mrf24j::init(void) {
     write_short(MRF_BBREG2, 0x80); // Set CCA mode to ED
     write_short(MRF_CCAEDTH, 0x60); // – Set CCA ED threshold.
     write_short(MRF_BBREG6, 0x40); // – Set appended RSSI value to RXFIFO.
-    set_interrupts();
-    set_channel(25);
+    set_interrupts(); // Set the interruption of the rx and tx
+    set_channel(25); // Selects the channel 
     set_promiscuous(false); // - for a normal reception mode.
     // max power is by default.. just leave it...
     // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
@@ -407,16 +407,6 @@ void Mrf24j::set_cca(uint8_t method){
 uint8_t Mrf24j::lqi(void){
     write_short(MRF_BBREG6,0x80);
     return read_long(MRF_RSSI); //measures the link quality by the energy detection
-}
-
-//MAC layer
-void Mrf24j::BeaconInitCoo(void){
-    //preguntar
-}
-
-//MAC layer
-void Mrf24j::BeaconInit(void){
-    //hola
 }
 
 //MAC layer. Set the transceptor as a no beacon coordinantor
@@ -666,10 +656,7 @@ bool Mrf24j::association(void){
                 char add[] = "OK";
                 broadcast(add,rx_info.origin);
                 Timer_10ms_general = 10*WAIT_10MS;
-                // int dummy;
                 while(Timer_10ms_general>0){
-                    // Serial.print("");
-                    // dummy++;
                 } // waiting timer for sending the message
                 member = association_response();
             }
@@ -700,15 +687,16 @@ bool Mrf24j::association_response(void){
     buffer[2] = (address >> 8 & 0x00FF); // address high
     buffer[3] = (address >> 0 & 0x00FF); // address low
 
-    broadcast(buffer, rx_info.origin); // sends the info to the node
+    broadcast_byte(buffer, 4, rx_info.origin); // sends the info to the node
     Timer_100ms_response = 1*WAIT_100MS;
     while(!response){
-        //Serial.print("");
+        volatile uint8_t length = rx_datalength();
         // the coordinator expects an "OK" to confirm the info received.
-        if(rx_datalength()==2 && flag_got_rx){
+        if(length==2 && flag_got_rx){
             flag_got_rx = 0; // clean the flag of rx
-            if(rx_info.rx_data[0] == 'O' &&
-               rx_info.rx_data[1] == 'K'){
+            volatile char palabra[] = {rx_info.rx_data[0],rx_info.rx_data[1]};
+            if(palabra[0]== 'O' &&
+               palabra[1]== 'K'){
                 Serial.println("se unio uno nuevo");
                 response = true;
                 pool.availability[i] = 1; // sets occupy the selected address
@@ -717,7 +705,7 @@ bool Mrf24j::association_response(void){
 
         // if the time out occur the service fail.
         if(Timer_100ms_response==0){
-            Serial.println("se acabo el tiempo");
+            //Serial.println("se acabo el tiempo");
             break;
         } 
     }
@@ -766,7 +754,7 @@ bool Mrf24j::readCoo(void){
             _timerGo = true; // activate the sync 
             _timer = 0; // set the timer
             received = true;
-            Timer_sync = (address16_read() - 0x1000)*10*WAIT_10MS;
+            Timer_sync = (address16_read())*10*WAIT_10MS;
         }
         
         // command to update PAN info
@@ -804,7 +792,7 @@ bool Mrf24j::syncSending(uint16_t dest, char * message){
         _timerGo = false; // deactivate the sync
         done = true;
         sendAck(dest, message);
-        Timer_sync = (address16_read() - 0x1000)*WAIT_10MS;
+        Timer_sync = (address16_read())*WAIT_10MS;
     }
 
     return(done);
@@ -813,16 +801,16 @@ bool Mrf24j::syncSending(uint16_t dest, char * message){
 // APP layer fo the coordinator
 // have the service synchronized with the number of nodes
 void Mrf24j::synchronizedNodes(void){
-    int last = -1;
+    int last = 0;
     if(Timer_sync != 0)
     return;
     for(int i = 0; i < pool.size; i++){
-        if(pool.availability[i])
-        last = i;
+        if(pool.availability[i] == 1)
+        last += 1;
     }
-    if(last != -1)
+    if(last != 0)
     sync();
-    Timer_sync = (last+1)*50*WAIT_10MS;
+    Timer_sync = (last)*50*WAIT_10MS;
     return;
 }
 
@@ -839,7 +827,7 @@ byte Mrf24j::still(void){
 
         for(int i = 0; i < pool.size; i++){
             // Serial.println(i);
-            if(pool.availability[i]){
+            if(pool.availability[i] && pool.address[i] != coord){
                 answer = false; //restart the algorithm
                 send = true;
                 Timer_200ms_still = 2*WAIT_100MS;
@@ -986,6 +974,8 @@ bool Mrf24j::heartbeat(void){
         newCooRequest = true;
         Timer_5000ms_acceptNew = 50*WAIT_100MS; // the time the service has to complete the election.
         Serial.println("voy a votar");
+        Timer_sync = (address16_read())*10*WAIT_10MS;
+        while(Timer_sync > 0){};
         sendAck(newcoord,vote);
     }
 
@@ -1006,7 +996,7 @@ bool Mrf24j::heartbeat(void){
 // call this function to check if a request for new coordinator was received.
 // must be implemented when the rx flag is high.
 bool Mrf24j::electionCoo(void){
-    bool request_made = false;
+    volatile bool request_made = false;
 
     if(!am_I_the_coordinator){
         if(previousCooRequest && (Timer_5000ms_heartbeat==0)){
@@ -1022,6 +1012,7 @@ bool Mrf24j::electionCoo(void){
                     IamCoo = false;
                     Timer_5000ms_heartbeat = 50*WAIT_100MS;
                     quorum = 0;
+                    //Serial.print("coordinador "); Serial.println(coord);
                 }
         }
 
@@ -1064,7 +1055,7 @@ bool Mrf24j::votation(void){
     for(int i = 0; i<pool.size; i++){
         pool.QUORUM += pool.availability[i];
     }
-    pool.QUORUM += -1;
+    pool.QUORUM -= 1;
 
     if((quorum < pool.QUORUM))
     return false;
@@ -1075,8 +1066,8 @@ bool Mrf24j::votation(void){
         tries = 0;
 
         for(int i = 0; i < pool.size; i++){
-                if(pool.availability[i]&&(pool.availability[i])!=address){
-                    Serial.print("dirección "); Serial.println(pool.address[i]);
+                if(pool.availability[i]&&(pool.address[i])!=address){
+                    //Serial.print("dirección "); Serial.println(pool.address[i]);
                     bool answer = false; //restart the algorithm
                     bool send = true;
                     Timer_200ms_still = 2*WAIT_100MS;
@@ -1089,7 +1080,6 @@ bool Mrf24j::votation(void){
 
                         // sends the message to every occupy address
                         if(send){
-                            //Serial.println(pool.address[i]);
                             sendAck(pool.address[i],newMe);
                             send = false;
                         }
@@ -1107,9 +1097,6 @@ bool Mrf24j::votation(void){
                                 break;
                             }
                         }
-                        /*Timer_10ms_general = WAIT_10MS;
-                        while(Timer_10ms_general==0);*/
-
                     }
                 }
         }
@@ -1180,4 +1167,72 @@ bool Mrf24j::channel_occupied(void){
         }
     }
     return occupy;
+}
+
+// modificado de sendNoAck
+void Mrf24j::sendNoAck_byte(uint16_t dest16, uint8_t * data, uint8_t data_size){
+    int i = 0;
+    write_long(i++, bytes_MHR); // header length
+    // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
+    // default: ignoreBytes = 0;
+    write_long(i++, bytes_MHR+ignoreBytes+data_size);
+
+    // 0 | pan compression | no ack | no security | no data pending | data frame[3 bits]
+    write_long(i++, 0b01000001); // first byte of Frame Control
+    // 16 bit source, 802.15.4 (2003), 16 bit dest,
+    write_long(i++, 0b10001000); // second byte of frame control
+    write_long(i++, 1);  // sequence number 1
+
+    word panid = get_pan();
+
+    write_long(i++, panid & 0xff);  // dest panid
+    write_long(i++, panid >> 8);
+    write_long(i++, dest16 & 0xff);  // dest16 low
+    write_long(i++, dest16 >> 8); // dest16 high
+
+    word src16 = address16_read();
+    write_long(i++, src16 & 0xff); // src16 low
+    write_long(i++, src16 >> 8); // src16 high
+
+    // All testing seems to indicate that the next two  bytes are ignored.
+    //2 bytes on FCS appended by TXMAC
+    i+=ignoreBytes;
+    for (int q = 0; q < data_size; q++) {
+        write_long(i++, data[q]);
+    }
+    // no ack on, and go!
+    write_short(MRF_TXNCON, (0<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+}
+
+//MAC layer (modified from send16())
+void Mrf24j::broadcast_byte(char * data, uint8_t data_size, uint16_t address){
+    int i = 0;
+    write_long(i++, bytes_MHR); // header length
+    // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
+    // default: ignoreBytes = 0;
+    write_long(i++, bytes_MHR+ignoreBytes+data_size);
+
+    // 0 | pan compression | ack | no security | no data pending | data frame[3 bits]
+    write_long(i++, 0b01100001); // first byte of Frame Control
+    // 16 bit source, 802.15.4 (2003), 16 bit dest,
+    write_long(i++, 0b10001000); // second byte of frame control
+    write_long(i++, 1);  // sequence number 1
+
+    write_long(i++, BROADCAST);  // dest panid high
+    write_long(i++, BROADCAST);  // dest panid low
+    write_long(i++, address & 0xff);  // dest16 low
+    write_long(i++, address >> 8); // dest16 high
+
+    word src16 = address16_read();
+    write_long(i++, src16 & 0xff); // src16 low
+    write_long(i++, src16 >> 8); // src16 high
+
+    // All testing seems to indicate that the next two  bytes are ignored.
+    //2 bytes on FCS appended by TXMAC
+    i+=ignoreBytes;
+    for (int q = 0; q < data_size; q++) {
+        write_long(i++, data[q]);
+    }
+    // NO ack on, and go!
+    write_short(MRF_TXNCON, (0<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
 }

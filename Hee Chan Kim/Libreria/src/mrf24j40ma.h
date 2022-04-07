@@ -185,9 +185,9 @@ typedef struct _tx_info_t{
  */
 typedef struct _pool_t{
     uint8_t size = 10;
-    uint16_t address[10] = {0x1001,0x1002,0x1003,0x1004,0x1005,0x1006,0x1007,0x1008,0x1009,0x100A};
+    uint16_t address[10] = {0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,0x0009,0x000A};
     uint8_t availability[10] = {0,0,0,0,0,0,0,0,0,0};  // 0:available 1:occupy
-    int QUORUM = 1; // the amount of nodes that are need to approve the coordinator election service
+    uint8_t QUORUM = 1; // the amount of nodes that are need to approve the coordinator election service
 } pool_t;
 
 class Mrf24j
@@ -272,12 +272,6 @@ class Mrf24j
         bool check_coo(void);
         void NoBeaconInit(void);
         void UnslottedCSMACA(void);
-
-        /*
-         * Functions for a beacon network
-         */
-        void BeaconInitCoo(void);
-        void BeaconInit(void);
         void SlottedCSMACA(void);
 
         /*
@@ -286,6 +280,8 @@ class Mrf24j
         void sendAck(uint16_t dest16, char * data);
         void sendNoAck(uint16_t dest16, char * data);
         void broadcast(char * data, uint16_t address = BROADCAST);
+        void sendNoAck_byte(uint16_t dest16, uint8_t * data, uint8_t data_size);
+        void broadcast_byte(char * data, uint8_t data_size, uint16_t address = BROADCAST);
 
         /*
          * To associate to a PAN
@@ -353,17 +349,17 @@ class Mrf24j
          */
         int coo_loop(uint8_t seconds = 2, bool synchronize = false);
         int node_loop(void);
+        uint16_t coord;
 
     private:
         int _pin_reset;
         int _pin_cs;
         int _pin_int;
         bool _ACK_FAIL;
-        uint16_t coord;
         bool _timerGo;
         uint32_t _timer;
-        bool previousCooRequest;
-        bool newCooRequest;
+        volatile bool previousCooRequest;
+        volatile bool newCooRequest;
         bool IamCoo;
         uint16_t newcoord;
         volatile uint8_t quorum;
@@ -371,16 +367,16 @@ class Mrf24j
         uint16_t PANID;
 
         // Timers. MAX: 10 of 10ms and 10 of 100ms
-        uint8_t Timer_500ms_request; // 100ms_timer
-        uint8_t Timer_100ms_response; // 100ms_timer
-        uint8_t Timer_200ms_still; // 100ms_timer
+        volatile uint8_t Timer_500ms_request; // 100ms_timer
+        volatile uint8_t Timer_100ms_response; // 100ms_timer
+        volatile uint8_t Timer_200ms_still; // 100ms_timer
         volatile uint8_t Timer_10ms_general; // 10ms_timer
-        uint8_t Timer_2500ms_beat; // 10ms_timer
-        uint8_t Timer_5000ms_heartbeat; // 100ms_timer
-        uint8_t Timer_5000ms_acceptNew; // 100ms_timer
-        uint8_t Timer_connected; // 100ms_timer
-        uint8_t Timer_sync; // 10ms_timer
-        uint8_t Timer_10000ms_lqi; // 100ms_timer
+        volatile uint8_t Timer_2500ms_beat; // 10ms_timer
+        volatile uint8_t Timer_5000ms_heartbeat; // 100ms_timer
+        volatile uint8_t Timer_5000ms_acceptNew; // 100ms_timer
+        volatile uint8_t Timer_connected; // 100ms_timer
+        volatile uint8_t Timer_sync; // 10ms_timer
+        volatile uint8_t Timer_10000ms_lqi; // 100ms_timer
 };
 
 #endif  /* __MRF24J40MA_H__ */
